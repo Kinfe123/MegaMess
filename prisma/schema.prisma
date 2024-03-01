@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
+  provider     = "postgresql"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
@@ -53,9 +53,9 @@ model User {
   image         String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
-
-  accounts Account[]
-  sessions Session[]
+  files         File[]    @relation("files")
+  accounts      Account[]
+  sessions      Session[]
 
   stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
   stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
@@ -72,4 +72,12 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map(name: "verification_tokens")
+}
+
+model File {
+  id     String @id @default(cuid())
+  name   String
+  size   Float
+  userId String
+  user   User   @relation("files", fields: [userId], references: [id])
 }
