@@ -5,7 +5,8 @@ import { siteConfig } from "@/config/site"
 import { cn, nFormatter } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { BottomLine, Gradient } from "./gradients"
-
+import GradientImg from '../../../public/gradient.png'
+import Image from "next/image"
 const Hero = () => {
     return (
         <Section
@@ -14,8 +15,13 @@ const Hero = () => {
             crossesOffset="lg:translate-y-[5.25rem]"
             customPaddings
             id="hero">
-            <section className="space-y-6 pb-12 pt-12 lg:py-20">
+            <section className="space-y-6 relative pb-12 pt-12 lg:py-20">
+                   <div className="absolute left-52 top-[-1400px] transform rotate-180 justify-center items-center flex">
+                     <Image src={GradientImg}  alt="gradinet img" />
+
+                   </div>
                 <div className="relative container flex max-w-[64rem] flex-col items-center gap-5 text-center">
+                   
                     <h1
                         className="animate-fade-up mt-[-120px] text-balance font-urban text-4xl font-extrabold tracking-tight opacity-0 sm:text-5xl md:text-6xl lg:text-7xl"
                         style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
