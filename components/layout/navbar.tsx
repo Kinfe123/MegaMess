@@ -9,6 +9,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useSigninModal } from "@/hooks/use-signin-modal";
+import { useSelectedLayoutSegment } from "next/navigation";
 
 
 interface NavBarProps {
@@ -21,18 +22,37 @@ interface NavBarProps {
 
 export function NavBar({ user, items, children, rightElements, scroll = false }: NavBarProps) {
   const scrolled = useScroll(50);
+  const segment = useSelectedLayoutSegment()
   const signInModal = useSigninModal();
 
   return (
       <header
-        className={`sticky top-0 z-40 flex w-full justify-center bg-background/60 backdrop-blur-xl transition-all ${scroll ? scrolled
+        className={`sticky top-0 z-40 flex w-full  items-center justify-center border-b border-n-6 lg:bg-n-8/90 lg:backdrop-blur-md  bg-background/60 backdrop-blur-xl transition-all ${scroll ? scrolled
           ? "border-b"
           : "bg-background/0"
           : "border-b"}`}
       >
-        <div className="container flex h-16 items-center justify-between py-4">
+        <div className="container px-10 flex h-16 items-center justify-between py-4">
           <MainNav items={items}>{children}</MainNav>
-
+          {items?.length ? (
+        <nav className="hidden   w-full items-center justify-center m-auto lg:flex-row  gap-6 md:flex ">
+          {items?.map((item, index) => (
+            <Link
+              key={index}
+              href={item.disabled ? "#" : item.href}
+              className={cn(
+                "flex items-centertext-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
+                item.href.startsWith(`/${segment}`)
+                  ? "text-foreground"
+                  : "text-foreground/60",
+                item.disabled && "cursor-not-allowed opacity-80"
+              )}
+            >
+              {item.title}
+            </Link>
+          ))}
+        </nav>
+      ) : null}
           <div className="flex items-center space-x-3">
             {rightElements}
 
@@ -43,14 +63,14 @@ export function NavBar({ user, items, children, rightElements, scroll = false }:
                   buttonVariants({ variant: "outline", size: "sm" })
                 )}
               >
-                Login Page
+                Login 
               </Link>
             ) : null}
 
             {user ? (
               <UserAccountNav user={user} />
             ) : (
-              <Button className="px-3" variant="default" size="sm" onClick={signInModal.onOpen}>Sign In</Button>
+              <Button className="px-6" variant="default" size="sm" onClick={signInModal.onOpen}>SignIn</Button>
             )}
           </div>
         </div>
