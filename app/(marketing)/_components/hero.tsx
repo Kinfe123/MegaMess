@@ -45,18 +45,7 @@ const Hero = () => {
                         <Link href="/pricing" className={cn(buttonVariants({ size: "lg" }))}>
                             Go Pricing
                         </Link>
-                        <Link
-                            href={siteConfig.links.github}
-                            target="_blank"
-                            rel="noreferrer"
-                            className={cn(buttonVariants({ variant: "outline", size: "lg" }), "px-4")}
-                        >
-                            <Icons.gitHub className="mr-2 size-4" />
-                            <p>
-                                <span className="hidden sm:inline-block">Star on</span>{" "}GitHub{" "}
-                                <span className="font-semibold">{nFormatter(121)}</span>
-                            </p>
-                        </Link>
+                    
                     </div>
                 </div>
             </section>
