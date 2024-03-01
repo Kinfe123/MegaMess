@@ -22,6 +22,12 @@ module.exports = {
     },
     extend: {
       colors: {
+        1: "#AC6AFF",
+        2: "#FFC876",
+        3: "#FF776F",
+        4: "#7ADB78",
+        5: "#858DFF",
+        6: "#FF98E2",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -55,6 +61,24 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      n: {
+        1: "#FFFFFF",
+        2: "#CAC6DD",
+        3: "#ADA8C3",
+        4: "#757185",
+        5: "#3F3A52",
+        6: "#252134",
+        7: "#15131D",
+        8: "#0E0C15",
+        9: "#474060",
+        10: "#43435C",
+        11: "#1B1B2E",
+        12: "#2E2A41",
+        13: "#6C7275",
+      },
+      stroke: {
+        1: "#26242C",
       },
       borderRadius: {
         lg: `var(--radius)`,
@@ -137,6 +161,11 @@ module.exports = {
         // Fade in and out
         "fade-in": "fade-in 0.4s",
         "fade-out": "fade-out 0.4s",
+      },
+      backgroundImage: {
+        "radial-gradient": "radial-gradient(var(--tw-gradient-stops))",
+        "conic-gradient":
+          "conic-gradient(from 225deg, #FFC876, #79FFF7, #9F53FF, #FF98E2, #FFC876)",
       },
     },
   },

@@ -53,6 +53,8 @@
 @layer base {
   * {
     @apply border-border;
+    scroll-behavior: smooth
+
   }
   body {
     @apply bg-background text-foreground;
@@ -65,4 +67,8 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+* {
+  scroll-behavior: smooth
 }

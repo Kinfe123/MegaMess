@@ -36,6 +36,7 @@ export const Icons = {
   check: Check,
   close: X,
   ellipsis: MoreVertical,
+  
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"
