@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site"
 import { cn, nFormatter } from "@/lib/utils"
 import { Icons } from "@/components/shared/icons"
 import { env } from "@/env.mjs"
+import { SiteConfig } from "@/types"
 
 export default async function IndexPage() {
   const { stargazers_count: stars } = await fetch(
@@ -41,9 +42,9 @@ export default async function IndexPage() {
             className="animate-fade-up text-balance font-urban text-4xl font-extrabold tracking-tight opacity-0 sm:text-5xl md:text-6xl lg:text-7xl"
             style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
           >
-            Kick off with a bang with{" "}
+            Bang and Share file via {" "}
             <span className="text-gradient_indigo-purple font-extrabold">
-              SaaS Starter
+              Mega Mess
             </span>
           </h1>
 
@@ -51,7 +52,7 @@ export default async function IndexPage() {
             className="max-w-[42rem] animate-fade-up text-balance leading-normal text-muted-foreground opacity-0 sm:text-xl sm:leading-8"
             style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
           >
-            Build your next project using Next.js 14, Prisma, Planetscale, Auth.js v5, Resend, React Email, Shadcn/ui, Stripe.
+            {siteConfig.description}
           </p>
 
           <div

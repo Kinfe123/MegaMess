@@ -4,7 +4,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: #0E0C15;
+    --ultramute: #FFFFFF;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -28,6 +29,7 @@
 
   .dark {
     --background: 240 10% 3.9%;
+    --ultramute: #FFFFFF;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -57,13 +59,13 @@
 
   }
   body {
-    @apply bg-background text-foreground;
+    @apply  bg-background text-ultra;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
 .text-gradient_indigo-purple {
-  background: linear-gradient(90deg, #6366f1 0%, rgb(168 85 247 / 0.8) 100%);
+  background: linear-gradient(90deg, #ef63f1 0%, rgb(168 85 247 / 0.8) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
