@@ -4,17 +4,18 @@ import { Icons } from "@/components/shared/icons"
 import { siteConfig } from "@/config/site"
 import { cn, nFormatter } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { BottomLine, Gradient } from "./gradients"
 
 const Hero = () => {
     return (
         <Section
-            className="pt-[12rem] -mt-[5.25rem]"
+            className="pt-[1reem] -mt-[5.25rem]"
             crosses
             crossesOffset="lg:translate-y-[5.25rem]"
             customPaddings
             id="hero">
             <section className="space-y-6 pb-12 pt-16 lg:py-28">
-                <div className="container flex max-w-[64rem] flex-col items-center gap-5 text-center">
+                <div className="relative container flex max-w-[64rem] flex-col items-center gap-5 text-center">
                     <Link
                         href="https://twitter.com/miickasmt/status/1719892161095745801"
                         className={cn(buttonVariants({ variant: "outline", size: "sm" }), "animate-fade-up opacity-0")}
@@ -23,6 +24,7 @@ const Hero = () => {
                     >
                         Introducing on <Icons.twitter className="ml-2 size-4" />
                     </Link>
+                    <Gradient />
 
                     <h1
                         className="animate-fade-up text-balance font-urban text-4xl font-extrabold tracking-tight opacity-0 sm:text-5xl md:text-6xl lg:text-7xl"
@@ -40,7 +42,6 @@ const Hero = () => {
                     >
                         {siteConfig.description}
                     </p>
-
                     <div
                         className="flex animate-fade-up justify-center space-x-2 opacity-0 md:space-x-4"
                         style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
@@ -63,6 +64,8 @@ const Hero = () => {
                     </div>
                 </div>
             </section>
+            <BottomLine />
+
 
             <section
                 className="animate-fade-up py-16 text-zinc-500 opacity-0 dark:text-zinc-400"
