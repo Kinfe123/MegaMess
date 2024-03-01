@@ -50,7 +50,7 @@ export const metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: "@kinfish",
+    creator: "@miickasmt",
   },
   icons: {
     icon: "/favicon.ico",
@@ -67,7 +67,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen bg-background   font-sans antialiased",
           fontSans.variable,
           fontUrban.variable,
           fontHeading.variable
