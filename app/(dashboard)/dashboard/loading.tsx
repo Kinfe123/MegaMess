@@ -9,7 +9,7 @@ export default function DashboardLoading() {
       <DashboardHeader heading="Posts" text="Create and manage posts.">
         <Button>Fake button</Button>
       </DashboardHeader>
-      <div className="divide-border-200 divide-y rounded-md border">
+      <div className="divide-border-200  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-y rounded-md border">
         <CardSkeleton />
         <CardSkeleton />
         <CardSkeleton />

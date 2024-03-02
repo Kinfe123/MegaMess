@@ -7,7 +7,8 @@ import { DashboardShell } from "@/components/dashboard/shell"
 import { Button } from "@/components/ui/button"
 
 export const metadata = {
-  title: "Dashboard",
+  title: "File Dashboard",
+  description: "Let us push the file to mess world"
 }
 
 export default async function DashboardPage() {
@@ -23,14 +24,7 @@ export default async function DashboardPage() {
         <Button>Start Upload</Button>
       </DashboardHeader>
       <div>
-        <EmptyPlaceholder>
-          <EmptyPlaceholder.Icon name="post" />
-          <EmptyPlaceholder.Title>No FILE created</EmptyPlaceholder.Title>
-          <EmptyPlaceholder.Description>
-            You don&apos;t have any content yet. Start creating content.
-          </EmptyPlaceholder.Description>
-          <Button variant="outline">Fake button</Button>
-        </EmptyPlaceholder>
+        
       </div>
     </DashboardShell>
   )
