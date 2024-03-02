@@ -201,7 +201,7 @@ const Products = () => {
         </div>
       </div>
 
-      <button className="ml-auto mt-4 flex items-center gap-1 text-sm text-indigo-300">
+      <button className="ml-auto mt-4 flex items-center gap-1 text-sm text-purple-400/80">
         <span>View more</span>
         <FiArrowRight />
       </button>
@@ -216,21 +216,21 @@ const Pricing = () => {
         href="#"
         className="flex w-full flex-col items-center justify-center py-2 text-neutral-400 transition-colors hover:text-neutral-50"
       >
-        <FiHome className="mb-2 text-xl text-indigo-300" />
+        <FiHome className="mb-2 text-xl text-purple-400/80" />
         <span className="text-xs">Startup</span>
       </a>
       <a
         href="#"
         className="flex w-full flex-col items-center justify-center py-2 text-neutral-400 transition-colors hover:text-neutral-50"
       >
-        <FiBarChart2 className="mb-2 text-xl text-neutral-600" />
+        <FiBarChart2 className="mb-2 text-xl text-purple-400/80" />
         <span className="text-xs">Scaleup</span>
       </a>
       <a
         href="#"
         className="flex w-full flex-col items-center justify-center py-2 text-neutral-400 transition-colors hover:text-neutral-50"
       >
-        <FiPieChart className="mb-2 text-xl text-indigo-300" />
+        <FiPieChart className="mb-2 text-xl text-purple-400/80" />
         <span className="text-xs">Enterprise</span>
       </a>
     </div>
@@ -266,7 +266,7 @@ const Blog = () => {
           </p>
         </a>
       </div>
-      <button className="ml-auto mt-4 flex items-center gap-1 text-sm text-indigo-300">
+      <button className="ml-auto mt-4 flex items-center gap-1 text-sm text-purple-400/80">
         <span>View more</span>
         <FiArrowRight />
       </button>
