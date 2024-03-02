@@ -64,7 +64,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
                   <div className="flex text-left text-3xl font-semibold leading-6">
                     {isYearly && offer.prices.monthly > 0 ? (
                       <>
-                        <span className="mr-2 text-muted-foreground line-through">${offer.prices.monthly}</span>
+                      <span className="mr-2 text-muted-foreground line-through">${offer.prices.monthly}</span>
                         <span>${offer.prices.yearly / 12}</span>
                       </>
                     ) : `$${offer.prices.monthly}`}

@@ -79,7 +79,8 @@ model VerificationToken {
 model File {
   id     String @id @default(cuid())
   name   String
-  size   Float
+  fileUrl String 
+  size   Float?
   userId String
   user   User   @relation("files", fields: [userId], references: [id])
 }

@@ -22,39 +22,57 @@ import { cn } from "@/lib/utils"
 import type { User } from "@prisma/client"
 import { useForm } from "react-hook-form"
 import { fileSchema } from "@/lib/validations/file"
-import { uploadFile , type FormData } from "@/actions/create-file"
+import { uploadFile, type FormData } from "@/actions/create-file"
 import FilePage from "./file-display"
+import FuzzyOverlay from "@/components/fuzzy"
+import { toast } from "@/components/ui/use-toast"
 
 type UserProps = {
     userId: string,
 }
-const FileForm = ({ userId }:UserProps) => {
-    console.log('THe user is : ' , userId)
+const FileForm = ({ userId }: UserProps) => {
+    console.log('THe user is : ', userId)
     const [isPending, startTransition] = useTransition()
-    const [fileDataOnly , setFileDataOnly] = useState({
+    const [fileDataOnly, setFileDataOnly] = useState({
         fileUrl: '',
-        size: 0,
+        
     })
+    const uploadFileById = uploadFile.bind(null , userId , fileDataOnly.fileUrl)
     const handleParentUpdate = (newVal) => {
-        console.log('THe file is here; ' , newVal)
-        setFileDataOnly({...fileDataOnly  , fileUrl: newVal})
-      }
+        console.log('THe file is here; ', newVal)
+        setFileDataOnly({ ...fileDataOnly, fileUrl: newVal })
+    }
     const {
         handleSubmit,
         register,
         formState: { errors },
-      } = useForm<FormData>({
+    } = useForm<FormData>({
         resolver: zodResolver(fileSchema),
         defaultValues: {
-          name: "",
-          fileUrl: "",
-          userId: userId || ''
-            
-        },
-      })
-    const onSubmit = () => {
+            name: "",
+         
 
-    }
+        },
+    })
+    const onSubmit = handleSubmit(data => {
+        startTransition(async () => {
+            console.log("Iam heere : " , data)
+              const { status } = await uploadFileById(data); 
+              console.log('the result is: ' , status)  
+              if (status !== "success") {
+                toast({
+                  title: "Something went wrong.",
+                  description: "Your name was not updated. Please try again.",
+                  variant: "destructive",
+                })
+              } else {
+                toast({
+                  description: "Your name has been updated.",
+                })
+              }
+        });
+
+    });
     return (
         <Dialog>
             {/* {<p className="flex    mx0-auto tracking-normal text-muted-foreground justify-center items-center mt-10 ">You have already applied for the job!</p> } */}
@@ -71,55 +89,61 @@ const FileForm = ({ userId }:UserProps) => {
                     Upload File
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px]">
+            <DialogContent className="sm:max-w-[500px] relative overflow-hidden mt-[-500px] bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70">
                 <DialogHeader>
                     <DialogTitle>Upload a file</DialogTitle>
                     <DialogDescription>
-                        Feed a mess and we will handle the rest 
+                        Feed a mess and we will handle the rest
                     </DialogDescription>
-                </DialogHeader>
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="grid gap-4 py-4">
-                    <div className="grid grid-cols-4 items-center gap-4">
 
-                            <Label htmlFor="name"  className="text-right">
-                                First Name
+
+
+                </DialogHeader>
+                <FuzzyOverlay />
+                <form onSubmit={onSubmit}>
+                    <div className="grid gap-4 py-4">
+                        <div className="grid grid-cols-4 items-center gap-4">
+
+                            <Label htmlFor="name" className="text-right">
+                                Name for file
                             </Label>
 
+
                             <Input
-                               id="name"
-                               size={32}
+                                id="name"
+                                size={32}
                                 className="col-span-3"
                                 {...register("name")}
                             />
-                    </div>
-                 
+                        </div>
 
-                
-                    
 
-                    <div className="relative flex justify-center text-xs uppercase">
-                        <span className="bg-background px-2 text-muted-foreground">
-                          Upload A File
-                        </span>
+
+
+
+                        <div className="relative flex justify-center text-xs uppercase">
+                            <span className="bg-background px-2 text-muted-foreground">
+                                Upload A File
+                            </span>
+                        </div>
+                        <div className="flex justify-center items-center">
+                            <FilePage updateData={handleParentUpdate} />
+                        </div>
                     </div>
-                    <div className="flex justify-end items-end">
-                        <FilePage updateData={handleParentUpdate} />
-                    </div>
-                </div>
-                <DialogFooter>
-                    <button
-                        className={cn(buttonVariants())}
-                        disabled={isPending}
-                       
-                    >
-                        {isPending && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
-                        Submit
-                    </button>
-            </DialogFooter>
+                    <DialogFooter>
+                        <button
+                            className={cn(buttonVariants(), 'flex justify-center items-center mx-auto')}
+                            disabled={isPending}
+                            type="submit"
+
+                        >
+                            {isPending && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+                            Submit
+                        </button>
+                    </DialogFooter>
                 </form>
-        </DialogContent>
-    </Dialog >
+            </DialogContent>
+        </Dialog >
     )
 }
 
