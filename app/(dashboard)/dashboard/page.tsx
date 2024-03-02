@@ -5,6 +5,9 @@ import { EmptyPlaceholder } from "@/components/shared/empty-placeholder"
 import { DashboardHeader } from "@/components/dashboard/header"
 import { DashboardShell } from "@/components/dashboard/shell"
 import { Button } from "@/components/ui/button"
+import { files } from "@/lib/fille"
+import { Suspense } from "react"
+import FileCards from "./_components/file-cards"
 
 export const metadata = {
   title: "File Dashboard",
@@ -13,10 +16,13 @@ export const metadata = {
 
 export default async function DashboardPage() {
   const user = await getCurrentUser()
-
+  
+  
   if (!user) {
     redirect("/login")
   }
+  const result = files(user?.id)
+   
 
   return (
     <DashboardShell>
@@ -24,7 +30,18 @@ export default async function DashboardPage() {
         <Button>Start Upload</Button>
       </DashboardHeader>
       <div>
-        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+
+        <Suspense fallback={<>loading...</>}>
+           {(await result).map((file) => {
+             return (
+               <FileCards file={file} />
+               
+               )
+              })}
+
+        </Suspense>
+              </div>
       </div>
     </DashboardShell>
   )
