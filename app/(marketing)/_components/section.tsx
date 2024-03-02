@@ -8,7 +8,7 @@ const Section = ({
   crossesOffset,
   customPaddings,
   children,
-}: {className: string , id; string , crosses?; boolean,crossesOffset: string , customPaddings:boolean , children:React.ReactNode }) => {
+}: {className: string , id: string , crosses?: boolean,crossesOffset: string , customPaddings:boolean , children:React.ReactNode }) => {
   return (
     <div
       id={id}

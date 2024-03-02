@@ -18,7 +18,7 @@ export const ShiftingDropDown = () => {
 
 export const Tabs = () => {
   const [selected, setSelected] = useState(null);
-  const [dir, setDir] = useState(null);
+  const [dir, setDir] = useState<string | null>(null);
 
   const handleSetSelected = (val) => {
     if (typeof selected === "number" && typeof val === "number") {
