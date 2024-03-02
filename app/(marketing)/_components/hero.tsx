@@ -1,6 +1,5 @@
 import Link from "next/link"
 import Section from "./section"
-import { Icons } from "@/components/shared/icons"
 import { siteConfig } from "@/config/site"
 import { cn, nFormatter } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"

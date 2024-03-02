@@ -223,7 +223,7 @@ const Pricing = () => {
         href="#"
         className="flex w-full flex-col items-center justify-center py-2 text-neutral-400 transition-colors hover:text-neutral-50"
       >
-        <FiBarChart2 className="mb-2 text-xl text-indigo-300" />
+        <FiBarChart2 className="mb-2 text-xl text-neutral-600" />
         <span className="text-xs">Scaleup</span>
       </a>
       <a
