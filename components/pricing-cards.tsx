@@ -28,11 +28,11 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   };
 
   return (
-    <section className="container relative oveflow-hidden flex rounded-full py-10 flex-col bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,176,225,0.12),rgba(255,255,255,0))]   items-center text-center">
+    <section className="container relative oveflow-hidden flex rounded-full py-0 flex-col   items-center text-center">
       <div className="mx-auto mb-10 flex w-full flex-col gap-5">
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">Pricing</p>
         <h2 className="font-heading text-3xl leading-[1.1] md:text-5xl">
-          Start at full speed !
+          MegaMess is so <span className='text-gradient_indigo-purple font-extrabold'>Generous.</span>
         </h2>
       </div>
     
@@ -122,11 +122,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
         ))}
       </div>
 
-      <p className="mt-3 text-balance text-center text-base text-muted-foreground">
-        Email <a className="font-medium text-primary hover:underline" href="mailto:support@saas-starter.com">support@saas-starter.com</a> for to contact our support team.
-        <br />
-        <strong>You can test the subscriptions and won&apos;t be charged.</strong>
-      </p>
+      
     </section>
   )
 }

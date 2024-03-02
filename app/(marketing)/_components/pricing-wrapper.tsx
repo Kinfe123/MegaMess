@@ -1,6 +1,7 @@
 import { PricingCards } from "@/components/pricing-cards"
 import { PricingFaq } from "@/components/pricing-faq"
 import Section from "./section"
+import { BottomLine } from "./gradients"
 
 const PricingWrapper = () => {
     return (
@@ -8,7 +9,6 @@ const PricingWrapper = () => {
             <Section
                 className="pt-[2rem] -mt-[5.25rem]"
                 crossesOffset="lg:translate-y-[5.25rem]"
-                cross={false}
                 customPaddings
                 id="pricing">
                 <div className="flex w-full flex-col gap-16 py-8 md:py-8">
@@ -17,8 +17,8 @@ const PricingWrapper = () => {
 
 
                 </div>
+                <BottomLine />
             </Section>
-            <hr className='container' />
             <PricingFaq />
         </>
     )

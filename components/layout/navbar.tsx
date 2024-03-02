@@ -10,6 +10,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useSigninModal } from "@/hooks/use-signin-modal";
 import { useSelectedLayoutSegment } from "next/navigation";
+import { ShiftingDropDown, Tabs } from "../navy";
 
 
 interface NavBarProps {
@@ -35,23 +36,24 @@ export function NavBar({ user, items, children, rightElements, scroll = false }:
         <div className="container px-10 flex h-16 items-center justify-between py-4">
           <MainNav items={items}>{children}</MainNav>
           {items?.length ? (
-        <nav className="hidden   w-full items-center justify-center m-auto lg:flex-row  gap-6 md:flex ">
-          {items?.map((item, index) => (
-            <Link
-              key={index}
-              href={item.disabled ? "#" : item.href}
-              className={cn(
-                "flex items-centertext-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
-                item.href.startsWith(`/${segment}`)
-                  ? "text-foreground"
-                  : "text-foreground/60",
-                item.disabled && "cursor-not-allowed opacity-80"
-              )}
-            >
-              {item.title}
-            </Link>
-          ))}
-        </nav>
+            <Tabs />
+        // <nav className="hidden   w-full items-center justify-center m-auto lg:flex-row  gap-6 md:flex ">
+        //   {items?.map((item, index) => (
+        //     <Link
+        //       key={index}
+        //       href={item.disabled ? "#" : item.href}
+        //       className={cn(
+        //         "flex items-centertext-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
+        //         item.href.startsWith(`/${segment}`)
+        //           ? "text-foreground"
+        //           : "text-foreground/60",
+        //         item.disabled && "cursor-not-allowed opacity-80"
+        //       )}
+        //     >
+        //       {item.title}
+        //     </Link>
+        //   ))}
+        // </nav>
       ) : null}
           <div className="flex items-center space-x-3">
             {rightElements}
@@ -70,7 +72,7 @@ export function NavBar({ user, items, children, rightElements, scroll = false }:
             {user ? (
               <UserAccountNav user={user} />
             ) : (
-              <Button className="px-6" variant="default" size="sm" onClick={signInModal.onOpen}>SignIn</Button>
+              <Button className="px-" variant="default" size="lg" onClick={signInModal.onOpen}>Sign In</Button>
             )}
           </div>
         </div>
