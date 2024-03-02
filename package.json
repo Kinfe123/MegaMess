@@ -23,6 +23,8 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^1.4.0",
+    "@edgestore/react": "^0.1.6",
+    "@edgestore/server": "^0.1.6",
     "@hookform/resolvers": "^3.3.4",
     "@prisma/client": "^5.10.2",
     "@radix-ui/react-accessible-icon": "^1.0.3",

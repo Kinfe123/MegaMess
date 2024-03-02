@@ -4,7 +4,7 @@ import { prisma } from "@/lib/db"
 import authConfig from "@/auth.config"
 import { getUserById } from "@/lib/user"
 
-export const { 
+export const  { 
   handlers: { GET, POST },
   auth,
 } = NextAuth({
