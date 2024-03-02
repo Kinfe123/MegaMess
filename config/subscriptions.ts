@@ -6,7 +6,7 @@ export const pricingData: SubscriptionPlan[] = [
     title: 'Starter',
     description: 'For Beginners',
     benefits: [
-      'Up to 100 monthly posts',
+      'Up to 100 monthly files',
       'Basic analytics and reporting',
       'Access to standard templates',
     ],
@@ -29,7 +29,7 @@ export const pricingData: SubscriptionPlan[] = [
     title: 'Pro',
     description: 'Unlock Advanced Features',
     benefits: [
-      'Up to 500 monthly posts',
+      'Up to 500 monthly files',
       'Advanced analytics and reporting',
       'Access to business templates',
       'Priority customer support',
@@ -52,7 +52,7 @@ export const pricingData: SubscriptionPlan[] = [
     title: 'Business',
     description: 'For Power Users',
     benefits: [
-      'Unlimited posts',
+      'Unlimited files',
       'Real-time analytics and reporting',
       'Access to all templates, including custom branding',
       '24/7 business customer support',
