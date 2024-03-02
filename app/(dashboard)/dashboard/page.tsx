@@ -19,7 +19,7 @@ export default async function DashboardPage() {
 
   return (
     <DashboardShell>
-      <DashboardHeader heading="Panel" text="Create and manage content.">
+      <DashboardHeader heading="Upload & Share File" text="Create and a huge mess and lets handle the rest.">
         <Button>Start Upload</Button>
       </DashboardHeader>
       <div>
