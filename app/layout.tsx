@@ -8,6 +8,7 @@ import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -74,7 +75,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <EdgeStoreProvider>
           {children}
+          </EdgeStoreProvider>
           <Analytics />
           <Toaster />
           <ModalProvider />

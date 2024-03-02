@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { files } from "@/lib/fille"
 import { Suspense } from "react"
 import FileCards from "./_components/file-cards"
+import FileForm from "./_components/upload-form"
 
 export const metadata = {
   title: "File Dashboard",
@@ -27,7 +28,7 @@ export default async function DashboardPage() {
   return (
     <DashboardShell>
       <DashboardHeader heading="Upload & Share File" text="Create and a huge mess and lets handle the rest.">
-        <Button>Start Upload</Button>
+      <FileForm userId={user.id}/>
       </DashboardHeader>
       <div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

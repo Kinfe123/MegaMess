@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react' 
+import React from 'react'
 import { type File } from '@prisma/client'
 import {
     Card,
@@ -9,24 +9,24 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card"
+} from "@/components/ui/card"
 type fileProps = {
     file: Promise<File[]>;
 }
 
-const FileCards =  ({file}: {file: File}) => {
-  
-    
+const FileCards = ({ file }: { file: File }) => {
+
+
     return (
         <Card>
-        <CardHeader>
-          <CardTitle>{file.name}</CardTitle>
-          <CardDescription>
-            You are currently on the prime broooo!!
-          </CardDescription>
-        </CardHeader>
-        <CardContent>{file.name}</CardContent>
-      </Card>
+            <CardHeader>
+                <CardTitle>{file.name}</CardTitle>
+                <CardDescription>
+                    You are currently on the prime broooo!!
+                </CardDescription>
+            </CardHeader>
+            <CardContent>{file.name}</CardContent>
+        </Card>
     )
 
 
