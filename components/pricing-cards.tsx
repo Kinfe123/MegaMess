@@ -10,7 +10,8 @@ import { Switch } from '@/components/ui/switch';
 import { pricingData } from "@/config/subscriptions";
 import { useSigninModal } from "@/hooks/use-signin-modal";
 import { UserSubscriptionPlan } from "@/types";
-
+import FuzzyOverlay from "./fuzzy";
+import { Separator } from "./ui/separator";
 interface PricingCardsProps {
   userId?: string;
   subscriptionPlan?: UserSubscriptionPlan;
@@ -27,13 +28,14 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   };
 
   return (
-    <section className="container flex flex-col items-center text-center">
+    <section className="container relative oveflow-hidden flex rounded-full py-10 flex-col bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,176,225,0.12),rgba(255,255,255,0))]   items-center text-center">
       <div className="mx-auto mb-10 flex w-full flex-col gap-5">
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">Pricing</p>
         <h2 className="font-heading text-3xl leading-[1.1] md:text-5xl">
           Start at full speed !
         </h2>
       </div>
+    
 
       <div className="mb-4 flex items-center gap-5">
         <span>Monthly Billing</span>
@@ -49,10 +51,13 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
       <div className="mx-auto grid max-w-screen-lg gap-5 bg-inherit py-5 md:grid-cols-3 lg:grid-cols-3">
         {pricingData.map((offer) => (
           <div className="relative flex flex-col overflow-hidden rounded-xl border" key={offer.title}>
-            <div className="min-h-[150px] items-start space-y-4 bg-secondary/70 p-6">
+              <FuzzyOverlay />
+            <div className="min-h-[150px] items-start space-y-4 bg-purple-900/5 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,176,225,0.12),rgba(255,255,255,0))] p-6">
               <p className="flex font-urban text-sm font-bold uppercase tracking-wider text-muted-foreground">
                 {offer.title}
               </p>
+
+              
 
               <div className="flex flex-row">
                 <div className="flex items-end">
@@ -75,8 +80,9 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
                 </div>
               ) : null}
             </div>
+            <Separator />
 
-            <div className="flex h-full flex-col justify-between gap-16 p-6">
+            <div className="flex h-full flex-col bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70 justify-between gap-16 p-6">
               <ul className="space-y-2 text-left text-sm font-medium leading-normal">
                 {offer.benefits.map((feature) => (
                   <li className="flex items-start" key={feature}>

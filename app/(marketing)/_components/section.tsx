@@ -1,3 +1,4 @@
+import React from "react";
 import SectionSvg from "./section-svg";
 
 const Section = ({
@@ -7,7 +8,7 @@ const Section = ({
   crossesOffset,
   customPaddings,
   children,
-}) => {
+}: {className: string , id; string , crosses?; boolean,crossesOffset: string , customPaddings:string , children:React.ReactNode }) => {
   return (
     <div
       id={id}
@@ -22,8 +23,8 @@ const Section = ({
     >
       {children}
 
-      <div className="hidden absolute top-0 left-5 w-[0.0625rem] h-full bg-[#26242C]  pointer-events-none md:block lg:left-7.5 xl:left-10" />
-      <div className="hidden absolute top-0 right-5 w-[0.0625rem] h-full bg-[#26242C] pointer-events-none md:block lg:right-7.5 xl:right-10" />
+      <div className="hidden absolute top-0 left-5 w-[0.0625rem] h-[calc(100%_+_30px)] bg-[#26242C]  pointer-events-none md:block lg:left-7.5 xl:left-10" />
+      <div className="hidden absolute top-0 right-5 w-[0.0625rem] h-[calc(100%_+_30px)]  bg-[#26242C] pointer-events-none md:block lg:right-7.5 xl:right-10" />
 
       {crosses && (
         <>
