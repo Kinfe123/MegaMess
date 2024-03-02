@@ -20,12 +20,12 @@ export default async function DashboardPage() {
   return (
     <DashboardShell>
       <DashboardHeader heading="Panel" text="Create and manage content.">
-        <Button>Fake button</Button>
+        <Button>Start Upload</Button>
       </DashboardHeader>
       <div>
         <EmptyPlaceholder>
           <EmptyPlaceholder.Icon name="post" />
-          <EmptyPlaceholder.Title>No content created</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Title>No FILE created</EmptyPlaceholder.Title>
           <EmptyPlaceholder.Description>
             You don&apos;t have any content yet. Start creating content.
           </EmptyPlaceholder.Description>
