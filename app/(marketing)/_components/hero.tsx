@@ -21,10 +21,10 @@ const Hero = () => {
                         className="animate-fade-up mt-[-120px] text-balance font-urban text-4xl font-extrabold tracking-tight opacity-0 sm:text-5xl md:text-6xl lg:text-7xl"
                         style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
                     >
-                        Bang and Share file via {" "}
-                        <span className="text-gradient_indigo-purple font-extrabold">
+                        Bang and Share file via {" "} <br />
+                        <span className="text-gradient_indigo-purple font-extrabold lg:text-9xl">
                             Mega Mess
-                        </span>
+                        </span>_
                     </h1>
 
                     <p
