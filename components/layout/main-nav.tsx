@@ -40,7 +40,6 @@ export function MainNav({ items, children }: MainNavProps) {
   return (
     <div className="flex justify-center items-center gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <Icons.logo />
         <span className="hidden font-urban text-xl font-bold sm:inline-block">
           {siteConfig.name}
         </span>

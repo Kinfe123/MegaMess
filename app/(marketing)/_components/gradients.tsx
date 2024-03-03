@@ -14,9 +14,9 @@ export const Gradient = () => {
       <>
         <div className="hidden absolute top-[50.25rem] left-3 right-3 h-[0.0625rem] bg-n7 pointer-events-none xl:block" />
   
-        <PlusSvg className="hidden absolute top-[49.9375rem] left-[2.1875rem] z-2 pointer-events-none xl:block" />
+        <PlusSvg className="hidden absolute top-[49.9375rem] left-[3.6825rem] z-2 pointer-events-none xl:block" />
   
-        <PlusSvg className="hidden absolute top-[49.9375rem] right-[2.1875rem] z-2 pointer-events-none xl:block" />
+        <PlusSvg className="hidden absolute top-[49.9375rem] right-[3.6825rem] z-2 pointer-events-none xl:block" />
       </>
     );
   };

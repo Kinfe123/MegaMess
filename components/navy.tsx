@@ -276,15 +276,15 @@ const Blog = () => {
 
 const TABS = [
   {
-    title: "Products",
+    title: "Features",
     Component: Products,
   },
   {
-    title: "Pricing",
+    title: "Funds",
     Component: Pricing,
   },
   {
-    title: "Blog",
+    title: "Docs",
     Component: Blog,
   },
 ].map((n, idx) => ({ ...n, id: idx + 1 }));
