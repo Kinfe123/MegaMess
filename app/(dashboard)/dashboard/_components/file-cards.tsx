@@ -28,6 +28,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from '@/components/ui/button'
 import { CircleIcon, Clock, Dot, DotSquare, StarIcon, StarsIcon } from 'lucide-react'
 import { timeAgo } from '@/lib/utils'
+import { FileShareBtn } from './share-file'
 
 type fileProps = {
     file: Promise<File[]>;
@@ -35,7 +36,7 @@ type fileProps = {
 
 const FileCards = ({ file }: { file: File }) => {
 
-
+    console.log('Files is : ' , file)
     return (
 
         <Card
@@ -66,8 +67,8 @@ const FileCards = ({ file }: { file: File }) => {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-[160px]">
                             <DropdownMenuItem>Edit</DropdownMenuItem>
-                            <DropdownMenuItem>Make a copy</DropdownMenuItem>
-                            <DropdownMenuItem>Favorite</DropdownMenuItem>
+                                   <FileShareBtn />
+                            <DropdownMenuItem>Add Favorite</DropdownMenuItem>
                             <DropdownMenuSeparator />
                             {/* <DropdownMenuSub>
                     <DropdownMenuSubTrigger>
