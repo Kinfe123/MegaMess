@@ -64,20 +64,3 @@ const AvatarSkeleton = () => {
         </>
     )
 }
-
-export const BodySkeleton = () => {
-    return (
-        <>
-            <div className="flex flex-col gap-5 mt-10">
-
-                <Skeleton className="w-72 h-4 rounded-full" />
-                <Skeleton className="w-72 h-4 rounded-full" />
-                <Skeleton className="w-72 h-4 rounded-full" />
-                <Skeleton className="w-72 h-4 rounded-full" />
-                <Skeleton className="w-72 h-4 rounded-full" />
-
-
-            </div>
-        </>
-    )
-}
