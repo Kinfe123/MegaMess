@@ -36,7 +36,6 @@ type fileProps = {
 
 const FileCards = ({ file }: { file: File }) => {
 
-    console.log('Files is : ' , file)
     return (
 
         <Card

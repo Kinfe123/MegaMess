@@ -20,7 +20,7 @@ import CopyBtn from "./copy-btn"
 export function FileShareBtn({file}: {file: File}) {
     const rootUrl = env.NEXT_PUBLIC_APP_URL
     const edgeStoreId = file.fileUrl.split('/')[6]
-    const sharableUrl = `${rootUrl}/files/u/${edgeStoreId}`
+    const sharableUrl = `${rootUrl}/files/f/${edgeStoreId}`
   return (
     <Dialog>
       <DialogTrigger asChild>
