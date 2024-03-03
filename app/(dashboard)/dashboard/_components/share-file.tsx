@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { env } from "@/env.mjs"
 import { File } from "@prisma/client"
+import CopyBtn from "./copy-btn"
 
 export function FileShareBtn({file}: {file: File}) {
     const rootUrl = env.NEXT_PUBLIC_APP_URL
@@ -25,7 +26,7 @@ export function FileShareBtn({file}: {file: File}) {
       <DialogTrigger asChild>
         <p className="ml-2 cursor-pointer">Share</p>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-lg max-h-[calc(100%_+_40px)] bg-gradient-to-br from-purple-400/10 rounded-md  via-transparent to-transparent/5">
         <DialogHeader>
           <DialogTitle>Share link</DialogTitle>
           <DialogDescription>
@@ -43,10 +44,7 @@ export function FileShareBtn({file}: {file: File}) {
               readOnly
             />
           </div>
-          <Button type="submit" size="sm" className="px-3">
-            <span className="sr-only">Copy</span>
-            <Copy className="h-4 w-4" />
-          </Button>
+          <CopyBtn link={sharableUrl} />
         </div>
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>
