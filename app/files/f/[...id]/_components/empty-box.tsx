@@ -4,6 +4,7 @@ import { timeAgo } from "@/lib/utils";
 import { Check, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link'
+import { Skeleton } from "@/components/ui/skeleton";
 type FilePromiseProps = {
     file: Promise<({ user: { image: string | null; name: string | null; }; } & File) | null>
 
