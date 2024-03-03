@@ -26,7 +26,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { Button } from '@/components/ui/button'
-import { CircleIcon, Dot, DotSquare, StarIcon, StarsIcon } from 'lucide-react'
+import { CircleIcon, Clock, Dot, DotSquare, StarIcon, StarsIcon } from 'lucide-react'
+import { timeAgo } from '@/lib/utils'
 
 type fileProps = {
     file: Promise<File[]>;
@@ -106,9 +107,9 @@ const FileCards = ({ file }: { file: File }) => {
 
                         <Separator orientation="vertical" className="h-[20px]" />
                     </div>
-                    {/* <div className="">
-              <p>{timeAgo(fie)}</p>
-            </div> */}
+                    <div className="absolute flex justify-center  items-center gap-1 text-sm text-muted-foreground bottom-4 right-3">
+                        <Clock className='w-3 h-3'/><p>{timeAgo(file.createdAt)}</p>
+                    </div>
                 </div>
             </CardContent>
         </Card>
