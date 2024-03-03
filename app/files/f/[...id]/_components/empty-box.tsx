@@ -1,6 +1,5 @@
 import { EmptyPlaceholder } from "@/components/shared/empty-placeholder"
 import { type File } from "@prisma/client"
-import { BodySkeleton } from "../page";
 import { timeAgo } from "@/lib/utils";
 import { Check, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -68,5 +67,22 @@ export const FileDescriptionSkeleton = () => {
 
         </EmptyPlaceholder>
 
+    )
+}
+
+export const BodySkeleton = () => {
+    return (
+        <>
+            <div className="flex flex-col gap-5 mt-10">
+
+                <Skeleton className="w-72 h-4 rounded-full" />
+                <Skeleton className="w-72 h-4 rounded-full" />
+                <Skeleton className="w-72 h-4 rounded-full" />
+                <Skeleton className="w-72 h-4 rounded-full" />
+                <Skeleton className="w-72 h-4 rounded-full" />
+
+
+            </div>
+        </>
     )
 }
