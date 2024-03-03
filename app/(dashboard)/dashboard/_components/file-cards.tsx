@@ -10,6 +10,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import FuzzyOverlay from '@/components/fuzzy'
 type fileProps = {
     file: Promise<File[]>;
 }
@@ -18,14 +19,15 @@ const FileCards = ({ file }: { file: File }) => {
 
 
     return (
-        <Card>
+        <Card className='relative overflow-hidden bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70"'>
+             <FuzzyOverlay />
             <CardHeader>
                 <CardTitle>{file.name}</CardTitle>
                 <CardDescription>
                     You are currently on the prime broooo!!
                 </CardDescription>
             </CardHeader>
-            <CardContent>{file.name}</CardContent>
+            <CardContent >{file.name}</CardContent>
         </Card>
     )
 

@@ -62,12 +62,12 @@ const FileForm = ({ userId }: UserProps) => {
               if (status !== "success") {
                 toast({
                   title: "Something went wrong.",
-                  description: "Your name was not updated. Please try again.",
+                  description: "There is an error while uploading file.",
                   variant: "destructive",
                 })
               } else {
                 toast({
-                  description: "Your name has been updated.",
+                  description: "You have uploaded the file",
                 })
               }
         });
