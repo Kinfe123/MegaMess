@@ -1,7 +1,7 @@
 import { fileInfo, findUserByFile } from "@/lib/file-info"
 import FallBack from "./_components/fallback"
 import { UserAvatar } from "@/components/user-avatar"
-import FileDescription from "./_components/empty-box"
+import FileDescription, { FileDescriptionSkeleton } from "./_components/empty-box"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Suspense } from "react"
 
@@ -33,10 +33,12 @@ const FilePreview = async ({ params }: FilePreviewProps) => {
                 <UserAvatar promise={result} />
 
             </Suspense>
-         
+            <Suspense fallback={<FileDescriptionSkeleton />}>
 
-            <FileDescription file={result}/>
-       
+                <FileDescription file={result} />
+            </Suspense>
+
+
 
 
         </div>
@@ -66,14 +68,14 @@ const AvatarSkeleton = () => {
 export const BodySkeleton = () => {
     return (
         <>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-5 mt-10">
 
                 <Skeleton className="w-72 h-4 rounded-full" />
                 <Skeleton className="w-72 h-4 rounded-full" />
                 <Skeleton className="w-72 h-4 rounded-full" />
                 <Skeleton className="w-72 h-4 rounded-full" />
                 <Skeleton className="w-72 h-4 rounded-full" />
-                
+
 
             </div>
         </>
