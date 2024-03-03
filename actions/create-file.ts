@@ -7,15 +7,13 @@ import { revalidatePath } from "next/cache";
 
 export type FormData = {
     name: string,
-    userId: string,
-    fileUrl: string,
+    description?: string,
 
 }
 
 export async function uploadFile(userId: string  , fileUrl: string, data:FormData) {
    try {
     const user = await getCurrentUser()
-   console.log(userId , fileUrl , data)
    if(!user) {
     return new Response('Unauthorized' , {status:400})
    }
@@ -23,7 +21,8 @@ export async function uploadFile(userId: string  , fileUrl: string, data:FormDat
       data: {
         userId: userId,
         name: data.name,
-        fileUrl: fileUrl
+        fileUrl: fileUrl,
+        description: data.description,
       },
       select: {
         id: true,

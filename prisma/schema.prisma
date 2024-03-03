@@ -79,6 +79,7 @@ model VerificationToken {
 model File {
   id     String @id @default(cuid())
   name   String
+  description String?
   fileUrl String 
   size   Float?
   userId String

@@ -50,6 +50,7 @@ const FileForm = ({ userId }: UserProps) => {
         resolver: zodResolver(fileSchema),
         defaultValues: {
             name: "",
+            description:''
          
 
         },
@@ -114,6 +115,20 @@ const FileForm = ({ userId }: UserProps) => {
                                 size={32}
                                 className="col-span-3"
                                 {...register("name")}
+                            />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+
+                            <Label htmlFor="name" className="text-right">
+                                Descriptions
+                            </Label>
+
+
+                            <Input
+                                id="description"
+                                size={32}
+                                className="col-span-3"
+                                {...register("description")}
                             />
                         </div>
 
