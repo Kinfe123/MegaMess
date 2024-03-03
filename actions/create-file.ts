@@ -17,6 +17,7 @@ export async function uploadFile(userId: string  , fileUrl: string, data:FormDat
    if(!user) {
     return new Response('Unauthorized' , {status:400})
    }
+   console.log('THe file is : ' , data)
    const addFile = await prisma.file.create({
       data: {
         userId: userId,

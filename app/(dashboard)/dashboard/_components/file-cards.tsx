@@ -23,11 +23,11 @@ import {
     DropdownMenuSubContent,
     DropdownMenuSubTrigger,
     DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu";
-  import { Separator } from "@/components/ui/separator";
+} from "@/components/ui/dropdown-menu";
+import { Separator } from "@/components/ui/separator";
 import { Button } from '@/components/ui/button'
 import { CircleIcon, Dot, DotSquare, StarIcon, StarsIcon } from 'lucide-react'
-  
+
 type fileProps = {
     file: Promise<File[]>;
 }
@@ -36,39 +36,39 @@ const FileCards = ({ file }: { file: File }) => {
 
 
     return (
-       
+
         <Card
-        key={file.id}
-        className="overflow-hidden rounded-xl relative  bg-gradient-to-tr from-purple-400/10 via-transparent to-transparent"
+            key={file.id}
+            className="overflow-hidden rounded-xl relative  bg-gradient-to-tr from-purple-400/10 via-transparent to-transparent"
         >
 
- <FuzzyOverlay />
+            <FuzzyOverlay />
 
-        <CardHeader className="grid grid-cols-[1fr_10px] items-start gap-4 space-y-0 relative">
-          <div className="space-y-3">
-            <CardTitle>{file.name}</CardTitle>
+            <CardHeader className="grid grid-cols-[1fr_10px] items-start gap-4 space-y-0 relative">
+                <div className="space-y-3">
+                    <CardTitle>{file.name}</CardTitle>
 
-            <CardDescription>{file.description}</CardDescription>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="absolute top-2 right-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
-                >
-                  <Dot className="h-4 w-4" />
-                  <span className="sr-only">Open menu</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-[160px]">
-                <DropdownMenuItem>Edit</DropdownMenuItem>
-                <DropdownMenuItem>Make a copy</DropdownMenuItem>
-                <DropdownMenuItem>Favorite</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                {/* <DropdownMenuSub>
+                    <CardDescription>{file.description}</CardDescription>
+                </div>
+            </CardHeader>
+            <CardContent>
+                <div className="absolute top-2 right-2">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button
+                                variant="ghost"
+                                className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+                            >
+                                <Dot className="h-4 w-4" />
+                                <span className="sr-only">Open menu</span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-[160px]">
+                            <DropdownMenuItem>Edit</DropdownMenuItem>
+                            <DropdownMenuItem>Make a copy</DropdownMenuItem>
+                            <DropdownMenuItem>Favorite</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            {/* <DropdownMenuSub>
                     <DropdownMenuSubTrigger>
                       Labels
                     </DropdownMenuSubTrigger>
@@ -85,33 +85,33 @@ const FileCards = ({ file }: { file: File }) => {
                       </DropdownMenuRadioGroup>
                     </DropdownMenuSubContent>
                   </DropdownMenuSub> */}
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  Delete
-                  <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-          <div className="flex space-x-4 text-sm text-muted-foreground">
-            
-            <div className="flex items-center">
-              <StarsIcon className="mr-1 h-3 w-3" />
-              20k
-            </div>
-            <br />
-          </div>
-          <div className="flex mt-2 justify-between text-muted-foreground">
-            <div className="flex items-center space-x-1 rounded-md bg-transparent text-secondary-foreground ">
-              
-              <Separator orientation="vertical" className="h-[20px]" />
-            </div>
-            {/* <div className="">
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem>
+                                Delete
+                                <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+                <div className="flex space-x-4 text-sm text-muted-foreground">
+
+                    <div className="flex items-center">
+                        <StarsIcon className="mr-1 h-3 w-3" />
+                        20k
+                    </div>
+                    <br />
+                </div>
+                <div className="flex mt-2 justify-between text-muted-foreground">
+                    <div className="flex items-center space-x-1 rounded-md bg-transparent text-secondary-foreground ">
+
+                        <Separator orientation="vertical" className="h-[20px]" />
+                    </div>
+                    {/* <div className="">
               <p>{timeAgo(fie)}</p>
             </div> */}
-          </div>
-        </CardContent>
-      </Card>
+                </div>
+            </CardContent>
+        </Card>
     )
 
 
