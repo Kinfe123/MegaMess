@@ -26,6 +26,7 @@ import { uploadFile, type FormData } from "@/actions/create-file"
 import FilePage from "./file-display"
 import FuzzyOverlay from "@/components/fuzzy"
 import { toast } from "@/components/ui/use-toast"
+import { Loader2 } from "lucide-react"
 
 type UserProps = {
     userId: string,
@@ -152,7 +153,7 @@ const FileForm = ({ userId }: UserProps) => {
                             type="submit"
 
                         >
-                            {isPending && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+                            {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                             Submit
                         </button>
                     </DialogFooter>
