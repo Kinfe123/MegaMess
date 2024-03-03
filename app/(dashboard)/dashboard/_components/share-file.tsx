@@ -13,8 +13,13 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { env } from "@/env.mjs"
+import { File } from "@prisma/client"
 
-export function FileShareBtn() {
+export function FileShareBtn({file}: {file: File}) {
+    const rootUrl = env.NEXT_PUBLIC_APP_URL
+    const edgeStoreId = file.fileUrl.split('/')[6]
+    const sharableUrl = `${rootUrl}/files/u/${edgeStoreId}`
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -34,7 +39,7 @@ export function FileShareBtn() {
             </Label>
             <Input
               id="link"
-              defaultValue="https://ui.shadcn.com/docs/installation"
+              defaultValue={sharableUrl}
               readOnly
             />
           </div>

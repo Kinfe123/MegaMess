@@ -67,7 +67,7 @@ const FileCards = ({ file }: { file: File }) => {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-[160px]">
                             <DropdownMenuItem>Edit</DropdownMenuItem>
-                                   <FileShareBtn />
+                                   <FileShareBtn file={file} />
                             <DropdownMenuItem>Add Favorite</DropdownMenuItem>
                             <DropdownMenuSeparator />
                             {/* <DropdownMenuSub>
