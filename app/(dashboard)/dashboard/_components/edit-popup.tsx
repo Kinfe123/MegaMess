@@ -123,7 +123,7 @@ const EditFileForm = ({ file }: UserProps) => {
                             <div className="flex flex-col col-span-3 gap-2 justify-center items-end w-full">
 
                             <Textarea id="desciption" className="col-span-3" {...register("description")} placeholder="Type your message here." />
-                            {errors?.name && (
+                            {errors?.description && (
                                 <p className="px-1 text-xs col-span-3 text-center ml-auto text-red-600">{errors.name.message}</p>
                             )}
                             </div>
