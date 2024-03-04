@@ -24,13 +24,18 @@ import { Icons } from "@/components/shared/icons"
 import { updateUserName, type FormData } from "@/actions/update-user-name"
 
 interface UserNameFormProps {
-  user: Pick<User, "id" | "name">
+  user: {
+    id: string,
+    name: string,
+    firstName: string,
+    lastName: string
+  }
 }
 
 export function UserNameForm({ user }: UserNameFormProps) {
   const [isPending, startTransition] = useTransition();
   const updateUserNameWithId = updateUserName.bind(null, user.id);
-
+  console.log('THe name is : ' , user)
   const {
     handleSubmit,
     register,
@@ -39,6 +44,8 @@ export function UserNameForm({ user }: UserNameFormProps) {
     resolver: zodResolver(userNameSchema),
     defaultValues: {
       name: user?.name || "",
+      firstName: user.firstName,
+      lastName: user.lastName,
     },
   })
 
@@ -49,12 +56,12 @@ export function UserNameForm({ user }: UserNameFormProps) {
       if (status !== "success") {
         toast({
           title: "Something went wrong.",
-          description: "Your name was not updated. Please try again.",
+          description: "Your profile was not updated. Please try again.",
           variant: "destructive",
         })
       } else {
         toast({
-          description: "Your name has been updated.",
+          description: "Your profile has been updated.",
         })
       }
     });
@@ -71,9 +78,9 @@ export function UserNameForm({ user }: UserNameFormProps) {
             with.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex flex-col gap-4">
           <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="name">
+            <Label className="text-muted-foreground mb-2" htmlFor="name">
               Name
             </Label>
             <Input
@@ -84,6 +91,34 @@ export function UserNameForm({ user }: UserNameFormProps) {
             />
             {errors?.name && (
               <p className="px-1 text-xs text-red-600">{errors.name.message}</p>
+            )}
+          </div>
+          <div className="grid gap-1">
+            <Label className="text-muted-foreground mb-2" htmlFor="name">
+              First Name
+            </Label>
+            <Input
+              id="firstName"
+              className="w-full sm:w-[400px]"
+              size={32}
+              {...register("firstName")}
+            />
+            {errors?.firstName && (
+              <p className="px-1 text-xs text-red-600">{errors?.firstName.message ?? ""}</p>
+            )}
+          </div>
+          <div className="grid gap-1">
+            <Label className="text-muted-foreground mb-2" htmlFor="name">
+              Last Name
+            </Label>
+            <Input
+              id="name"
+              className="w-full sm:w-[400px]"
+              size={32}
+              {...register("lastName")}
+            />
+            {errors?.lastName && (
+              <p className="px-1 text-xs text-red-600">{errors?.lastName.message ?? ""}</p>
             )}
           </div>
         </CardContent>

@@ -22,6 +22,7 @@ import {
   Trash,
   User,
   X,
+  Heart,
   LucideIcon,
 } from "lucide-react"
 
@@ -72,6 +73,7 @@ export const Icons = {
   laptop: Laptop,
   logo: Puzzle,
   media: Image,
+  love: Heart,
   moon: Moon,
   page: File,
   post: FileText,

@@ -4,6 +4,7 @@ import { getCurrentUser } from "@/lib/session"
 import { DashboardHeader } from "@/components/dashboard/header"
 import { DashboardShell } from "@/components/dashboard/shell"
 import { UserNameForm } from "@/components/forms/user-name-form"
+import { getUserById } from "@/lib/user"
 
 export const metadata = {
   title: "Settings",
@@ -12,10 +13,11 @@ export const metadata = {
 
 export default async function SettingsPage() {
   const user = await getCurrentUser()
-
+  
   if (!user) {
     redirect("/login")
   }
+  const currentUser = await getUserById(user?.id)
 
   return (
     <DashboardShell>
@@ -24,7 +26,7 @@ export default async function SettingsPage() {
         text="Manage account and website settings."
       />
       <div className="grid gap-10">
-        <UserNameForm user={{ id: user.id, name: user.name || "" }} />
+        <UserNameForm user={{ id: user.id, name: user?.name || ""  , firstName: currentUser?.firstName || "" , lastName: currentUser?.lastName || ''}} />
       </div>
     </DashboardShell>
   )

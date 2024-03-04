@@ -7,6 +7,8 @@ import { revalidatePath } from "next/cache";
 
 export type FormData = {
   name: string;
+  firstName?: string ,
+  lastName?: string,
 };
 
 export async function updateUserName(userId: string, data: FormData) {
@@ -16,18 +18,24 @@ export async function updateUserName(userId: string, data: FormData) {
     if (!session?.user || session?.user.id !== userId) {
       throw new Error("Unauthorized");
     }
-
-    const { name } = userNameSchema.parse(data);
-
+    const { name , firstName  , lastName } = userNameSchema.parse(data);
     // Update the user name.
-    await prisma.user.update({
+    try {
+     const user = await prisma.user.update({
       where: {
-        id: userId,
+        id:userId
       },
       data: {
         name: name,
-      },
-    })
+        firstName:firstName,
+        lastName: lastName
+      }
+     })
+
+    }catch(err) {
+
+      console.log("#[ERROR] : " , err)
+    }
 
     revalidatePath('/dashboard/settings');
     return { status: "success" };
