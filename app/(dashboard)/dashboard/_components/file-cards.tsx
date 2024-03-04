@@ -30,6 +30,7 @@ import { CircleIcon, Clock, Dot, DotSquare, StarIcon, StarsIcon } from 'lucide-r
 import { timeAgo } from '@/lib/utils'
 import { FileShareBtn } from './share-file'
 import { FileDeleteBtn } from '@/app/files/f/[...id]/_components/delete-popup'
+import EditFileForm from './edit-popup'
 
 type fileProps = {
     file: Promise<File[]>;
@@ -66,27 +67,12 @@ const FileCards = ({ file }: { file: File }) => {
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-[160px]">
-                            <DropdownMenuItem>Edit</DropdownMenuItem>
-                                   <FileShareBtn file={file} />
+                                      
+                                      <EditFileForm file={file}/>
+                                       <FileShareBtn file={file} />
                             <DropdownMenuItem>Add Favorite</DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            {/* <DropdownMenuSub>
-                    <DropdownMenuSubTrigger>
-                      Labels
-                    </DropdownMenuSubTrigger>
-                    <DropdownMenuSubContent>
-                      <DropdownMenuRadioGroup value={task.label}>
-                        {labels.map((label) => (
-                          <DropdownMenuRadioItem
-                            key={label.value}
-                            value={label.value}
-                        >
-                            {label.label}
-                          </DropdownMenuRadioItem>
-                        ))}
-                      </DropdownMenuRadioGroup>
-                    </DropdownMenuSubContent>
-                  </DropdownMenuSub> */}
+        
                             <DropdownMenuSeparator />
                         
                                 <FileDeleteBtn fileId={file.id} />

@@ -74,3 +74,42 @@ export const fileDelete = async (id: string) => {
 
 
 }
+
+
+export const fileEdit = async  (id: string, fileName: string , description: string , fileUrl: string) => {
+  try{
+    const user = await getCurrentUser()
+    if(!user) {
+      return new Response("Unauthorized" , {status: 400})
+    }
+    const fileEdit = await prisma.file.update({
+      where: {
+        id: id,
+      },
+      data: {
+        fileUrl: fileUrl,
+        name: fileName,
+        description: description
+
+        
+      },
+      select: {
+        name: true,
+
+      }
+    })
+
+    const name = fileEdit.name
+    revalidatePath("/dashboard")
+    if(name){
+      return {status: "success" , name}
+    }else {
+      return {status:"error" , name: null}
+    }
+    
+
+  }catch(err) {
+    return {status: "error"}
+  }
+
+}
