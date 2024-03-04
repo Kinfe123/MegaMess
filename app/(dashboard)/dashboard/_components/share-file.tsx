@@ -17,14 +17,17 @@ import { env } from "@/env.mjs"
 import { File } from "@prisma/client"
 import CopyBtn from "./copy-btn"
 
-export function FileShareBtn({file}: {file: File}) {
-    const rootUrl = env.NEXT_PUBLIC_APP_URL
-    const edgeStoreId = file.fileUrl.split('/')[6]
-    const sharableUrl = `${rootUrl}/files/f/${edgeStoreId}`
+export function FileShareBtn({ file }: { file: File }) {
+  const rootUrl = env.NEXT_PUBLIC_APP_URL
+  const edgeStoreId = file.fileUrl.split('/')[6]
+  const sharableUrl = `${rootUrl}/files/f/${edgeStoreId}`
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <p className="ml-2 cursor-pointer">Share</p>
+        <Button className="w-full py-[-20px] flex justify-start items-center" variant={'ghost'} size={'sm'}>
+          Share
+
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg max-h-[calc(100%_+_40px)] bg-gradient-to-br from-purple-400/10 rounded-md  via-transparent to-transparent/5">
         <DialogHeader>

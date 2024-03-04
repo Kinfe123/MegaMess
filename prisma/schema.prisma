@@ -88,3 +88,9 @@ model File {
 
   user   User   @relation("files", fields: [userId], references: [id])
 }
+
+
+
+model Favorite {
+  id
+}

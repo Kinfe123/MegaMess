@@ -76,8 +76,11 @@ const EditFileForm = ({ file }: UserProps) => {
         <Dialog>
             <DialogTrigger asChild>
 
+                <Button className="w-full py-[-20px] flex justify-start items-center" variant={'ghost'} size={'sm'}>
+                    Edit
 
-                <p className="cursor-pointer ml-2">Edit</p>
+                </Button>
+                {/* <p className="cursor-pointer ml-2">Edit</p> */}
 
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px] relative overflow-hidden mt-[-500px] bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70">

@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { type File } from '@prisma/client'
+import { MoreHorizontal } from 'lucide-react'
 import {
     Card,
     CardContent,
@@ -62,7 +63,7 @@ const FileCards = ({ file }: { file: File }) => {
                                 variant="ghost"
                                 className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
                             >
-                                <Dot className="h-4 w-4" />
+                                <MoreHorizontal className="h-4 w-4" />
                                 <span className="sr-only">Open menu</span>
                             </Button>
                         </DropdownMenuTrigger>
@@ -78,7 +79,7 @@ const FileCards = ({ file }: { file: File }) => {
                             <DropdownMenuSeparator />
                         
                                 <FileDeleteBtn fileId={file.id} />
-                                <DropdownMenuShortcut className='absolute right-2 bottom-2'>⌘⌫</DropdownMenuShortcut>
+                                <DropdownMenuShortcut className='absolute right-2 bottom-4'>⌘⌫</DropdownMenuShortcut>
                         
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -96,7 +97,7 @@ const FileCards = ({ file }: { file: File }) => {
 
                         <Separator orientation="vertical" className="h-[20px]" />
                     </div>
-                    <div className="absolute flex justify-center  items-center gap-1 text-sm text-muted-foreground bottom-4 right-3">
+                    <div className="absolute flex justify-center  items-center gap-1 text-xs text-muted-foreground bottom-4 right-3">
                         <Clock className='w-3 h-3'/><p>{timeAgo(file.createdAt)}</p>
                     </div>
                 </div>
