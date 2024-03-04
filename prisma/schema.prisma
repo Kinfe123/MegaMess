@@ -92,5 +92,6 @@ model File {
 
 
 model Favorite {
-  id
+    id     String @id @default(cuid())
+    fileId String
 }
