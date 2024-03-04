@@ -69,7 +69,9 @@ const FileCards = ({ file }: { file: File }) => {
                         <DropdownMenuContent align="end" className="w-[160px]">
                                       
                                       <EditFileForm file={file}/>
+                                      <Separator className='w-full my-1'/>
                                        <FileShareBtn file={file} />
+                                      <Separator className='w-full my-1'/>
                             <DropdownMenuItem>Add Favorite</DropdownMenuItem>
                             <DropdownMenuSeparator />
         

@@ -76,7 +76,7 @@ export const fileDelete = async (id: string) => {
 }
 
 
-export const fileEdit = async  (id: string, fileName: string , description: string , fileUrl: string) => {
+export const fileEdit = async  (id: string,fileUrl: string ,  data:FormData) => {
   try{
     const user = await getCurrentUser()
     if(!user) {
@@ -88,8 +88,8 @@ export const fileEdit = async  (id: string, fileName: string , description: stri
       },
       data: {
         fileUrl: fileUrl,
-        name: fileName,
-        description: description
+        name: data.name,
+        description: data.description
 
         
       },

@@ -20,12 +20,13 @@ import { cn } from "@/lib/utils"
 import { useForm } from "react-hook-form"
 import { type File } from "@prisma/client"
 import { fileSchema } from "@/lib/validations/file"
-import { uploadFile, type FormData } from "@/actions/file-actions"
+import { fileEdit, uploadFile, type FormData } from "@/actions/file-actions"
 import FilePage from "./file-display"
 import FuzzyOverlay from "@/components/fuzzy"
 import { toast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
+import { Separator } from "@/components/ui/separator"
 
 type UserProps = {
     file: File
@@ -33,10 +34,10 @@ type UserProps = {
 const EditFileForm = ({  file  }: UserProps) => {
     const [isPending, startTransition] = useTransition()
     const [fileDataOnly, setFileDataOnly] = useState({
-        fileUrl: '',
+        fileUrl: file.fileUrl,
 
     })
-    const uploadFileById = uploadFile.bind(null, userId, fileDataOnly.fileUrl)
+    const editFileById = fileEdit.bind(null, file.id, fileDataOnly.fileUrl)
     const handleParentUpdate = (newVal) => {
         setFileDataOnly({ ...fileDataOnly, fileUrl: newVal })
     }
@@ -47,25 +48,25 @@ const EditFileForm = ({  file  }: UserProps) => {
     } = useForm<FormData>({
         resolver: zodResolver(fileSchema),
         defaultValues: {
-            name: "",
-            description: ''
+            name: file.name,
+            description: file.description! ?? ''
 
 
         },
     })
     const onSubmit = handleSubmit(data => {
         startTransition(async () => {
-            const { status } = await uploadFileById(data);
+            const { status } = await editFileById(data);
             console.log('the result is: ', status)
             if (status !== "success") {
                 toast({
                     title: "Something went wrong.",
-                    description: "There is an error while uploading file.",
+                    description: "There is an error while updating the file.",
                     variant: "destructive",
                 })
             } else {
                 toast({
-                    description: "You have uploaded the file",
+                    description: "You have updated the file",
                 })
             }
         });
@@ -73,12 +74,11 @@ const EditFileForm = ({  file  }: UserProps) => {
     });
     return (
         <Dialog>
-            {/* {<p className="flex    mx0-auto tracking-normal text-muted-foreground justify-center items-center mt-10 ">You have already applied for the job!</p> } */}
             <DialogTrigger asChild>
-                {/* {jobApplied.includes(jobId) && (<Button variant="outline" size='lg' className="bg-gray-800 text-white   transition ease-in-out duration-150 dark:bg-white  dark:text-black" disabled={true}>Applied</Button>) } */}
+       
 
-
-               <p className="cursor-pointer">Edit</p>
+               <p className="cursor-pointer ml-2">Edit</p>
+           
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px] relative overflow-hidden mt-[-500px] bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70">
                 <DialogHeader>
