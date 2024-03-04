@@ -15,13 +15,13 @@ import {
 import { useTransition } from "react"
 import { toast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react"
-export function FileDeleteBtn({fileId , fileName}: {fileId: string , fileName:string}) {
+export function FileDeleteBtn({fileId }: {fileId: string }) {
     const [pending , startTransition] = useTransition()
     const handleClick = () => {
         startTransition(() => {
-            fileDelete(fileId).then((file) =>  toast({
+            fileDelete(fileId).then((file: {status: string , name: string | undefined}) =>  toast({
                 title: "Deleted Successfully.",
-                description: `The file - ${fileName} has successfully deleted!`,
+                description: `The file - ${file.name} has successfully deleted!`,
               })).catch((err) => {
                 toast({
                     title: "Something went wrong.",

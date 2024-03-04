@@ -30,7 +30,6 @@ type UserProps = {
     userId: string,
 }
 const FileForm = ({ userId }: UserProps) => {
-    console.log('THe user is : ', userId)
     const [isPending, startTransition] = useTransition()
     const [fileDataOnly, setFileDataOnly] = useState({
         fileUrl: '',
@@ -55,7 +54,6 @@ const FileForm = ({ userId }: UserProps) => {
     })
     const onSubmit = handleSubmit(data => {
         startTransition(async () => {
-            console.log("Iam heere : ", data)
             const { status } = await uploadFileById(data);
             console.log('the result is: ', status)
             if (status !== "success") {

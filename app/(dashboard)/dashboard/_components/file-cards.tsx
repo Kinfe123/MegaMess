@@ -89,7 +89,7 @@ const FileCards = ({ file }: { file: File }) => {
                   </DropdownMenuSub> */}
                             <DropdownMenuSeparator />
                         
-                                <FileDeleteBtn fileId={file.id} fileName={file.name} />
+                                <FileDeleteBtn fileId={file.id} />
                                 <DropdownMenuShortcut className='absolute right-2 bottom-2'>⌘⌫</DropdownMenuShortcut>
                         
                         </DropdownMenuContent>

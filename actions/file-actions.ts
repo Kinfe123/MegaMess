@@ -54,11 +54,16 @@ export const fileDelete = async (id: string) => {
     const deleteFile = await prisma.file.delete({
       where: {
         id: id,
+      },
+      select: {
+        name: true,
       }
+      
     })
+    const name = deleteFile.name
     revalidatePath('/dashboard');
-    if (deleteFile.id) {
-      return { status: 'success', deleteFile }
+    if (deleteFile) {
+      return { status: 'success', name }
     } else {
       return { status: "error" }
     }
