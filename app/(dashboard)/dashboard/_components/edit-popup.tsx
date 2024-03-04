@@ -31,7 +31,7 @@ import { Separator } from "@/components/ui/separator"
 type UserProps = {
     file: File
 }
-const EditFileForm = ({  file  }: UserProps) => {
+const EditFileForm = ({ file }: UserProps) => {
     const [isPending, startTransition] = useTransition()
     const [fileDataOnly, setFileDataOnly] = useState({
         fileUrl: file.fileUrl,
@@ -75,10 +75,10 @@ const EditFileForm = ({  file  }: UserProps) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-       
 
-               <p className="cursor-pointer ml-2">Edit</p>
-           
+
+                <p className="cursor-pointer ml-2">Edit</p>
+
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px] relative overflow-hidden mt-[-500px] bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70">
                 <DialogHeader>
@@ -99,6 +99,7 @@ const EditFileForm = ({  file  }: UserProps) => {
                                 Name for file
                             </Label>
 
+                            <div className="flex flex-col col-span-3 gap-2 justify-center items-end w-full">
 
                             <Input
                                 id="name"
@@ -106,14 +107,23 @@ const EditFileForm = ({  file  }: UserProps) => {
                                 className="col-span-3"
                                 {...register("name")}
                             />
+                            {errors?.name && (
+                                <p className="px-1 text-xs col-span-3 text-center ml-auto text-red-600">{errors.name.message}</p>
+                            )}
+                            </div>
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
 
                             <Label htmlFor="name" className="text-right">
                                 Descriptions
                             </Label>
+                            <div className="flex flex-col col-span-3 gap-2 justify-center items-end w-full">
 
                             <Textarea id="desciption" className="col-span-3" {...register("description")} placeholder="Type your message here." />
+                            {errors?.name && (
+                                <p className="px-1 text-xs col-span-3 text-center ml-auto text-red-600">{errors.name.message}</p>
+                            )}
+                            </div>
 
                         </div>
 
