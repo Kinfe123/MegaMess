@@ -27,6 +27,7 @@ import FilePage from "./file-display"
 import FuzzyOverlay from "@/components/fuzzy"
 import { toast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react"
+import { Textarea } from "@/components/ui/textarea"
 
 type UserProps = {
     userId: string,
@@ -123,14 +124,16 @@ const FileForm = ({ userId }: UserProps) => {
                                 Descriptions
                             </Label>
 
+                            <Textarea id="desciption"    className="col-span-3" {...register("description")} placeholder="Type your message here." />
 
-                            <Input
+                            {/* <Input
                                 id="description"
                                 size={32}
                                 className="col-span-3"
                                 {...register("description")}
-                            />
+                            /> */}
                         </div>
+
 
 
 
