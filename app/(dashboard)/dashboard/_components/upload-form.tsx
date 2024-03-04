@@ -14,12 +14,9 @@ import {
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { MultiFileDropzone } from "./file-upload"
-import { Icons } from "@/components/shared/icons"
 import { useState, useTransition } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { cn } from "@/lib/utils"
-import type { User } from "@prisma/client"
 import { useForm } from "react-hook-form"
 import { fileSchema } from "@/lib/validations/file"
 import { uploadFile, type FormData } from "@/actions/file-actions"
@@ -37,9 +34,9 @@ const FileForm = ({ userId }: UserProps) => {
     const [isPending, startTransition] = useTransition()
     const [fileDataOnly, setFileDataOnly] = useState({
         fileUrl: '',
-        
+
     })
-    const uploadFileById = uploadFile.bind(null , userId , fileDataOnly.fileUrl)
+    const uploadFileById = uploadFile.bind(null, userId, fileDataOnly.fileUrl)
     const handleParentUpdate = (newVal) => {
         setFileDataOnly({ ...fileDataOnly, fileUrl: newVal })
     }
@@ -51,27 +48,27 @@ const FileForm = ({ userId }: UserProps) => {
         resolver: zodResolver(fileSchema),
         defaultValues: {
             name: "",
-            description:''
-         
+            description: ''
+
 
         },
     })
     const onSubmit = handleSubmit(data => {
         startTransition(async () => {
-            console.log("Iam heere : " , data)
-              const { status } = await uploadFileById(data); 
-              console.log('the result is: ' , status)  
-              if (status !== "success") {
+            console.log("Iam heere : ", data)
+            const { status } = await uploadFileById(data);
+            console.log('the result is: ', status)
+            if (status !== "success") {
                 toast({
-                  title: "Something went wrong.",
-                  description: "There is an error while uploading file.",
-                  variant: "destructive",
+                    title: "Something went wrong.",
+                    description: "There is an error while uploading file.",
+                    variant: "destructive",
                 })
-              } else {
+            } else {
                 toast({
-                  description: "You have uploaded the file",
+                    description: "You have uploaded the file",
                 })
-              }
+            }
         });
 
     });
@@ -124,14 +121,8 @@ const FileForm = ({ userId }: UserProps) => {
                                 Descriptions
                             </Label>
 
-                            <Textarea id="desciption"    className="col-span-3" {...register("description")} placeholder="Type your message here." />
+                            <Textarea id="desciption" className="col-span-3" {...register("description")} placeholder="Type your message here." />
 
-                            {/* <Input
-                                id="description"
-                                size={32}
-                                className="col-span-3"
-                                {...register("description")}
-                            /> */}
                         </div>
 
 
