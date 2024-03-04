@@ -84,7 +84,6 @@ const MultiFileDropzone = React.forwardRef<HTMLInputElement, InputProps>(
           return;
         }
         if (files) {
-          console.log('Yje file are: ' , files)
           const addedFiles = files.map<FileState>((file) => ({
             file,
             size: file.size ,
@@ -206,7 +205,7 @@ const MultiFileDropzone = React.forwardRef<HTMLInputElement, InputProps>(
                     <div
                       className="h-full bg-gray-400 transition-all duration-300 ease-in-out dark:bg-white"
                       style={{
-                        width: progress ? `${progress}%` : '0%',
+                      width: progress ? `${progress}%` : '0%',
                       }}
                     />
                   </div>

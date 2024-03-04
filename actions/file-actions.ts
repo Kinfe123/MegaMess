@@ -2,7 +2,9 @@
 
 import { prisma } from "@/lib/db";
 import { getCurrentUser } from "@/lib/session";
+import { formatFileSize } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
+import { Convergence } from "next/font/google";
 
 
 export type FormData = {
@@ -11,17 +13,20 @@ export type FormData = {
 
 }
 
-export async function uploadFile(userId: string, fileUrl: string, data: FormData) {
+export async function uploadFile(userId: string, fileUrl: string, fileSize: number, data: FormData) {
   try {
     const user = await getCurrentUser()
+  
     if (!user) {
       return new Response('Unauthorized', { status: 400 })
     }
+    const fileSizeFormated = formatFileSize(fileSize)
     const addFile = await prisma.file.create({
       data: {
         userId: userId,
         name: data.name,
         fileUrl: fileUrl,
+        size: fileSizeFormated,
         description: data.description,
       },
       select: {

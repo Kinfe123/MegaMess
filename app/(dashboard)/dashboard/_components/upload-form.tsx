@@ -36,10 +36,11 @@ const FileForm = ({ userId }: UserProps) => {
         fileSize: 0
 
     })
-    const uploadFileById = uploadFile.bind(null, userId, fileDataOnly.fileUrl)
+    const uploadFileById = uploadFile.bind(null, userId, fileDataOnly.fileUrl , fileDataOnly.fileSize)
     const handleParentUpdate = ({url , size}: {url:string , size:number}) => {
         setFileDataOnly({ ...fileDataOnly, fileUrl: url , fileSize:size })
     }
+    
 
     const {
         handleSubmit,

@@ -81,7 +81,7 @@ model File {
   name   String
   description String?
   fileUrl String 
-  size   Float?
+  size   String
   userId String
   createdAt         DateTime @default(now()) @map(name: "created_at")
   updatedAt         DateTime @default(now()) @map(name: "updated_at")
