@@ -65,7 +65,8 @@ function MultiImageExample({updateData}) {
                     }
                   },
                 });
-                updateData(res.url)
+                updateData({url: res.url , size:res.size})
+
                 setUploadRes((uploadRes) => [
                   ...uploadRes,
                   {

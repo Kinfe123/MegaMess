@@ -33,12 +33,14 @@ const FileForm = ({ userId }: UserProps) => {
     const [isPending, startTransition] = useTransition()
     const [fileDataOnly, setFileDataOnly] = useState({
         fileUrl: '',
+        fileSize: 0
 
     })
     const uploadFileById = uploadFile.bind(null, userId, fileDataOnly.fileUrl)
-    const handleParentUpdate = (newVal) => {
-        setFileDataOnly({ ...fileDataOnly, fileUrl: newVal })
+    const handleParentUpdate = ({url , size}: {url:string , size:number}) => {
+        setFileDataOnly({ ...fileDataOnly, fileUrl: url , fileSize:size })
     }
+
     const {
         handleSubmit,
         register,

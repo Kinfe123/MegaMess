@@ -25,6 +25,7 @@ const variants = {
 
 export type FileState = {
   file: File;
+  size: number,
   key: string; // used to identify the file in the progress callback
   progress: 'PENDING' | 'COMPLETE' | 'ERROR' | number;
 };
@@ -83,8 +84,10 @@ const MultiFileDropzone = React.forwardRef<HTMLInputElement, InputProps>(
           return;
         }
         if (files) {
+          console.log('Yje file are: ' , files)
           const addedFiles = files.map<FileState>((file) => ({
             file,
+            size: file.size ,
             key: Math.random().toString(36).slice(2),
             progress: 'PENDING',
           }));
