@@ -85,3 +85,14 @@ export const truncate = (str: string, length: number) => {
   if (!str || str.length <= length) return str;
   return `${str.slice(0, length)}...`;
 };
+
+export const toSize = async (url: string) => {
+  const req = await fetch(url , {
+    method:'HEAD'
+  })
+  const size = req.headers.get("content-length")
+  const result = size ? parseInt(size) : 0
+  return result
+
+
+}

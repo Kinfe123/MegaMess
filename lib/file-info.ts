@@ -8,7 +8,7 @@ export const fileInfo = (id: string) => {
 }
 
 export const findUserByFile =  async (fileUrl: string) => {
-    await new Promise((rs) => setTimeout(rs , 4000))
+    // await new Promise((rs) => setTimeout(rs , 4000))
     const user = await prisma.file.findFirst({
         where: {
             fileUrl: fileUrl

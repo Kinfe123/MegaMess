@@ -10,6 +10,7 @@ import { Suspense } from "react"
 import FileCards from "./_components/file-cards"
 import FileForm from "./_components/upload-form"
 import EmptyBox from "./_components/empty-box"
+import { toSize } from "@/lib/utils"
 
 export const metadata = {
   title: "File Dashboard",
@@ -17,6 +18,7 @@ export const metadata = {
 }
 
 export default async function DashboardPage() {
+
   const user = await getCurrentUser()
 
 
