@@ -29,6 +29,7 @@ import { Button } from '@/components/ui/button'
 import { CircleIcon, Clock, Dot, DotSquare, StarIcon, StarsIcon } from 'lucide-react'
 import { timeAgo } from '@/lib/utils'
 import { FileShareBtn } from './share-file'
+import { FileDeleteBtn } from '@/app/files/f/[...id]/_components/delete-popup'
 
 type fileProps = {
     file: Promise<File[]>;
@@ -87,10 +88,10 @@ const FileCards = ({ file }: { file: File }) => {
                     </DropdownMenuSubContent>
                   </DropdownMenuSub> */}
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem>
-                                Delete
-                                <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-                            </DropdownMenuItem>
+                        
+                                <FileDeleteBtn fileId={file.id} fileName={file.name} />
+                                <DropdownMenuShortcut className='absolute right-2 bottom-2'>⌘⌫</DropdownMenuShortcut>
+                        
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>

@@ -40,7 +40,6 @@ const FileForm = ({ userId }: UserProps) => {
     })
     const uploadFileById = uploadFile.bind(null , userId , fileDataOnly.fileUrl)
     const handleParentUpdate = (newVal) => {
-        console.log('THe file is here; ', newVal)
         setFileDataOnly({ ...fileDataOnly, fileUrl: newVal })
     }
     const {

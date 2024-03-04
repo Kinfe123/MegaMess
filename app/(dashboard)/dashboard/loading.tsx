@@ -9,7 +9,7 @@ export default function DashboardLoading() {
       <DashboardHeader heading="Upload & Share File" text="Create and a huge mess and lets handle the rest.">
         <Button>Upload a file</Button>
       </DashboardHeader>
-      <div className="divide-border-200  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-y rounded-md border">
+      <div className="gap-2 grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-y rounded-md">
         <CardSkeleton />
         <CardSkeleton />
         <CardSkeleton />
