@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { Button } from '@/components/ui/button'
-import { CircleIcon, Clock, Dot, DotSquare, StarIcon, StarsIcon } from 'lucide-react'
+import { CircleIcon, Clock, Dot, DotSquare, FileIcon, StarsIcon } from 'lucide-react'
 import { timeAgo } from '@/lib/utils'
 import { FileShareBtn } from './share-file'
 import { FileDeleteBtn } from '@/app/files/f/[...id]/_components/delete-popup'
@@ -87,8 +87,8 @@ const FileCards = ({ file }: { file: File }) => {
                 <div className="flex space-x-4 text-sm text-muted-foreground">
 
                     <div className="flex items-center">
-                        <StarsIcon className="mr-1 h-3 w-3" />
-                        20k
+                        <FileIcon className="mr-1 h-3 w-3 font-bold text-sm" />
+                        {file.size}
                     </div>
                     <br />
                 </div>
