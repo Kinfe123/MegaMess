@@ -143,7 +143,7 @@ const FileForm = ({ userId }: UserProps) => {
                     <DialogFooter>
                         <button
                             className={cn(buttonVariants(), 'flex justify-center items-center mx-auto')}
-                            disabled={isPending}
+                            disabled={isPending || !fileDataOnly.fileUrl.length}
                             type="submit"
 
                         >
