@@ -124,7 +124,7 @@ const EditFileForm = ({ file }: UserProps) => {
 
                             <Textarea id="desciption" className="col-span-3" {...register("description")} placeholder="Type your message here." />
                             {errors?.description && (
-                                <p className="px-1 text-xs col-span-3 text-center ml-auto text-red-600">{errors.name.message}</p>
+                                <p className="px-1 text-xs col-span-3 text-center ml-auto text-red-600">{errors.description.message}</p>
                             )}
                             </div>
 
