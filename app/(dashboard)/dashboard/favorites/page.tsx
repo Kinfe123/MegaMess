@@ -7,7 +7,7 @@ import { Suspense } from "react"
 import FavCard from "../_components/fav-card"
 export const metadata = {
     title: "Favourite",
-    description: "Manage your favourite.",
+    description: "Manage your favorite.",
 }
 
 export default async function FavouritePage() {
@@ -21,7 +21,7 @@ export default async function FavouritePage() {
         <DashboardShell>
             <DashboardHeader
                 heading="Favorites"
-                text="Manage account and website Favorites."
+                text="Manage your favorites."
             />
              <div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
