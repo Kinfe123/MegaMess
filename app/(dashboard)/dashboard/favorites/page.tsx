@@ -2,7 +2,7 @@ import { getCurrentUser } from "@/lib/session"
 import { redirect } from "next/navigation"
 import { DashboardHeader } from "@/components/dashboard/header"
 import { DashboardShell } from "@/components/dashboard/shell"
-import { files } from "@/lib/fille"
+import { favFiles, files } from "@/lib/fille"
 import { Suspense } from "react"
 import FavCard from "../_components/fav-card"
 export const metadata = {
