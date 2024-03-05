@@ -1,8 +1,6 @@
-
 'use client'
-import React, { Suspense } from 'react'
-import { type File } from '@prisma/client'
-import { MoreHorizontal } from 'lucide-react'
+
+import { type File } from "@prisma/client";
 import {
     Card,
     CardContent,
@@ -25,23 +23,19 @@ import {
     DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import EditFileForm from "./edit-popup";
 import { Separator } from "@/components/ui/separator";
-import { Button } from '@/components/ui/button'
-import { CircleIcon, Clock, Dot, DotSquare, FileIcon, StarsIcon } from 'lucide-react'
-import { timeAgo } from '@/lib/utils'
-import { FileShareBtn } from './share-file'
-import { FileDeleteBtn } from '@/app/files/f/[...id]/_components/delete-popup'
-import EditFileForm from './edit-popup'
-import { FavBtn } from './fav-popup'
+import { FileShareBtn } from "./share-file";
+import { FavBtn } from "./fav-popup";
+import { FileDeleteBtn } from "@/app/files/f/[...id]/_components/delete-popup";
+import { Clock, FileIcon, MoreHorizontal } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { timeAgo } from "@/lib/utils";
 
-type fileProps = {
-    file: Promise<File[]>;
-}
-
-const FileCards = async ({ file }: { file: File }) => {
-
+const FavCard = ({file , userId}: {file: File , userId: string }) => {
+    
+    const isWritable = file.userId === userId
     return (
-
         <Card
             key={file.id}
             className="overflow-hidden rounded-xl relative  bg-gradient-to-tr from-purple-400/10 via-transparent to-transparent"
@@ -70,18 +64,18 @@ const FileCards = async ({ file }: { file: File }) => {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-[160px]">
                                       
-                                      <EditFileForm file={file}/>
-                                      <Separator className='w-full my-1'/>
+                                     {isWritable ? <><EditFileForm file={file}/>
+                                      <Separator className='w-full my-1'/></> : ""}  
                                        <FileShareBtn file={file} />
                                       <Separator className='w-full my-1'/>
-                                        <FavBtn fav={false} fileId={file.id} fileOwner={file.userId} />
+                                     <FavBtn fav={true} fileId={file.id} fileOwner={file.userId} />
 
                                 <DropdownMenuSeparator />
         
                             <DropdownMenuSeparator />
                         
-                                <FileDeleteBtn fileId={file.id} />
                                 <DropdownMenuShortcut className='absolute right-2 bottom-4'>⌘⌫</DropdownMenuShortcut>
+                                {isWritable ?<> <FileDeleteBtn fileId={file.id} /> </> : ''}
                         
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -106,8 +100,5 @@ const FileCards = async ({ file }: { file: File }) => {
             </CardContent>
         </Card>
     )
-
-
 }
-
-export default FileCards
+export default FavCard

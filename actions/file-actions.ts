@@ -152,6 +152,8 @@ export const fileFav = async (id: string , fileId: string) => {
             favoriting: true,
           }
       })
+      revalidatePath("/dashboard")
+      revalidatePath("/dashboard/favorites")
       if(favAdd) {
         return favAdd
       }else {
@@ -160,4 +162,38 @@ export const fileFav = async (id: string , fileId: string) => {
     }catch(err) {
       console.log("#[ERROR]: " , err)
     }
+}
+
+export const fileUnFav = async (id: string , fileId: string) => {
+  try {
+    const user = await getCurrentUser()
+    const otherUser = await prisma.user.findFirst({
+      where: {
+        id: id,
+      }
+    })
+   // we dont need to check for the existense at since the user might want to put his own file as fav
+   const existFav = await prisma.favorite.findFirst({
+    where: {
+      favoritingId: otherUser?.id as string,
+      favoriterId: user?.id as string,
+    }
+   })
+    const favAdd = await prisma.favorite.delete({
+        where: {
+            id: existFav?.id,    
+        
+        },
+        
+    })
+    revalidatePath("/dashboard")
+    revalidatePath("/dashboard/favorites")
+    if(favAdd) {
+      return favAdd
+    }else {
+      throw new Error("Failed while adding to fav")
+    }
+  }catch(err) {
+    console.log("#[ERROR]: " , err)
+  }
 }

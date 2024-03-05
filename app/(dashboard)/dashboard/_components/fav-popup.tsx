@@ -15,9 +15,9 @@ import { Button } from "@/components/ui/button"
 import { use, useTransition } from "react"
 import { toast } from "@/components/ui/use-toast"
 import { Loader2, PieChartIcon } from "lucide-react"
-export function FavBtn({ fileId, fileOwner }: { fileId: string, fileOwner: string }) {
+export function FavBtn({ fileId, fileOwner  , fav}: { fileId: string, fileOwner: string , fav:boolean }) {
   const [pending, startTransition] = useTransition()
-
+  const [pending2 , startTransition2] = useTransition()
   //   const isFav = fileId === 
   const handleClick = () => {
     startTransition(() => {
@@ -37,7 +37,7 @@ export function FavBtn({ fileId, fileOwner }: { fileId: string, fileOwner: strin
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button disabled={pending} onClick={handleClick} className="w-full py-[-20px] flex justify-start items-center" variant={'ghost'} size={'sm'}>
-          Favorite {pending ? <Loader2 className="ml-auto w-3 h-3 animate-spin" /> : ""}
+         {fav ? "Un": ""}Favorite {pending ? <Loader2 className="ml-auto w-3 h-3 animate-spin" /> : ""}
 
         </Button>
 
