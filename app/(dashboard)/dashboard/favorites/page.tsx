@@ -2,6 +2,7 @@ import { getCurrentUser } from "@/lib/session"
 import { redirect } from "next/navigation"
 import { DashboardHeader } from "@/components/dashboard/header"
 import { DashboardShell } from "@/components/dashboard/shell"
+import { files } from "@/lib/fille"
 
 
 export const metadata = {
@@ -9,14 +10,13 @@ export const metadata = {
     description: "Manage your favourite.",
 }
 
-
-
-
-export async function FavouritePage() {
+export default async function FavouritePage() {
     const user = await getCurrentUser()
     if (!user) {
         redirect('/login')
     }
+    const result = files(user.id)
+    
     return (
         <DashboardShell>
             <DashboardHeader
@@ -24,8 +24,7 @@ export async function FavouritePage() {
                 text="Manage account and website Favorites."
             />
             <div className="grid gap-10">
-
-                <p>this </p>
+                    
             </div>
         </DashboardShell>
     )

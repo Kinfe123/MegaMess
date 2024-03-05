@@ -25,7 +25,8 @@ export default async function DashboardPage() {
   if (!user) {
     redirect("/login")
   }
-  const result = files(user?.id)
+  const result = files(user.id)
+  
 
 
   return (

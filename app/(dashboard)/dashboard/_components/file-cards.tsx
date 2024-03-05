@@ -1,6 +1,6 @@
-'use client'
 
-import React from 'react'
+'use client'
+import React, { Suspense } from 'react'
 import { type File } from '@prisma/client'
 import { MoreHorizontal } from 'lucide-react'
 import {
@@ -32,12 +32,13 @@ import { timeAgo } from '@/lib/utils'
 import { FileShareBtn } from './share-file'
 import { FileDeleteBtn } from '@/app/files/f/[...id]/_components/delete-popup'
 import EditFileForm from './edit-popup'
+import { FavBtn } from './fav-popup'
 
 type fileProps = {
     file: Promise<File[]>;
 }
 
-const FileCards = ({ file }: { file: File }) => {
+const FileCards = async ({ file }: { file: File }) => {
 
     return (
 
@@ -73,8 +74,9 @@ const FileCards = ({ file }: { file: File }) => {
                                       <Separator className='w-full my-1'/>
                                        <FileShareBtn file={file} />
                                       <Separator className='w-full my-1'/>
-                            <DropdownMenuItem>Add Favorite</DropdownMenuItem>
-                            <DropdownMenuSeparator />
+                                        <FavBtn fileId={file.id} fileOwner={file.userId} />
+
+                                <DropdownMenuSeparator />
         
                             <DropdownMenuSeparator />
                         

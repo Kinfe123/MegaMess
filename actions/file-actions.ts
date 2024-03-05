@@ -118,7 +118,46 @@ export const fileEdit = async  (id: string,fileUrl: string ,  data:FormData) => 
 
 }
 
-export const fileFav = async (id: string , fileId: string) => {
-     //TODO: to make a relations ship with file and the person who is making it the fav
 
+export const getFileOwner = async  (id: string) => {
+  
+  const fileOwner = await prisma.file.findFirst({
+    where: {
+      id: id as string,
+
+    }
+  })
+  console.log('The file owner is : ' , fileOwner)
+  return fileOwner
+
+}
+export const fileFav = async (id: string , fileId: string) => {
+    try {
+      const user = await getCurrentUser()
+      const otherUser = await prisma.user.findFirst({
+        where: {
+          id: id,
+        }
+      })
+     // we dont need to check for the existense at since the user might want to put his own file as fav
+      const favAdd = await prisma.favorite.create({
+          data: {
+            fileId: fileId,
+            favoritingId: otherUser?.id as string,
+            favoriterId: user?.id as string,
+          
+          },
+          include: {
+            favoriter:true,
+            favoriting: true,
+          }
+      })
+      if(favAdd) {
+        return favAdd
+      }else {
+        throw new Error("Failed while adding to fav")
+      }
+    }catch(err) {
+      console.log("#[ERROR]: " , err)
+    }
 }
