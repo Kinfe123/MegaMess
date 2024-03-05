@@ -1,5 +1,5 @@
 'use client'
-import { fileDelete, fileFav, getFileOwner } from "@/actions/file-actions"
+import { fileDelete, fileFav, fileUnFav, getFileOwner } from "@/actions/file-actions"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,21 +17,37 @@ import { toast } from "@/components/ui/use-toast"
 import { Loader2, PieChartIcon } from "lucide-react"
 export function FavBtn({ fileId, fileOwner  , fav}: { fileId: string, fileOwner: string , fav:boolean }) {
   const [pending, startTransition] = useTransition()
-  const [pending2 , startTransition2] = useTransition()
   //   const isFav = fileId === 
   const handleClick = () => {
-    startTransition(() => {
-      fileFav(fileOwner, fileId).then((file) => toast({
-        title: "Favorite Added.",
-        description: `You have succesfully added in your favoite lists!`,
-      })).catch((err) => {
-        toast({
-          title: "Something went wrong.",
-          description: "There is an error while deleting the file.",
-          variant: "destructive",
+    if(fav) {
+      startTransition(() => {
+        fileUnFav(fileOwner, fileId).then((file) => toast({
+          title: "Favorite Removed.",
+          description: `You have succesfully removed in your favoite lists!`,
+        })).catch((err) => {
+          toast({
+            title: "Something went wrong.",
+            description: "There is an error while deleting the file.",
+            variant: "destructive",
+          })
         })
       })
-    })
+
+    }else {
+
+      startTransition(() => {
+        fileFav(fileOwner, fileId).then((file) => toast({
+          title: "Favorite Added.",
+          description: `You have succesfully added in your favoite lists!`,
+        })).catch((err) => {
+          toast({
+            title: "Something went wrong.",
+            description: "There is an error while deleting the file.",
+            variant: "destructive",
+          })
+        })
+      })
+    }
   }
   return (
     <AlertDialog>

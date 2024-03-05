@@ -175,6 +175,7 @@ export const fileUnFav = async (id: string , fileId: string) => {
    // we dont need to check for the existense at since the user might want to put his own file as fav
    const existFav = await prisma.favorite.findFirst({
     where: {
+      fileId: fileId,
       favoritingId: otherUser?.id as string,
       favoriterId: user?.id as string,
     }
