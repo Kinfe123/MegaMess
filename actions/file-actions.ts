@@ -117,3 +117,8 @@ export const fileEdit = async  (id: string,fileUrl: string ,  data:FormData) => 
   }
 
 }
+
+export const fileFav = async (id: string , fileId: string) => {
+     //TODO: to make a relations ship with file and the person who is making it the fav
+
+}

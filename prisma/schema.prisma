@@ -46,20 +46,21 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?    @unique
   firstName     String?
   lastName      String?
   emailVerified DateTime?
   image         String?
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @default(now()) @map(name: "updated_at")
-  files         File[]    @relation("files")
+  createdAt     DateTime   @default(now()) @map(name: "created_at")
+  updatedAt     DateTime   @default(now()) @map(name: "updated_at")
+  files         File[]     @relation("files")
   accounts      Account[]
   sessions      Session[]
+  favorites     Favorite[] @relation("FavoriteUsers")
 
-stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
   stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
   stripePriceId          String?   @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
@@ -77,21 +78,22 @@ model VerificationToken {
 }
 
 model File {
-  id     String @id @default(cuid())
-  name   String
+  id          String     @id @default(cuid())
+  name        String
   description String?
-  fileUrl String 
-  size   String
-  userId String
-  createdAt         DateTime @default(now()) @map(name: "created_at")
-  updatedAt         DateTime @default(now()) @map(name: "updated_at")
+  fileUrl     String
+  size        String
+  userId      String
+  createdAt   DateTime   @default(now()) @map(name: "created_at")
+  updatedAt   DateTime   @default(now()) @map(name: "updated_at")
 
-  user   User   @relation("files", fields: [userId], references: [id])
+  user User @relation("files", fields: [userId], references: [id])
 }
 
-
-
 model Favorite {
-    id     String @id @default(cuid())
-    fileId String
+  id     String @id @default(cuid())
+  user   User   @relation("FavoriteUsers", fields: [userId], references: [id])
+  userId String
+  fileId String
+  @@index([userId , fileId])
 }

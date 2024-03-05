@@ -18,7 +18,6 @@ export default async function SettingsPage() {
     redirect("/login")
   }
   const currentUser = await getUserById(user?.id)
-
   return (
     <DashboardShell>
       <DashboardHeader
