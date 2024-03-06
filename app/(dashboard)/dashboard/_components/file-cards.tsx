@@ -76,7 +76,7 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
                             <Separator className='w-full my-1' />
                             <FileShareBtn file={file} />
                             <Separator className='w-full my-1' />
-                            <FavBtn fav={false || !isFav.length} fileId={file.id} fileOwner={file.userId} />
+                            <FavBtn fav={isFav.length} fileId={file.id} fileOwner={file.userId} />
 
                             <DropdownMenuSeparator />
 
