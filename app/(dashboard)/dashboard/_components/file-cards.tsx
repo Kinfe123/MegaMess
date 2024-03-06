@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { Button } from '@/components/ui/button'
-import { Dot, StarsIcon } from 'lucide-react'
+import { CircleIcon, Clock, Dot, DotSquare, FileIcon, StarsIcon } from 'lucide-react'
 import { timeAgo } from '@/lib/utils'
 import { FileShareBtn } from './share-file'
 import { FileDeleteBtn } from '@/app/files/f/[...id]/_components/delete-popup'
@@ -77,7 +77,7 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
                             <Separator className='w-full my-1' />
                             <FileShareBtn file={file} />
                             <Separator className='w-full my-1' />
-                            <FavBtn fav={false || !sFav.length} fileId={file.id} fileOwner={file.userId} />
+                            <FavBtn fav={false || !isFav.length} fileId={file.id} fileOwner={file.userId} />
 
                             <DropdownMenuSeparator />
 
