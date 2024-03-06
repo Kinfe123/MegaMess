@@ -127,7 +127,6 @@ export const getFileOwner = async  (id: string) => {
 
     }
   })
-  console.log('The file owner is : ' , fileOwner)
   return fileOwner
 
 }
@@ -181,7 +180,6 @@ export const fileUnFav = async (id: string , fileId: string) => {
       favoriterId: user?.id as string,
     }
    })
-   console.log('He exisiting user is : ' , existFav)
     const favAdd = await prisma.favorite.delete({
         where: {
             id: existFav?.id,   

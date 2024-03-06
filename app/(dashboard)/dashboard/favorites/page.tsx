@@ -15,7 +15,7 @@ export default async function FavouritePage() {
     if (!user) {
         redirect('/login')
     }
-    const result = files(user.id)
+    const result = favFiles(user.id)
 
     return (
         <DashboardShell>

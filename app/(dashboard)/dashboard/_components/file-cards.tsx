@@ -39,7 +39,7 @@ type fileProps = {
 }
 
 const FileCards = async ({ file }: { file: File }) => {
-
+    
     return (
 
         <Card
