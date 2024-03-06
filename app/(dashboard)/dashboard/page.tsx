@@ -37,7 +37,7 @@ export default async function DashboardPage() {
 
       {!(await result).length && (
         <Suspense fallback={<>Loading..</>}>
-          <EmptyBox userId={user.id} />
+          <EmptyBox userId={user.id}  title={'Files'}/>
         </Suspense>
       )}
       <div>
