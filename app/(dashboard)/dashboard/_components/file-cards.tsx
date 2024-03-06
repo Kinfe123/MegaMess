@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { Button } from '@/components/ui/button'
-import { CircleIcon, Clock, Dot, DotSquare, FileIcon, StarsIcon } from 'lucide-react'
+import { Clock, FileIcon } from 'lucide-react'
 import { timeAgo } from '@/lib/utils'
 import { FileShareBtn } from './share-file'
 import { FileDeleteBtn } from '@/app/files/f/[...id]/_components/delete-popup'
