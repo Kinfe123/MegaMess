@@ -5,6 +5,13 @@ import { Button } from "@/components/ui/button"
 
 export default function DashboardLoading() {
   return (
+    <FileSkeleton />
+  )
+}
+
+
+export const FileSkeleton = () => {
+  return (
     <DashboardShell>
       <DashboardHeader heading="Upload & Share File" text="Create and a huge mess and lets handle the rest.">
         <Button>Upload a file</Button>

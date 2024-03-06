@@ -61,7 +61,6 @@ export const favByFileId = async (fileId: string) => {
         favoriterId: currentUser?.id
     }
    })
-   console.log('THE list of fav are: ' , fileInFav)
    return fileInFav
 
 
