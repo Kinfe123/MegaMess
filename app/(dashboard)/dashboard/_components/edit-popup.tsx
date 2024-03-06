@@ -85,9 +85,9 @@ const EditFileForm = ({ file }: UserProps) => {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px] relative overflow-hidden mt-[-500px] bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70">
                 <DialogHeader>
-                    <DialogTitle>Upload a file</DialogTitle>
+                    <DialogTitle>Edit a file</DialogTitle>
                     <DialogDescription>
-                        Feed a mess and we will handle the rest
+                      Edit your file with simple touch 
                     </DialogDescription>
 
 
