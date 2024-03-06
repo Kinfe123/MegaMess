@@ -33,5 +33,10 @@ export const dashboardConfig: DashboardConfig = {
       href: "/dashboard/favorites",
       icon: "love",
     },
+    {
+      title: "Teams",
+      href: "/dashboard/teams",
+      icon: "users",
+    },
   ],
 }

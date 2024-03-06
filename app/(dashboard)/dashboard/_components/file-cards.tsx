@@ -32,6 +32,7 @@ import { FileShareBtn } from './share-file'
 import { FileDeleteBtn } from '@/app/files/f/[...id]/_components/delete-popup'
 import EditFileForm from './edit-popup'
 import { FavBtn } from './fav-popup'
+import { VisiblityBtn } from '@/app/files/f/[...id]/_components/visiblity-popup'
 
 type fileProps = {
     file: Promise<File[]>;
@@ -76,7 +77,8 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
                             <FileShareBtn file={file} />
                             <Separator className='w-full my-1' />
                             <FavBtn fav={!!isFav.length} fileId={file.id} fileOwner={file.userId} />
-
+                            <Separator className='w-full my-1' />
+                            <VisiblityBtn />
                             <DropdownMenuSeparator />
 
                             <DropdownMenuSeparator />

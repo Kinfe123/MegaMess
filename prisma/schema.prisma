@@ -46,20 +46,20 @@ model Session {
 }
 
 model User {
-  id            String     @id @default(cuid())
-  name          String?
-  email         String?    @unique
-  firstName     String?
-  lastName      String?
-  emailVerified DateTime?
-  image         String?
-  createdAt     DateTime   @default(now()) @map(name: "created_at")
-  updatedAt     DateTime   @default(now()) @map(name: "updated_at")
-  files         File[]     @relation("files")
-  accounts      Account[]
-  sessions      Session[]
-  favoriting    Favorite[] @relation("Favoriting")
-  favoriter     Favorite[] @relation("FavoritedBy")
+  id                     String     @id @default(cuid())
+  name                   String?
+  email                  String?    @unique
+  firstName              String?
+  lastName               String?
+  emailVerified          DateTime?
+  image                  String?
+  createdAt              DateTime   @default(now()) @map(name: "created_at")
+  updatedAt              DateTime   @default(now()) @map(name: "updated_at")
+  files                  File[]     @relation("files")
+  accounts               Account[]
+  sessions               Session[]
+  favoriting             Favorite[] @relation("Favoriting")
+  favoriter              Favorite[] @relation("FavoritedBy")
   stripeCustomerId       String?    @unique @map(name: "stripe_customer_id")
   stripeSubscriptionId   String?    @unique @map(name: "stripe_subscription_id")
   stripePriceId          String?    @map(name: "stripe_price_id")
@@ -91,15 +91,21 @@ model File {
 }
 
 model Favorite {
-  id     String @id @default(cuid())
+  id           String @id @default(cuid())
   favoritingId String
-  favoriterId String 
-  fileId String
+  favoriterId  String
+  fileId       String
 
-  favoriting User @relation("FavoritedBy", fields: [favoritingId], references: [id] , onDelete: Cascade)
-  favoriter User @relation("Favoriting", fields: [favoriterId], references: [id] , onDelete: Cascade)
+  favoriting User @relation("FavoritedBy", fields: [favoritingId], references: [id], onDelete: Cascade)
+  favoriter  User @relation("Favoriting", fields: [favoriterId], references: [id], onDelete: Cascade)
 
   @@index([favoriterId])
   @@index([favoritingId])
+}
 
+model allowedEmail {
+  id        String   @id @default(cuid())
+  email     String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
 }
