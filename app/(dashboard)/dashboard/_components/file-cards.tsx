@@ -42,7 +42,6 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
     const promise = use(favved)
     const isFav = promise.filter((f) => f.fileId === file.id)
 
-    console.log("the promise is: ", promise)
     return (
 
         <Card
