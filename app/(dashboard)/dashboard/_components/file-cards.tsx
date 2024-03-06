@@ -1,7 +1,7 @@
 
 'use client'
-import React, { Suspense } from 'react'
-import { type File } from '@prisma/client'
+import React, { Suspense, use } from 'react'
+import { type Favorite, type File } from '@prisma/client'
 import { MoreHorizontal } from 'lucide-react'
 import {
     Card,
@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { Button } from '@/components/ui/button'
-import { CircleIcon, Clock, Dot, DotSquare, FileIcon, StarsIcon } from 'lucide-react'
+import { Dot, StarsIcon } from 'lucide-react'
 import { timeAgo } from '@/lib/utils'
 import { FileShareBtn } from './share-file'
 import { FileDeleteBtn } from '@/app/files/f/[...id]/_components/delete-popup'
@@ -38,8 +38,11 @@ type fileProps = {
     file: Promise<File[]>;
 }
 
-const FileCards = async ({ file }: { file: File }) => {
-    
+const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }) => {
+    const promise = use(favved)
+    const isFav = promise.filter((f) => f.fileId === file.id)
+
+    console.log("the promise is: ", promise)
     return (
 
         <Card
@@ -69,20 +72,20 @@ const FileCards = async ({ file }: { file: File }) => {
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-[160px]">
-                                      
-                                      <EditFileForm file={file}/>
-                                      <Separator className='w-full my-1'/>
-                                       <FileShareBtn file={file} />
-                                      <Separator className='w-full my-1'/>
-                                        <FavBtn fav={false} fileId={file.id} fileOwner={file.userId} />
 
-                                <DropdownMenuSeparator />
-        
+                            <EditFileForm file={file} />
+                            <Separator className='w-full my-1' />
+                            <FileShareBtn file={file} />
+                            <Separator className='w-full my-1' />
+                            <FavBtn fav={false || !sFav.length} fileId={file.id} fileOwner={file.userId} />
+
                             <DropdownMenuSeparator />
-                        
-                                <FileDeleteBtn fileId={file.id} />
-                                <DropdownMenuShortcut className='absolute right-2 bottom-4'>⌘⌫</DropdownMenuShortcut>
-                        
+
+                            <DropdownMenuSeparator />
+
+                            <FileDeleteBtn fileId={file.id} />
+                            <DropdownMenuShortcut className='absolute right-2 bottom-4'>⌘⌫</DropdownMenuShortcut>
+
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
@@ -100,7 +103,7 @@ const FileCards = async ({ file }: { file: File }) => {
                         <Separator orientation="vertical" className="h-[20px]" />
                     </div>
                     <div className="absolute flex justify-center  items-center gap-1 text-xs text-muted-foreground bottom-4 right-3">
-                        <Clock className='w-3 h-3'/><p>{timeAgo(file.createdAt)}</p>
+                        <Clock className='w-3 h-3' /><p>{timeAgo(file.createdAt)}</p>
                     </div>
                 </div>
             </CardContent>

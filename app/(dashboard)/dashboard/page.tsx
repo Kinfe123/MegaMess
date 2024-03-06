@@ -5,7 +5,7 @@ import { EmptyPlaceholder } from "@/components/shared/empty-placeholder"
 import { DashboardHeader } from "@/components/dashboard/header"
 import { DashboardShell } from "@/components/dashboard/shell"
 import { Button } from "@/components/ui/button"
-import { files } from "@/lib/fille"
+import { favByFileId, files } from "@/lib/fille"
 import { Suspense } from "react"
 import FileCards from "./_components/file-cards"
 import FileForm from "./_components/upload-form"
@@ -46,7 +46,7 @@ export default async function DashboardPage() {
           <Suspense fallback={<>loading...</>}>
             {(await result).map((file) => {
               return (
-                <FileCards file={file} />
+                <FileCards file={file} favved={favByFileId(file.id)}/>
 
               )
             })}

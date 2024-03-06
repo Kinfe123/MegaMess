@@ -55,6 +55,16 @@ export const favFileEach = async (fileId:string) => {
 }
 export const favByFileId = async (fileId: string) => {
    const currentUser = await getCurrentUser()
+   const fileInFav = await prisma.favorite.findMany({
+    where:{
+        fileId: fileId,
+        favoriterId: currentUser?.id
+    }
+   })
+   return fileInFav
+
+
+   
    
    
 }

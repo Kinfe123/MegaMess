@@ -1,4 +1,5 @@
 'use client'
+import React from 'react'
 import { fileDelete, fileFav, fileUnFav, getFileOwner } from "@/actions/file-actions"
 import {
   AlertDialog,
@@ -18,6 +19,7 @@ import { Loader2, PieChartIcon } from "lucide-react"
 export function FavBtn({ fileId, fileOwner  , fav}: { fileId: string, fileOwner: string , fav:boolean }) {
   const [pending, startTransition] = useTransition()
   //   const isFav = fileId === 
+  
   const handleClick = () => {
     if(fav) {
       startTransition(() => {
