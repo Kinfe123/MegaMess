@@ -18,6 +18,8 @@ export const findUserByFile =  async (fileUrl: string) => {
                 select: {
                     name:true,
                     image:true,
+                    firstName:true,
+                    lastName: true,
                     
                 }
             }

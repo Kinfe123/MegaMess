@@ -11,6 +11,7 @@ import FileCards from "./_components/file-cards"
 import FileForm from "./_components/upload-form"
 import EmptyBox from "./_components/empty-box"
 import { toSize } from "@/lib/utils"
+import { FileSkeleton } from "./loading"
 
 export const metadata = {
   title: "File Dashboard",
@@ -36,14 +37,14 @@ export default async function DashboardPage() {
       </DashboardHeader>
 
       {!(await result).length && (
-        <Suspense fallback={<>Loading..</>}>
+        <Suspense fallback={<FileSkeleton/>}>
           <EmptyBox userId={user.id}  title={'Files'}/>
         </Suspense>
       )}
       <div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
 
-          <Suspense fallback={<>loading...</>}>
+          <Suspense fallback={<FileSkeleton/>}>
             {(await result).map((file) => {
               return (
                 <FileCards file={file} favved={favByFileId(file.id)}/>

@@ -32,6 +32,8 @@ const FilePreview = async ({ params }: FilePreviewProps) => {
             <Suspense fallback={<AvatarSkeleton />}>
                 <UserAvatar promise={result} />
 
+                
+
             </Suspense>
             <Suspense fallback={<FileDescriptionSkeleton />}>
 
