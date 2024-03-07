@@ -1,4 +1,6 @@
 # MegaMess
+Easy and user friendly file sharing platform along with analytics 
+
 
 ## Tech Stack
 
