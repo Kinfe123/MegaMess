@@ -5,6 +5,7 @@ import FileDescription, { FileDescriptionSkeleton } from "./_components/empty-bo
 import { Skeleton } from "@/components/ui/skeleton"
 import { Suspense } from "react"
 import { getCurrentUser } from "@/lib/session"
+import FavIt from "./_components/fav-on-preview"
 
 type FilePreviewProps = {
     params: {
@@ -14,7 +15,6 @@ type FilePreviewProps = {
 const FilePreview = async ({ params }: FilePreviewProps) => {
     const fullUrl = fileInfo(params.id[0])
     const result = findUserByFile(fullUrl)
-    const user = await getCurrentUser()
     if (!result) {
         return <FallBack />
     }
@@ -36,7 +36,9 @@ const FilePreview = async ({ params }: FilePreviewProps) => {
             </Suspense>
             <Suspense fallback={<FileDescriptionSkeleton />}>
                 <FileDescription file={result} />
+                
             </Suspense>
+        
 
 
 

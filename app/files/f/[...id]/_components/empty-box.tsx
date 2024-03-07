@@ -1,16 +1,22 @@
 import { EmptyPlaceholder } from "@/components/shared/empty-placeholder"
 import { type File } from "@prisma/client"
 import { timeAgo } from "@/lib/utils";
-import { Check, Download } from "lucide-react";
+import { Check, Download, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link'
 import { Skeleton } from "@/components/ui/skeleton";
+import { getCurrentUser } from "@/lib/session";
+import FavIt from "./fav-on-preview";
+import { getUserByFileId } from "@/lib/user";
 type FilePromiseProps = {
     file: Promise<({ user: { image: string | null; name: string | null; }; } & File) | null>
 
 };
 const FileDescription = async ({ file }: FilePromiseProps) => {
     const files = await file
+    const user = await getCurrentUser()
+    const ownerId = await getUserByFileId(files?.id ?? "")
+
 
     return (
         <>
@@ -35,16 +41,20 @@ const FileDescription = async ({ file }: FilePromiseProps) => {
 
 
                 </div>
-                    <div className="mt-4 flex justify-center items-center">
-                        <Link href={files?.fileUrl!}>
+                <div className="mt-4 flex gap-2 justify-center items-center">
+                    <Link href={files?.fileUrl!}>
 
-                            <Button variant='default'>
-                        <Download className="w-4 h-4 mr-2"/>
-                                    View & Download
-                            </Button>
-                        </Link>
+                        <Button variant='default'>
+                            <Download className="w-4 h-4 mr-2" />
+                            View & Download
+                        </Button>
+                    </Link>
+                    {(user && ownerId && files) && (
 
-                    </div>
+                        <FavIt userId={user.id} ownerId={ownerId} fileId={files.id} />
+                    )}
+
+                </div>
             </EmptyPlaceholder>
 
 

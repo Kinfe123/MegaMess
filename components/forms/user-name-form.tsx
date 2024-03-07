@@ -35,7 +35,6 @@ interface UserNameFormProps {
 export function UserNameForm({ user }: UserNameFormProps) {
   const [isPending, startTransition] = useTransition();
   const updateUserNameWithId = updateUserName.bind(null, user.id);
-  console.log('THe name is : ' , user)
   const {
     handleSubmit,
     register,
