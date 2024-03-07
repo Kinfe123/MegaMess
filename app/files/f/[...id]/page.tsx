@@ -15,7 +15,6 @@ const FilePreview = async ({ params }: FilePreviewProps) => {
     const fullUrl = fileInfo(params.id[0])
     const result = findUserByFile(fullUrl)
     const user = await getCurrentUser()
-    console.log('The user has to do with ' , user)
     if (!result) {
         return <FallBack />
     }
