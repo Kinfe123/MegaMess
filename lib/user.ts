@@ -32,6 +32,6 @@ export const getUserByFileId = async (fileId: string) => {
        user: true,
     }
   })
-  return userIdByFile?.id  ?? ""
+  return userIdByFile?.id 
 
 }
