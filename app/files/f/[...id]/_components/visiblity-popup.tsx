@@ -11,7 +11,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import {EyeOff , Eye , Mail} from 'lucide-react'
+import { EyeOff, Eye, Mail } from 'lucide-react'
 import {
     AlertDialog,
     AlertDialogAction,
@@ -25,14 +25,16 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { use, useTransition } from "react"
+import { Plus } from 'lucide-react'
 import { toast } from "@/components/ui/use-toast"
 import { Loader2, PieChartIcon } from "lucide-react"
+import { Input } from '@/components/ui/input'
 export function VisiblityBtn() {
     const [pending, startTransition] = useTransition()
     const typeOfVisiblity = ['Public', 'Email Based', 'Private']
     const [dropType, setDropType] = useState(0)
-
-    console.log('THE type is : ' , typeOfVisiblity[dropType])
+    const [eachEmail, setEachEmail] = useState('')
+    const [emails, setEmails] = useState<string[]>([])
     //   const isFav = fileId === 
     const handleClick = () => {
         // THIS HANDLES THE 
@@ -60,13 +62,33 @@ export function VisiblityBtn() {
                     <SelectContent defaultValue={typeOfVisiblity[dropType]}>
                         <SelectGroup>
                             <SelectLabel>Visiblity</SelectLabel>
-                            <SelectItem value="0"><span className='flex justify-center items-center gap-2'><Eye className='w-4 h-4 text-muted-foreground'/> Public</span></SelectItem>
-                            <SelectItem value="1"><span className='flex justify-center items-center gap-2'><Mail className='w-4 h-4 text-muted-foreground'/>  Email Based </span></SelectItem>
-                            <SelectItem value="2"><span className='flex justify-center items-center gap-2'><EyeOff className='w-4 h-4 text-muted-foreground'/>  Private </span></SelectItem>
+                            <SelectItem value="0"><span className='flex justify-center items-center gap-2'><Eye className='w-4 h-4 text-muted-foreground' /> Public</span></SelectItem>
+                            <SelectItem value="1"><span className='flex justify-center items-center gap-2'><Mail className='w-4 h-4 text-muted-foreground' />  Email Based </span></SelectItem>
+                            <SelectItem value="2"><span className='flex justify-center items-center gap-2'><EyeOff className='w-4 h-4 text-muted-foreground' />  Private </span></SelectItem>
 
                         </SelectGroup>
                     </SelectContent>
                 </Select>
+                {dropType === 1 && (
+                    <div className='flex flex-col gap-2'>
+                        {emails.map(email => {
+                            return (
+                                <div className='flex gap-2 justify-center items-center'>
+                                    <Mail className='w-3 h-3' />
+                                    <p>{email}</p>
+
+                                </div>
+                            )
+                        })}
+                        <div className='flex justify-center items-center gap-2'>
+                            <Input type='email' value={eachEmail} onChange={(e) => setEachEmail(e.target.value)} />
+                            <Button onClick={() => {
+                                setEmails([...emails, eachEmail])
+                                setEachEmail('')
+                            }}> Add </Button>
+                        </div>
+                    </div>
+                )}
 
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>

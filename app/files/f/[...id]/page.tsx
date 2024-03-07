@@ -4,6 +4,7 @@ import { UserAvatar } from "@/components/user-avatar"
 import FileDescription, { FileDescriptionSkeleton } from "./_components/empty-box"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Suspense } from "react"
+import { getCurrentUser } from "@/lib/session"
 
 type FilePreviewProps = {
     params: {
@@ -13,6 +14,8 @@ type FilePreviewProps = {
 const FilePreview = async ({ params }: FilePreviewProps) => {
     const fullUrl = fileInfo(params.id[0])
     const result = findUserByFile(fullUrl)
+    const user = await getCurrentUser()
+    console.log('The user has to do with ' , user)
     if (!result) {
         return <FallBack />
     }
