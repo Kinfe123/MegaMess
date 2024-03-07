@@ -7,11 +7,11 @@ Easy and user friendly file sharing platform along with analytics
 - **Framework:** [Next.js](https://nextjs.org)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com)
 - **User Management:** [Clerk](https://clerk.com)
-- **ORM:** [Drizzle ORM](https://orm.drizzle.team)
+- **ORM:** [Prisma ORM](https://prisma.io)
 - **UI Components:** [shadcn/ui](https://ui.shadcn.com)
 - **Email:** [React Email](https://react.email)
 - **Content Management:** [Contentlayer](https://www.contentlayer.dev)
-- **File Uploads:** [uploadthing](https://uploadthing.com)
+- **File Uploads:** [EdgeStore](https://uploadthing.com)
 
 ## Running Locally
 
