@@ -18,13 +18,13 @@ Easy and user friendly file sharing platform along with analytics
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/Kinfe123/chacha.git
+   git clone https://github.com/Kinfe123/MegaMess.git
    ```
 
 2. Change the dir
 
    ```bash
-   cd chacha
+   cd MegaMess
    ```
 
 3. Install dependencies using pnpm
