@@ -39,7 +39,7 @@ const FavIt = ({ userId , fileId , ownerId }: {userId: string, fileId: string , 
     }
 
     return (
-        <Button className="flex gap-2 justify-center items-center ">
+        <Button disabled={pending} className="flex gap-2 justify-center items-center ">
             <Heart className="w-3 h-3"/>
             <span>{userId ? 'Fav It' : ''}</span>
             
