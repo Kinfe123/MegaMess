@@ -43,7 +43,7 @@ const FavIt = ({ userId, fileId, ownerId, favLists }: { userId: string | undefin
     return (
         <Button disabled={(pending || !!isFav) && !!userId} onClick={handleClick} className="flex gap-2 justify-center items-center ">
             {pending ? <Loader className="w-3 h-3 animate-spin" /> : <Heart className="w-3 h-3" />}
-            <span>{userId ? 'Fav It' : 'Sign In to Fav It'}</span>
+            <span>{userId ? isFav  ? "Already favved" : "Fav it" : 'Sign In to Fav It'}</span>
 
         </Button>
     )
