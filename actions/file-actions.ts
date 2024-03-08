@@ -153,6 +153,7 @@ export const fileFav = async (id: string , fileId: string) => {
       })
       revalidatePath("/dashboard")
       revalidatePath("/dashboard/favorites")
+      revalidatePath('/files/f/*')
       if(favAdd) {
         return favAdd
       }else {
