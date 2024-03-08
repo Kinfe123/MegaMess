@@ -36,7 +36,7 @@ const UserAvatar = async ({ promise }: UserAvatarProps) => {
       <div className='flex flex-col items-start justify-center gap-[-20px]'>
         <p className='leading-none" text-sm font-medium'>{user?.user.name}</p>
         <React.Suspense fallback={<Skeleton className="w-7 h-3" />}>
-          <p className='text-xs leading-none text-muted-foreground'></p>
+          <p className='text-xs leading-none text-white/60'></p>
           {fullName.length > 0 ? `${fullName}` : "MegaMesser"}
         </React.Suspense>
       </div>
