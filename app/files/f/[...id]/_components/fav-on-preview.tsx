@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { Button } from "@/components/ui/button"
-import { type User } from "@prisma/client"
+import { type Favorite, type User } from "@prisma/client"
 import { Heart, Loader } from "lucide-react"
 import { useSigninModal } from "@/hooks/use-signin-modal"
 import { useTransition } from "react"
@@ -13,10 +13,9 @@ type UserProps = {
         id: string
     }
 }
-const FavIt = ({ userId, fileId, ownerId }: { userId: string, fileId: string, ownerId: string }) => {
+const FavIt = ({ userId, fileId, ownerId , favLists }: { userId: string, fileId: string, ownerId: string , favLists: Favorite[] }) => {
 
-    const promise = React.use(favByFileId(fileId))
-    console.log("Hello worl" , promise)
+    console.log("Hello worl" , favLists)
     const [pending, startTransition] = useTransition()
     const handleClick = () => {
         if (userId) {

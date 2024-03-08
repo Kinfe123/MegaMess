@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getCurrentUser } from "@/lib/session";
 import FavIt from "./fav-on-preview";
 import { getUserByFileId } from "@/lib/user";
+import { favByFileId } from "@/lib/fille";
 type FilePromiseProps = {
     file: Promise<({ user: { image: string | null; name: string | null; }; } & File) | null>
 
@@ -16,6 +17,7 @@ const FileDescription = async ({ file }: FilePromiseProps) => {
     const files = await file
     const user = await getCurrentUser()
     const ownerId = await getUserByFileId(files?.id ?? "")
+    const favLists = await favByFileId(files?.id ?? "" )
 
 
     return (
@@ -37,7 +39,7 @@ const FileDescription = async ({ file }: FilePromiseProps) => {
                         <Check className="w-4 h-4" />      <p className='text-muted-foreground '>File modified <span className="font-bold"> {timeAgo(files?.updatedAt!)} </span></p>
                     </div>
 
-        
+
 
 
                 </div>
@@ -51,7 +53,7 @@ const FileDescription = async ({ file }: FilePromiseProps) => {
                     </Link>
                     {(user && ownerId && files) && (
 
-                        <FavIt userId={user.id} ownerId={ownerId} fileId={files.id} />
+                        <FavIt userId={user.id} ownerId={ownerId} fileId={files.id} favLists={favLists} />
                     )}
 
                 </div>
