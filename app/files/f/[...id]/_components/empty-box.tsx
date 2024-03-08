@@ -19,7 +19,6 @@ const FileDescription = async ({ file }: FilePromiseProps) => {
     const ownerId = await getUserByFileId(files?.id ?? "")
     const favLists = await favByFileId(files?.id ?? "" )
 
-
     return (
         <>
 
@@ -51,9 +50,9 @@ const FileDescription = async ({ file }: FilePromiseProps) => {
                             View & Download
                         </Button>
                     </Link>
-                    {(user && ownerId && files) && (
+                    {(!!ownerId?.length && !!files?.id.length) && (
 
-                        <FavIt userId={user.id} ownerId={ownerId} fileId={files.id} favLists={favLists} />
+                        <FavIt userId={user?.id} ownerId={ownerId} fileId={files.id} favLists={favLists} />
                     )}
 
                 </div>

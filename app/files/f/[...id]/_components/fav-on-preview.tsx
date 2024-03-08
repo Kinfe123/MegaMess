@@ -13,10 +13,10 @@ type UserProps = {
         id: string
     }
 }
-const FavIt = ({ userId, fileId, ownerId , favLists }: { userId: string, fileId: string, ownerId: string , favLists: Favorite[] }) => {
-
+const FavIt = ({ userId, fileId, ownerId, favLists }: { userId: string | undefined, fileId: string, ownerId: string, favLists: Favorite[] }) => {
     const isFav = favLists.length
     const [pending, startTransition] = useTransition()
+    const signInModal = useSigninModal()
     const handleClick = () => {
         if (userId) {
 
@@ -38,16 +38,12 @@ const FavIt = ({ userId, fileId, ownerId , favLists }: { userId: string, fileId:
             signInModal.onOpen()
         }
     }
-    const signInModal = useSigninModal()
-    if (!userId) {
-        return
 
-    }
 
     return (
-        <Button disabled={pending || !!isFav} onClick={handleClick} className="flex gap-2 justify-center items-center ">
+        <Button disabled={(pending || !!isFav) && !!userId} onClick={handleClick} className="flex gap-2 justify-center items-center ">
             {pending ? <Loader className="w-3 h-3 animate-spin" /> : <Heart className="w-3 h-3" />}
-            <span>{userId ? 'Fav It' : ''}</span>
+            <span>{userId ? 'Fav It' : 'Sign In to Fav It'}</span>
 
         </Button>
     )
