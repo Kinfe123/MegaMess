@@ -13,11 +13,6 @@ export const files = async (id: string) => {
 }
 
 export const favFiles = async (id: string) => {
-    // const result = await prisma.favorite.findMany({
-    //     where: {
-    //         favoriterId: id,
-    //     }
-    // })
 
     const currentUser = await getCurrentUser()
     
