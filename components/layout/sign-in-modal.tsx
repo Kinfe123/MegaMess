@@ -16,7 +16,7 @@ export const SignInModal = () => {
   return (
     <Modal showModal={signInModal.isOpen} setShowModal={signInModal.onClose}>
       <div className="w-full">
-        <div className="flex flex-col items-center justify-center space-y-3 border-b bg-background px-4 py-6 pt-8 text-center md:px-16">
+        <div className="flex flex-col items-center justify-center space-y-3 border-b bg-gradient-to-tr from-purple-400/10 via-background to-background/60 px-4 py-6 pt-8 text-center md:px-16">
           <a href={siteConfig.url}>
             <Icons.logo className="size-10" />
           </a>
@@ -27,7 +27,7 @@ export const SignInModal = () => {
           </p>
         </div>
 
-        <div className="flex flex-col space-y-4 bg-secondary/50 px-4 py-8 md:px-16">
+        <div className="flex flex-col space-y-4 bg-gradient-to-tr from-purple-600/5 via-background to-secondary/50 px-4 py-8 md:px-16">
           <Button
             variant="default"
             disabled={signInClicked}
