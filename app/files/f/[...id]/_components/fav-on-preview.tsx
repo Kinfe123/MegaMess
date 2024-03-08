@@ -16,7 +16,6 @@ type UserProps = {
 const FavIt = ({ userId, fileId, ownerId , favLists }: { userId: string, fileId: string, ownerId: string , favLists: Favorite[] }) => {
 
     const isFav = favLists.length
-    console.log("TH file is; " , isFav > 0)
     const [pending, startTransition] = useTransition()
     const handleClick = () => {
         if (userId) {
