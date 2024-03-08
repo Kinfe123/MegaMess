@@ -133,7 +133,7 @@ export const getFileOwner = async  (id: string) => {
 export const fileFav = async (id: string , fileId: string) => {
     try {
       const user = await getCurrentUser()
-      const otherUser = await prisma.user.findFirst({
+      const otherUser = await prisma.user.findUnique({
         where: {
           id: id,
         }
@@ -142,14 +142,14 @@ export const fileFav = async (id: string , fileId: string) => {
       const favAdd = await prisma.favorite.create({
           data: {
             fileId: fileId,
-            favoritingId: otherUser?.id as string,
+            favoritingId: id,
             favoriterId: user?.id as string,
           
           },
-          include: {
-            favoriter:true,
-            favoriting: true,
-          }
+          // include: {
+          //   favoriter:true,
+          //   favoriting: true,
+          // }
       })
       revalidatePath("/dashboard")
       revalidatePath("/dashboard/favorites")
