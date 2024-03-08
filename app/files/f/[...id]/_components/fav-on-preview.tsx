@@ -16,7 +16,7 @@ type UserProps = {
 const FavIt = ({ userId, fileId, ownerId , favLists }: { userId: string, fileId: string, ownerId: string , favLists: Favorite[] }) => {
 
     const isFav = favLists.length
-    console.log("TH file is; " , isFav)
+    console.log("TH file is; " , isFav > 0)
     const [pending, startTransition] = useTransition()
     const handleClick = () => {
         if (userId) {
@@ -46,7 +46,7 @@ const FavIt = ({ userId, fileId, ownerId , favLists }: { userId: string, fileId:
     }
 
     return (
-        <Button disabled={pending && !!isFav} onClick={handleClick} className="flex gap-2 justify-center items-center ">
+        <Button disabled={pending || !!isFav} onClick={handleClick} className="flex gap-2 justify-center items-center ">
             {pending ? <Loader className="w-3 h-3 animate-spin" /> : <Heart className="w-3 h-3" />}
             <span>{userId ? 'Fav It' : ''}</span>
 
