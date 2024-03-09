@@ -20,6 +20,9 @@ import {
   Settings,
   Users,
   SunMedium,
+  Eye,
+  EyeOff,
+  Mail,
   Trash,
   User,
   X,
@@ -71,6 +74,15 @@ export const Icons = {
     </svg>
   ),
   help: HelpCircle,
+  public: ({className}: {className:string}) => {
+    return <Eye className={className}/>
+  },
+  private: ({className}: {className:string}) => {
+    return <EyeOff className={className}/>
+  },
+  email: ({className}: {className:string}) => {
+    return <Mail className={className}/>
+  },
   laptop: Laptop,
   users: Users,
   logo: Puzzle,

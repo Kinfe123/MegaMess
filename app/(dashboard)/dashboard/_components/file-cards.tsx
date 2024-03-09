@@ -33,6 +33,8 @@ import { FileDeleteBtn } from '@/app/files/f/[...id]/_components/delete-popup'
 import EditFileForm from './edit-popup'
 import { FavBtn } from './fav-popup'
 import { VisiblityBtn } from '@/app/files/f/[...id]/_components/visiblity-popup'
+import { Icons } from '@/components/shared/icons'
+import { Hint } from '@/components/hint'
 
 type fileProps = {
     file: Promise<File[]>;
@@ -41,7 +43,14 @@ type fileProps = {
 const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }) => {
     const promise = use(favved)
     const isFav = promise.filter((f) => f.fileId === file.id)
-
+    console.log(file.visiblity.toLowerCase())
+    const IconVisibility = Icons[file.visiblity.toLowerCase()]
+    const hintTexts = {
+        'PRIVATE': 'File is not shared with anyone',
+        'PUBLIC': 'File is shared for anyone',
+        'EMAIL': 'File is shared based on email'
+    }
+    const hintText = hintTexts[file.visiblity]
     return (
 
         <Card
@@ -97,6 +106,7 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
                     </div>
                     <br />
                 </div>
+
                 <div className="flex mt-2 justify-between text-muted-foreground">
                     <div className="flex items-center space-x-1 rounded-md bg-transparent text-secondary-foreground ">
 
@@ -104,6 +114,12 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
                     </div>
                     <div className="absolute flex justify-center  items-center gap-1 text-xs text-muted-foreground bottom-4 right-3">
                         <Clock className='w-3 h-3' /><p>{timeAgo(file.createdAt)}</p>
+                    </div>
+                    <div className='absolute left-6 bottom-3'>
+                        <Hint label={hintText} >
+                            <IconVisibility className='w-4 h-4' />
+
+                        </Hint>
                     </div>
                 </div>
             </CardContent>
