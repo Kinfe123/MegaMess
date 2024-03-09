@@ -26,7 +26,7 @@ const UserAvatar = async ({ promise  , fileIdInfo}: UserAvatarProps) => {
   const user = await promise
   const fileId = await fileIdInfo
   const allowed = await allowedEmailForFile(fileId!)
-  if(!allowed){
+  if(( user?.visiblity === 'EMAIL' &&  !allowed) || user?.visiblity === 'PRIVATE' ) {
     return (
       <>
       <span>You are allowed to see the details</span>

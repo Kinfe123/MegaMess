@@ -25,7 +25,6 @@ export const findUserByFile =  async (fileUrl: string) => {
             }
         }
     })
-    console.log("THe data is: " , user)
     if(user){
         return user
     }else {
@@ -41,3 +40,4 @@ export const fileIdByUrl = async (fileUrl: string) => {
     })
     return fileId?.id
 }
+
