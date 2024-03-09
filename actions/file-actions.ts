@@ -202,3 +202,14 @@ export const fileUnFav = async (id: string , fileId: string) => {
 }
 
 
+
+
+export const fileVisiblity = async (fileId: string) => {
+  try {
+    const user = await getCurrentUser()
+    
+
+  }catch(err) {
+    console.log("#[ERROR]" , err)
+  }
+}
