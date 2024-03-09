@@ -72,21 +72,22 @@ model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
-  
+
   @@unique([identifier, token])
   @@map(name: "verification_tokens")
 }
 
 model File {
-  id          String   @id @default(cuid())
+  id          String     @id @default(cuid())
   name        String
   description String?
   fileUrl     String
   size        String
   userId      String
   visiblity   Visibility @default(PRIVATE)
-  createdAt   DateTime @default(now()) @map(name: "created_at")
-  updatedAt   DateTime @default(now()) @map(name: "updated_at")
+  viewers     Email[]    @relation("FileViewers")
+  createdAt   DateTime   @default(now()) @map(name: "created_at")
+  updatedAt   DateTime   @default(now()) @map(name: "updated_at")
 
   user User @relation("files", fields: [userId], references: [id])
 }
@@ -104,10 +105,16 @@ model Favorite {
   @@index([favoritingId])
 }
 
-
-
 enum Visibility {
   PRIVATE
   PUBLIC
   EMAIL
+}
+
+model Email {
+  id        String   @id @default(cuid())
+  email     String   @unique()
+  files     File[]   @relation("FileViewers")
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
 }
