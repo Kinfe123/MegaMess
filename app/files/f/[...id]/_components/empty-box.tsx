@@ -9,15 +9,24 @@ import { getCurrentUser } from "@/lib/session";
 import FavIt from "./fav-on-preview";
 import { getUserByFileId } from "@/lib/user";
 import { favByFileId } from "@/lib/fille";
+import { allowedEmailForFile } from "@/actions/file-actions";
+import FallBackDetails from "./fallback-details";
 type FilePromiseProps = {
     file: Promise<({ user: { image: string | null; name: string | null; }; } & File) | null>
-
+    fileIdInfo: Promise<string | undefined>
 };
-const FileDescription = async ({ file }: FilePromiseProps) => {
+const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     const files = await file
     const user = await getCurrentUser()
+    const allowed = await allowedEmailForFile(files?.id ?? "")
     const ownerId = await getUserByFileId(files?.id ?? "")
-    const favLists = await favByFileId(files?.id ?? "" )
+    const favLists = await favByFileId(files?.id ?? "")
+    if ((files?.visiblity === 'EMAIL' && !allowed) || files?.visiblity === 'PRIVATE') {
+        return (
+            <FallBackDetails />
+
+        )
+    }
 
     return (
         <>
