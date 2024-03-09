@@ -34,9 +34,9 @@ const FileDetail = async  ({ params }: PropsParams) => {
 
                 })}
                 <Separator className="w-full mb-4 mt-[-3px]" />
-                <TabsContent value="Waitlist" className="flex flex-col max-w-[76rem] ">
+                <TabsContent value="waitlists" className="flex flex-col max-w-[76rem] ">
                     <Suspense fallback={<WaitlistSkeleton />}>
-                    <Waitlists fileId={fileId} users={users}/>
+                           <Waitlists fileId={fileId} users={users}/>
 
                     </Suspense>
                 </TabsContent>

@@ -4,8 +4,9 @@ import WaitlistShow from "./waitlist-show"
 
 
 const Waitlists = ({ fileId , users}: { fileId: string , users: WaitlistEmail[] }) => {
+    
     return (
-        <div>
+        <div className="flex flex-col gap-6">
             {users.map((user) => {
                 return (
                     <WaitlistShow user={user}/>
