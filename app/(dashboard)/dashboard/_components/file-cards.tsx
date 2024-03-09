@@ -52,7 +52,6 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
     }
     const hintText = hintTexts[file.visiblity]
     return (
-        <Link href={`/dashboard/file/${file.id}`}>
         <Card
             key={file.id}
             className="overflow-hidden cursor-pointer  rounded-xl relative  bg-gradient-to-tr from-purple-400/10 via-transparent to-transparent"
@@ -60,6 +59,7 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
 
             <FuzzyOverlay />
 
+        <Link href={`/dashboard/file/${file.id}`}>
             <CardHeader className="grid grid-cols-[1fr_10px] items-start gap-4 space-y-0 relative">
                 <div className="space-y-3">
                     <CardTitle>{file.name}</CardTitle>
@@ -67,6 +67,8 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
                     <CardDescription>{file.description}</CardDescription>
                 </div>
             </CardHeader>
+        </Link>
+
             <CardContent>
                 <div className="absolute top-2 right-2">
                     <DropdownMenu>
@@ -124,7 +126,6 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
                 </div>
             </CardContent>
         </Card>
-        </Link>
     )
 
 

@@ -6,6 +6,7 @@ import { useState, useTransition } from "react"
 import { Button } from "@/components/ui/button"
 import { addWaitlist } from "@/actions/file-actions"
 import { toast } from "@/components/ui/use-toast"
+import { Loader } from "lucide-react"
 
 // TODO: type email fix
 const FallBackDetails = ({email , fileId}: {email:string | null | undefined , fileId: string}) => {
@@ -39,7 +40,7 @@ const FallBackDetails = ({email , fileId}: {email:string | null | undefined , fi
           </EmptyPlaceholder.Description>
           <div className='flex justify-center items-center mx-auto gap-4'>
             <Input type="email" className='w-80'value={email_} onChange={(e) => setEmail(e.target.value)}/>
-            <Button onClick={handleClick}>Submit</Button>
+            {pending ? <Loader className="w-4 h-4 animate-spin" /> : ""}<Button onClick={handleClick}>  {pending ? <Loader className="w-4 h-4 mr-2 animate-spin" /> : ""}Submit</Button>
 
           </div>
         </EmptyPlaceholder>
