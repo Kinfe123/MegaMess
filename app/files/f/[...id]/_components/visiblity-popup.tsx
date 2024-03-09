@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import { type File } from '@prisma/client'
 import { fileDelete, fileFav, fileUnFav, getFileOwner } from "@/actions/file-actions"
 
 import {
@@ -29,9 +30,11 @@ import { Plus } from 'lucide-react'
 import { toast } from "@/components/ui/use-toast"
 import { Loader2, PieChartIcon } from "lucide-react"
 import { Input } from '@/components/ui/input'
-export function VisiblityBtn() {
+export function VisiblityBtn({file}: {file: File}) {
+    console.log('the file visibiltity is : ' , file)
     const [pending, startTransition] = useTransition()
-    const typeOfVisiblity = ['Public', 'Email Based', 'Private']
+    const typeOfVisiblity = ['PUBLIC', 'EMAIL', 'PRIVATE']
+    const defaultVal = typeOfVisiblity.indexOf(file.visiblity)
     const [dropType, setDropType] = useState(0)
     const [eachEmail, setEachEmail] = useState('')
     const [emails, setEmails] = useState<string[]>([])
@@ -55,7 +58,7 @@ export function VisiblityBtn() {
                 </AlertDialogHeader>
 
 
-                <Select onValueChange={(val) => setDropType(parseInt(val))}>
+                <Select defaultValue={`${defaultVal}`} onValueChange={(val) => setDropType(parseInt(val))}>
                     <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Select a Visibility" />
                     </SelectTrigger>
