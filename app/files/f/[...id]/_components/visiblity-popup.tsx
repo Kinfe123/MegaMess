@@ -73,7 +73,7 @@ export function VisiblityBtn() {
                     <div className='flex flex-col gap-2'>
                         {emails.map(email => {
                             return (
-                                <div className='flex gap-2 justify-center items-center'>
+                                <div className='flex gap-2 justify-start items-center'>
                                     <Mail className='w-3 h-3' />
                                     <p>{email}</p>
 

@@ -37,7 +37,7 @@ export default async function FavouritePage() {
           <Suspense fallback={<FileSkeleton/>}>
             {(await result).map((file) => {
               return (
-                <FavCard file={file} userId={user.id} />
+                <FavCard file={file} userId={user?.id} />
 
               )
             })}
