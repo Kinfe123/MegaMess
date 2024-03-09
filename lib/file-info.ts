@@ -41,3 +41,12 @@ export const fileIdByUrl = async (fileUrl: string) => {
     return fileId?.id
 }
 
+
+export const waitlistEmailUsers = async (fileId: string) => {
+    const users = await prisma.waitlistEmail.findMany({
+        where: {
+            fileId: fileId,
+        }
+    })
+    return users
+}

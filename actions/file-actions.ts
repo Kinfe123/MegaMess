@@ -291,3 +291,20 @@ export const addWaitlist = async (email: string , fileId: string) => {
      
   }
 }
+
+
+export const delWaitlist = async (fileId: string , email: string) => {
+  try {
+    const deleteUsers = await prisma.waitlistEmail.delete({
+      where: {
+        fileId: fileId,
+        email: email,
+      }
+    
+    })
+    return deleteUsers
+  }catch(err) {
+    console.log('#[ERROR] ' , err)
+     
+  }
+}

@@ -1,7 +1,11 @@
 import { DashboardHeader } from "@/components/dashboard/header"
 import { DashboardShell } from "@/components/dashboard/shell"
 import { Separator } from "@/components/ui/separator"
+import { CardSkeleton } from "@/components/shared/card-skeleton"
 import { TabModified, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tab-modified"
+import Waitlists from "./_components/waitlists"
+import { Suspense } from "react"
+import { waitlistEmailUsers } from "@/lib/file-info"
 
 type PropsParams = {
     params: {
@@ -14,8 +18,9 @@ export const metadata = {
     description: "Explore in details about your file"
 }
 
-const FileDetail = ({ params }: PropsParams) => {
+const FileDetail = async  ({ params }: PropsParams) => {
     const fileId = params.id
+    const users = await waitlistEmailUsers(fileId)
     const TABS = ['Waitlists', 'Analytics', 'Settings']
 
     return (
@@ -29,10 +34,28 @@ const FileDetail = ({ params }: PropsParams) => {
 
                 })}
                 <Separator className="w-full mb-4 mt-[-3px]" />
-                <TabsContent value="billing" className="flex flex-col max-w-[76rem] ">
+                <TabsContent value="Waitlist" className="flex flex-col max-w-[76rem] ">
+                    <Suspense fallback={<WaitlistSkeleton />}>
+                    <Waitlists fileId={fileId} users={users}/>
+
+                    </Suspense>
                 </TabsContent>
             </TabModified>
         </DashboardShell>
     )
 }
 export default FileDetail
+
+export const WaitlistSkeleton = () => {
+    return (
+      <DashboardShell>
+      
+        <div className="flex flex-col gap-4 w-full">
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+        </div>
+      </DashboardShell>
+    )
+  }
