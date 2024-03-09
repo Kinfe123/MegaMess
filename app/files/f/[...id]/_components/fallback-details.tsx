@@ -4,12 +4,29 @@ import { EmptyPlaceholder } from "@/components/shared/empty-placeholder"
 import { Input } from "@/components/ui/input"
 import { useState, useTransition } from "react"
 import { Button } from "@/components/ui/button"
+import { addWaitlist } from "@/actions/file-actions"
+import { toast } from "@/components/ui/use-toast"
 
 // TODO: type email fix
-const FallBackDetails = ({email}: {email:string | null | undefined}) => {
+const FallBackDetails = ({email , fileId}: {email:string | null | undefined , fileId: string}) => {
     const [email_ , setEmail] = useState(email ?? "")
     const [pending ,startTransition] = useTransition()
     const handleClick = () => {
+        startTransition(() => {
+            addWaitlist(email_ , fileId).then((data) => {
+                toast({
+                    title: "Email Submitted.",
+                    description: "You have successfully submited you email address. We will let you know once you get approved through email",
+                })
+            }).catch((err) => {
+                toast({
+                    title: "Something went wrong.",
+                    description: "There is an error while submitting your email.",
+                    variant: "destructive",
+                })
+
+            })
+        })
 
     }
     return (

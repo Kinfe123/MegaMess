@@ -275,3 +275,19 @@ export const allowedEmailForFile = async (fileId: string) => {
   }
 }
 
+
+export const addWaitlist = async (email: string , fileId: string) => {
+  try {
+    const waitlist = await prisma.waitlistEmail.create({
+      data: {
+        fileId: fileId,
+        email: email,
+      }
+    
+    })
+    return waitlist
+  }catch(err) {
+    console.log('#[ERROR] ' , err)
+     
+  }
+}
