@@ -6,7 +6,7 @@ import { formatFileSize } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 import { Convergence } from "next/font/google";
 import { Visibility } from "@prisma/client";
-
+import { type File } from "@prisma/client";
 export type FormData = {
   name: string,
   description?: string,
@@ -204,19 +204,35 @@ export const fileUnFav = async (id: string , fileId: string) => {
 
 
 type fileVisiblity = keyof typeof Visibility
-export const fileVisiblity = async (fileId: string , visiblity:fileVisiblity) => {
+export const fileVisiblity = async (fileId: string , visiblity:fileVisiblity , emails?: string[]) => {
   try {
     const user = await getCurrentUser()
-    const visiblityFile = await prisma.file.update({
-      where: {
-        id: fileId
-      },
-      data: {
-        visiblity:visiblity,
-      },
-      
-    })
-    revalidatePath("/dashboard")
+    console.log('The list of emais i s: ' , emails)
+    let visiblityFile:Partial<File> = {}
+    if(visiblity === 'EMAIL') {
+        visiblityFile = await prisma.file.update({
+        where: {
+          id: fileId
+        },
+        data: {
+          visiblity:visiblity,
+        },
+        
+      })
+
+    }else {
+
+        visiblityFile = await prisma.file.update({
+        where: {
+          id: fileId
+        },
+        data: {
+          visiblity:visiblity,
+        },
+        
+      })
+      revalidatePath("/dashboard")
+    }
     return visiblityFile
     
 

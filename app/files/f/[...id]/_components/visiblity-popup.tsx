@@ -46,7 +46,7 @@ export function VisiblityBtn({ file }: { file: File }) {
     const handleClick = () => {
 
         startTransition(() => {
-            fileVisiblity(file.id, typeOfVisiblity[dropType]).then((data) => {
+            fileVisiblity(file.id, typeOfVisiblity[dropType], emails).then((data) => {
                 toast({
                     title: "Visibility Changed",
                     description: `${file.name} File visibility is changed to ${typeOfVisiblity[dropType]}`
