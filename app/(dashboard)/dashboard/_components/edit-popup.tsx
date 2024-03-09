@@ -28,10 +28,8 @@ import { Loader2 } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 
-type UserProps = {
-    file: File
-}
-const EditFileForm = ({ file }: UserProps) => {
+
+const EditFileForm = ({ file }: {file:File}) => {
     const [isPending, startTransition] = useTransition()
     const [fileDataOnly, setFileDataOnly] = useState({
         fileUrl: file.fileUrl,
