@@ -31,7 +31,7 @@ import {
             side={side}
             align={align}
           >
-            <p className="font-thin">
+            <p className="font-light">
               {label}
             </p>
           </TooltipContent>
