@@ -11,7 +11,7 @@ export const findUserByFile =  async (fileUrl: string) => {
     // await new Promise((rs) => setTimeout(rs , 4000))
     const user = await prisma.file.findFirst({
         where: {
-            fileUrl: fileUrl
+            fileUrl: fileUrl ?? ""
         },
         include: {
             user: {
@@ -25,6 +25,7 @@ export const findUserByFile =  async (fileUrl: string) => {
             }
         }
     })
+    console.log("THe data is: " , user)
     if(user){
         return user
     }else {
