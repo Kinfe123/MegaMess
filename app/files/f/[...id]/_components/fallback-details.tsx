@@ -40,7 +40,7 @@ const FallBackDetails = ({email , fileId}: {email:string | null | undefined , fi
           </EmptyPlaceholder.Description>
           <div className='flex justify-center items-center mx-auto gap-4'>
             <Input type="email" className='w-80'value={email_} onChange={(e) => setEmail(e.target.value)}/>
-            {pending ? <Loader className="w-4 h-4 animate-spin" /> : ""}<Button onClick={handleClick}>  {pending ? <Loader className="w-4 h-4 mr-2 animate-spin" /> : ""}Submit</Button>
+          <Button onClick={handleClick}>  {pending ? <Loader className="w-4 h-4 mr-2 animate-spin" /> : ""}Submit</Button>
 
           </div>
         </EmptyPlaceholder>
