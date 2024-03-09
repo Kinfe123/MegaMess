@@ -5,7 +5,7 @@ import { getCurrentUser } from "@/lib/session";
 import { formatFileSize } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 import { Convergence } from "next/font/google";
-import { Visibility } from "@prisma/client";
+import { Email, Visibility } from "@prisma/client";
 import { type File } from "@prisma/client";
 export type FormData = {
   name: string,
@@ -172,7 +172,6 @@ export const fileUnFav = async (id: string , fileId: string) => {
         id: id,
       }
     })
-    console.log(user?.id , otherUser?.id)
    // we dont need to check for the existense at since the user might want to put his own file as fav
    const existFav = await prisma.favorite.findFirst({
     where: {
@@ -203,19 +202,37 @@ export const fileUnFav = async (id: string , fileId: string) => {
 
 
 
+const emailsGen = async(email: string , fileId ) => {
+  const emails = await prisma.email.create({
+    data: {
+      email: email,
+      fileId:fileId,
+      
+
+    }
+  })
+  return emails
+}
+
 type fileVisiblity = keyof typeof Visibility
 export const fileVisiblity = async (fileId: string , visiblity:fileVisiblity , emails?: string[]) => {
   try {
     const user = await getCurrentUser()
-    console.log('The list of emais i s: ' , emails)
     let visiblityFile:Partial<File> = {}
     if(visiblity === 'EMAIL') {
+        let emailCollect: Promise<Email>[] = []
+        emails?.map((email) => {
+          const emailResult = emailsGen(email , fileId)
+          emailCollect.push(emailResult)
+        })
+        const emailsResolved = await Promise.all(emailCollect)
         visiblityFile = await prisma.file.update({
         where: {
           id: fileId
         },
         data: {
           visiblity:visiblity,
+        
         },
         
       })
@@ -231,8 +248,8 @@ export const fileVisiblity = async (fileId: string , visiblity:fileVisiblity , e
         },
         
       })
-      revalidatePath("/dashboard")
     }
+    revalidatePath("/dashboard")
     return visiblityFile
     
 
