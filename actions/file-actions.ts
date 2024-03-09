@@ -5,7 +5,7 @@ import { getCurrentUser } from "@/lib/session";
 import { formatFileSize } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 import { Convergence } from "next/font/google";
-
+import { Visibility } from "@prisma/client";
 
 export type FormData = {
   name: string,
@@ -203,10 +203,23 @@ export const fileUnFav = async (id: string , fileId: string) => {
 
 
 
+type fileVisiblity = Visibility.PUBLIC | Visibility.PRIVATE | Visibility.EMAIL
 
-export const fileVisiblity = async (fileId: string) => {
+
+export const fileVisiblity = async (fileId: string , visiblity:fileVisiblity) => {
   try {
     const user = await getCurrentUser()
+    const visiblityFile = await prisma.file.update({
+      where: {
+        id: fileId
+      },
+      data: {
+        visiblity:visiblity,
+      },
+      
+    })
+    console.log('The file visibilty is : ' , visiblityFile)
+    return visiblityFile
     
 
   }catch(err) {

@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import { type File } from '@prisma/client'
-import { fileDelete, fileFav, fileUnFav, getFileOwner } from "@/actions/file-actions"
+import { fileDelete, fileFav, fileUnFav, fileVisiblity, getFileOwner } from "@/actions/file-actions"
 
 import {
     Select,
@@ -32,14 +32,38 @@ import { Loader2, PieChartIcon } from "lucide-react"
 import { Input } from '@/components/ui/input'
 export function VisiblityBtn({file}: {file: File}) {
     console.log('the file visibiltity is : ' , file)
-    const [pending, startTransition] = useTransition()
     const typeOfVisiblity = ['PUBLIC', 'EMAIL', 'PRIVATE']
     const defaultVal = typeOfVisiblity.indexOf(file.visiblity)
     const [dropType, setDropType] = useState(0)
     const [eachEmail, setEachEmail] = useState('')
     const [emails, setEmails] = useState<string[]>([])
+    const [pending , startTransition] = useTransition()
+    
     //   const isFav = fileId === 
     const handleClick = () => {
+
+        startTransition(() => {
+            fileVisiblity(file.id , typeOfVisiblity[dropType]).then((data) => {
+                toast({
+                    title: "Visibility Changed",
+                    description: `${file.name} File visibility is changed to ${typeOfVisiblity[dropType]}`
+                })
+
+            }).catch((err) => {
+                toast({
+                    title:"Something went wrong",
+                    description:"There is a problem while changing the visibility of the file",
+                    variant: "destructive",
+                    
+                    
+
+                })
+            })
+
+
+        })
+
+
         // THIS HANDLES THE 
     }
     return (
