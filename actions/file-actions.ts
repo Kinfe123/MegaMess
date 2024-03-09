@@ -219,6 +219,7 @@ export const fileVisiblity = async (fileId: string , visiblity:fileVisiblity) =>
       
     })
     console.log('The file visibilty is : ' , visiblityFile)
+    revalidatePath("/dashboard")
     return visiblityFile
     
 

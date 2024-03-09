@@ -30,20 +30,20 @@ import { Plus } from 'lucide-react'
 import { toast } from "@/components/ui/use-toast"
 import { Loader2, PieChartIcon } from "lucide-react"
 import { Input } from '@/components/ui/input'
-export function VisiblityBtn({file}: {file: File}) {
-    console.log('the file visibiltity is : ' , file)
+export function VisiblityBtn({ file }: { file: File }) {
+    console.log('the file visibiltity is : ', file)
     const typeOfVisiblity = ['PUBLIC', 'EMAIL', 'PRIVATE']
     const defaultVal = typeOfVisiblity.indexOf(file.visiblity)
     const [dropType, setDropType] = useState(0)
     const [eachEmail, setEachEmail] = useState('')
     const [emails, setEmails] = useState<string[]>([])
-    const [pending , startTransition] = useTransition()
-    
+    const [pending, startTransition] = useTransition()
+
     //   const isFav = fileId === 
     const handleClick = () => {
 
         startTransition(() => {
-            fileVisiblity(file.id , typeOfVisiblity[dropType]).then((data) => {
+            fileVisiblity(file.id, typeOfVisiblity[dropType]).then((data) => {
                 toast({
                     title: "Visibility Changed",
                     description: `${file.name} File visibility is changed to ${typeOfVisiblity[dropType]}`
@@ -51,11 +51,11 @@ export function VisiblityBtn({file}: {file: File}) {
 
             }).catch((err) => {
                 toast({
-                    title:"Something went wrong",
-                    description:"There is a problem while changing the visibility of the file",
+                    title: "Something went wrong",
+                    description: "There is a problem while changing the visibility of the file",
                     variant: "destructive",
-                    
-                    
+
+
 
                 })
             })
@@ -69,7 +69,7 @@ export function VisiblityBtn({file}: {file: File}) {
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
-                <Button disabled={pending} onClick={handleClick} className="w-full py-[-20px] flex justify-start items-center" variant={'ghost'} size={'sm'}>
+                <Button className="w-full py-[-20px] flex justify-start items-center" variant={'ghost'} size={'sm'}>
                     Visibility
                 </Button>
             </AlertDialogTrigger>
