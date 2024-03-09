@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { type File } from '@prisma/client'
+import { Visibility, type File } from '@prisma/client'
 import { fileDelete, fileFav, fileUnFav, fileVisiblity, getFileOwner } from "@/actions/file-actions"
 
 import {
@@ -30,9 +30,12 @@ import { Plus } from 'lucide-react'
 import { toast } from "@/components/ui/use-toast"
 import { Loader2, PieChartIcon } from "lucide-react"
 import { Input } from '@/components/ui/input'
+
+type fileVisiblity = keyof typeof Visibility
 export function VisiblityBtn({ file }: { file: File }) {
     console.log('the file visibiltity is : ', file)
-    const typeOfVisiblity = ['PUBLIC', 'EMAIL', 'PRIVATE']
+    
+    const typeOfVisiblity: fileVisiblity[] = ['PUBLIC', 'EMAIL', 'PRIVATE']
     const defaultVal = typeOfVisiblity.indexOf(file.visiblity)
     const [dropType, setDropType] = useState(0)
     const [eachEmail, setEachEmail] = useState('')

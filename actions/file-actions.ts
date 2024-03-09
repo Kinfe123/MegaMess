@@ -204,8 +204,6 @@ export const fileUnFav = async (id: string , fileId: string) => {
 
 
 type fileVisiblity = keyof typeof Visibility
-
-
 export const fileVisiblity = async (fileId: string , visiblity:fileVisiblity) => {
   try {
     const user = await getCurrentUser()
@@ -218,7 +216,6 @@ export const fileVisiblity = async (fileId: string , visiblity:fileVisiblity) =>
       },
       
     })
-    console.log('The file visibilty is : ' , visiblityFile)
     revalidatePath("/dashboard")
     return visiblityFile
     
