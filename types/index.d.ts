@@ -13,6 +13,7 @@ export type MainNavItem = NavItem
 
 export type SidebarNavItem = {
   title: string
+  preview: boolean
   disabled?: boolean
   external?: boolean
   icon?: keyof typeof Icons
