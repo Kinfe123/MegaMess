@@ -86,6 +86,7 @@ model File {
   userId      String
   visiblity   Visibility @default(PRIVATE)
   viewers     Email[]    @relation("FileViewers")
+  waitlists   WaitlistEmail[] @relation("FileWaitlists")
   createdAt   DateTime   @default(now()) @map(name: "created_at")
   updatedAt   DateTime   @default(now()) @map(name: "updated_at")
 
@@ -116,6 +117,16 @@ model Email {
   email     String   @unique()
   fileId    String   
   files     File   @relation("FileViewers" , fields: [fileId] , references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+}
+
+
+model WaitlistEmail {
+  id        String   @id @default(cuid())
+  email     String   @unique()
+  fileId    String   
+  files     File   @relation("FileWaitlists" , fields: [fileId] , references: [id], onDelete: Cascade)
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
 }

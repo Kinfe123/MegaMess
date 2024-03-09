@@ -23,7 +23,7 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     const favLists = await favByFileId(files?.id ?? "")
     if ((files?.visiblity === 'EMAIL' && !allowed) || files?.visiblity === 'PRIVATE') {
         return (
-            <FallBackDetails />
+            <FallBackDetails email={user?.email} />
 
         )
     }

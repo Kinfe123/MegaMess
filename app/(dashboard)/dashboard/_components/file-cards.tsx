@@ -55,7 +55,7 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
 
         <Card
             key={file.id}
-            className="overflow-hidden rounded-xl relative  bg-gradient-to-tr from-purple-400/10 via-transparent to-transparent"
+            className="overflow-hidden cursor-pointer  rounded-xl relative  bg-gradient-to-tr from-purple-400/10 via-transparent to-transparent"
         >
 
             <FuzzyOverlay />
