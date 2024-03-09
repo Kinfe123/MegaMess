@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/avatar"
 import { Skeleton } from "./ui/skeleton";
 import { getUserById } from "@/lib/user";
+import { allowedEmailForFile } from "@/actions/file-actions";
 
 
 interface PromiseProps {
@@ -16,13 +17,22 @@ interface PromiseProps {
   } & File
 }
 type UserAvatarProps = {
-  promise: Promise<({ user: { image: string | null; name: string | null; firstName: string | null; lastName: string | null }; } & File) | null>
-
+  promise: Promise<({ user: { image: string | null; name: string | null; firstName: string | null; lastName: string | null }; } & File) | null> 
+  fileIdInfo: Promise<string | undefined>
 };
 
 
-const UserAvatar = async ({ promise }: UserAvatarProps) => {
+const UserAvatar = async ({ promise  , fileIdInfo}: UserAvatarProps) => {
   const user = await promise
+  const fileId = await fileIdInfo
+  const allowed = await allowedEmailForFile(fileId!)
+  if(!allowed){
+    return (
+      <>
+      <span>You are allowed to see the details</span>
+      </>
+    )
+  }
   const firstName = user?.user.firstName ?? ""
   const lastName = user?.user.lastName ?? ""
   const fullName = firstName + lastName

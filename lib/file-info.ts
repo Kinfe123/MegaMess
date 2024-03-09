@@ -31,3 +31,12 @@ export const findUserByFile =  async (fileUrl: string) => {
         return null
     }
 }
+
+export const fileIdByUrl = async (fileUrl: string) => {
+    const fileId = await prisma.file.findFirst({
+        where:{
+            fileUrl: fileUrl
+        }
+    })
+    return fileId?.id
+}

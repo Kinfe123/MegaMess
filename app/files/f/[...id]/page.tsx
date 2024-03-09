@@ -1,4 +1,4 @@
-import { fileInfo, findUserByFile } from "@/lib/file-info"
+import { fileIdByUrl, fileInfo, findUserByFile } from "@/lib/file-info"
 import FallBack from "./_components/fallback"
 import { UserAvatar } from "@/components/user-avatar"
 import FileDescription, { FileDescriptionSkeleton } from "./_components/empty-box"
@@ -6,6 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { Suspense } from "react"
 import { getCurrentUser } from "@/lib/session"
 import FavIt from "./_components/fav-on-preview"
+import { allowedEmailForFile } from "@/actions/file-actions"
 
 type FilePreviewProps = {
     params: {
@@ -15,6 +16,8 @@ type FilePreviewProps = {
 const FilePreview = async ({ params }: FilePreviewProps) => {
     const fullUrl = fileInfo(params.id[0])
     const result = findUserByFile(fullUrl)
+    const fileIdInfo = fileIdByUrl(fullUrl)
+    
     if (!result) {
         return <FallBack />
     }
@@ -32,7 +35,7 @@ const FilePreview = async ({ params }: FilePreviewProps) => {
                 </span>
             </h1>
             <Suspense fallback={<AvatarSkeleton />}>
-                <UserAvatar promise={result} />
+                <UserAvatar promise={result} fileIdInfo={fileIdInfo}/>
             </Suspense>
             <Suspense fallback={<FileDescriptionSkeleton />}>
                 <FileDescription file={result} />

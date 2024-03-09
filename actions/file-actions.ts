@@ -257,3 +257,20 @@ export const fileVisiblity = async (fileId: string , visiblity:fileVisiblity , e
     console.log("#[ERROR]" , err)
   }
 }
+
+
+export const allowedEmailForFile = async (fileId: string) => {
+  try {
+    const currentUser = await getCurrentUser()
+    const checkAllowed = await prisma.email.findMany({
+      where: {
+        fileId: fileId, 
+        email: currentUser?.email!,
+      }
+    })
+    if(checkAllowed.length) return true;
+    else return false
+  }catch(err) {
+    console.log('#[ERROR] ' , err)
+  }
+}
