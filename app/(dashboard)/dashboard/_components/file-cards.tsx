@@ -35,7 +35,7 @@ import { FavBtn } from './fav-popup'
 import { VisiblityBtn } from '@/app/files/f/[...id]/_components/visiblity-popup'
 import { Icons } from '@/components/shared/icons'
 import { Hint } from '@/components/hint'
-
+import Link from 'next/link'
 type fileProps = {
     file: Promise<File[]>;
 }
@@ -52,7 +52,7 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
     }
     const hintText = hintTexts[file.visiblity]
     return (
-
+        <Link href={`/dashboard/file/${file.id}`}>
         <Card
             key={file.id}
             className="overflow-hidden cursor-pointer  rounded-xl relative  bg-gradient-to-tr from-purple-400/10 via-transparent to-transparent"
@@ -124,6 +124,7 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
                 </div>
             </CardContent>
         </Card>
+        </Link>
     )
 
 
