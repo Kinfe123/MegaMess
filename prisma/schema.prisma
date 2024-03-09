@@ -84,6 +84,7 @@ model File {
   fileUrl     String
   size        String
   userId      String
+  visiblity   Visibility @default(PRIVATE)
   createdAt   DateTime @default(now()) @map(name: "created_at")
   updatedAt   DateTime @default(now()) @map(name: "updated_at")
 
@@ -103,9 +104,10 @@ model Favorite {
   @@index([favoritingId])
 }
 
-model allowedEmail {
-  id        String   @id @default(cuid())
-  email     String
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @default(now()) @map(name: "updated_at")
+
+
+enum Visibility {
+  PRIVATE
+  PUBLIC
+  EMAIL
 }
