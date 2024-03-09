@@ -203,7 +203,7 @@ export const fileUnFav = async (id: string , fileId: string) => {
 
 
 
-type fileVisiblity = Visibility.PUBLIC | Visibility.PRIVATE | Visibility.EMAIL
+type fileVisiblity = keyof typeof Visibility
 
 
 export const fileVisiblity = async (fileId: string , visiblity:fileVisiblity) => {
