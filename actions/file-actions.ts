@@ -324,6 +324,14 @@ export const allowEmail = async (fileId: string , email:string) => {
         email: email
       }
     })
+     await prisma.file.update({
+      where: {
+        id: fileId,
+      },
+      data: {
+        visiblity: 'EMAIL'
+      }
+    })
     await prisma.waitlistEmail.delete({
       where: {
         fileId: fileId,
