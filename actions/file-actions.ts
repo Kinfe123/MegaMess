@@ -6,6 +6,7 @@ import { formatFileSize } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 import { Email, Visibility } from "@prisma/client";
 import { type File } from "@prisma/client";
+import { getUserById } from "@/lib/user";
 export type FormData = {
   name: string,
   description?: string,
@@ -276,6 +277,22 @@ export const allowedEmailForFile = async (fileId: string) => {
   }catch(err) {
     console.log('#[ERROR] ' , err)
     throw new Error('Error has occured ', err)
+  }
+}
+export const allowedOwnerEmail = async (fileId: string) =>  {
+
+  try {
+    const currentUser = await getCurrentUser()
+    const fileOwner = await getFileOwner(fileId)
+    const user = await getUserById(fileOwner?.userId ?? "")
+    if(currentUser?.email === user?.email) {
+      return true
+    }else {
+      return false
+    }
+  }catch(err) {
+    throw new Error('Error has occured ' , err)
+
   }
 }
 

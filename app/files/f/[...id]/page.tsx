@@ -17,7 +17,7 @@ const FilePreview = async ({ params }: FilePreviewProps) => {
     const fullUrl = fileInfo(params.id[0])
     const result = findUserByFile(fullUrl)
     const fileIdInfo = fileIdByUrl(fullUrl)
-    
+
     if (!result) {
         return <FallBack />
     }
@@ -35,13 +35,13 @@ const FilePreview = async ({ params }: FilePreviewProps) => {
                 </span>
             </h1>
             <Suspense fallback={<AvatarSkeleton />}>
-                <UserAvatar promise={result} fileIdInfo={fileIdInfo}/>
+                <UserAvatar promise={result} fileIdInfo={fileIdInfo} />
             </Suspense>
             <Suspense fallback={<FileDescriptionSkeleton />}>
                 <FileDescription file={result} fileIdInfo={fileIdInfo} />
-                
+
             </Suspense>
-        
+
 
 
 

@@ -17,6 +17,7 @@ export default async function IndexPage() {
           <Hero />
 
         </div>
+     
         <PricingWrapper />
 
 

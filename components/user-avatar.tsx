@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/avatar"
 import { Skeleton } from "./ui/skeleton";
 import { getUserById } from "@/lib/user";
-import { allowedEmailForFile } from "@/actions/file-actions";
+import { allowedEmailForFile, allowedOwnerEmail } from "@/actions/file-actions";
 
 
 interface PromiseProps {
@@ -26,7 +26,8 @@ const UserAvatar = async ({ promise  , fileIdInfo}: UserAvatarProps) => {
   const user = await promise
   const fileId = await fileIdInfo
   const allowed = await allowedEmailForFile(fileId!)
-  if(( user?.visiblity === 'EMAIL' &&  !allowed) || user?.visiblity === 'PRIVATE' ) {
+  const allowFileOwner = await allowedOwnerEmail(fileId!)
+  if(( user?.visiblity === 'EMAIL' &&  !allowed) || user?.visiblity === 'PRIVATE'  || allowFileOwner) {
     return (
       <>
       <span>You are allowed to see the details</span>

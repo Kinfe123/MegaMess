@@ -26,6 +26,14 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   const toggleBilling = () => {
     setIsYearly(!isYearly);
   };
+  const handleClick = async  () => {
+    const sendReq = await fetch('/api/test-email' , {
+      method: "POST",
+      body: JSON.stringify({
+        email: 'kinfetare83@gmail.com',
+    })
+    })
+  }
 
   return (
     <section className="container relative oveflow-hidden flex rounded-full py-0 flex-col   items-center text-center">
@@ -35,6 +43,10 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
           MegaMess is so <span className='text-gradient_indigo-purple font-extrabold'>Generous.</span>
         </h2>
       </div>
+
+      <div>
+          <button onClick={handleClick}>send mail</button>
+        </div>
     
 
       <div className="mb-4 flex items-center gap-5">
