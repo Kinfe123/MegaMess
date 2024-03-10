@@ -23,6 +23,7 @@ import {
   Eye,
   EyeOff,
   Mail,
+  KeyIcon,
   Trash,
   User,
   X,
@@ -40,6 +41,7 @@ export const Icons = {
   chevronRight: ChevronRight,
   check: Check,
   close: X,
+  key: KeyIcon,
   ellipsis: MoreVertical,
   
   gitHub: ({ ...props }: LucideProps) => (
