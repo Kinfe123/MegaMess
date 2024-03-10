@@ -308,3 +308,27 @@ export const delWaitlist = async (fileId: string , email: string) => {
      
   }
 }
+
+export const allowEmail = async (fileId: string , email:string) => {
+  try {
+    const addAllow = await prisma.email.create({
+      data : {
+        fileId: fileId,
+        email: email
+      }
+    })
+    await prisma.waitlistEmail.delete({
+      where: {
+        fileId: fileId,
+        email: email,
+      }
+    })
+    revalidatePath("/dashboard")
+    revalidatePath("/dashboard/file")
+    return allowEmail
+  }catch(err) {
+    console.log('#[ERROR] ' , err)
+
+  }
+
+}
