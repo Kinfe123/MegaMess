@@ -33,7 +33,6 @@ import { Input } from '@/components/ui/input'
 
 type fileVisiblity = keyof typeof Visibility
 export function VisiblityBtn({ file }: { file: File }) {
-    console.log('the file visibiltity is : ', file)
     
     const typeOfVisiblity: fileVisiblity[] = ['PUBLIC', 'EMAIL', 'PRIVATE']
     const defaultVal = typeOfVisiblity.indexOf(file.visiblity)

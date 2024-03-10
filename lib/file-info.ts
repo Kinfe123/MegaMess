@@ -50,3 +50,12 @@ export const waitlistEmailUsers = async (fileId: string) => {
     })
     return users
 }
+export const fileById = async (fileId: string) => {
+    const file = await prisma.file.findFirst({
+        where: {
+            id: fileId,
+        }
+    })
+    return file
+
+}
