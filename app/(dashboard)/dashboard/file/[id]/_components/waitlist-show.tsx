@@ -58,8 +58,8 @@ const WaitlistShow = ({user }:{user:WaitlistEmail}) => {
 
                </div>
                 <div className="ml-auto flex gap-2 pb-4 justify-center items-center">
-                    <Button onClick={onAccept} variant={'outline'}>{pending1 ? <Loader className="w-3 h-3 mr-1 animate-spin"/> : ""}Accept</Button>
-                    <Button onClick={onDecline} variant={'destructive'} className="bg-gradient-to-t from-red-500 to-red-400/80 border-t-destructive-foreground">{pending2 ? <Loader className="w-3 h-3 mr-1 animate-spin"/> : ""}Decline</Button>
+                    <Button disabled={pending1 || pending2} onClick={onAccept} variant={'outline'}>{pending1 ? <Loader className="w-3 h-3 mr-1 animate-spin"/> : ""}Accept</Button>
+                    <Button disabled={pending1 || pending2} onClick={onDecline} variant={'destructive'} className="bg-gradient-to-t from-red-500 to-red-400/80 border-t-destructive-foreground">{pending2 ? <Loader className="w-3 h-3 mr-1 animate-spin"/> : ""}Decline</Button>
                 </div>
             </div>
           <hr className="w-full"/>
