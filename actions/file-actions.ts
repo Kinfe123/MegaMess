@@ -325,6 +325,7 @@ export const allowEmail = async (fileId: string , email:string) => {
     })
     revalidatePath("/dashboard")
     revalidatePath("/dashboard/file")
+    revalidatePath('/files/f')
     return allowEmail
   }catch(err) {
     console.log('#[ERROR] ' , err)
