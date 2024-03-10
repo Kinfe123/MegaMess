@@ -46,7 +46,7 @@ const FileDetail = async  ({ params }: PropsParams) => {
 }
 export default FileDetail
 
-export const WaitlistSkeleton = () => {
+const WaitlistSkeleton = () => {
     return (
       <DashboardShell>
       
