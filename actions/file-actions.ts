@@ -4,7 +4,6 @@ import { prisma } from "@/lib/db";
 import { getCurrentUser } from "@/lib/session";
 import { formatFileSize } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
-import { Convergence } from "next/font/google";
 import { Email, Visibility } from "@prisma/client";
 import { type File } from "@prisma/client";
 export type FormData = {
@@ -113,6 +112,7 @@ export const fileEdit = async  (id: string,fileUrl: string ,  data:FormData) => 
     
 
   }catch(err) {
+    throw new Error('Error has occured ', err)
     return {status: "error"}
   }
 
@@ -161,6 +161,7 @@ export const fileFav = async (id: string , fileId: string) => {
       }
     }catch(err) {
       console.log("#[ERROR]: " , err)
+      throw new Error('Error has occured ', err)
     }
 }
 
@@ -197,6 +198,7 @@ export const fileUnFav = async (id: string , fileId: string) => {
     }
   }catch(err) {
     console.log("#[ERROR]: " , err)
+    throw new Error('Error has occured ', err)
   }
 }
 
@@ -255,6 +257,7 @@ export const fileVisiblity = async (fileId: string , visiblity:fileVisiblity , e
 
   }catch(err) {
     console.log("#[ERROR]" , err)
+    throw new Error('Error has occured ', err)
   }
 }
 
@@ -268,10 +271,11 @@ export const allowedEmailForFile = async (fileId: string) => {
         email: currentUser?.email!,
       }
     })
-    if(checkAllowed.length) return true;
+    if(!!checkAllowed.length) return true;
     else return false
   }catch(err) {
     console.log('#[ERROR] ' , err)
+    throw new Error('Error has occured ', err)
   }
 }
 
@@ -288,6 +292,7 @@ export const addWaitlist = async (email: string , fileId: string) => {
     return waitlist
   }catch(err) {
     console.log('#[ERROR] ' , err)
+    throw new Error('Error has occured ', err)
      
   }
 }
@@ -304,7 +309,9 @@ export const delWaitlist = async (fileId: string , email: string) => {
     })
     return deleteUsers
   }catch(err) {
+    throw new Error('Error has occured ', err)
     console.log('#[ERROR] ' , err)
+
      
   }
 }
@@ -325,10 +332,11 @@ export const allowEmail = async (fileId: string , email:string) => {
     })
     revalidatePath("/dashboard")
     revalidatePath("/dashboard/file")
-    revalidatePath('/files/f')
+    revalidatePath('/files/f/[id]' , 'page')
     return allowEmail
   }catch(err) {
     console.log('#[ERROR] ' , err)
+    throw new Error('Error has occured ', err)
 
   }
 
