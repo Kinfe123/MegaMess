@@ -119,6 +119,7 @@ model Email {
   files     File   @relation("FileViewers" , fields: [fileId] , references: [id], onDelete: Cascade)
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
+  @@unique([email , fileId])
 }
 
 
@@ -129,4 +130,5 @@ model WaitlistEmail {
   files     File   @relation("FileWaitlists" , fields: [fileId] , references: [id], onDelete: Cascade)
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
+  @@unique([email , fileId])
 }
