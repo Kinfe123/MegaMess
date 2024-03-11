@@ -13,6 +13,7 @@ import FileForm from "./_components/upload-form"
 import EmptyBox from "./_components/empty-box"
 import { toSize } from "@/lib/utils"
 import { FileSkeleton } from "./loading"
+import { getFUllUserById } from "@/lib/user"
 
 export const metadata = {
   title: "File Dashboard",
@@ -48,7 +49,7 @@ export default async function DashboardPage() {
           <Suspense fallback={<FileSkeleton/>}>
             {(await result).map((file) => {
               return (
-                <FileCards file={file} favved={favByFileId(file.id)}/>
+                <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)}/>
 
               )
             })}

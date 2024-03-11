@@ -12,8 +12,12 @@ export async function POST(req: Request) {
             const reqs = await transporter.sendMail({
                 from:`KinfeMichael Tariku <${process.env.ADMIN_EMAIL}>`,
                 to: email,
+                template: 'email',
                 subject: "This is supposed to be a test",
-                text: 'this is the content for mega mess email endpoint'
+                context: {
+                    name: 'Abebe',
+                    company:"MegaMess"
+                }
             })
             return new Response('It is working' , {status:200})
         }catch(err) {

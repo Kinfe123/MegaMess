@@ -1,7 +1,7 @@
 
 'use client'
 import React, { Suspense, use } from 'react'
-import { type Favorite, type File } from '@prisma/client'
+import { User, type Favorite, type File } from '@prisma/client'
 import { MoreHorizontal } from 'lucide-react'
 import {
     Card,
@@ -40,10 +40,10 @@ type fileProps = {
     file: Promise<File[]>;
 }
 
-const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }) => {
+const FileCards = ({ file, favved , fileOwner }: { file: File, favved: Promise<Favorite[]> , fileOwner: Promise<({user: User} | null)| null> }) => {
     const promise = use(favved)
+    const fileOwnerPromise = use(fileOwner)
     const isFav = promise.filter((f) => f.fileId === file.id)
-    console.log(file.visiblity.toLowerCase())
     const IconVisibility = Icons[file.visiblity.toLowerCase()]
     const hintTexts = {
         'PRIVATE': 'File is not shared with anyone',
@@ -89,7 +89,7 @@ const FileCards = ({ file, favved }: { file: File, favved: Promise<Favorite[]> }
                             <Separator className='w-full my-1' />
                             <FavBtn fav={!!isFav.length} fileId={file.id} fileOwner={file.userId} />
                             <Separator className='w-full my-1' />
-                            <VisiblityBtn file={file} />
+                            <VisiblityBtn file={file} fileOwner={fileOwnerPromise?.user}/>
                             <DropdownMenuSeparator />
 
                             <DropdownMenuSeparator />

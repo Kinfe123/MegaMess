@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { Visibility, type File } from '@prisma/client'
+import { User, Visibility, type File } from '@prisma/client'
 import { fileDelete, fileFav, fileUnFav, fileVisiblity, getFileOwner } from "@/actions/file-actions"
 
 import {
@@ -30,9 +30,10 @@ import { Plus } from 'lucide-react'
 import { toast } from "@/components/ui/use-toast"
 import { Loader2, PieChartIcon } from "lucide-react"
 import { Input } from '@/components/ui/input'
+import { getFUllUserById, getUserByFileId } from '@/lib/user'
 
 type fileVisiblity = keyof typeof Visibility
-export function VisiblityBtn({ file }: { file: File }) {
+export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User | null | undefined }) {
     
     const typeOfVisiblity: fileVisiblity[] = ['PUBLIC', 'EMAIL', 'PRIVATE']
     const defaultVal = typeOfVisiblity.indexOf(file.visiblity)
@@ -40,10 +41,25 @@ export function VisiblityBtn({ file }: { file: File }) {
     const [eachEmail, setEachEmail] = useState('')
     const [emails, setEmails] = useState<string[]>([])
     const [pending, startTransition] = useTransition()
+    const [emailClick , setEmailClick ] = useState(false)
 
     //   const isFav = fileId === 
-    const handleClick = () => {
-
+    const handleClick = async () => {
+        if(typeOfVisiblity[dropType] === 'EMAIL') {
+            setEmailClick(true)
+            const name = fileOwner?.name ?? "A MegaMesser"
+            const req = await fetch('/api/email' , {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: emails,
+                    subject: "Invitation to Access file on MegaMess",
+                    link: `https://mega-mess.vercel.app/files/f/${file.fileUrl}`,
+                    content: `${name} has invited you to access the file shared on MegaMess`,
+                    linkHelper: "Click here to access the file"
+                })
+            })
+            setEmailClick(false)
+        }
         startTransition(() => {
             fileVisiblity(file.id, typeOfVisiblity[dropType], emails).then((data) => {
                 toast({
@@ -121,9 +137,9 @@ export function VisiblityBtn({ file }: { file: File }) {
 
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <Button disabled={pending} variant={'default'} onClick={handleClick}>
+                    <Button disabled={pending || emailClick} variant={'default'} onClick={handleClick}>
 
-                        {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                        {(pending || emailClick) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                         Continue</Button>
                 </AlertDialogFooter>
             </AlertDialogContent>

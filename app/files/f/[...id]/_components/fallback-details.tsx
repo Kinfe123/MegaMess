@@ -12,7 +12,20 @@ import { Loader } from "lucide-react"
 const FallBackDetails = ({email , fileId}: {email:string | null | undefined , fileId: string}) => {
     const [email_ , setEmail] = useState(email ?? "")
     const [pending ,startTransition] = useTransition()
-    const handleClick = () => {
+    const handleClick = async () => {
+        // Two ways eemail for the one who makes the request and the file owner to notify both the status
+
+        const sendEmailForRequester = await fetch('/api/email' , {
+            method: 'POST',
+            body: JSON.stringify({
+                email: email_,
+                subject: "Permission Asked",
+                link: `${window.location.href}`,
+                content: "You have made a request to access the file to the file owner and we will let you know once you get approved to access the file",
+                linkHelper:'Click to see the file',
+              
+            })
+        })
         startTransition(() => {
             addWaitlist(email_ , fileId).then((data) => {
                 toast({

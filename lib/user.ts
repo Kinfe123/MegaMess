@@ -35,3 +35,16 @@ export const getUserByFileId = async (fileId: string) => {
   return userIdByFile?.id 
 
 }
+
+export const getFUllUserById = async (fileId: string) => {
+  const userIdByFile = await prisma.file.findUnique({
+    where: {
+      id: fileId
+    },
+    include : {
+       user: true,
+    }
+  })
+  return userIdByFile 
+
+}
