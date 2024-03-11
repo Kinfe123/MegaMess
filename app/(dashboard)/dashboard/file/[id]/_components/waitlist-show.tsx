@@ -10,7 +10,6 @@ import { useTransition } from "react"
 
 
 const WaitlistShow = ({user }:{user:WaitlistEmail}) => {
-    console.log('Email : ' , user)
     const [pending1 , startTransition1] = useTransition()
     const [pending2 , startTransition2] = useTransition()
 
