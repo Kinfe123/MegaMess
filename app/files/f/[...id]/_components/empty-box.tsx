@@ -9,7 +9,7 @@ import { getCurrentUser } from "@/lib/session";
 import FavIt from "./fav-on-preview";
 import { getUserByFileId } from "@/lib/user";
 import { favByFileId } from "@/lib/fille";
-import { allowedEmailForFile } from "@/actions/file-actions";
+import { allowedEmailForFile, allowedOwnerEmail } from "@/actions/file-actions";
 import FallBackDetails from "./fallback-details";
 type FilePromiseProps = {
     file: Promise<({ user: { image: string | null; name: string | null; }; } & File) | null>
@@ -21,11 +21,11 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     const allowed = await allowedEmailForFile(files?.id ?? "")
     const ownerId = await getUserByFileId(files?.id ?? "")
     const favLists = await favByFileId(files?.id ?? "")
-  const allowFileOwner = await allowedOwnerEmail(files.id as string)
-
+    const allowFileOwner = await allowedOwnerEmail(files?.id ?? "")
+    //    TODO: fix typescript typo
     if ((files?.visiblity === 'EMAIL' && !allowed) || files?.visiblity === 'PRIVATE' || allowFileOwner) {
         return (
-            <FallBackDetails email={user?.email} fileId={files.id} />
+            <FallBackDetails email={user?.email} fileId={files?.id ?? ""} />
 
         )
     }
