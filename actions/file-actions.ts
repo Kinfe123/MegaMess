@@ -319,8 +319,11 @@ export const delWaitlist = async (fileId: string , email: string) => {
   try {
     const deleteUsers = await prisma.waitlistEmail.delete({
       where: {
-        fileId: fileId,
-        email: email,
+        email_fileId: {
+
+          fileId: fileId,
+          email: email,
+        }
       }
     
     })
@@ -351,10 +354,13 @@ export const allowEmail = async (fileId: string , email:string) => {
     })
     await prisma.waitlistEmail.delete({
       where: {
-        fileId: fileId,
-        email: email,
+        email_fileId: {
+          email: email,
+          fileId: fileId
+        }
         
       }
+    
     })
     revalidatePath("/dashboard")
     revalidatePath("/dashboard/file")
