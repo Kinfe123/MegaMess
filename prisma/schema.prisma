@@ -114,7 +114,7 @@ enum Visibility {
 
 model Email {
   id        String   @id @default(cuid())
-  email     String   @unique()
+  email     String   
   fileId    String   
   files     File   @relation("FileViewers" , fields: [fileId] , references: [id], onDelete: Cascade)
   createdAt DateTime @default(now()) @map(name: "created_at")
@@ -124,7 +124,7 @@ model Email {
 
 model WaitlistEmail {
   id        String   @id @default(cuid())
-  email     String   @unique()
+  email     String   
   fileId    String   
   files     File   @relation("FileWaitlists" , fields: [fileId] , references: [id], onDelete: Cascade)
   createdAt DateTime @default(now()) @map(name: "created_at")
