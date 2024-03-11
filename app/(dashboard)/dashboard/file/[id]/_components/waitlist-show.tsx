@@ -14,8 +14,20 @@ const WaitlistShow = ({user }:{user:WaitlistEmail}) => {
     const [pending2 , startTransition2] = useTransition()
 
     const onAccept = () => {
-        startTransition1(() => {
+        startTransition1(async () => {
+            
             allowEmail(user.fileId , user.email).then((data) => {
+
+                fetch('/api/emails' , {
+                    method:'POST',
+                    body: JSON.stringify({
+                        email: user.email,
+                        subject: 'File Access Approved',
+                        link: `${process.env.NEXT_PUBLIC_APP_URL}/files/f/`
+
+                    })
+                    
+                })
                 toast({
                     title: 'Email Approved',
                     description: 'You have successfully approved ' + user.email + " to view the file."

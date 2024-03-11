@@ -49,7 +49,6 @@ export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User
             if(typeOfVisiblity[dropType] === 'EMAIL') {
                 setEmailClick(true)
                 const fileUrl = file.fileUrl.split('/')
-                console.log("Thee file url is : "  , fileUrl)
                 const name = fileOwner?.name ?? "A MegaMesser"
                 const req = await fetch('/api/email' , {
                     method: 'POST',

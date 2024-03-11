@@ -13,7 +13,7 @@ const FallBackDetails = ({email , fileId}: {email:string | null | undefined , fi
     const [email_ , setEmail] = useState(email ?? "")
     const [pending ,startTransition] = useTransition()
     const handleClick = async () => {
-        // Two ways eemail for the one who makes the request and the file owner to notify both the status
+        // Two ways email for the one who makes the request and the file owner to notify both the status
 
         startTransition(async () => {
             const sendEmailForRequester = await fetch('/api/email' , {
