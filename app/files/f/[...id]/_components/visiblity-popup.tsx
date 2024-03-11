@@ -45,22 +45,22 @@ export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User
 
     //   const isFav = fileId === 
     const handleClick = async () => {
-        if(typeOfVisiblity[dropType] === 'EMAIL') {
-            setEmailClick(true)
-            const name = fileOwner?.name ?? "A MegaMesser"
-            const req = await fetch('/api/email' , {
-                method: 'POST',
-                body: JSON.stringify({
-                    email: emails,
-                    subject: "Invitation to Access file on MegaMess",
-                    link: `https://mega-mess.vercel.app/files/f/${file.fileUrl}`,
-                    content: `${name} has invited you to access the file shared on MegaMess`,
-                    linkHelper: "Click here to access the file"
+        startTransition(async () => {
+            if(typeOfVisiblity[dropType] === 'EMAIL') {
+                setEmailClick(true)
+                const name = fileOwner?.name ?? "A MegaMesser"
+                const req = await fetch('/api/email' , {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        email: emails,
+                        subject: "Invitation to Access file on MegaMess",
+                        link: `https://mega-mess.vercel.app/files/f/${file.fileUrl}`,
+                        content: `${name} has invited you to access the file shared on MegaMess`,
+                        linkHelper: "Click here to access the file"
+                    })
                 })
-            })
-            setEmailClick(false)
-        }
-        startTransition(() => {
+                setEmailClick(false)
+            }
             fileVisiblity(file.id, typeOfVisiblity[dropType], emails).then((data) => {
                 toast({
                     title: "Visibility Changed",
@@ -68,6 +68,7 @@ export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User
                 })
 
             }).catch((err) => {
+                console.log('Error is :' , err)
                 toast({
                     title: "Something went wrong",
                     description: "There is a problem while changing the visibility of the file",
