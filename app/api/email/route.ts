@@ -17,8 +17,9 @@ export async function POST(req: Request) {
                     company:"MegaMess"
                 }
             })
+         return new Response('Sent!' ,{status: 2000})
         }catch(err){
-
+        return new Response('Not Sent!' , {status:400})
         }
 
 
