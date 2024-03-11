@@ -21,7 +21,9 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     const allowed = await allowedEmailForFile(files?.id ?? "")
     const ownerId = await getUserByFileId(files?.id ?? "")
     const favLists = await favByFileId(files?.id ?? "")
-    if ((files?.visiblity === 'EMAIL' && !allowed) || files?.visiblity === 'PRIVATE') {
+  const allowFileOwner = await allowedOwnerEmail(files.id as string)
+
+    if ((files?.visiblity === 'EMAIL' && !allowed) || files?.visiblity === 'PRIVATE' || allowFileOwner) {
         return (
             <FallBackDetails email={user?.email} fileId={files.id} />
 
