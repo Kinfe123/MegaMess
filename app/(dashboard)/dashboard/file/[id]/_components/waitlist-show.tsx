@@ -13,11 +13,11 @@ const WaitlistShow = ({user , file }:{user:WaitlistEmail , file: File}) => {
     const [pending1 , startTransition1] = useTransition()
     const [pending2 , startTransition2] = useTransition()
 
+    const fileUrl = file.fileUrl.split('/')
     const onAccept = () => {
         startTransition1(() => {
             
             allowEmail(user.fileId , user.email).then((data) => {
-                const fileUrl = file.fileUrl.split('/')
                 
                 fetch('/api/emails' , {
                     method:'POST',
@@ -49,6 +49,20 @@ const WaitlistShow = ({user , file }:{user:WaitlistEmail , file: File}) => {
     const onDecline = () => {
         startTransition2(() => {
             delWaitlist(user.fileId , user.email).then((data) => {
+                
+                 
+                fetch('/api/emails' , {
+                    method:'POST',
+                    body: JSON.stringify({
+                        email: user.email,
+                        subject: 'File Access Rejected',
+                        link: `${process.env.NEXT_PUBLIC_APP_URL}/files/f/${fileUrl[fileUrl.length-1]}`,
+                        content: `You have been rejected by file owner . If you think that it is by mistake you can make another one below `,
+                        linkHelper: "Make Access Request"
+
+                    })
+                    
+                })
                 toast({
                     title: 'Email Rejected',
                     description: 'You have successfully rejected ' + user.email + " to view the file."
