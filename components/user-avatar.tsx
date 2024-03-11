@@ -27,7 +27,6 @@ const UserAvatar = async ({ promise  , fileIdInfo}: UserAvatarProps) => {
   const fileId = await fileIdInfo
   const allowed = await allowedEmailForFile(fileId!)
   const allowFileOwner = await allowedOwnerEmail(fileId!)
-  console.log(allowFileOwner)
   if((( user?.visiblity === 'EMAIL' &&  !allowed) || user?.visiblity === 'PRIVATE' ) || !allowFileOwner) {
     return (
       <>
@@ -46,10 +45,10 @@ const UserAvatar = async ({ promise  , fileIdInfo}: UserAvatarProps) => {
         <AvatarFallback>{initials.toUpperCase()}</AvatarFallback>
       </Avatar>
       <div className='flex flex-col items-start justify-center gap-[-20px]'>
-        <p className='leading-none" text-sm font-medium'>{user?.user.name}</p>
+        <p className='leading-none text-md font-medium'>{user?.user.name}</p>
         <React.Suspense fallback={<Skeleton className="w-7 h-3" />}>
-          <p className='text-xs leading-none text-white/60'></p>
-          {fullName.length > 0 ? `${fullName}` : "MegaMesser"}
+          <p className='text-xs leading-none text-white/60 mt-1'>
+          {fullName.length > 0 ? `${fullName}` : "MegaMesser"}</p>
         </React.Suspense>
       </div>
 

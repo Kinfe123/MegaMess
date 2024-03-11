@@ -19,7 +19,7 @@ const FallBackDetails = ({email , fileId}: {email:string | null | undefined , fi
             method: 'POST',
             body: JSON.stringify({
                 email: email_,
-                subject: "Permission Asked",
+                subject: "Permission Require",
                 link: `${window.location.href}`,
                 content: "You have made a request to access the file to the file owner and we will let you know once you get approved to access the file",
                 linkHelper:'Click to see the file',
