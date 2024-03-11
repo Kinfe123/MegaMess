@@ -23,7 +23,7 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     const favLists = await favByFileId(files?.id ?? "")
     const allowFileOwner = await allowedOwnerEmail(files?.id ?? "")
     //    TODO: fix typescript typo
-    if ((files?.visiblity === 'EMAIL' && !allowed) || files?.visiblity === 'PRIVATE' || allowFileOwner) {
+    if (((files?.visiblity === 'EMAIL' && !allowed) || files?.visiblity === 'PRIVATE') || !allowFileOwner) {
         return (
             <FallBackDetails email={user?.email} fileId={files?.id ?? ""} />
 
