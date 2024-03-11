@@ -15,22 +15,22 @@ const FallBackDetails = ({email , fileId}: {email:string | null | undefined , fi
     const handleClick = async () => {
         // Two ways eemail for the one who makes the request and the file owner to notify both the status
 
-        const sendEmailForRequester = await fetch('/api/email' , {
-            method: 'POST',
-            body: JSON.stringify({
-                email: email_,
-                subject: "Permission Require",
-                link: `${window.location.href}`,
-                content: "You have made a request to access the file to the file owner and we will let you know once you get approved to access the file",
-                linkHelper:'Click to see the file',
-              
+        startTransition(async () => {
+            const sendEmailForRequester = await fetch('/api/email' , {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: email_,
+                    subject: "Permission Require",
+                    link: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/file/${fileId}`,
+                    content: `${email_} is atempting to view the file. can you please check in the request on link below`,
+                    linkHelper:'Click to the request',
+                  
+                })
             })
-        })
-        startTransition(() => {
             addWaitlist(email_ , fileId).then((data) => {
                 toast({
                     title: "Email Submitted.",
-                    description: "You have successfully submited you email address. We will let you know once you get approved through email",
+                    description: "You have made a access request. We will let you know once you get approved through email",
                 })
             }).catch((err) => {
                 toast({
