@@ -4,26 +4,29 @@ import { allowEmail, delWaitlist } from "@/actions/file-actions"
 import { UserAvatar } from "@/components/shared/user-avatar"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
-import { type WaitlistEmail } from "@prisma/client"
+import { File, type WaitlistEmail } from "@prisma/client"
 import { Loader, User } from "lucide-react"
 import { useTransition } from "react"
 
 
-const WaitlistShow = ({user }:{user:WaitlistEmail}) => {
+const WaitlistShow = ({user , file }:{user:WaitlistEmail , file: File}) => {
     const [pending1 , startTransition1] = useTransition()
     const [pending2 , startTransition2] = useTransition()
 
     const onAccept = () => {
-        startTransition1(async () => {
+        startTransition1(() => {
             
             allowEmail(user.fileId , user.email).then((data) => {
-
+                const fileUrl = file.fileUrl.split('/')
+                
                 fetch('/api/emails' , {
                     method:'POST',
                     body: JSON.stringify({
                         email: user.email,
                         subject: 'File Access Approved',
-                        link: `${process.env.NEXT_PUBLIC_APP_URL}/files/f/`
+                        link: `${process.env.NEXT_PUBLIC_APP_URL}/files/f/${fileUrl[fileUrl.length-1]}`,
+                        content: `You have been approved to have an access to the file named by ${file.name} about ${file.description} on the link below`,
+                        linkHelper: "Access the file"
 
                     })
                     
