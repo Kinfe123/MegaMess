@@ -353,6 +353,7 @@ export const allowEmail = async (fileId: string , email:string) => {
       where: {
         fileId: fileId,
         email: email,
+        
       }
     })
     revalidatePath("/dashboard")

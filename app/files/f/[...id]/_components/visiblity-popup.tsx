@@ -55,7 +55,7 @@ export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User
                     body: JSON.stringify({
                         email: emails,
                         subject: "Invitation to Access file on MegaMess",
-                        link: `https://mega-mess.vercel.app/files/f/${fileUrl[fileUrl.length - 1]}`,
+                        link: `${process.env.NEXT_PUBLIC_APP_URL}/files/f/${fileUrl[fileUrl.length - 1]}`,
                         content: `${name} has invited you to access the file shared on MegaMess`,
                         linkHelper: "Click here to access the file"
                     })
