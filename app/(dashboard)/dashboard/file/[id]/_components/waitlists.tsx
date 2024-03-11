@@ -14,7 +14,7 @@ const Waitlists = async ({ fileId , users}: { fileId: string , users: WaitlistEm
         <div className="flex flex-col gap-6">
             {users.map((user) => {
                 return (
-                    <WaitlistShow user={user}/>
+                    <WaitlistShow user={user} file={file!}/>
                 )
             })}
 

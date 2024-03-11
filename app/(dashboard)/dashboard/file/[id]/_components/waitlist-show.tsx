@@ -4,19 +4,33 @@ import { allowEmail, delWaitlist } from "@/actions/file-actions"
 import { UserAvatar } from "@/components/shared/user-avatar"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
-import { type WaitlistEmail } from "@prisma/client"
+import { File, type WaitlistEmail } from "@prisma/client"
 import { Loader, User } from "lucide-react"
 import { useTransition } from "react"
 
 
-const WaitlistShow = ({user }:{user:WaitlistEmail}) => {
-    console.log('Email : ' , user)
+const WaitlistShow = ({user , file }:{user:WaitlistEmail , file: File}) => {
     const [pending1 , startTransition1] = useTransition()
     const [pending2 , startTransition2] = useTransition()
 
+    const fileUrl = file.fileUrl.split('/')
     const onAccept = () => {
         startTransition1(() => {
+            
             allowEmail(user.fileId , user.email).then((data) => {
+                
+                fetch('/api/emails' , {
+                    method:'POST',
+                    body: JSON.stringify({
+                        email: user.email,
+                        subject: 'File Access Approved',
+                        link: `${process.env.NEXT_PUBLIC_APP_URL}/files/f/${fileUrl[fileUrl.length-1]}`,
+                        content: `You have been approved to have an access to the file named by ${file.name} about ${file.description} on the link below`,
+                        linkHelper: "Access the file"
+
+                    })
+                    
+                })
                 toast({
                     title: 'Email Approved',
                     description: 'You have successfully approved ' + user.email + " to view the file."
@@ -35,6 +49,20 @@ const WaitlistShow = ({user }:{user:WaitlistEmail}) => {
     const onDecline = () => {
         startTransition2(() => {
             delWaitlist(user.fileId , user.email).then((data) => {
+                
+                 
+                fetch('/api/emails' , {
+                    method:'POST',
+                    body: JSON.stringify({
+                        email: user.email,
+                        subject: 'File Access Rejected',
+                        link: `${process.env.NEXT_PUBLIC_APP_URL}/files/f/${fileUrl[fileUrl.length-1]}`,
+                        content: `You have been rejected by file owner . If you think that it is by mistake you can make another one below `,
+                        linkHelper: "Make Access Request"
+
+                    })
+                    
+                })
                 toast({
                     title: 'Email Rejected',
                     description: 'You have successfully rejected ' + user.email + " to view the file."
