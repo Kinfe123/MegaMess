@@ -64,7 +64,7 @@ export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User
             fileVisiblity(file.id, typeOfVisiblity[dropType], emails).then((data) => {
                 toast({
                     title: "Visibility Changed",
-                    description: `${file.name} File visibility is changed to ${typeOfVisiblity[dropType]}`
+                    description: `${file.name} file visibility is changed to ${typeOfVisiblity[dropType]}`
                 })
 
             }).catch((err) => {
