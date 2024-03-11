@@ -13,6 +13,7 @@ export async function POST(req: Request) {
                 context: {
                     content: content,
                     linkHelper:linkHelper, 
+                    link: link,
                     company:"MegaMess"
                 }
             })
