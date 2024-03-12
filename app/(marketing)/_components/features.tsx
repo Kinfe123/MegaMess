@@ -226,7 +226,7 @@ export function CoreFeatures() {
       className="relative pb-14 pt-20 sm:pb-20 sm:pt-32 lg:pb-32"
     >
       <GridPatterns />
-      <div className='container'>
+      <div className='container z-20'>
         <div className="mx-auto z-20 max-w-2xl md:text-center">
           <h2 className="font-heading text-4xl tracking-tight  sm:text-6xl">
             Simplify everyday    <span className="text-gradient_indigo-purple font-extrabold lg:text-9xl">
