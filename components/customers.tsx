@@ -48,6 +48,7 @@ const Customers = () => {
                     <h2 className="font-heading mb-10 text-4xl tracking-tight  sm:text-6xl">
                         Potential     <br /><span className="text-gradient_indigo-purple font-extrabold lg:text-9xl">
                             Customers.                      </span>
+                    <span className="text-white/50 mt-[-40px] mr-auto">Cap:) </span>
                     </h2>
                     <div className="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
                         <a href="#" className="flex justify-center items-center">

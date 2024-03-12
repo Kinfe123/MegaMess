@@ -244,6 +244,7 @@ export function CoreFeatures() {
                             business tasks
                         </span>
           </h2>
+          
           <p className="mt-4 text-lg tracking-tight ">
             Because you’d probably be a little confused if we suggested you
             complicate your everyday business tasks instead.
