@@ -7,6 +7,7 @@ import { PricingFaq } from "@/components/pricing-faq";
 import PricingWrapper from "./_components/pricing-wrapper";
 import { CoreFeatures } from "./_components/features";
 import { GridPatterns } from "./_components/grid-pattern";
+import Customers from "@/components/customers";
 
 export default async function IndexPage() {
 
@@ -19,6 +20,7 @@ export default async function IndexPage() {
         </div>
         <PricingWrapper />
         <CoreFeatures />
+        <Customers />
       </section>
     </>
   )

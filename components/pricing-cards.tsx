@@ -30,7 +30,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
 
   return (
     <section className="container relative oveflow-hidden flex rounded-full py-0 flex-col   items-center text-center">
-      
+
       <svg
         className="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
         aria-hidden="true"
@@ -58,7 +58,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
       {/* <div className="absolute top-0 right-0 -z-10 flex w-full justify-center">
         <div className="animate-pulse-slow h-[400px] w-screen overflow-hidden max-w-full rounded-full bg-gradient-to-tr from-[#a855f7cc] to-[#ef63f1] opacity-10 blur-[100px]" />
       </div>  */}
-    
+
       <div className="mx-auto mb-10 flex w-full flex-col gap-5">
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">Pricing</p>
         <h2 className="font-heading text-3xl leading-[1.1] md:text-5xl">
@@ -66,17 +66,17 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
         </h2>
       </div>
       <div
-            className="absolute inset-x-0 -top-16 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl"
-            aria-hidden="true"
-          >
-            <div
-              className="aspect-[1318/752] w-[82.375rem] flex-none bg-gradient-to-r from-[#a855f7cc] to-[#9b46e5] opacity-20"
-              style={{
-                clipPath:
-                  'polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)',
-              }}
-            />
-          </div>
+        className="absolute inset-x-0 -top-16 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl"
+        aria-hidden="true"
+      >
+        <div
+          className="aspect-[1318/752] w-[82.375rem] flex-none bg-gradient-to-r from-[#a855f7cc] to-[#9b46e5] opacity-20"
+          style={{
+            clipPath:
+              'polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)',
+          }}
+        />
+      </div>
       <div className="mb-4 flex items-center gap-5">
         <span>Monthly Billing</span>
         <Switch
@@ -91,20 +91,20 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
       <div className="mx-auto grid max-w-screen-lg gap-5 bg-inherit py-5 md:grid-cols-3 lg:grid-cols-3">
         {pricingData.map((offer) => (
           <div className="relative flex flex-col overflow-hidden rounded-xl border" key={offer.title}>
-              <FuzzyOverlay />
+            <FuzzyOverlay />
             <div className="min-h-[150px] items-start space-y-4 bg-purple-900/5 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,176,225,0.12),rgba(255,255,255,0))] p-6">
               <p className="flex font-urban text-sm font-bold uppercase tracking-wider text-muted-foreground">
                 {offer.title}
               </p>
 
-              
+
 
               <div className="flex flex-row">
                 <div className="flex items-end">
                   <div className="flex text-left text-3xl font-semibold leading-6">
                     {isYearly && offer.prices.monthly > 0 ? (
                       <>
-                      <span className="mr-2 text-muted-foreground line-through">${offer.prices.monthly}</span>
+                        <span className="mr-2 text-muted-foreground line-through">${offer.prices.monthly}</span>
                         <span>${offer.prices.yearly / 12}</span>
                       </>
                     ) : `$${offer.prices.monthly}`}
@@ -162,7 +162,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
         ))}
       </div>
 
-      
+
     </section>
   )
 }

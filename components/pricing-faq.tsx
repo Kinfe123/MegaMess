@@ -66,7 +66,7 @@ export function PricingFaq() {
       <div className="mb-14 space-y-6 text-center">
         <h1 className="text-balance text-center font-heading text-3xl md:text-5xl">
           Frequently Asked Questions
-        </h1>
+      </h1>
         <p className="text-md text-balance text-muted-foreground">
           Explore our comprehensive FAQ to find quick answers to common inquiries.
           If you need further assistance, don&apos;t hesitate to contact us for personalized help.
