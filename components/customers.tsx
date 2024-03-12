@@ -1,3 +1,4 @@
+import { BottomLine } from "@/app/(marketing)/_components/gradients"
 import Section from "@/app/(marketing)/_components/section"
 const Customers = () => {
     return (
@@ -82,6 +83,7 @@ const Customers = () => {
                     </div>
                 </div>
             </section>
+            <BottomLine />
 
         </Section>
 

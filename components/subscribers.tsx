@@ -39,8 +39,8 @@ const Subscribers = () => {
                     Aliquip reprehenderit incididunt amet quis fugiat ut velit. Sit occaecat labore proident cillum in nisi
                     adipisicing officia excepteur tempor deserunt.
                 </p>
-                <div className="flex justify-center items-center gap-4">
-                    <Input /> 
+                <div className="flex mt-5 max-w-xl mx-auto justify-center items-center gap-4">
+                    <Input className="py-6" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="xyz@email.com"/> 
                     <SubButton handler={handleClick}/>
 
                 </div>
