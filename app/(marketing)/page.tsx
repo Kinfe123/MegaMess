@@ -8,6 +8,7 @@ import PricingWrapper from "./_components/pricing-wrapper";
 import { CoreFeatures } from "./_components/features";
 import { GridPatterns } from "./_components/grid-pattern";
 import Customers from "@/components/customers";
+import Subscribers from "@/components/subscribers";
 
 export default async function IndexPage() {
 
@@ -21,6 +22,7 @@ export default async function IndexPage() {
         <PricingWrapper />
         <CoreFeatures />
         <Customers />
+        <Subscribers />
       </section>
     </>
   )

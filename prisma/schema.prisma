@@ -133,3 +133,11 @@ model WaitlistEmail {
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   @@unique([email , fileId])
 }
+
+model WaitlistsForRelease {
+  id        String   @id @default(cuid())
+  email String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+
+  
+}

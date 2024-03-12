@@ -48,3 +48,7 @@ export const getFUllUserById = async (fileId: string) => {
   return userIdByFile 
 
 }
+
+export const addWaitlistEmails = async (email: string) => {
+
+}
