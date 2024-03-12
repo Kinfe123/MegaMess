@@ -14,6 +14,12 @@ const Subscribers = () => {
                     description: "You have successfully added to our waitlists.  We will make sure to stay you updated on our product through this email."
                 })
 
+            }).catch((err) => {
+                toast({
+                    title:"Something went wrong",
+                    description: "There might be an internet issue or something around you!"
+                })
+
             })
         })
 
