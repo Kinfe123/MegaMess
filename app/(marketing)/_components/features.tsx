@@ -4,6 +4,7 @@ import { useId } from 'react'
 import Image, { type ImageProps } from 'next/image'
 import { Tab } from '@headlessui/react'
 import clsx from 'clsx'
+import { GridPatterns } from './grid-pattern'
 
 
 interface Feature {
@@ -140,7 +141,8 @@ function Feature({
 
 function FeaturesMobile() {
   return (
-    <div className="-mx-4 mt-20 flex flex-col gap-y-10 overflow-hidden px-4 sm:-mx-6 sm:px-6 lg:hidden">
+    <div className="relative -mx-4 mt-20 flex flex-col gap-y-10 overflow-hidden px-4 sm:-mx-6 sm:px-6 lg:hidden">
+      <GridPatterns />
       {features.map((feature) => (
         <div key={feature.summary}>
           <Feature feature={feature} className="mx-auto max-w-2xl" isActive />
@@ -221,10 +223,11 @@ export function CoreFeatures() {
     <section
       id="secondary-features"
       aria-label="Features for simplifying everyday business tasks"
-      className="pb-14 pt-20 sm:pb-20 sm:pt-32 lg:pb-32"
+      className="relative z-20 pb-14 pt-20 sm:pb-20 sm:pt-32 lg:pb-32"
     >
+      <GridPatterns />
       <div className='container'>
-        <div className="mx-auto max-w-2xl md:text-center">
+        <div className="mx-auto z-20 max-w-2xl md:text-center">
           <h2 className="font-heading text-4xl tracking-tight  sm:text-6xl">
             Simplify everyday    <span className="text-gradient_indigo-purple font-extrabold lg:text-9xl">
                             business tasks
@@ -237,6 +240,7 @@ export function CoreFeatures() {
         </div>
         <FeaturesMobile />
         <FeaturesDesktop />
+      <GridPatterns />
       </div>
     </section>
   )

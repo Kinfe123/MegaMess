@@ -92,7 +92,7 @@
 }
 
 .text-gradient_indigo-purple {
-  background: linear-gradient(90deg, #ef63f1 0%, rgb(168 85 247 / 0.8) 100%);
+  background: linear-gradient(90deg, #ef63f1 0%, hsla(271, 91%, 65%, 0.8) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
