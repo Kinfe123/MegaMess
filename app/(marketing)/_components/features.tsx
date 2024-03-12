@@ -222,7 +222,7 @@ function FeaturesDesktop() {
 export function CoreFeatures() {
   return (
     <Section
-    className="pt-[15rem] -mt-[5.25rem]"
+    className="pt-[18rem] -mt-[5.25rem]"
     crosses
     crossesOffset="lg:translate-y-[5.25rem]"
     customPaddings
