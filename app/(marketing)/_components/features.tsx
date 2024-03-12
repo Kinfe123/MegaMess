@@ -124,8 +124,8 @@ function Feature({
       </div>
       <h3
         className={clsx(
-          'mt-6 text-sm font-medium',
-          isActive ? 'text-gradient_indigo-purple border-none ' : 'text-slate-600',
+          'mt-6 text-md font-medium',
+          isActive ? 'text-gradient_indigo-purple ' : 'text-slate-600',
         )}
       >
         {feature.name}
@@ -146,7 +146,7 @@ function FeaturesMobile() {
           <Feature feature={feature} className="mx-auto max-w-2xl" isActive />
           <div className="relative mt-10 pb-10">
             <div className="absolute -inset-x-4 bottom-0 top-8 bg-transparent sm:-inset-x-6" />
-            <div className="relative mx-auto w-[52.75rem] overflow-hidden rounded-xl bg-white shadow-lg shadow-slate-900/5 ring-1 ring-slate-500/10">
+            <div className="relative mx-auto w-[52.75rem] overflow-hidden rounded-xl bg-transparent shadow-lg shadow-slate-900/5 ring-1 ring-slate-500/10">
               {/* <Image
                 className="w-full"
                 src={feature.image}
@@ -173,7 +173,7 @@ function FeaturesDesktop() {
                 feature={{
                   ...feature,
                   name: (
-                    <Tab className="ui-not-focus-visible:outline-none">
+                    <Tab className="border-none outline-none border-transparent">
                       <span className="absolute inset-0" />
                       {feature.name}
                     </Tab>
