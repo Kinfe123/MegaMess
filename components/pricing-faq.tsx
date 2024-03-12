@@ -60,6 +60,9 @@ export function PricingFaq() {
         </svg>
         <rect width="100%" height="100%" strokeWidth={0} fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)" />
       </svg>
+      <div className="absolute bottom-10 -z-10 flex w-full justify-center">
+        <div className="animate-pulse-slow h-[400px] w-[400px] max-w-full rounded-full bg-gradient-to-tr from-[#a855f7cc] to-[#ef63f1] opacity-10 blur-[100px]" />
+      </div> 
       <div className="mb-14 space-y-6 text-center">
         <h1 className="text-balance text-center font-heading text-3xl md:text-5xl">
           Frequently Asked Questions
