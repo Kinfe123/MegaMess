@@ -5,6 +5,7 @@ import Image, { type ImageProps } from 'next/image'
 import { Tab } from '@headlessui/react'
 import clsx from 'clsx'
 import { GridPatterns } from './grid-pattern'
+import Section from './section'
 
 
 interface Feature {
@@ -220,6 +221,12 @@ function FeaturesDesktop() {
 
 export function CoreFeatures() {
   return (
+    <Section
+    className="pt-[15rem] -mt-[5.25rem]"
+    crosses
+    crossesOffset="lg:translate-y-[5.25rem]"
+    customPaddings
+    id="hero">
     <section
       id="secondary-features"
       aria-label="Features for simplifying everyday business tasks"
@@ -247,5 +254,6 @@ export function CoreFeatures() {
 
       </div>
     </section>
+    </Section>
   )
 }

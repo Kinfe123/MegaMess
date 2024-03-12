@@ -7,7 +7,7 @@ const PricingWrapper = () => {
     return (
         <>
             <Section
-                className="pt-[2rem] -mt-[5.25rem]"
+                className="pt-[2rem] -mt-[5.25rem] pb-10"
                 crossesOffset="lg:translate-y-[5.25rem]"
                 customPaddings
                 id="pricing">
@@ -19,7 +19,14 @@ const PricingWrapper = () => {
                 </div>
                 <BottomLine />
             </Section>
-            <PricingFaq />
+            <Section
+                className="pt-[15rem] -mt-[5.25rem]"
+                crosses
+                crossesOffset="lg:translate-y-[5.25rem]"
+                customPaddings
+                id="hero">
+                <PricingFaq />
+            </Section>
         </>
     )
 }
