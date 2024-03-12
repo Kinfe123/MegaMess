@@ -1,6 +1,8 @@
+'use client'
 import { addWaitlistEmails } from "@/lib/user"
 import { useState, useTransition } from "react"
 import { toast } from "./ui/use-toast"
+import { Input } from "./ui/input"
 
 const Subscribers = () => {
 
@@ -37,7 +39,7 @@ const Subscribers = () => {
                     adipisicing officia excepteur tempor deserunt.
                 </p>
                 <div className="mx-auto mt-20 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 sm:gap-y-14 lg:max-w-4xl lg:grid-cols-5">
-
+                    <Input /    > 
                 </div>
                 <div className="absolute -top-24 right-0 -z-10 transform-gpu blur-3xl" aria-hidden="true">
                     <div
