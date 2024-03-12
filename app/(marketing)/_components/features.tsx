@@ -223,7 +223,7 @@ export function CoreFeatures() {
     <section
       id="secondary-features"
       aria-label="Features for simplifying everyday business tasks"
-      className="relative z-20 pb-14 pt-20 sm:pb-20 sm:pt-32 lg:pb-32"
+      className="relative pb-14 pt-20 sm:pb-20 sm:pt-32 lg:pb-32"
     >
       <GridPatterns />
       <div className='container'>
@@ -233,7 +233,7 @@ export function CoreFeatures() {
                             business tasks
                         </span>
           </h2>
-          <p className="mt-4 text-lg tracking-tight font-urban">
+          <p className="mt-4 text-lg tracking-tight ">
             Because you’d probably be a little confused if we suggested you
             complicate your everyday business tasks instead.
           </p>
