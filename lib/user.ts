@@ -1,3 +1,4 @@
+'use server'
 import { prisma } from "@/lib/db";
 
 export const getUserByEmail = async (email: string) => {
@@ -50,5 +51,10 @@ export const getFUllUserById = async (fileId: string) => {
 }
 
 export const addWaitlistEmails = async (email: string) => {
-
+  const req = await prisma.waitlistsForRelease.create({
+   data: {
+    email: email,
+   }
+  })
+  return req
 }
