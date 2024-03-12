@@ -48,7 +48,7 @@ const features: Array<Feature> = [
     },
   },
   {
-    name: 'Inventory',
+    name: 'File Stack',
     summary:
       'Never lose track of what’s in stock with accurate inventory tracking.',
     description:
@@ -75,7 +75,7 @@ const features: Array<Feature> = [
     },
   },
   {
-    name: 'Contacts',
+    name: 'Share Around',
     summary:
       'Organize all of your contacts, service providers, and invoices in one place.',
     description:
