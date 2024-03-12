@@ -55,9 +55,9 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
         </svg>
         <rect width="100%" height="100%" strokeWidth={0} fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)" />
       </svg>
-      <div className="absolute top-0 right-0 -z-10 flex w-full justify-center">
+      {/* <div className="absolute top-0 right-0 -z-10 flex w-full justify-center">
         <div className="animate-pulse-slow h-[400px] w-screen overflow-hidden max-w-full rounded-full bg-gradient-to-tr from-[#a855f7cc] to-[#ef63f1] opacity-10 blur-[100px]" />
-      </div> 
+      </div>  */}
     
       <div className="mx-auto mb-10 flex w-full flex-col gap-5">
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">Pricing</p>
@@ -65,7 +65,18 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
           MegaMess is so <span className='text-gradient_indigo-purple font-extrabold'>Generous.</span>
         </h2>
       </div>
-
+      <div
+            className="absolute inset-x-0 -top-16 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl"
+            aria-hidden="true"
+          >
+            <div
+              className="aspect-[1318/752] w-[82.375rem] flex-none bg-gradient-to-r from-[#a855f7cc] to-[#9b46e5] opacity-20"
+              style={{
+                clipPath:
+                  'polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)',
+              }}
+            />
+          </div>
       <div className="mb-4 flex items-center gap-5">
         <span>Monthly Billing</span>
         <Switch
