@@ -1,0 +1,26 @@
+.btn {
+    font-size: 1.2rem;
+    padding:10px 2.5rem;
+    border: none;
+    outline: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    transition: 0.6s;
+    box-shadow: 0px 0px 60px #9b46e5;
+    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+  }
+  
+  .btn:active {
+    scale: 0.92;
+  }
+  
+  .btn:hover {
+    background: rgb(2,29,78);
+      background: linear-gradient(90deg, #ef63f1 0%, hsla(271, 91%, 65%, 0.8) 100%);
+  
+    color: rgb(4, 4, 38);
+  }

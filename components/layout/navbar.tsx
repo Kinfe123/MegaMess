@@ -59,20 +59,21 @@ export function NavBar({ user, items, children, rightElements, scroll = false }:
             {rightElements}
 
             {!user ? (
-              <Link
-                href="/login"
-                className={cn(
-                  buttonVariants({ variant: "outline", size: "sm" })
-                )}
-              >
-                Login 
-              </Link>
+              ''
+              // <Link
+              //   href="/login"
+              //   className={cn(
+              //     buttonVariants({ variant: "outline", size: "sm" })
+              //   )}
+              // >
+              //   Login 
+              // </Link>
             ) : null}
 
             {user ? (
               <UserAccountNav user={user} />
             ) : (
-              <Button className="px-" variant="default" size="lg" onClick={signInModal.onOpen}>Sign In</Button>
+              <Button className="px-" variant="outline" size="sm" onClick={signInModal.onOpen}>Sign In</Button>
             )}
           </div>
         </div>
