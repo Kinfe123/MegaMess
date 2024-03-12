@@ -2,14 +2,53 @@ import Section from "@/app/(marketing)/_components/section"
 const Customers = () => {
     return (
         <Section
-            className="pt-[18rem] -mt-[5.25rem]"
+            className="relative pt-[18rem] -mt-[5.25rem]"
             crosses
             crossesOffset="lg:translate-y-[5.25rem]"
             customPaddings
             id="hero">
-            <section className="bg-transparent">
-                <div className="py-8 lg:py-16 mx-auto max-w-screen-xl px-4">
-                    <h2 className="mb-8 lg:mb-16 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 dark:text-white md:text-4xl">You’ll be in good company</h2>
+                <svg
+        className="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+        aria-hidden="true"
+      >
+        <defs>
+          <pattern
+            id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc"
+            width={200}
+            height={200}
+            x="50%"
+            y={-1}
+            patternUnits="userSpaceOnUse"
+          >
+            <path d="M.5 200V.5H200" fill="none" />
+          </pattern>
+        </defs>
+        <svg x="50%" y={-1} className="overflow-visible fill-gray-800/20">
+          <path
+            d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
+            strokeWidth={0}
+          />
+        </svg>
+        <rect width="100%" height="100%" strokeWidth={0} fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)" />
+      </svg>
+            <div
+                className="absolute inset-x-0 -top-16 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl"
+                aria-hidden="true"
+            >
+                <div
+                    className="aspect-[1318/752] w-[82.375rem] flex-none bg-gradient-to-r from-[#a855f7cc] to-[#9b46e5] opacity-25"
+                    style={{
+                        clipPath:
+                            'polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)',
+                    }}
+                />
+            </div>
+            <section className="bg-transparent mx-auto flex justify-center  items-center flex-col">
+                <div className="py-8 lg:py-16 mx-auto max-w-screen-xl px-4 ">
+                    <h2 className="font-heading mb-10 text-4xl tracking-tight  sm:text-6xl">
+                        Potential     <br /><span className="text-gradient_indigo-purple font-extrabold lg:text-9xl">
+                            Customers.                      </span>
+                    </h2>
                     <div className="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
                         <a href="#" className="flex justify-center items-center">
                             <svg className="h-9 hover:text-gray-900 dark:hover:text-white" viewBox="0 0 125 35" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
