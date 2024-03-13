@@ -13,6 +13,22 @@ Easy and user friendly file sharing platform along with analytics
 - **Content Management:** [Contentlayer](https://www.contentlayer.dev)
 - **File Uploads:** [EdgeStore](https://uploadthing.com)
 
+## Features
+
+- File Upload using our custom uploaders
+- File Visibility . i.e public , private, as well email based 
+- Invitation email for any user to collab on the file 
+- Restrict access for email not in email lists
+- Sending Request to view any file to file owners and sending email  once it gets approved 
+- Email based notifications about core actions like visibility change , api revoke , team member addition 
+- Adding any public file as well email based access file to your favorite list 
+- Edit and Delete your file at anypoints in time - since it will be cascaded 
+- Unique shareable links for each file for public to view it or your emails based access users 
+- Each file analytics reports with ingested email
+- API key [still in dev] - for building an app on top of it or others.
+- Teams [still in dev]  
+
+
 ## Running Locally
 
 1. Clone the repository
