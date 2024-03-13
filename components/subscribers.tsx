@@ -12,6 +12,17 @@ const Subscribers = () => {
     const handleClick = () => {
         startTransition(() => {
             addWaitlistEmails(email).then((data) => {
+
+                fetch('/api/email' , {
+                    method:'POSTS',
+                    body: JSON.stringify({
+                        email: email,
+                        subject: 'You are in',
+                        content: 'Thanks for being onboard with us. We would love to let you know that you are on the first few people to try our products with a custom free plan. We will let know through emails. Stay updated',
+                        link:`${process.env.NEXT_PUBLIC_APP_URL}`,
+                        linkHelper:'Click to see our website'
+                    })
+                }).then((data) => console.log(data))
                 toast({
                     title:"Waitlist Sent",
                     description: "You have successfully added to our waitlists.  We will make sure to stay you updated on our product through this email."
