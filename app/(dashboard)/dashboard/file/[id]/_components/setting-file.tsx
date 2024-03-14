@@ -1,5 +1,27 @@
+'use client'
+
+import { fileDelete } from "@/actions/file-actions";
 import { Button } from "@/components/ui/button"
-export default function SettingFile() {
+import { useTransition } from "react";
+import {toast} from "@/components/ui/use-toast"
+import { Loader2 } from "lucide-react";
+export default  function SettingFile({fileId}: {fileId: string}) {
+  const [pending , startTransition] = useTransition()  
+  const handleClick = () => {
+    startTransition(() => {
+      fileDelete(fileId).then((file: { status: string, name: string | undefined }) => toast({
+        title: "Deleted Successfully.",
+        description: `The file - ${file.name} has successfully deleted!`,
+      })).catch((err) => {
+        toast({
+          title: "Something went wrong.",
+          description: "There is an error while deleting the file.",
+          variant: "destructive",
+        })
+      })
+    })
+      
+    }
     return (
     <div className='flex flex-col w-full  mr-auto'>
       <div className="bg-transparent border-red-500/40 border-[0.001px]  shadow sm:rounded-lg">
@@ -13,11 +35,14 @@ export default function SettingFile() {
             </div>
             <div className="mt-5 sm:ml-6 sm:mt-0 sm:flex sm:flex-shrink-0 sm:items-center">
               <Button
+              disabled={pending}
+               onClick={handleClick}
                 type="button"
                 variant={'destructive'}
                 className="inline-flex items-center rounded-md  px-3 py-2 text-sm font-semibold ml-auto text-white shadow-sm hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
               >
-                Delete File
+            {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                 Delete File
               </Button>
             </div>
           </div>

@@ -53,7 +53,7 @@ const FileDetail = async  ({ params }: PropsParams) => {
                 <TabsContent value="settings" className="flex flex-col max-w-[76rem] ">
                     <Suspense fallback={<WaitlistSkeleton />}>
                     <div className="h-full flex justify-center items-center">
-                                <SettingFile />
+                                <SettingFile fileId={fileId} />
 
                             </div>
 
