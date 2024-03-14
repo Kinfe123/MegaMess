@@ -7,6 +7,7 @@ import { toast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { type File } from "@prisma/client";
+import FileEditForm from "@/components/forms/file-edit-form";
 export default function SettingFile({ fileId , file }: { fileId: string , file: File }) {
   const [pending, startTransition] = useTransition()
   const router = useRouter()
@@ -30,6 +31,7 @@ export default function SettingFile({ fileId , file }: { fileId: string , file: 
   }
   return (
     <div className='flex flex-col w-full  mr-auto'>
+      <FileEditForm file={file}/>
       <div className="bg-transparent border-red-500/40 border-[0.001px]  shadow sm:rounded-lg">
         <div className="px-4 py-5 sm:p-6">
           <h3 className="text-base font-semibold leading-6 text-white">Delete A File</h3>
