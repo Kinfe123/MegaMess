@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 export default function SettingFile() {
     return (
     <div className='flex flex-col w-full  mr-auto'>
-      <div className="bg-transparent border-red-500/90 border-[0.01px]  shadow sm:rounded-lg">
+      <div className="bg-transparent border-red-500/40 border-[0.001px]  shadow sm:rounded-lg">
         <div className="px-4 py-5 sm:p-6">
           <h3 className="text-base font-semibold leading-6 text-white">Delete A File</h3>
           <div className="mt-2 sm:flex sm:items-start sm:justify-between">
@@ -15,7 +15,7 @@ export default function SettingFile() {
               <Button
                 type="button"
                 variant={'destructive'}
-                className="inline-flex items-end rounded-md  px-3 py-2 text-sm font-semibold ml-auto text-white shadow-sm hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                className="inline-flex items-center rounded-md  px-3 py-2 text-sm font-semibold ml-auto text-white shadow-sm hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
               >
                 Delete File
               </Button>
