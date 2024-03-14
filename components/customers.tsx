@@ -3,7 +3,7 @@ import Section from "@/app/(marketing)/_components/section"
 const Customers = () => {
     return (
         <Section
-            className="relative pt-[18rem] -mt-[5.25rem]"
+            className="relative pt-[14rem] -mt-[5.25rem]"
             crosses
             crossesOffset="lg:translate-y-[5.25rem]"
             customPaddings
@@ -33,7 +33,7 @@ const Customers = () => {
                 <rect width="100%" height="100%" strokeWidth={0} fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)" />
             </svg>
             <div
-                className="absolute inset-x-0 -top-16 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl"
+                className="absolute inset-x-0 -top-20 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl"
                 aria-hidden="true"
             >
                 <div
@@ -45,7 +45,7 @@ const Customers = () => {
                 />
             </div>
             <section className="bg-transparent mx-auto flex justify-center  items-center flex-col">
-                <div className="py-8 lg:py-16 mx-auto max-w-screen-xl px-4 ">
+                <div className="py-8 lg:pt-16 mx-auto max-w-screen-xl px-4 ">
                     <h2 className="font-heading mb-10 text-4xl tracking-tight  sm:text-6xl">
                         Potential     <br /><span className="text-gradient_indigo-purple font-extrabold lg:text-9xl">
                             Customers.                      </span>
