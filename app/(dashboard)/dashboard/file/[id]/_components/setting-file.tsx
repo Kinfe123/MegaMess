@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 export default  function SettingFile({fileId}: {fileId: string}) {
   const [pending , startTransition] = useTransition()  
   const router = useRouter()
-  const [success , setSuccess] = useState(false)
   const handleClick = () => {
     startTransition(() => {
       fileDelete(fileId).then((file: { status: string, name: string | undefined }) => 
