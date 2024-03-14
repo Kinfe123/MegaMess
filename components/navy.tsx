@@ -231,7 +231,7 @@ const Pricing = () => {
         className="flex w-full flex-col items-center justify-center py-2 text-neutral-400 transition-colors hover:text-neutral-50"
       >
         <FiPieChart className="mb-2 text-xl text-purple-400/80" />
-        <span className="text-xs">Enterprise</span>
+        <span className="text-xs">Blogs</span>
       </a>
     </div>
   );
