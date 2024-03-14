@@ -7,6 +7,7 @@ import {
   FiPieChart,
 } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
+import { Sparkle } from "lucide-react";
 
 export const ShiftingDropDown = () => {
   return (
@@ -230,7 +231,7 @@ const Pricing = () => {
         href="#"
         className="flex w-full flex-col items-center justify-center py-2 text-neutral-400 transition-colors hover:text-neutral-50"
       >
-        <FiPieChart className="mb-2 text-xl text-purple-400/80" />
+        <Sparkle className="mb-2 text-xl text-purple-400/80" />
         <span className="text-xs">Blogs</span>
       </a>
     </div>
