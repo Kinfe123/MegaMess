@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { Card , CardHeader, CardDescription , CardTitle } from "@/components/ui/card";
 import { type File } from "@prisma/client";
 import FileEditForm from "@/components/forms/file-edit-form";
+import { DashboardHeader } from "@/components/dashboard/header";
 export default function SettingFile({ fileId , file }: { fileId: string , file: File }) {
   const [pending, startTransition] = useTransition()
   const router = useRouter()
@@ -39,7 +40,7 @@ export default function SettingFile({ fileId , file }: { fileId: string , file: 
             </CardDescription>
           </CardHeader>
       <FileEditForm file={file}/>
-      <div className="bg-transparent border-red-500/40 border-[0.001px]  shadow sm:rounded-lg">
+      <div className="bg-transparent mx-2 my-2 border-red-500/40 border-[0.001px]  shadow sm:rounded-lg">
         <div className="px-4 py-5 sm:p-6">
           <h3 className="text-base font-semibold leading-6 text-white">Delete A File</h3>
           <div className="mt-2 sm:flex sm:items-start sm:justify-between">
