@@ -95,7 +95,7 @@ export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User
             </AlertDialogTrigger>
             <AlertDialogContent className='bg-gradient-to-br from-purple-400/10 rounded-md  via-transparent to-transparent/5'>
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Change the visiblity of the file - [STILL in dev]</AlertDialogTitle>
+                    <AlertDialogTitle>Change the visiblity of the file </AlertDialogTitle>
                     <AlertDialogDescription>
                         This action will change your file visiblity, which may affect your audience
                     </AlertDialogDescription>
