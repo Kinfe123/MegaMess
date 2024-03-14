@@ -2,17 +2,24 @@
 
 import { fileDelete } from "@/actions/file-actions";
 import { Button } from "@/components/ui/button"
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import {toast} from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 export default  function SettingFile({fileId}: {fileId: string}) {
   const [pending , startTransition] = useTransition()  
+  const router = useRouter()
+  const [success , setSuccess] = useState(false)
   const handleClick = () => {
     startTransition(() => {
-      fileDelete(fileId).then((file: { status: string, name: string | undefined }) => toast({
+      fileDelete(fileId).then((file: { status: string, name: string | undefined }) => 
+    {
+      router.push("/dashboard")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+      toast({
         title: "Deleted Successfully.",
         description: `The file - ${file.name} has successfully deleted!`,
-      })).catch((err) => {
+      })}).catch((err) => {
+        console.log('THe rror is : ' , err)
         toast({
           title: "Something went wrong.",
           description: "There is an error while deleting the file.",
