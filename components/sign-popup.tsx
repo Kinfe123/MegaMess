@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 const SignInPopUp = () => {
     const signInModal = useSigninModal();
     return (
-        <Button className="px-" variant="outline" size="lg" onClick={signInModal.onOpen}>Sign In</Button>
+        <Button className=" py-5" variant="outline" size="lg" onClick={signInModal.onOpen}>Sign In</Button>
     )
 }
 
