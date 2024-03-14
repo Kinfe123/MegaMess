@@ -4,6 +4,7 @@ import { siteConfig } from "@/config/site"
 import { cn, nFormatter } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { BottomLine, Gradient } from "./gradients"
+import SignInPopUp from "@/components/sign-popup"
 
 const Hero = () => {
     return (
@@ -37,6 +38,7 @@ const Hero = () => {
                         className="flex animate-fade-up justify-center space-x-2 opacity-0 md:space-x-4"
                         style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
                     >
+                        <SignInPopUp />
                         <Link href="/pricing" className={cn(buttonVariants({ size: "lg" }))}>
                             Go Pricing
                         </Link>
