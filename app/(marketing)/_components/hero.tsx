@@ -6,6 +6,7 @@ import { buttonVariants } from "@/components/ui/button"
 import { BottomLine, Gradient } from "./gradients"
 import SignInPopUp from "@/components/sign-popup"
 import { getCurrentUser } from "@/lib/session"
+import { Star } from "lucide-react"
 
 const Hero = async () => {
     const user = await getCurrentUser()
@@ -56,8 +57,10 @@ const Hero = async () => {
             >
                 <div className="container mx-auto">
                     <h2 className="text-center text-sm font-semibold uppercase">Powered by</h2>
-
-                    <div className="my-7 flex flex-wrap items-center justify-center gap-10 gap-y-8 lg:gap-14">
+                        <div className='flex justify-center items-center'>
+                            <h1 className=' sm:text-5xl font-heading mt-1 md:text-6xl lg:text-7xl bg-gradient-to-tr from-zinc-400/40 text-transparent bg-clip-text to-white uppercase'>for <Star className="flex justify-center items-center mx-2"/>  You</h1>
+                        </div>
+                    {/* <div className="my-7 flex flex-wrap items-center justify-center gap-10 gap-y-8 lg:gap-14">
                         {features.map((feature) => (
                             <Link
                                 target="_blank"
@@ -69,7 +72,7 @@ const Hero = async () => {
                                 {feature.icon}
                             </Link>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
             </section>
             <BottomLine />
