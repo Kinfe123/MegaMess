@@ -10,9 +10,9 @@ const Subscribers = () => {
     const [pending , startTransition] = useTransition()
     const [email , setEmail] = useState<string>('')
     const handleClick = () => {
-        startTransition(() => {
-            fetch('/api/email' , {
-                method:'POSTS',
+        startTransition(async () => {
+            await fetch('/api/email' , {
+                method:'POST',
                 body: JSON.stringify({
                     email: email,
                     subject: 'You are in',
@@ -29,9 +29,11 @@ const Subscribers = () => {
                 })
 
             }).catch((err) => {
+                console.log('Error has cused : ' , err)
                 toast({
                     title:"Something went wrong",
-                    description: "There might be an internet issue or something around you!"
+                    description: "There might be an internet issue or something around you!",
+                    variant:"destructive"
                 })
 
             })

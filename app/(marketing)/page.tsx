@@ -11,6 +11,7 @@ import Customers from "@/components/customers";
 import Subscribers from "@/components/subscribers";
 
 export default async function IndexPage() {
+  
 
   return (
     <>

@@ -217,21 +217,21 @@ const Pricing = () => {
         className="flex w-full flex-col items-center justify-center py-2 text-neutral-400 transition-colors hover:text-neutral-50"
       >
         <FiHome className="mb-2 text-xl text-purple-400/80" />
-        <span className="text-xs">Startup</span>
+        <span className="text-xs">Home</span>
       </a>
       <a
         href="#"
         className="flex w-full flex-col items-center justify-center py-2 text-neutral-400 transition-colors hover:text-neutral-50"
       >
         <FiBarChart2 className="mb-2 text-xl text-purple-400/80" />
-        <span className="text-xs">Scaleup</span>
+        <span className="text-xs">Dashboard</span>
       </a>
       <a
         href="#"
         className="flex w-full flex-col items-center justify-center py-2 text-neutral-400 transition-colors hover:text-neutral-50"
       >
         <FiPieChart className="mb-2 text-xl text-purple-400/80" />
-        <span className="text-xs">Enterprise</span>
+        <span className="text-xs">Blogs</span>
       </a>
     </div>
   );
@@ -276,11 +276,11 @@ const Blog = () => {
 
 const TABS = [
   {
-    title: "Features",
+    title: "Upcoming",
     Component: Products,
   },
   {
-    title: "Funds",
+    title: "Features",
     Component: Pricing,
   },
   {
