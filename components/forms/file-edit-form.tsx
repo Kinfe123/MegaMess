@@ -57,14 +57,6 @@ const FileEditForm = ({file}: {file: File}) => {
     });
     return (
         <form onSubmit={onSubmit}>
-        <Card>
-          <CardHeader>
-            <CardTitle>Your Name</CardTitle>
-            <CardDescription>
-              Please enter your full name or a display name you are comfortable
-              with.
-            </CardDescription>
-          </CardHeader>
           <CardContent className="flex flex-col gap-4">
             <div className="grid gap-1">
               <Label className="text-muted-foreground mb-2" htmlFor="name">
@@ -107,8 +99,8 @@ const FileEditForm = ({file}: {file: File}) => {
               )}
               <span>{isPending ? "Saving" : "Save"}</span>
             </button>
-          </CardFooter>
-        </Card>
+            </CardFooter>
+        
       </form>
     )
 
