@@ -6,7 +6,8 @@ import { useState, useTransition } from "react";
 import { toast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-export default function SettingFile({ fileId }: { fileId: string }) {
+import { type File } from "@prisma/client";
+export default function SettingFile({ fileId , file }: { fileId: string , file: File }) {
   const [pending, startTransition] = useTransition()
   const router = useRouter()
   const handleClick = () => {
@@ -18,7 +19,6 @@ export default function SettingFile({ fileId }: { fileId: string }) {
           description: `The file - ${file.name} has successfully deleted!`,
         })
       }).catch((err) => {
-        console.log('THe rror is : ', err)
         toast({
           title: "Something went wrong.",
           description: "There is an error while deleting the file.",
