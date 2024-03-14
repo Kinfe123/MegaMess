@@ -40,7 +40,7 @@ const Hero = async () => {
                         className="flex animate-fade-up justify-center space-x-2 opacity-0 md:space-x-4"
                         style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
                     >
-                        {!user 88 <SignInPopUp /> }
+                        {!user && <SignInPopUp /> }
                         <Link href="/pricing" className={cn(buttonVariants({ size: "lg" }))}>
                             Go Pricing
                         </Link>
