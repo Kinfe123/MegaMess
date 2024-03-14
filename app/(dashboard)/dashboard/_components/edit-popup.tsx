@@ -55,7 +55,6 @@ const EditFileForm = ({ file }: {file:File}) => {
     const onSubmit = handleSubmit(data => {
         startTransition(async () => {
             const { status } = await editFileById(data);
-            console.log('the result is: ', status)
             if (status !== "success") {
                 toast({
                     title: "Something went wrong.",
