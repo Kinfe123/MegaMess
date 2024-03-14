@@ -6,11 +6,11 @@ import { useState, useTransition } from "react";
 import { toast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Card , CardHeader, CardDescription , CardTitle } from "@/components/ui/card";
+import { Card, CardHeader, CardDescription, CardTitle } from "@/components/ui/card";
 import { type File } from "@prisma/client";
 import FileEditForm from "@/components/forms/file-edit-form";
 import { DashboardHeader } from "@/components/dashboard/header";
-export default function SettingFile({ fileId , file }: { fileId: string , file: File }) {
+export default function SettingFile({ fileId, file }: { fileId: string, file: File }) {
   const [pending, startTransition] = useTransition()
   const router = useRouter()
   const handleClick = () => {
@@ -34,12 +34,12 @@ export default function SettingFile({ fileId , file }: { fileId: string , file: 
   return (
     <Card className='flex flex-col gap-5 w-full  mr-auto'>
       <CardHeader>
-            <CardTitle>Seeting</CardTitle>
-            <CardDescription>
-              Manage File Setting
-            </CardDescription>
-          </CardHeader>
-      <FileEditForm file={file}/>
+        <CardTitle>Seeting</CardTitle>
+        <CardDescription>
+          Manage File Setting
+        </CardDescription>
+      </CardHeader>
+      <FileEditForm file={file} />
       <div className="bg-transparent mx-2 my-2 border-red-500/40 border-[0.001px]  shadow sm:rounded-lg">
         <div className="px-4 py-5 sm:p-6">
           <h3 className="text-base font-semibold leading-6 text-white">Delete A File</h3>

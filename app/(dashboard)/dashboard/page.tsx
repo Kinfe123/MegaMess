@@ -29,7 +29,7 @@ export default async function DashboardPage() {
     redirect("/login")
   }
   const result = files(user.id)
-  
+
 
 
   return (
@@ -39,17 +39,17 @@ export default async function DashboardPage() {
       </DashboardHeader>
 
       {!(await result).length && (
-        <Suspense fallback={<FileSkeleton/>}>
-          <EmptyBox userId={user.id}  title={'Files'}/>
+        <Suspense fallback={<FileSkeleton />}>
+          <EmptyBox userId={user.id} title={'Files'} />
         </Suspense>
       )}
       <div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
 
-          <Suspense fallback={<FileSkeleton/>}>
+          <Suspense fallback={<FileSkeleton />}>
             {(await result).map((file) => {
               return (
-                <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)}/>
+                <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} />
 
               )
             })}
