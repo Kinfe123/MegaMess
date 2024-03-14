@@ -83,8 +83,8 @@ const Customers = () => {
                     </div>
                 </div>
             </section>
-            <BottomLine />
 
+            <BottomLine />
         </Section>
 
     )

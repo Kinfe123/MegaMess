@@ -6,6 +6,7 @@ import { Tab } from '@headlessui/react'
 import clsx from 'clsx'
 import { GridPatterns } from './grid-pattern'
 import Section from './section'
+import { BottomLine } from './gradients'
 
 
 interface Feature {
@@ -132,7 +133,7 @@ function Feature({
       >
         {feature.name}
       </h3>
-      <p className={clsx("mt-2 font-display text-xl  font-urban" , isActive ? 'bg-gradient-to-tr from-white/90 to-white/50 text-transparent bg-clip-text ' : "text-muted-foreground" )}>
+      <p className={clsx("mt-2 font-display text-xl  font-urban", isActive ? 'bg-gradient-to-tr from-white/90 to-white/50 text-transparent bg-clip-text ' : "text-muted-foreground")}>
         {feature.summary}
       </p>
       <p className="mt-4 text-sm text-slate-600">{feature.description}</p>
@@ -222,39 +223,39 @@ function FeaturesDesktop() {
 export function CoreFeatures() {
   return (
     <Section
-    className="pt-[18rem] -mt-[5.25rem]"
-    crosses
-    crossesOffset="lg:translate-y-[5.25rem]"
-    customPaddings
-    id="hero">
-    <section
-      id="secondary-features"
-      aria-label="Features for simplifying everyday business tasks"
-      className="relative pb-14 pt-20 sm:pb-20 sm:pt-32 lg:pb-32"
-    >
-      <div className='z-[-10px] '>
-         <GridPatterns />
-        <GridPatterns />
+      className="pt-[14.4rem] -mt-[5.25rem]"
+      crosses
+      crossesOffset="lg:translate-y-[5.25rem]"
+      customPaddings
+      id="hero">
+      <section
+        id="secondary-features"
+        aria-label="Features for simplifying everyday business tasks"
+        className="relative pb-14 pt-20 sm:pb-20 sm:pt-32 lg:pb-32"
+      >
+        <div className='z-[-10px] '>
+          <GridPatterns />
+          <GridPatterns />
 
-      </div>
-      <div className='container z-96'>
-        <div className="mx-auto  max-w-2xl md:text-center">
-          <h2 className="font-heading text-4xl tracking-tight  sm:text-6xl">
-            Simplify everyday    <span className="text-gradient_indigo-purple font-extrabold lg:text-9xl">
-                            business tasks
-                        </span>
-          </h2>
-          
-          <p className="mt-4 text-lg tracking-tight ">
-            Because you’d probably be a little confused if we suggested you
-            complicate your everyday business tasks instead.
-          </p>
         </div>
-        <FeaturesMobile />
-        <FeaturesDesktop />
+        <div className='container z-96'>
+          <div className="mx-auto  max-w-2xl md:text-center">
+            <h2 className="font-heading text-4xl tracking-tight  sm:text-6xl">
+              Simplify everyday    <span className="text-gradient_indigo-purple font-extrabold lg:text-9xl">
+                business tasks
+              </span>
+            </h2>
 
-      </div>
-    </section>
+            <p className="mt-4 text-lg tracking-tight ">
+              Because you’d probably be a little confused if we suggested you
+              complicate your everyday business tasks instead.
+            </p>
+          </div>
+          <FeaturesMobile />
+          <FeaturesDesktop />
+
+        </div>
+      </section>
     </Section>
   )
 }
