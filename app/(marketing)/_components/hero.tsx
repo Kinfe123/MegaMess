@@ -58,7 +58,7 @@ const Hero = async () => {
                 <div className="container mx-auto">
                     <h2 className="text-center text-sm font-semibold uppercase">Powered by</h2>
                         <div className='flex justify-center items-center'>
-                            <h1 className=' sm:text-5xl font-heading mt-1 md:text-6xl lg:text-7xl bg-gradient-to-tr from-zinc-400/40 text-transparent bg-clip-text to-white uppercase'>for <Star className="inline  text-white w-3 h-3"/>  You</h1>
+                            <h1 className=' sm:text-5xl font-heading mt-1 md:text-6xl lg:text-7xl bg-gradient-to-tr from-zinc-400/40 text-transparent bg-clip-text to-white uppercase'>for <Star className="inline ml-1  text-white w-3 h-3"/>  You</h1>
                         </div>
                     {/* <div className="my-7 flex flex-wrap items-center justify-center gap-10 gap-y-8 lg:gap-14">
                         {features.map((feature) => (
