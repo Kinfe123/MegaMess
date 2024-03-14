@@ -12,7 +12,7 @@ const Subscribers = () => {
     const handleClick = () => {
         startTransition(async () => {
             await fetch('/api/email' , {
-                method:'POSTS',
+                method:'POST',
                 body: JSON.stringify({
                     email: email,
                     subject: 'You are in',
@@ -29,6 +29,7 @@ const Subscribers = () => {
                 })
 
             }).catch((err) => {
+                console.log('Error has cused : ' , err)
                 toast({
                     title:"Something went wrong",
                     description: "There might be an internet issue or something around you!",
