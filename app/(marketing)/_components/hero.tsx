@@ -42,6 +42,9 @@ const Hero = async () => {
                         style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
                     >
                         {!user && <SignInPopUp /> }
+                        {user &&  <Link href="/dashboard" className={cn(buttonVariants({ size: "lg" }) , 'bg-transparent border-2 text-white hover:text-black  border-white')}>
+                            Explore Dashboard
+                        </Link> }
                         <Link href="/pricing" className={cn(buttonVariants({ size: "lg" }))}>
                             Go Pricing
                         </Link>
