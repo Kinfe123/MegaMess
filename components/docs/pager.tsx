@@ -37,7 +37,7 @@ export function DocsPager({ doc }: DocsPagerProps) {
           <Icons.chevronRight className="ml-2 size-4" />
         </Link>
       )}
-    </div>
+  </div>
   )
 }
 

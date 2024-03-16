@@ -11,9 +11,9 @@ import { Suspense } from "react"
 import FileCards from "./_components/file-cards"
 import FileForm from "./_components/upload-form"
 import EmptyBox from "./_components/empty-box"
-import { toSize } from "@/lib/utils"
 import { FileSkeleton } from "./loading"
 import { getFUllUserById } from "@/lib/user"
+import { CardSkeleton } from "@/components/shared/card-skeleton"
 
 export const metadata = {
   title: "File Dashboard",
@@ -46,7 +46,7 @@ export default async function DashboardPage() {
       <div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
 
-          <Suspense fallback={<FileSkeleton />}>
+          <Suspense fallback={<CardSkeleton />}>
             {(await result).map((file) => {
               return (
                 <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} />
