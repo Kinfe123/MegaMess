@@ -26,7 +26,7 @@ export function DashboardNav({ items }: DashboardNavProps) {
             <Link key={index} href={item.disabled ? "/" : item.href}>
               <span
                 className={cn(
-                  "group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                  "group mb-1 flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-gradient-to-tr hover:from-accent/90 to-accent/50 hover:text-accent-foreground",
                   path === item.href ? "bg-accent" : "transparent",
                   item.preview && "cursor-not-allowed opacity-80"
                 )}
