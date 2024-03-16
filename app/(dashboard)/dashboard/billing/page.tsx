@@ -29,7 +29,7 @@ export default async function BillingPage() {
         text="Manage billing and your subscription plan."
       />
       <div className="grid gap-8">
-        <Alert className="!pl-14">
+        {/* <Alert className="!pl-14">
           <Icons.warning />
           <AlertTitle>This is a demo app.</AlertTitle>
           <AlertDescription>
@@ -45,7 +45,7 @@ export default async function BillingPage() {
             </a>
             .
           </AlertDescription>
-        </Alert>
+        </Alert> */}
         <BillingInfo
           subscriptionPlan={subscriptionPlan}
         />
