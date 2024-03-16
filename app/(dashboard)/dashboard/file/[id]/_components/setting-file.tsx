@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import { Card, CardHeader, CardDescription, CardTitle } from "@/components/ui/card";
 import { type File } from "@prisma/client";
 import FileEditForm from "@/components/forms/file-edit-form";
-import { DashboardHeader } from "@/components/dashboard/header";
 export default function SettingFile({ fileId, file }: { fileId: string, file: File }) {
   const [pending, startTransition] = useTransition()
   const router = useRouter()
