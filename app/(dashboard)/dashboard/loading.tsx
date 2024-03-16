@@ -12,7 +12,7 @@ export default function DashboardLoading() {
 
 export const FileSkeleton = () => {
   return (
-    <DashboardShell>
+    <DashboardShell className="w-full">
       <DashboardHeader heading="Upload & Share File" text="Create and a huge mess and lets handle the rest.">
         <Button>Upload a file</Button>
       </DashboardHeader>
