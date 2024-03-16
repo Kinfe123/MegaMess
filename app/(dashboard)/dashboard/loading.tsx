@@ -12,11 +12,11 @@ export default function DashboardLoading() {
 
 export const FileSkeleton = () => {
   return (
-    <DashboardShell className="w-full">
+    <DashboardShell className="w-screen overflow-hidden">
       <DashboardHeader heading="Upload & Share File" text="Create and a huge mess and lets handle the rest.">
         <Button>Upload a file</Button>
       </DashboardHeader>
-      <div className="gap-2 grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-y rounded-md">
+      <div className="gap-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-y rounded-md">
         <CardSkeleton />
         <CardSkeleton />
         <CardSkeleton />
