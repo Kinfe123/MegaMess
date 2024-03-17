@@ -28,11 +28,11 @@ export default async function DashboardLayout({
       </div>
       <NavBar user={user} items={dashboardConfig.mainNav} scroll={false} />
 
-      <div className="container z-10 py-10 grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
-        <aside className="hidden w-[200px] flex-col md:flex">
+      <div className="w-full  mx-auto my-auto pl-[16rem] pr-[25rem] z-10 py-10 grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
+        <aside className="hidden w-[240px] mr-4 flex-col md:flex">
           <DashboardNav items={dashboardConfig.sidebarNav} />
         </aside>
-        <main className="flex w-full flex-1 flex-col overflow-hidden">
+        <main className="flex w-full ml-10 flex-1 flex-col overflow-hidden">
           {children}
         </main>
       </div>
