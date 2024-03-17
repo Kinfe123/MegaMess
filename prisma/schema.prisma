@@ -80,20 +80,20 @@ model VerificationToken {
 }
 
 model File {
-  id           String          @id @default(cuid())
-  name         String
-  description  String?
-  fileUrl      String
-  size         String
-  userId       String
-  visiblity    Visibility      @default(PRIVATE)
-  viewers      Email[]         @relation("FileViewers")
-  waitlists    WaitlistEmail[] @relation("FileWaitlists")
-  createdAt    DateTime        @default(now()) @map(name: "created_at")
-  updatedAt    DateTime        @default(now()) @map(name: "updated_at")
-  user         User            @relation("files", fields: [userId], references: [id], onDelete: Cascade)
-  teamMember   TeamMember?     @relation("TeamFileMember")
-  TeamFiles    TeamFiles[]
+  id          String          @id @default(cuid())
+  name        String
+  description String?
+  fileUrl     String
+  size        String
+  userId      String
+  visiblity   Visibility      @default(PRIVATE)
+  viewers     Email[]         @relation("FileViewers")
+  waitlists   WaitlistEmail[] @relation("FileWaitlists")
+  createdAt   DateTime        @default(now()) @map(name: "created_at")
+  updatedAt   DateTime        @default(now()) @map(name: "updated_at")
+  user        User            @relation("files", fields: [userId], references: [id], onDelete: Cascade)
+  teamMember  TeamMember?     @relation("TeamFileMember")
+  TeamFiles   TeamFiles[]
 }
 
 model Favorite {
