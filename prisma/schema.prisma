@@ -93,7 +93,6 @@ model File {
   updatedAt    DateTime        @default(now()) @map(name: "updated_at")
   user         User            @relation("files", fields: [userId], references: [id], onDelete: Cascade)
   teamMember   TeamMember?     @relation("TeamFileMember")
-  teamMemberId String
   TeamFiles    TeamFiles[]
 }
 
