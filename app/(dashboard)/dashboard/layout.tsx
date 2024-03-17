@@ -23,7 +23,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="flex relative min-h-screen flex-col space-y-0 ">
-       <div className="absolute left-52 z-0 top-[-1050px] transform rotate-180 justify-center items-center flex">
+      <div className="absolute left-52 z-0 top-[-1050px] transform rotate-180 justify-center items-center flex">
         <Image src={GradientImg} alt="gradinet img" />
 
       </div>
@@ -31,7 +31,7 @@ export default async function DashboardLayout({
 
       <div className="w-full  mx-auto my-auto pl-[16rem] pr-[25rem] z-10 py-10 grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
         <aside className="hidden w-[240px] mr-4 flex-col md:flex border-r border-white/20 pr-4 ">
-   
+
           <DashboardNav items={dashboardConfig.sidebarNav} />
         </aside>
         <main className="flex w-full ml-10 flex-1 flex-col overflow-hidden">
@@ -41,3 +41,4 @@ export default async function DashboardLayout({
     </div>
   )
 }
+
