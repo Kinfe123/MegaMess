@@ -91,10 +91,9 @@ model File {
   createdAt    DateTime        @default(now()) @map(name: "created_at")
   updatedAt    DateTime        @default(now()) @map(name: "updated_at")
   user         User            @relation("files", fields: [userId], references: [id], onDelete: Cascade)
-  teamMember   TeamMember      @relation(fields: [teamMemberId], references: [id])
+  teamMember   TeamMember      
   teamMemberId String
   TeamFiles    TeamFiles[]
-  TeamMember   TeamMember[]
 }
 
 model Favorite {
