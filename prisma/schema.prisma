@@ -65,7 +65,7 @@ model User {
   stripePriceId          String?      @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime?    @map(name: "stripe_current_period_end")
   TeamMember             TeamMember[]
-  apiKeys               APIKey[] 
+  apiKeys                APIKey[]
 
   @@map(name: "users")
 }
@@ -170,13 +170,13 @@ model TeamMember {
   email          String
   name           String?
   teamId         String
-  fileId         String?           @unique
+  fileId         String?          @unique
   accepted       Boolean          @default(false)
   role           String?
   createdAt      DateTime         @default(now()) @map(name: "created_at")
   updatedAt      DateTime         @default(now()) @map(name: "updated_at")
   team           Team             @relation("TeamMemberLists", fields: [teamId], references: [id], onDelete: Cascade)
-  file           File?            @relation("TeamFileMember", fields: [fileId], references: [id] , onDelete: Cascade)
+  file           File?            @relation("TeamFileMember", fields: [fileId], references: [id], onDelete: Cascade)
   user           User?            @relation(fields: [userId], references: [id])
   TeamInvitation TeamInvitation[]
 }
@@ -196,30 +196,25 @@ model TeamInvitation {
 }
 
 model TeamFiles {
-  id        String      @id @default(cuid())
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   teamId    String
   fileId    String
   team      Team     @relation(fields: [teamId], references: [id])
   file      File     @relation(fields: [fileId], references: [id])
+
   @@index([teamId])
   @@index([fileId])
 }
 
-
-
-
-
 // API KEY 
 
 model APIKey {
-  id        String      @id @default(cuid())
-  key      String
+  id        String   @id @default(cuid())
+  key       String   @unique
   userId    String
-  user     User   @relation(fields: [userId] , references: [id] , onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
-
-
 }
