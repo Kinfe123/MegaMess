@@ -112,6 +112,13 @@ enum Visibility {
   EMAIL
 }
 
+enum teamType {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+
 model Email {
   id        String   @id @default(cuid())
   email     String   
@@ -140,4 +147,58 @@ model WaitlistsForRelease {
   createdAt DateTime @default(now()) @map(name: "created_at")
 
   
+}
+
+
+model Team {
+  id          Int        @id @default(cuid())
+  slug        String
+  name        String
+  type        String     @default(FREE)
+  description String?
+  image       String?
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+  teamMembers TeamMember[] @relation("TeamMemberLists")
+  teamFiles TeamFiles[]
+}
+
+model TeamMember {
+  id            Int        @id @default(cuid())
+  userId        String?
+  email         String
+  name          String?
+  teamId        String 
+  fileId        String?
+  accepted      Boolean   @default(false)
+  role          String?
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+  team          Team      @relation("TeamMemberLists" , fields: [teamId], references: [id], onDelete: Cascade)
+  file          File?      @relation(fields: [fileId], references: [id])
+  user          User?      @relation(fields: [userId], references: [id])
+}
+
+model TeamInvitation {
+  id            Int        @id @default(autoincrement())
+  email         String
+  teamId        String
+  token         String
+  status        String?
+  userId        String?
+  teamMemberId  String?
+  createdAt     DateTime?
+  updatedAt     DateTime?
+  team          Team       @relation("TeamMemberLists" , fields: [teamId], references: [id])
+  teamMember    TeamMember? @relation(fields: [teamMemberId], references: [id])
+}
+
+model TeamFiles {
+  id            Int        @id @default(autoincrement())
+  createdAt     DateTime?
+  updatedAt     DateTime?
+  teamId        Int
+  websiteId     Int
+  team          Team       @relation(fields: [teamId], references: [id])
+  website       Website    @relation(fields: [websiteId], references: [id])
 }
