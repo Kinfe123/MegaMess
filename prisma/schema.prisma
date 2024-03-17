@@ -65,6 +65,7 @@ model User {
   stripePriceId          String?      @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime?    @map(name: "stripe_current_period_end")
   TeamMember             TeamMember[]
+  apiKeys               APIKey[] 
 
   @@map(name: "users")
 }
@@ -195,7 +196,7 @@ model TeamInvitation {
 }
 
 model TeamFiles {
-  id        Int      @id @default(autoincrement())
+  id        String      @id @default(cuid())
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   teamId    String
@@ -204,4 +205,21 @@ model TeamFiles {
   file      File     @relation(fields: [fileId], references: [id])
   @@index([teamId])
   @@index([fileId])
+}
+
+
+
+
+
+// API KEY 
+
+model APIKey {
+  id        String      @id @default(cuid())
+  key      String
+  userId    String
+  user     User   @relation(fields: [userId] , references: [id] , onDelete: Cascade)
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+
+
 }
