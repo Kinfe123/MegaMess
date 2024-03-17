@@ -46,24 +46,25 @@ model Session {
 }
 
 model User {
-  id                     String     @id @default(cuid())
+  id                     String       @id @default(cuid())
   name                   String?
-  email                  String?    @unique
+  email                  String?      @unique
   firstName              String?
   lastName               String?
   emailVerified          DateTime?
   image                  String?
-  createdAt              DateTime   @default(now()) @map(name: "created_at")
-  updatedAt              DateTime   @default(now()) @map(name: "updated_at")
-  files                  File[]     @relation("files")
+  createdAt              DateTime     @default(now()) @map(name: "created_at")
+  updatedAt              DateTime     @default(now()) @map(name: "updated_at")
+  files                  File[]       @relation("files")
   accounts               Account[]
   sessions               Session[]
-  favoriting             Favorite[] @relation("Favoriting")
-  favoriter              Favorite[] @relation("FavoritedBy")
-  stripeCustomerId       String?    @unique @map(name: "stripe_customer_id")
-  stripeSubscriptionId   String?    @unique @map(name: "stripe_subscription_id")
-  stripePriceId          String?    @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd DateTime?  @map(name: "stripe_current_period_end")
+  favoriting             Favorite[]   @relation("Favoriting")
+  favoriter              Favorite[]   @relation("FavoritedBy")
+  stripeCustomerId       String?      @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?      @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?      @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime?    @map(name: "stripe_current_period_end")
+  TeamMember             TeamMember[]
 
   @@map(name: "users")
 }
@@ -78,19 +79,22 @@ model VerificationToken {
 }
 
 model File {
-  id          String     @id @default(cuid())
-  name        String
-  description String?
-  fileUrl     String
-  size        String
-  userId      String
-  visiblity   Visibility @default(PRIVATE)
-  viewers     Email[]    @relation("FileViewers")
-  waitlists   WaitlistEmail[] @relation("FileWaitlists")
-  createdAt   DateTime   @default(now()) @map(name: "created_at")
-  updatedAt   DateTime   @default(now()) @map(name: "updated_at")
-
-  user User @relation("files", fields: [userId], references: [id] , onDelete: Cascade)
+  id           String          @id @default(cuid())
+  name         String
+  description  String?
+  fileUrl      String
+  size         String
+  userId       String
+  visiblity    Visibility      @default(PRIVATE)
+  viewers      Email[]         @relation("FileViewers")
+  waitlists    WaitlistEmail[] @relation("FileWaitlists")
+  createdAt    DateTime        @default(now()) @map(name: "created_at")
+  updatedAt    DateTime        @default(now()) @map(name: "updated_at")
+  user         User            @relation("files", fields: [userId], references: [id], onDelete: Cascade)
+  teamMember   TeamMember      @relation(fields: [teamMemberId], references: [id])
+  teamMemberId String
+  TeamFiles    TeamFiles[]
+  TeamMember   TeamMember[]
 }
 
 model Favorite {
@@ -118,87 +122,86 @@ enum teamType {
   ENTERPRISE
 }
 
-
 model Email {
   id        String   @id @default(cuid())
-  email     String   
-  fileId    String   
-  files     File   @relation("FileViewers" , fields: [fileId] , references: [id], onDelete: Cascade)
+  email     String
+  fileId    String
+  files     File     @relation("FileViewers", fields: [fileId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
-  @@unique([email , fileId])
-  
-}
 
+  @@unique([email, fileId])
+}
 
 model WaitlistEmail {
   id        String   @id @default(cuid())
-  email     String   
-  fileId    String  
-  files     File   @relation("FileWaitlists" , fields: [fileId] , references: [id], onDelete: Cascade)
+  email     String
+  fileId    String
+  files     File     @relation("FileWaitlists", fields: [fileId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
-  @@unique([email , fileId])
+
+  @@unique([email, fileId])
 }
 
 model WaitlistsForRelease {
   id        String   @id @default(cuid())
-  email String
+  email     String
   createdAt DateTime @default(now()) @map(name: "created_at")
-
-  
 }
 
-
 model Team {
-  id          Int        @id @default(cuid())
-  slug        String
-  name        String
-  type        String     @default(FREE)
-  description String?
-  image       String?
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @default(now()) @map(name: "updated_at")
-  teamMembers TeamMember[] @relation("TeamMemberLists")
-  teamFiles TeamFiles[]
+  id             String           @id @default(cuid())
+  slug           String
+  name           String
+  type           teamType         @default(FREE)
+  description    String?
+  image          String?
+  createdAt      DateTime         @default(now()) @map(name: "created_at")
+  updatedAt      DateTime         @default(now()) @map(name: "updated_at")
+  teamMembers    TeamMember[]     @relation("TeamMemberLists")
+  teamFiles      TeamFiles[]
+  TeamInvitation TeamInvitation[]
 }
 
 model TeamMember {
-  id            Int        @id @default(cuid())
-  userId        String?
-  email         String
-  name          String?
-  teamId        String 
-  fileId        String?
-  accepted      Boolean   @default(false)
-  role          String?
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @default(now()) @map(name: "updated_at")
-  team          Team      @relation("TeamMemberLists" , fields: [teamId], references: [id], onDelete: Cascade)
-  file          File?      @relation(fields: [fileId], references: [id])
-  user          User?      @relation(fields: [userId], references: [id])
+  id             String           @id @default(cuid())
+  userId         String?
+  email          String
+  name           String?
+  teamId         String
+  fileId         String?
+  accepted       Boolean          @default(false)
+  role           String?
+  createdAt      DateTime         @default(now()) @map(name: "created_at")
+  updatedAt      DateTime         @default(now()) @map(name: "updated_at")
+  team           Team             @relation("TeamMemberLists", fields: [teamId], references: [id], onDelete: Cascade)
+  file           File?            @relation("TeamFileMember", fields: [fileId], references: [id])
+  user           User?            @relation(fields: [userId], references: [id])
+  TeamInvitation TeamInvitation[]
+  File           File[]
 }
 
 model TeamInvitation {
-  id            Int        @id @default(autoincrement())
-  email         String
-  teamId        String
-  token         String
-  status        String?
-  userId        String?
-  teamMemberId  String?
-  createdAt     DateTime?
-  updatedAt     DateTime?
-  team          Team       @relation("TeamMemberLists" , fields: [teamId], references: [id])
-  teamMember    TeamMember? @relation(fields: [teamMemberId], references: [id])
+  id           String      @id @default(cuid())
+  email        String
+  teamId       String
+  token        String
+  status       String?
+  userId       String?
+  teamMemberId String?
+  createdAt    DateTime    @default(now()) @map(name: "created_at")
+  updatedAt    DateTime    @default(now()) @map(name: "updated_at")
+  team         Team        @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  teamMember   TeamMember? @relation(fields: [teamMemberId], references: [id], onDelete: Cascade)
 }
 
 model TeamFiles {
-  id            Int        @id @default(autoincrement())
-  createdAt     DateTime?
-  updatedAt     DateTime?
-  teamId        Int
-  websiteId     Int
-  team          Team       @relation(fields: [teamId], references: [id])
-  website       Website    @relation(fields: [websiteId], references: [id])
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+  teamId    String
+  fileId    String
+  team      Team     @relation(fields: [teamId], references: [id])
+  file      File     @relation(fields: [fileId], references: [id])
 }
