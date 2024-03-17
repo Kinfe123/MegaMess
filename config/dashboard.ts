@@ -20,6 +20,20 @@ export const dashboardConfig: DashboardConfig = {
       preview: false,
     },
     {
+      title: "Analytics & Shares",
+      href: "/dashboard/analytics",
+      icon: "barchart",
+      preview: false,
+
+    },
+    {
+      title: "Real time logs",
+      href: "/dashboard/billing",
+      icon: "logs",
+      preview: true,
+
+    },
+    {
       title: "Billing",
       href: "/dashboard/billing",
       icon: "billing",

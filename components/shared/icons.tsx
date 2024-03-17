@@ -5,6 +5,7 @@ import {
   ChevronLeft,
   ChevronRight,
   CreditCard,
+  BarChart2Icon,
   File,
   FileText,
   HelpCircle,
@@ -20,6 +21,7 @@ import {
   Settings,
   Users,
   SunMedium,
+  PipetteIcon , 
   Eye,
   EyeOff,
   Mail,
@@ -42,6 +44,7 @@ export const Icons = {
   check: Check,
   close: X,
   key: KeyIcon,
+  logs: PipetteIcon,
   ellipsis: MoreVertical,
   
   gitHub: ({ ...props }: LucideProps) => (
@@ -93,6 +96,7 @@ export const Icons = {
   moon: Moon,
   page: File,
   post: FileText,
+  barchart: BarChart2Icon,
   search: Search,
   settings: Settings,
   spinner: Loader2,
