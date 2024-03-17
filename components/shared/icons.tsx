@@ -21,6 +21,7 @@ import {
   Settings,
   Users,
   SunMedium,
+  PipetteIcon , 
   Eye,
   EyeOff,
   Mail,
@@ -43,6 +44,7 @@ export const Icons = {
   check: Check,
   close: X,
   key: KeyIcon,
+  logs: PipetteIcon,
   ellipsis: MoreVertical,
   
   gitHub: ({ ...props }: LucideProps) => (

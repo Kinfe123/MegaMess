@@ -22,7 +22,7 @@ export const dashboardConfig: DashboardConfig = {
     {
       title: "Analytics & Shares",
       href: "/dashboard/analytics",
-      icon: "billing",
+      icon: "barchart",
       preview: false,
 
     },
