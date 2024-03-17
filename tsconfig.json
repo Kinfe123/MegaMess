@@ -32,6 +32,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated"
-  ],
+, "components/sidebar"  ],
   "exclude": ["node_modules"]
 }
