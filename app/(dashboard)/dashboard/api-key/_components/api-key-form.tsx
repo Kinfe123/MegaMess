@@ -45,7 +45,6 @@ const ApiKeyForm = ({ userId }: UserProps) => {
             name: "",
             description: ''
 
-
         },
     })
     const onSubmit = handleSubmit(data => {
@@ -54,7 +53,7 @@ const ApiKeyForm = ({ userId }: UserProps) => {
             if (!res) {
                 toast({
                     title: "Something went wrong.",
-                    description: "There is an error while uploading file.",
+                    description: "There is an error while creating an apikey.",
                     variant: "destructive",
                 })
             } else {

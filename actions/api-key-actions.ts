@@ -4,7 +4,7 @@ import { prisma } from "@/lib/db"
 import { generateApiKey } from "@/lib/utils"
 
 export type FormData = {
-    name: string,
+    name?: string,
     description?: string,
   
   }
@@ -23,12 +23,14 @@ export const apikeyById =  async (id: string) => {
 
 export const createApiKey =  async (userId: string , data:FormData  ) => {
     const keys = generateApiKey()
+    console.log('tHE DATA re : ' , data)
     const apikey = await prisma.aPIKey.create({
         data: {
             userId: userId,
-            name: data.name,
-            description: data.description,
+            name: data.name ?? "",
+            description: data.description ?? "",
             key: keys,
+            
         }
     })
     console.log("THe created one is : " , apikey)
