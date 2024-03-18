@@ -58,8 +58,8 @@ const ApiKeySkeleton = () => {
             <CardHeader className="flex flex-row items-center gap-4">
                 <KeyIcon className="w-8 h-8" />
                 <div className="grid gap-1">
-                    <CardTitle><Skeleton className='w-10 h-3' /></CardTitle>
-                    <CardDescription><Skeleton className="w-20 h-6" /></CardDescription>
+                    <CardTitle><Skeleton className='w-14 h-5' /></CardTitle>
+                    <CardDescription><Skeleton className="w-24 h-10" /></CardDescription>
                 </div>
 
             </CardHeader>
