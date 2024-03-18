@@ -2,6 +2,8 @@ import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button"
 import { APIKey } from "@prisma/client"
 import { timeAgo } from "@/lib/utils"
+import DeleteBtnApiKey from "./del-api-key"
+import CopyBtn from "../../_components/copy-btn"
 const APIKeyCard = ({ apiKey }: { apiKey: APIKey }) => {
     return (
         <Card>
@@ -12,10 +14,8 @@ const APIKeyCard = ({ apiKey }: { apiKey: APIKey }) => {
                     <CardDescription>A{apiKey.description ?? ""}</CardDescription>
                 </div>
                 <div className="flex flex-row items-center gap-2 ml-auto">
-                    <Button size="sm">Copy</Button>
-                    <Button size="sm" variant="outline">
-                        Delete
-                    </Button>
+                    <CopyBtn link={apiKey.key}/>
+                    <DeleteBtnApiKey id={apiKey.id} />
                 </div>
             </CardHeader>
             <CardContent className="flex items-center gap-4 text-sm">
