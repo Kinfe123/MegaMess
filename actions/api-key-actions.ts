@@ -23,17 +23,36 @@ export const apikeyById =  async (id: string) => {
 
 export const createApiKey =  async (userId: string , data:FormData  ) => {
     const keys = generateApiKey()
-    const apikey = await prisma.aPIKey.create({
-        data: {
-            userId: userId,
-            name: data.name ?? "",
-            description: data.description ?? "",
-            key: keys,
-            
-        }
-    })
-    console.log("THe created one is : " , apikey)
-    return apikey
+    try {
 
+        const apikey = await prisma.aPIKey.create({
+            data: {
+                userId: userId,
+                name: data.name ?? "",
+                description: data.description ?? "",
+                key: keys,
+                
+            }
+        })
+        return apikey
+    }catch(err) {
+        throw new Error("Error has occurred while creating api key")
+
+    }
+
+}
+
+export const deleteApiKey = async (id: string) => {
+    try {
+        const apikey = await prisma.aPIKey.delete({
+            where: {
+                id: id,
+            }
+        })
+        return apikey
+    }catch(err) {
+        throw new Error("Error has occurred while deleting api key")
+        
+    }
 }
 
