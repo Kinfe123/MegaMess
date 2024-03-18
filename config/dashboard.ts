@@ -42,7 +42,7 @@ export const dashboardConfig: DashboardConfig = {
     },
     {
       title: "API Keys",
-      href: "/dashboard/billing",
+      href: "/dashboard/api-key",
       icon: "key",
       preview: true,
 
