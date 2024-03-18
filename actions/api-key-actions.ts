@@ -23,7 +23,6 @@ export const apikeyById =  async (id: string) => {
 
 export const createApiKey =  async (userId: string , data:FormData  ) => {
     const keys = generateApiKey()
-    console.log('tHE DATA re : ' , data)
     const apikey = await prisma.aPIKey.create({
         data: {
             userId: userId,
