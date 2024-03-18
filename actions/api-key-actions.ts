@@ -1,6 +1,7 @@
 'use server'
 
 import { prisma } from "@/lib/db"
+import { generateApiKey } from "@/lib/utils"
 
 export type FormData = {
     name: string,
@@ -21,13 +22,13 @@ export const apikeyById =  async (id: string) => {
 
 
 export const createApiKey =  async (userId: string , data:FormData  ) => {
-    const keys = 'someonehastools'
+    const keys = generateApiKey()
     const apikey = await prisma.aPIKey.create({
         data: {
             userId: userId,
             name: data.name,
             description: data.description,
-            key: keys
+            key: keys,
         }
     })
     return apikey
