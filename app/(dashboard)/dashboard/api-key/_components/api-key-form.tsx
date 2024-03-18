@@ -83,9 +83,9 @@ const ApiKeyForm = ({ userId }: UserProps) => {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px] relative overflow-hidden mt-[-500px] bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70">
                 <DialogHeader>
-                    <DialogTitle>Create APIKey</DialogTitle>
+                    <DialogTitle>Create API Key</DialogTitle>
                     <DialogDescription>
-                        Create apikey and build cool thing with us.
+                        Create api key and build cool thing with us.
                     </DialogDescription>
 
 

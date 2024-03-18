@@ -31,6 +31,7 @@ export const createApiKey =  async (userId: string , data:FormData  ) => {
             key: keys,
         }
     })
+    console.log("THe created one is : " , apikey)
     return apikey
 
 }
