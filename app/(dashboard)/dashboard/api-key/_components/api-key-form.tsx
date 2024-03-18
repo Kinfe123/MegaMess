@@ -31,7 +31,7 @@ type UserProps = {
 const ApiKeyForm = ({ userId }: UserProps) => {
     const [isPending, startTransition] = useTransition()
 
-    const uploadFileById = createApiKey.bind(null, userId)
+    const createApiKeById = createApiKey.bind(null, userId)
  
     
 
@@ -50,9 +50,8 @@ const ApiKeyForm = ({ userId }: UserProps) => {
     })
     const onSubmit = handleSubmit(data => {
         startTransition(async () => {
-            const { status } = await uploadFileById(data);
-            console.log('the result is: ', status)
-            if (status !== "success") {
+            const res = await createApiKeById(data);
+            if (!res) {
                 toast({
                     title: "Something went wrong.",
                     description: "There is an error while uploading file.",
@@ -60,7 +59,7 @@ const ApiKeyForm = ({ userId }: UserProps) => {
                 })
             } else {
                 toast({
-                    description: "You have uploaded the file",
+                    description: "You have createed an API Key",
                 })
             }
         });
@@ -79,7 +78,7 @@ const ApiKeyForm = ({ userId }: UserProps) => {
                     className="bg-gray-800 my-5 mb-10 text-white  ml-auto flex justify-center items-center   transition ease-in-out duration-150 dark:bg-white  dark:text-black"
                 //   disabled={applied}
                 >
-            Create APIKey 
+            Create API Key 
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px] relative overflow-hidden mt-[-500px] bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70">
