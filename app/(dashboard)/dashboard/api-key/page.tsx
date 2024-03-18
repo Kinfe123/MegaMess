@@ -1,8 +1,13 @@
+import { DashboardHeader } from "@/components/dashboard/header"
+import { DashboardShell } from "@/components/dashboard/shell"
+
 const APIKey = () => {
     return (
-        <>
-        Hello world
-        </>
+        <DashboardShell>
+            <DashboardHeader heading="API Keys" text="Create an APIkey and build app on top of it.">
+            </DashboardHeader>
+        </DashboardShell>
+
     )
 }
 
