@@ -1,7 +1,7 @@
 import { ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import ms from "ms";
-
+import crypto from 'crypto'
 import { env } from "@/env.mjs"
 
 export function cn(...inputs: ClassValue[]) {
@@ -111,3 +111,11 @@ export function formatFileSize(bytes?: number) {
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 }
+
+
+export const generateApiKey = () => {
+  const res =  crypto.randomBytes(16).toString('hex');
+  console.log('The res : ' , res)
+};
+
+console.log(generateApiKey)
