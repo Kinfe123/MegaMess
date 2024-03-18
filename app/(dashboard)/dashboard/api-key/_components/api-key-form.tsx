@@ -23,7 +23,7 @@ import FuzzyOverlay from "@/components/fuzzy"
 import { toast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
-import { createApiKey , type FormData } from "@/actions/api-key-actions"
+import { createApiKey, type FormData } from "@/actions/api-key-actions"
 
 type UserProps = {
     userId: string,
@@ -32,8 +32,8 @@ const ApiKeyForm = ({ userId }: UserProps) => {
     const [isPending, startTransition] = useTransition()
 
     const createApiKeById = createApiKey.bind(null, userId)
- 
-    
+
+
 
     const {
         handleSubmit,
@@ -78,7 +78,7 @@ const ApiKeyForm = ({ userId }: UserProps) => {
                     className="bg-gray-800 my-5 mb-10 text-white  ml-auto flex justify-center items-center   transition ease-in-out duration-150 dark:bg-white  dark:text-black"
                 //   disabled={applied}
                 >
-            Create API Key 
+                    Create API Key
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px] relative overflow-hidden mt-[-500px] bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70">
@@ -117,20 +117,6 @@ const ApiKeyForm = ({ userId }: UserProps) => {
                             <Textarea id="desciption" className="col-span-3" {...register("description")} placeholder="Type your message here." />
 
                         </div>
-
-
-
-
-
-
-                        <div className="relative flex justify-center text-xs uppercase">
-                            <span className="bg-background px-2 text-muted-foreground">
-                                Create Api Key
-                            </span>
-                        </div>
-                        {/* <div className="flex justify-center items-center">
-                            <FilePage updateData={handleParentUpdate} />
-                        </div> */}
                     </div>
                     <DialogFooter>
                         <button
