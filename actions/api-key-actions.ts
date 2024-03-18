@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/db"
 import { generateApiKey } from "@/lib/utils"
+import { revalidatePath } from "next/cache"
 
 export type FormData = {
     name?: string,
@@ -34,6 +35,7 @@ export const createApiKey =  async (userId: string , data:FormData  ) => {
                 
             }
         })
+        revalidatePath("/dashboard/api-key")
         return apikey
     }catch(err) {
         throw new Error("Error has occurred while creating api key")
@@ -49,6 +51,8 @@ export const deleteApiKey = async (id: string) => {
                 id: id,
             }
         })
+        revalidatePath("/dashboard/api-key")
+
         return apikey
     }catch(err) {
         throw new Error("Error has occurred while deleting api key")
