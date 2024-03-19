@@ -1,4 +1,4 @@
-export const dynamic = 'force'
+export const dynamic = 'force-dynami'
 
 export async function GET(req: Request) {
     // mokin something that comes as a body - 
