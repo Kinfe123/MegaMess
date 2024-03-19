@@ -9,7 +9,8 @@ import { Suspense } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import APIKeyCard, { KeyIcon } from "./_components/api-key-card"
-
+import { ExternalLink } from "lucide-react"
+import Link from 'next/link'
 const APIKey = async () => {
     const user = await getCurrentUser()
     if (!user) {
@@ -22,6 +23,13 @@ const APIKey = async () => {
                 <ApiKeyForm userId={user.id} />
 
             </DashboardHeader>
+            <div className='flex gap-2 justify-end mr-4 items-center'>
+               Docs
+               <Link href="/docs/api-keys">
+               <ExternalLink className="w-3 h-3" />
+               </Link>  
+
+            </div>
             <Separator />
 
             {!apiKeys.length && (
