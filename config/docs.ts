@@ -49,62 +49,62 @@ export const docsConfig: DocsConfig = {
         },
       ],
     },
-    {
-      title: "Blog",
-      preview: false,
-      items: [
-        {
-          title: "Introduction",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Build your own",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Writing Posts",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-      ],
-    },
-    {
-      title: "Dashboard",
-      preview: false,
-      items: [
-        {
-          title: "Introduction",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Layouts",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Server Components",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Authentication",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Database with Prisma",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "API Routes",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-      ],
-    },
+    // {
+    //   title: "Blog",
+    //   preview: false,
+    //   items: [
+    //     {
+    //       title: "Introduction",
+    //       href: "/docs/in-progress",
+    //       disabled: true,
+    //     },
+    //     {
+    //       title: "Build your own",
+    //       href: "/docs/in-progress",
+    //       disabled: true,
+    //     },
+    //     {
+    //       title: "Writing Posts",
+    //       href: "/docs/in-progress",
+    //       disabled: true,
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: "Dashboard",
+    //   preview: false,
+    //   items: [
+    //     {
+    //       title: "Introduction",
+    //       href: "/docs/in-progress",
+    //       disabled: true,
+    //     },
+    //     {
+    //       title: "Layouts",
+    //       href: "/docs/in-progress",
+    //       disabled: true,
+    //     },
+    //     {
+    //       title: "Server Components",
+    //       href: "/docs/in-progress",
+    //       disabled: true,
+    //     },
+    //     {
+    //       title: "Authentication",
+    //       href: "/docs/in-progress",
+    //       disabled: true,
+    //     },
+    //     {
+    //       title: "Database with Prisma",
+    //       href: "/docs/in-progress",
+    //       disabled: true,
+    //     },
+    //     {
+    //       title: "API Routes",
+    //       href: "/docs/in-progress",
+    //       disabled: true,
+    //     },
+    //   ],
+    // },
   ],
 }
