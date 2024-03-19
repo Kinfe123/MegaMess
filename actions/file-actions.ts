@@ -46,6 +46,18 @@ export async function uploadFile(userId: string, fileUrl: string, fileSize: numb
 
 
 }
+export const uploadFromEndpoint = async (userId: string, name : string , description: string , fileUrl: string , size: string ) => {
+      const fileUplpad = await prisma.file.create({
+        data: {
+          userId: userId,
+          name: name,
+          fileUrl: fileUrl,
+          size: size,
+          description: description,
+        }
+      })
+    return fileUplpad
+}
 
 export const fileDelete = async (id: string) => {
 
