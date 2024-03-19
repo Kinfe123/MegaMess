@@ -1,4 +1,4 @@
-export async function GET(req: Request) {
+export async function POST(req: Request) {
     // mokin something that comes as a body - 
     // name , description , fileUrl
     const name = 'Test name'
