@@ -60,3 +60,21 @@ export const deleteApiKey = async (id: string) => {
     }
 }
 
+const getUserByApi = async (apiKey) => {
+    try {
+
+        const users = await prisma.aPIKey.findFirst({
+            where: {
+                key: apiKey,
+            },
+            include: {
+                user: true,
+            }
+        })
+    return users
+    }catch(err){
+        throw new Error("Not found")
+    }
+
+}
+
