@@ -5,7 +5,6 @@ import { useState } from "react"
 
 export async function POST(req: Request) {
     const headers =  req.headers
-    console.log("it touched" , headers)
     const res  =   await req.json()
     const {name  , fileUrl , description , size} = res
    
