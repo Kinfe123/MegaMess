@@ -25,7 +25,7 @@ Easy and user friendly file sharing platform along with analytics
 - [x] Edit and Delete your file at anypoints in time - [x] since it will be cascaded 
 - [x] Unique shareable links for each file for public to view it or your emails based access users 
 - [x] Each file analytics reports with ingested email
-- API key [still in dev] - for building an app on top of it or others.
+- [x] API key 
 - Teams [still in dev]  
 
 
