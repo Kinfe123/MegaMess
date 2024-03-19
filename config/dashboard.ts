@@ -44,7 +44,7 @@ export const dashboardConfig: DashboardConfig = {
       title: "API Keys",
       href: "/dashboard/api-key",
       icon: "key",
-      preview: true,
+      preview: false,
 
     },
     {
