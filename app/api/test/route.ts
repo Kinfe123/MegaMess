@@ -1,3 +1,5 @@
+export const dynamic = 'force'
+
 export async function GET(req: Request) {
     // mokin something that comes as a body - 
     // name , description , fileUrl
@@ -23,5 +25,5 @@ export async function GET(req: Request) {
     })
     const result = await res.json()
 
-    return new Response(JSON.stringify(result))
+    return new Response(result)
 } 
