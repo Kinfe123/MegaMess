@@ -31,13 +31,13 @@ export const docsConfig: DocsConfig = {
           href: "/docs/documentation",
         },
         {
-          title: "Contentlayer",
-          href: "/docs/in-progress",
-          disabled: true,
+          title: "API Keys",
+          href: "/docs/api-keys",
+          disabled: false,
         },
         {
-          title: "Components",
-          href: "/docs/documentation/components",
+          title: "Teams",
+          href: "/docs/teams",
         },
         {
           title: "Code Blocks",
