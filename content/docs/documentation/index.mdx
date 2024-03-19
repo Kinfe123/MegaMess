@@ -1,27 +1,35 @@
 ---
 title: Documentation
-description: Build your documentation site using Contentlayer and MDX.
+description: Build your file space around us
 ---
 
-Taxonomy includes a documentation site built using [Contentlayer](https://contentlayer.dev) and [MDX](http://mdxjs.com).
+
+
+## Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com)
+- **User Management:** [Clerk](https://clerk.com)
+- **ORM:** [Prisma ORM](https://prisma.io)
+- **UI Components:** [shadcn/ui](https://ui.shadcn.com)
+- **Email:** [React Email](https://react.email)
+- **Content Management:** [Contentlayer](https://www.contentlayer.dev)
+- **File Uploads:** [EdgeStore](https://uploadthing.com)
 
 ## Features
 
-It comes with the following features out of the box:
-
-1. Write content using MDX.
-2. Transform and validate content using Contentlayer.
-3. MDX components such as `<Callout />` and `<Card />`.
-4. Support for table of contents.
-5. Custom navigation with prev and next pager.
-6. Beautiful code blocks using `rehype-pretty-code`.
-7. Syntax highlighting using `shiki`.
-8. Built-in search (_in progress_).
-9. Dark mode (_in progress_).
-
-## How is it built
-
-Click on a section below to learn how the documentation site built.
+- [x] File Upload using our custom uploaders
+- [x] File Visibility . i.e public , private, as well email based 
+- [x] Invitation email for any user to collab on the file 
+- [x] Restrict access for email not in email lists
+- [x] Sending Request to view any file to file owners and sending email  once it gets approved 
+- [x] Email based notifications about core actions like visibility change , api revoke , team member addition 
+- [x] Adding any public file as well email based access file to your favorite list 
+- [x] Edit and Delete your file at anypoints in time - [x] since it will be cascaded 
+- [x] Unique shareable links for each file for public to view it or your emails based access users 
+- [x] Each file analytics reports with ingested email
+- [x] API keyS
+- Teams [still in dev]  
 
 <div className="grid gap-4 lg:grid-cols-2 mt-6">
 
