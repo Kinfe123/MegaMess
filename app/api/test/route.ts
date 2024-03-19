@@ -22,5 +22,5 @@ export async function GET(req: Request) {
     })
     const result = await res.json()
 
-    return new Response('Hello wrodl')
+    return new Response(JSON.stringify(result))
 } 
