@@ -60,7 +60,7 @@ export const deleteApiKey = async (id: string) => {
     }
 }
 
-const getUserByApi = async (apiKey) => {
+export const getUserByApiKey= async (apiKey) => {
     try {
 
         const users = await prisma.aPIKey.findFirst({
