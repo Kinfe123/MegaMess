@@ -1,7 +1,7 @@
 import { getUserByApiKey } from "@/actions/api-key-actions"
 import { uploadFile, uploadFromEndpoint } from "@/actions/file-actions"
 
-export async function GET(req: Request) {
+export async function POST(req: Request) {
     const headers =  req.headers
     const {name , description , fileUrl  , size} = await req.body
     console.log('The objecst are : ' , name , description)
