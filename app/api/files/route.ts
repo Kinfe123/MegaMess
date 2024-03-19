@@ -1,10 +1,12 @@
 import { getUserByApiKey } from "@/actions/api-key-actions"
 import { uploadFile, uploadFromEndpoint } from "@/actions/file-actions"
+import { useState } from "react"
 
 export async function POST(req: Request) {
     const headers =  req.headers
-    const res  = await req.json()
-    console.log('The res : ' , res)
+    console.log("it touched" , headers)
+    const res  =   await req.json()
+    const {name  , fileUrl , description , size} = res
    
 
     const apikey =  headers.get('api-key')
@@ -13,8 +15,13 @@ export async function POST(req: Request) {
         if(!user) {
             throw new Error("No Such User with the API-KEY")
         }
-        // const file = await uploadFromEndpoint(user.user.id ,   name , description ,  fileUrl , size )
-        return new Response(JSON.stringify(user) , {status:200})
+        const file = await uploadFromEndpoint(user.user.id ,   name , description ,  fileUrl , size )
+        if(file) {
+
+            return new Response(JSON.stringify(file) , {status:200})
+        }else {
+            return new Response("Failed while uploading the file" , {status:400})
+        }
 
     }catch(err) {
 
