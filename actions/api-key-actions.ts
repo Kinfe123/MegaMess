@@ -27,8 +27,8 @@ export const createApiKey =  async (userId: string , data:FormData  ) => {
     const keys = generateApiKey()
     try {
         const exists = await checkWebsiteExists(data.website)
-    
-        if(exists?.id) {
+        console.log("eXISTS " , exists)
+        if(!exists) {
             
             const apikey = await prisma.aPIKey.create({
                 data: {
@@ -48,7 +48,8 @@ export const createApiKey =  async (userId: string , data:FormData  ) => {
             throw new Error("The website already exists")
         }
     }catch(err) {
-        throw new Error("Error has occurred while creating api key")
+        console.log("Error is ; " , err)
+        throw new Error("Error has occurred while creating api key" , err)
 
     }
 
