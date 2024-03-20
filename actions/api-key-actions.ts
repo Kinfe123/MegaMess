@@ -26,19 +26,27 @@ export const apikeyById =  async (id: string) => {
 export const createApiKey =  async (userId: string , data:FormData  ) => {
     const keys = generateApiKey()
     try {
+        const exists = await checkWebsiteExists(data.website)
+    
+        if(exists?.id) {
+            
+            const apikey = await prisma.aPIKey.create({
+                data: {
+                    userId: userId,
+                    name: data.name ?? "",
+                    description: data.description ?? "",
+                    key: keys,
+                    website:data.website,
+                    
+                }
 
-        const apikey = await prisma.aPIKey.create({
-            data: {
-                userId: userId,
-                name: data.name ?? "",
-                description: data.description ?? "",
-                key: keys,
-                website:data.website,
-                
-            }
-        })
-        revalidatePath("/dashboard/api-key")
-        return apikey
+            })
+            revalidatePath("/dashboard/api-key")
+            return apikey
+        }else {
+
+            throw new Error("The website already exists")
+        }
     }catch(err) {
         throw new Error("Error has occurred while creating api key")
 
