@@ -32,7 +32,7 @@ export async function GET(req: Request) {
     const fileUrl = 'https://files.edgestore.dev/syq4tyuw5ogm0mk3/publicFiles/_public/e36f81e8-e69f-4c62-91e4-a5f92563fc15.svg'
     const size = '1.4kb'
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL
-    const res = await fetch(`${baseUrl}/api/files` , {
+    const res = await fetch(`https://mega-mess.vercel.app/api/files` , {
         method:"POST",
         headers: {
             'Content-Type': 'application/json',
@@ -73,3 +73,8 @@ Then this give you the response which seems like below
     "updatedAt": "2024-03-20T20:19:08.640Z"
 }
 ```
+
+
+After that you now you got a file uploader component , file uploader api endpoints along with request headers including your API Key and now you can your files in our [`dashboard`](https://mega-mess.vercel.app/).
+
+
