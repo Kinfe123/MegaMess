@@ -62,14 +62,14 @@ Then this give you the response which seems like below
 
 ```json
 {
-"id": "clu08y76o0003npsz4ig65gl8",
-"name": "TEST NAMEE",
-"description": "Test Descriptions",
-"fileUrl": "https://files.edgestore.dev/syq4tyuw5ogm0mk3/publicFiles/_public/e36f81e8-e69f-4c62-91e4-a5f92563fc15.svg",
-"size": "1.4kb",
-"userId": "cltoy4tyq00018px24ef2wvvg",
-"visiblity": "PRIVATE",
-"createdAt": "2024-03-20T20:19:08.640Z",
-"updatedAt": "2024-03-20T20:19:08.640Z"
+    "id": "clu08y76o0003npsz4ig65gl8",
+    "name": "TEST NAMEE",
+    "description": "Test Descriptions",
+    "fileUrl": "https://files.edgestore.dev/syq4tyuw5ogm0mk3/publicFiles/_public/e36f81e8-e69f-4c62-91e4-asa.svg",
+    "size": "1.4kb",
+    "userId": "cltoy4tyq00018px24ef2wvvg",
+    "visiblity": "PRIVATE",
+    "createdAt": "2024-03-20T20:19:08.640Z",
+    "updatedAt": "2024-03-20T20:19:08.640Z"
 }
 ```
