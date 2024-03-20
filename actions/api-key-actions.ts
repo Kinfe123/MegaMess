@@ -62,6 +62,21 @@ export const deleteApiKey = async (id: string) => {
     }
 }
 
+export const checkWebsiteExists = async (website: string) => {
+    try {
+        const apiKeyWeb = await prisma.aPIKey.findFirst({
+            where: {
+                website: website
+            }
+        })
+        return apiKeyWeb
+    }catch(err) {
+
+        throw new Error("Error has occurred while finding website in the api key")
+
+
+    }
+}
 export const getUserByApiKey= async (apiKey) => {
     try {
 
