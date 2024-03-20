@@ -41,7 +41,7 @@ const APIKey = async () => {
                     </div>
                 </Suspense>
             )}
-            {apiKeys.length && (
+            {apiKeys.length > 0 && (
                 <Suspense fallback={<ApiKeySkeleton/> }>
                     {apiKeys.map((apikey) => {
                         return (
@@ -51,7 +51,6 @@ const APIKey = async () => {
 
                 </Suspense>
             )}
-            {/* <ApiKeys /> */}
         </DashboardShell>
 
     )
