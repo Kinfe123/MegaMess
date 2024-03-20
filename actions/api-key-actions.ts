@@ -86,12 +86,13 @@ export const checkWebsiteExists = async (website: string) => {
 
     }
 }
-export const getUserByApiKey= async (apiKey) => {
+export const getUserByApiKey= async (apiKey: string | null , fullWebHost: string) => {
     try {
 
         const users = await prisma.aPIKey.findFirst({
             where: {
-                key: apiKey,
+                key: apiKey ?? "",
+                website: fullWebHost,
             },
             include: {
                 user: true,

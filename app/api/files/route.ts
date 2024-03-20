@@ -8,15 +8,19 @@ export async function POST(req: Request) {
     const res  =   await req.json()
     const {name  , fileUrl , description , size} = res
    
-
+    const hostweb = headers.get('host')
     const apikey =  headers.get('api-key')
+    const protocol = hostweb?.includes(":") ? "http://" : "https://"
+    const fullHostWeb = protocol + hostweb
     try {
-        const user = await getUserByApiKey(apikey)
+        const user = await getUserByApiKey(apikey , fullHostWeb)
+
         if(!user) {
             throw new Error("No Such User with the API-KEY")
         }
         const file = await uploadFromEndpoint(user.user.id ,   name , description ,  fileUrl , size )
         if(file) {
+            
             revalidatePath("/dashboard")
             return new Response(JSON.stringify(file) , {status:200})
         }else {
