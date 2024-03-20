@@ -24,6 +24,7 @@ import { toast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
 import { createApiKey, type FormData } from "@/actions/api-key-actions"
+import { apiKeySchema } from "@/lib/validations/api-key"
 
 type UserProps = {
     userId: string,
@@ -40,10 +41,11 @@ const ApiKeyForm = ({ userId }: UserProps) => {
         register,
         formState: { errors },
     } = useForm<FormData>({
-        resolver: zodResolver(fileSchema),
+        resolver: zodResolver(apiKeySchema),
         defaultValues: {
             name: "",
-            description: ''
+            description: '',
+            website: ""
 
         },
     })
@@ -107,6 +109,20 @@ const ApiKeyForm = ({ userId }: UserProps) => {
                                 {...register("name")}
                             />
                         </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+
+                            <Label htmlFor="name" className="text-right">
+                                Website
+                            </Label>
+
+
+                            <Input
+                                id="website"
+                                size={32}
+                                className="col-span-3"
+                                {...register("website")}
+                            />
+                            </div>
                         <div className="grid grid-cols-4 items-center gap-4">
 
                             <Label htmlFor="name" className="text-right">

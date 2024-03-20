@@ -7,6 +7,7 @@ import { revalidatePath } from "next/cache"
 export type FormData = {
     name?: string,
     description?: string,
+    website: string
   
   }
 
