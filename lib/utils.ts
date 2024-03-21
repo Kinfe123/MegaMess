@@ -118,4 +118,3 @@ export const generateApiKey = () => {
   
 };
 
-console.log(generateApiKey)

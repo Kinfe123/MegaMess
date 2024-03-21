@@ -1,3 +1,4 @@
+
 export const dynamic = 'force-dynamic'
 
 export async function GET(req: Request) {
@@ -25,5 +26,5 @@ export async function GET(req: Request) {
     })
     const result = await res.json()
 
-    return new Response(result)
+    return new Response(JSON.stringify(result))
 } 

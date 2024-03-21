@@ -4,6 +4,7 @@ import { APIKey } from "@prisma/client"
 import { timeAgo } from "@/lib/utils"
 import DeleteBtnApiKey from "./del-api-key"
 import CopyBtn from "../../_components/copy-btn"
+import { Clock } from "lucide-react"
 const APIKeyCard = ({ apiKey }: { apiKey: APIKey }) => {
     return (
         <Card>
@@ -18,9 +19,9 @@ const APIKeyCard = ({ apiKey }: { apiKey: APIKey }) => {
                     <DeleteBtnApiKey id={apiKey.id} />
                 </div>
             </CardHeader>
-            <CardContent className="flex items-center gap-4 text-sm">
+            <CardContent className="flex items-center justify-start gap-4 text-sm">
                 <div className="flex items-center justify-center gap-2">
-                    <CalendarIcon className="w-4 h-4" />
+                    <Clock className="w-4 h-4 text-gray-500 mb-0.5" />
                     <span className="text-gray-500 dark:text-gray-400">Created {timeAgo(apiKey.createdAt)}</span>
                 </div>
             </CardContent>

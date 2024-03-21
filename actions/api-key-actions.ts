@@ -7,6 +7,7 @@ import { revalidatePath } from "next/cache"
 export type FormData = {
     name?: string,
     description?: string,
+    website: string
   
   }
 
@@ -25,20 +26,30 @@ export const apikeyById =  async (id: string) => {
 export const createApiKey =  async (userId: string , data:FormData  ) => {
     const keys = generateApiKey()
     try {
+        const exists = await checkWebsiteExists(data.website)
+        console.log("eXISTS " , exists)
+        if(!exists) {
+            
+            const apikey = await prisma.aPIKey.create({
+                data: {
+                    userId: userId,
+                    name: data.name ?? "",
+                    description: data.description ?? "",
+                    key: keys,
+                    website:data.website,
+                    
+                }
 
-        const apikey = await prisma.aPIKey.create({
-            data: {
-                userId: userId,
-                name: data.name ?? "",
-                description: data.description ?? "",
-                key: keys,
-                
-            }
-        })
-        revalidatePath("/dashboard/api-key")
-        return apikey
+            })
+            revalidatePath("/dashboard/api-key")
+            return apikey
+        }else {
+
+            throw new Error("The website already exists")
+        }
     }catch(err) {
-        throw new Error("Error has occurred while creating api key")
+        console.log("Error is ; " , err)
+        throw new Error("Error has occurred while creating api key" , err)
 
     }
 
@@ -60,12 +71,28 @@ export const deleteApiKey = async (id: string) => {
     }
 }
 
-export const getUserByApiKey= async (apiKey) => {
+export const checkWebsiteExists = async (website: string) => {
+    try {
+        const apiKeyWeb = await prisma.aPIKey.findFirst({
+            where: {
+                website: website
+            }
+        })
+        return apiKeyWeb
+    }catch(err) {
+
+        throw new Error("Error has occurred while finding website in the api key")
+
+
+    }
+}
+export const getUserByApiKey= async (apiKey: string | null , fullWebHost: string) => {
     try {
 
         const users = await prisma.aPIKey.findFirst({
             where: {
-                key: apiKey,
+                key: apiKey ?? "",
+                website: fullWebHost,
             },
             include: {
                 user: true,

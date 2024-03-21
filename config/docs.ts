@@ -39,14 +39,14 @@ export const docsConfig: DocsConfig = {
           title: "Teams",
           href: "/docs/teams",
         },
-        {
-          title: "Code Blocks",
-          href: "/docs/documentation/code-blocks",
-        },
-        {
-          title: "Style Guide",
-          href: "/docs/documentation/style-guide",
-        },
+        // {
+        //   title: "Code Blocks",
+        //   href: "/docs/documentation/code-blocks",
+        // },
+        // {
+        //   title: "Style Guide",
+        //   href: "/docs/documentation/style-guide",
+        // },
       ],
     },
     // {
