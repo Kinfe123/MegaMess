@@ -55,7 +55,8 @@ export const CTA = () => {
           Beta Now Live!
         </span>
         <h1 className="max-w-3xl font-heading bg-gradient-to-br from-white to-gray-400 bg-clip-text text-center text-3xl font-medium leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight">
-          
+          Share at Speed. <br />
+          Left every details for us.
         </h1>
         <p className="my-6 max-w-xl text-center text-base leading-relaxed md:text-lg md:leading-relaxed">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae, et,
