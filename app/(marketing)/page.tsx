@@ -9,6 +9,7 @@ import { CoreFeatures } from "./_components/features";
 import { GridPatterns } from "./_components/grid-pattern";
 import Customers from "@/components/customers";
 import Subscribers from "@/components/subscribers";
+import { CTA } from "./_components/cta";
 
 export default async function IndexPage() {
   
@@ -24,6 +25,7 @@ export default async function IndexPage() {
         <CoreFeatures />
         <Customers />
         <Subscribers />
+        <CTA />
       </section>
     </>
   )
