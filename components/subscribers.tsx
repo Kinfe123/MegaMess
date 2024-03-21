@@ -4,6 +4,8 @@ import { useState, useTransition } from "react"
 import { toast } from "./ui/use-toast"
 import { Input } from "./ui/input"
 import SubButton from "./sub-btn"
+import Section from "@/app/(marketing)/_components/section"
+import { BottomLine } from "@/app/(marketing)/_components/gradients"
 
 const Subscribers = () => {
 
@@ -41,6 +43,11 @@ const Subscribers = () => {
 
     }
     return (
+        <Section
+        className="pt-[5rem] -mt-[5.25rem] pb-10"
+        crossesOffset="lg:translate-y-[5.25rem]"
+        customPaddings
+        id="pricing">
         <div className="mx-auto mt-32 max-w-7xl sm:mt-40 sm:px-6 lg:px-8">
             <div className="relative isolate overflow-hidden bg-gradient-to-tr from-transparent to-transparent/80 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
                 <h2 className="font-heading text-4xl tracking-tight  sm:text-5xl  ">
@@ -70,6 +77,7 @@ const Subscribers = () => {
                 </div>
             </div>
         </div>
+        </Section>
     )
 }
 export default Subscribers
