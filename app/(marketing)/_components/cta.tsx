@@ -59,8 +59,7 @@ export const CTA = () => {
           Left every details for us.
         </h1>
         <p className="my-6 max-w-xl text-center text-base leading-relaxed md:text-lg md:leading-relaxed">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae, et,
-          distinctio eum impedit nihil ipsum modi.
+        Trust us to swiftly and effectively share the entirety of your content and file safety with help of our tools
         </p>
         <motion.button
         onClick={signInModal.onOpen}
