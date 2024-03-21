@@ -14,10 +14,13 @@ import Image from "next/image"
 import Section from "./section"
 import { BottomLine } from "./gradients"
 import Link from "next/link";
+import { useSigninModal } from "@/hooks/use-signin-modal";
 
 const COLORS_TOP = ["#13FFAA", "#1E67C6", "#CE84CF", "#DD335C"];
 
 export const CTA = () => {
+  const signInModal = useSigninModal();
+
   const color = useMotionValue(COLORS_TOP[0]);
 
   useEffect(() => {
@@ -59,6 +62,7 @@ export const CTA = () => {
           distinctio eum impedit nihil ipsum modi.
         </p>
         <motion.button
+        onClick={signInModal.onOpen}
           style={{
             border,
             boxShadow,
