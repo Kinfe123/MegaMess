@@ -81,7 +81,7 @@ const WaitlistShow = ({user , file }:{user:WaitlistEmail , file: File}) => {
         <div className="w-full py-1">
             <div className="flex items-center justify-between ">
                <div className="flex justify-center items-center gap-2">
-                    <User className="w-7 h-8 border-2 rounded-full border-white/60 text-white/60"/>
+                    <User className="w-5 h-5 border-[0.5px] rounded-full border-white/40 text-white/60"/>
                     <p  className="text-muted-foreground text-sm">{user.email}</p>
 
                </div>
