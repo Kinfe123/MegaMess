@@ -10,10 +10,11 @@ import { GridPatterns } from "./_components/grid-pattern";
 import Customers from "@/components/customers";
 import Subscribers from "@/components/subscribers";
 import { CTA } from "./_components/cta";
+import { getCurrentUser } from "@/lib/session";
 
 export default async function IndexPage() {
   
-
+  const user = getCurrentUser()
   return (
     <>
       <section className="space-y-6 pb-12 pt-0 lg:py-10">
@@ -25,7 +26,7 @@ export default async function IndexPage() {
         <CoreFeatures />
         <Customers />
         <Subscribers />
-        <CTA />
+        <CTA user={user} />
       </section>
     </>
   )
