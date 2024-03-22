@@ -89,11 +89,13 @@ model File {
   visiblity   Visibility      @default(PRIVATE)
   viewers     Email[]         @relation("FileViewers")
   waitlists   WaitlistEmail[] @relation("FileWaitlists")
+  logs        Logs[]          @relation("FileLog")
   createdAt   DateTime        @default(now()) @map(name: "created_at")
   updatedAt   DateTime        @default(now()) @map(name: "updated_at")
   user        User            @relation("files", fields: [userId], references: [id], onDelete: Cascade)
   teamMember  TeamMember?     @relation("TeamFileMember")
   TeamFiles   TeamFiles[]
+  
 }
 
 model Favorite {
@@ -119,6 +121,11 @@ enum teamType {
   FREE
   PRO
   ENTERPRISE
+}
+
+enum Status {
+  DENIED
+  GRANTED
 }
 
 model Email {
@@ -219,4 +226,17 @@ model APIKey {
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now()) @map(name: "created_at")
   updatedAt   DateTime @default(now()) @map(name: "updated_at")
+}
+
+
+model Logs {
+  id          String   @id @default(cuid())
+  fileId      String
+  description String?
+  status      Status?  @default(GRANTED)
+  
+  files     File     @relation("FileLog", fields: [fileId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+   
 }

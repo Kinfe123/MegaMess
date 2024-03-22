@@ -29,7 +29,7 @@ export default async function DashboardLayout({
       </div>
       <NavBar user={user} items={dashboardConfig.mainNav} scroll={false} />
 
-      <div className="w-full  mx-auto my-auto pl-[16rem] pr-[25rem] z-10 py-10 grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
+      <div className="w-full  mx-auto my-auto pl-[10rem] pr-[20rem] z-10 py-10 grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
         <aside className="hidden w-[240px] mr-4 flex-col md:flex border-r border-white/20 pr-4 ">
 
           <DashboardNav items={dashboardConfig.sidebarNav} />
