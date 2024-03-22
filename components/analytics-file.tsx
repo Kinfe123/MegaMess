@@ -65,8 +65,8 @@ export function AnalyticsFile() {
           <div className="grid md:grid-cols-3 gap-6">
             <Card className="flex flex-col">
               <CardHeader>
-                <CardDescription>Copy Quality</CardDescription>
-                <CardTitle>Net Sales</CardTitle>
+                <CardDescription>File Shared</CardDescription>
+                <CardTitle>Granted to Others.</CardTitle>
               </CardHeader>
               <CardContent>
                 <LineChart className="aspect-[4/3]" />
@@ -74,8 +74,8 @@ export function AnalyticsFile() {
             </Card>
             <Card className="flex flex-col">
               <CardHeader>
-                <CardDescription>Copy Length</CardDescription>
-                <CardTitle>Page Views</CardTitle>
+                <CardDescription>FIle Viewed</CardDescription>
+                <CardTitle>Viewed by Others.</CardTitle>
               </CardHeader>
               <CardContent>
                 <BarChart className="aspect-[4/3]" />
@@ -83,8 +83,8 @@ export function AnalyticsFile() {
             </Card>
             <Card className="flex flex-col">
               <CardHeader>
-                <CardDescription>Copy Categories</CardDescription>
-                <CardTitle>Gross Margin</CardTitle>
+                <CardDescription>File Access Request</CardDescription>
+                <CardTitle>Waitlists for this file. </CardTitle>
               </CardHeader>
               <CardContent>
                 <BarChart className="aspect-[4/3]" />
@@ -463,7 +463,7 @@ function BarChart(props) {
         indexBy="name"
         margin={{ top: 0, right: 0, bottom: 40, left: 40 }}
         padding={0.3}
-        colors={["#2563eb"]}
+        colors={["#6f406d"]}
         axisBottom={{
           tickSize: 0,
           tickPadding: 16,
