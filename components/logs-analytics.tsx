@@ -125,7 +125,7 @@ export function LogsAnalytics() {
               </div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button className="absolute top-4 right-4" size="sm " variant="ghost">
+                  <Button className="absolute top-4 right-4" size="sm" variant="ghost">
                     <MoreHorizontalIcon className="w-4 h-4" />
                     <span className="sr-only">Toggle menu</span>
                   </Button>
