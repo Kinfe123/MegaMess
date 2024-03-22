@@ -13,7 +13,7 @@ export async function GET(req: Request) {
         method:"POST",
         headers: {
             'Content-Type': 'application/json',
-            'api-key': 'ad0e8fa6a2a5c31dd5b7dd8e3c1195e9',
+            'megamess-api-key': '1f083687c0e91906262c38c6bd77e722',
         },
         body: JSON.stringify({
             name: name,
