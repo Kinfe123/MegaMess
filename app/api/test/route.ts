@@ -2,7 +2,7 @@
 export const dynamic = 'force-dynamic'
 
 export async function GET(req: Request) {
-    // mokin something that comes as a body - 
+    // moking something that comes as a body - 
     // name , description , fileUrl
     const name = 'TEST NAMEE'
     const description = 'Test Descriptions'
