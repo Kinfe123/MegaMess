@@ -20,7 +20,7 @@ export function LogsAnalytics() {
             <div className="flex items-center gap-4">
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button className="pl-3 flex-1 bg-white justify-start" variant="outline">
+                  <Button className="pl-3 flex-1 text-black  bg-white justify-start" variant="outline">
                     <CalendarClockIcon className="mr-2 h-4 w-4 shrink-0" />
                     Select Date
                   </Button>
@@ -80,7 +80,7 @@ export function LogsAnalytics() {
               </div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button className="absolute top-4 right-4" size="icon" variant="ghost">
+                  <Button className="absolute top-4 right-4" size="sm" variant="ghost">
                     <MoreHorizontalIcon className="w-4 h-4" />
                     <span className="sr-only">Toggle menu</span>
                   </Button>
@@ -125,7 +125,7 @@ export function LogsAnalytics() {
               </div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button className="absolute top-4 right-4" size="icon" variant="ghost">
+                  <Button className="absolute top-4 right-4" size="sm " variant="ghost">
                     <MoreHorizontalIcon className="w-4 h-4" />
                     <span className="sr-only">Toggle menu</span>
                   </Button>
@@ -170,7 +170,7 @@ export function LogsAnalytics() {
               </div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button className="absolute top-4 right-4" size="icon" variant="ghost">
+                  <Button className="absolute top-4 right-4" size="sm" variant="ghost">
                     <MoreHorizontalIcon className="w-4 h-4" />
                     <span className="sr-only">Toggle menu</span>
                   </Button>
