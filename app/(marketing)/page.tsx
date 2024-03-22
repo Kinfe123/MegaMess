@@ -26,6 +26,7 @@ export default async function IndexPage() {
         <CoreFeatures />
         <Customers />
         <Subscribers />
+        {/* @ts-ignore */}
         <CTA user={user} />
       </section>
     </>
