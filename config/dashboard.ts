@@ -27,10 +27,10 @@ export const dashboardConfig: DashboardConfig = {
 
     },
     {
-      title: "Real time logs",
-      href: "/dashboard/billing",
+      title: "Logs",
+      href: "/dashboard/logs",
       icon: "logs",
-      preview: true,
+      preview: false,
 
     },
     {
