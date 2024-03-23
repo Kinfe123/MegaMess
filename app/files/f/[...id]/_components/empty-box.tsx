@@ -1,7 +1,7 @@
 import { EmptyPlaceholder } from "@/components/shared/empty-placeholder"
 import { type File } from "@prisma/client"
 import { timeAgo } from "@/lib/utils";
-import { Check, Download, Heart } from "lucide-react";
+import { Check, Download, FileSearch, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from 'next/link'
 import { Skeleton } from "@/components/ui/skeleton";
@@ -11,13 +11,14 @@ import { getUserByFileId } from "@/lib/user";
 import { favByFileId } from "@/lib/fille";
 import { allowedEmailForFile, allowedOwnerEmail } from "@/actions/file-actions";
 import FallBackDetails from "./fallback-details";
+import { access } from "fs";
 type FilePromiseProps = {
     file: Promise<({ user: { image: string | null; name: string | null; }; } & File) | null>
     fileIdInfo: Promise<string | undefined>
 };
 const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     const files = await file
-    let acceess = true
+    let status = true
     const user = await getCurrentUser()
     const allowed = await allowedEmailForFile(files?.id ?? "")
     const ownerId = await getUserByFileId(files?.id ?? "")
@@ -25,12 +26,19 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     const allowFileOwner = await allowedOwnerEmail(files?.id ?? "")
     //    TODO: fix typescript typo
     if (((files?.visiblity === 'EMAIL' && !allowed) || files?.visiblity === 'PRIVATE') || !allowFileOwner) {
-        access = false
+        status = false
         return (
             <FallBackDetails email={user?.email} fileId={files?.id ?? ""} />
 
         )
     }
+    const request = await fetch('/api/logs/' , {
+        method:'POST',
+        body: JSON.stringify({
+            fileId: files?.id,
+            status; status
+        })
+    })
 
     return (
         <>
