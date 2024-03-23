@@ -25,7 +25,7 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     const allowFileOwner = await allowedOwnerEmail(files?.id ?? "")
     //    TODO: fix typescript typo
     if (((files?.visiblity === 'EMAIL' && !allowed) || files?.visiblity === 'PRIVATE') || !allowFileOwner) {
-        
+        access = false
         return (
             <FallBackDetails email={user?.email} fileId={files?.id ?? ""} />
 

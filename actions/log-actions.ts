@@ -5,7 +5,7 @@ enum Status {
     DENIED,
     GRANTED
 }
-export const createLogs = async(fileId: string , status:Status , originIp: string , originLocation: string  , userAgent: string , responseTime: string) => {
+export const createLogs = async(fileId: string , status:boolean , originIp: string , originLocation: string  , userAgent: string , responseTime: string) => {
     try {
         const log = await prisma.logs.create({
             data: {
@@ -22,7 +22,7 @@ export const createLogs = async(fileId: string , status:Status , originIp: strin
         console.log('The logs is : ' , log)
 
       return log
-      
+
 
     }catch(err) {
         console.log('Error while creating logs' , err)
