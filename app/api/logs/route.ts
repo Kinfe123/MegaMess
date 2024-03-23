@@ -15,8 +15,9 @@ export async function GET(req: Request) {
         if(requestToDB) {
             return new Response(JSON.stringify(requestToDB))
 
+        }else {
+            return new Response('Not Logged' , {status:400})
         }
-        return new Response(JSON.stringify({origin_place , origin_ip}))
         
     }catch(err) {
         throw new Error("Error has occured")
