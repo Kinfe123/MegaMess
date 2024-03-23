@@ -234,9 +234,11 @@ model Logs {
   fileId      String
   description String?
   status      Status?  @default(GRANTED)
-  
+  originLocation String? 
+  originIp       String?
+  userAgent      String?
+  responseTime   String?
   files     File     @relation("FileLog", fields: [fileId], references: [id], onDelete: Cascade)
-
   createdAt   DateTime @default(now()) @map(name: "created_at")
    
 }
