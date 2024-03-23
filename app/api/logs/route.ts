@@ -2,11 +2,10 @@ import { createLogs } from "@/actions/log-actions";
 export async function POST(req: Request) {
     try {
         const startTimestamp = Date.now();
-        const {fileId , status} = await req.json()
-        console.log({fileId , status})
+        const {fileId , status , email} = await req.json()
  
         const origin_place = req.headers.get('referer') || ''
-
+        const descriptions = "Unsuccessful Attempt"
         // Get the request origin IP address
         const origin_ip = req.headers.get('x-forwarded-for') || ''
         const user_agent = req.headers.get('user-agent') || ''

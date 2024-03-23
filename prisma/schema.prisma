@@ -233,6 +233,7 @@ model Logs {
   id          String   @id @default(cuid())
   fileId      String
   description String?
+  email        String?
   status      Status?  @default(GRANTED)
   originLocation String? 
   originIp       String?
