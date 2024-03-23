@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const {name  , fileUrl , description , size} = res
    
     const hostweb = headers.get('host')
-    const apikey =  headers.get('api-key')
+    const apikey =  headers.get('megamess-api-key')
     const protocol = hostweb?.includes(":") ? "http://" : "https://"
     const fullHostWeb = protocol + hostweb
     try {

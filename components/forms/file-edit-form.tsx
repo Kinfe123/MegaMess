@@ -74,7 +74,7 @@ const FileEditForm = ({ file }: { file: File }) => {
                 </div>
                 <div className="grid gap-1">
                     <Label className="text-muted-foreground mb-2" htmlFor="name">
-                        First Name
+                        Description
                     </Label>
                     <Input
                         id="description"

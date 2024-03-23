@@ -24,7 +24,7 @@ export function ApiKeys() {
                   </Button>
                 </div>
               </CardHeader>
-              <CardContent className="flex items-center gap-4 text-sm">
+            <CardContent className="flex items-center gap-4 text-sm">
                 <div className="flex items-center gap-1">
                   <CalendarIcon className="w-4 h-4" />
                   <span className="text-gray-500 dark:text-gray-400">Created 2 days ago</span>

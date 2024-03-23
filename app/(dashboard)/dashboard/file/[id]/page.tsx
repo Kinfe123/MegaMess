@@ -8,6 +8,7 @@ import { Suspense } from "react"
 import { fileById, waitlistEmailUsers } from "@/lib/file-info"
 import { Building } from "lucide-react"
 import SettingFile from "./_components/setting-file"
+import { AnalyticsFile } from "@/components/analytics-file"
 
 type PropsParams = {
     params: {
@@ -46,8 +47,7 @@ const FileDetail = async ({ params }: PropsParams) => {
                 <TabsContent value="analytics" className="flex flex-col max-w-[76rem] ">
                     <Suspense fallback={<WaitlistSkeleton />}>
                         <div className="h-full flex justify-center items-center">
-                            <h1 className="flex gap-2 justify-center items-center"><Building className="w-4 h-4" />We are currently under construction :) Stay tuned till it released</h1>
-
+                            <AnalyticsFile />
                         </div>
                     </Suspense>
                 </TabsContent>
