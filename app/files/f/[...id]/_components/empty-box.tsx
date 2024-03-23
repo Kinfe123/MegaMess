@@ -38,6 +38,7 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
             fileId: files?.id,
             status: status,
             email: user?.email,
+            filename: files?.name,
         })
     })
 

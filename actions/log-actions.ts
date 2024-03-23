@@ -5,12 +5,13 @@ enum Status {
     DENIED,
     GRANTED
 }
-export const createLogs = async(fileId: string , status:boolean , originIp: string , originLocation: string  , userAgent: string , responseTime: string) => {
+export const createLogs = async(fileId: string , status:boolean , description: string ,  originIp: string , originLocation: string  , userAgent: string , responseTime: string) => {
     try {
         const log = await prisma.logs.create({
             data: {
                 fileId:fileId,
                 status: status ? "GRANTED" : "DENIED" ,
+                 description,
                 originLocation,
                 originIp,
                 userAgent,
