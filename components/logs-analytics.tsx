@@ -16,7 +16,7 @@ export function LogsAnalytics() {
         
         <div className="grid gap-6 max-w-6xl w-full mx-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-            <Input className="bg-white md:flex-1 dark:bg-transparent" placeholder="Search deployments..." type="search" />
+            <Input className="bg-white md:flex-1 dark:bg-transparent" placeholder="Search logs..." type="search" />
             <div className="flex items-center gap-4">
               <Popover>
                 <PopoverTrigger asChild>
