@@ -36,9 +36,10 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
         method:'POST',
         body: JSON.stringify({
             fileId: files?.id,
-            status; status
+            status: status
         })
     })
+
 
     return (
         <>
