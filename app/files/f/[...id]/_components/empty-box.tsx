@@ -32,13 +32,15 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
 
         )
     }
-    const request = await fetch('/api/logs/' , {
+    const response =  await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/logs` , {
         method:'POST',
         body: JSON.stringify({
             fileId: files?.id,
             status: status
         })
     })
+
+    console.log('The respons is: ' , response)
 
 
     return (

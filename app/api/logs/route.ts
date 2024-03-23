@@ -1,8 +1,9 @@
 import { createLogs } from "@/actions/log-actions";
-export async function GET(req: Request) {
+export async function POST(req: Request) {
     try {
         const startTimestamp = Date.now();
         const {fileId , status} = await req.json()
+        console.log({fileId , status})
  
         const origin_place = req.headers.get('referer') || ''
 
