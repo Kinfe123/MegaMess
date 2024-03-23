@@ -31,3 +31,22 @@ export const createLogs = async(fileId: string , status:boolean , description: s
     }
 
 }
+export const getAlLogs = async (fileId: string) => {
+    
+    try {
+        const allLogs = await prisma.logs.findMany({
+            where: {
+                fileId: fileId
+            }
+        })
+        return allLogs;
+
+
+
+
+    }catch(err) {
+        console.log('Error while creating logs' , err)
+        throw new Error("Error while creating logs")
+    }
+
+}
