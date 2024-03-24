@@ -17,7 +17,7 @@ type FilePromiseProps = {
     fileIdInfo: Promise<string | undefined>
 };
 const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
-    let status = true
+    let status = "GRANTED"
     const files = await file
     const user = await getCurrentUser()
     const allowed = await allowedEmailForFile(files?.id ?? "")
@@ -26,7 +26,7 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     const allowFileOwner = await allowedOwnerEmail(files?.id ?? "")
     //    TODO: fix typescript typo
     if (((files?.visiblity === 'EMAIL' && !allowed) || files?.visiblity === 'PRIVATE') || !allowFileOwner) {
-        status = false
+        status = "DENIED"
         
     }
 

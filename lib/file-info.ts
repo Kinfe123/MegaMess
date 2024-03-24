@@ -91,6 +91,6 @@ export const fileLogbyUser = async () => {
         fileFinished.push(...log)
     })
     const reverseedOne = fileFinished.reverse()
-    return reverseedOne
+    return fileFinished
     
 }

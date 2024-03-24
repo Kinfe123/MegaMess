@@ -57,10 +57,6 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                                     <div className="text-gray-500 dark:text-gray-400">{log.responseTime}     s</div>
                                 </div>
                             </div>
-
-
-
-
                     }
 
 
