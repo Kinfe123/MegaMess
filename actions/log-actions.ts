@@ -39,7 +39,7 @@ export const getAlLogs = async (fileId: string) => {
                 fileId: fileId
             },
             orderBy: {
-                createdAt:"desc"
+                createdAt:"asc"
             }
         })
         return allLogs;

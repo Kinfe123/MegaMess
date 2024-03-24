@@ -81,8 +81,14 @@ export const fileLogbyUser = async () => {
     })
     const resolveLogs = await Promise.all(promiseLogs)
     const filteredOne = resolveLogs.filter((res) => res.length !== 0)
-    const moreFiltered = filteredOne.map((res) => (res[0]))
+    let fileFinished = []
+    filteredOne.map((log) => {
+        // @ts-ignore
+        fileFinished.push(...log)
+    })
     
-    return filteredOne[0]
+
+
+    return fileFinished
     
 }
