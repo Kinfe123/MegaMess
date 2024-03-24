@@ -10,7 +10,7 @@ import { timeAgo } from "@/lib/utils"
 const LogsDisplay = async ({ log }: { log: Logs }) => {
     const file = await fileById(log.fileId)
     return (
-        <div className="flex flex-col lg:flex-row bg-white text-sm p-2 relative dark:bg-transparent">
+        <div className="flex flex-col lg:flex-row border-b-[0.1px] border-white/10 bg-white text-sm p-2 relative dark:bg-transparent">
             <div className="p-2 grid gap-1 flex-1">
                 <div className="font-medium">{log.id.slice(0, 10)}</div>
                 <div className="text-gray-500 dark:text-gray-400">
