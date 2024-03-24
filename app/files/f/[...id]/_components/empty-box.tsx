@@ -17,8 +17,8 @@ type FilePromiseProps = {
     fileIdInfo: Promise<string | undefined>
 };
 const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
-    const files = await file
     let status = true
+    const files = await file
     const user = await getCurrentUser()
     const allowed = await allowedEmailForFile(files?.id ?? "")
     const ownerId = await getUserByFileId(files?.id ?? "")
@@ -27,11 +27,9 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     //    TODO: fix typescript typo
     if (((files?.visiblity === 'EMAIL' && !allowed) || files?.visiblity === 'PRIVATE') || !allowFileOwner) {
         status = false
-        return (
-            <FallBackDetails email={user?.email} fileId={files?.id ?? ""} />
-
-        )
+        
     }
+
     const response =  await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/logs` , {
         method:'POST',
         body: JSON.stringify({
@@ -41,6 +39,12 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
             filename: files?.name,
         })
     })
+    if(!status) {
+        return (
+            <FallBackDetails email={user?.email} fileId={files?.id ?? ""} />
+
+        )
+    }
 
     console.log('The respons is: ' , response)
 

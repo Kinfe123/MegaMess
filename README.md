@@ -27,6 +27,7 @@ Easy and user friendly file sharing platform along with analytics
 - [x] Each file analytics reports with ingested email
 - [x] API key 
 - Teams [still in dev]  
+- Stripe Implementation based on the pricing model[still in dev]  
 
 
 ## Running Locally
