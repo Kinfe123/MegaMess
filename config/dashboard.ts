@@ -30,7 +30,7 @@ export const dashboardConfig: DashboardConfig = {
       title: "Logs",
       href: "/dashboard/logs",
       icon: "logs",
-      preview: true,
+      preview: false,
 
     },
     {
