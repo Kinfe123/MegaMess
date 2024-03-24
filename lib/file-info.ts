@@ -76,10 +76,13 @@ export const fileLogbyUser = async () => {
                 fileId: file.id,
             }
         })
-        promiseLogs = [...promiseLogs , log]
+        promiseLogs.push(log)
 
     })
     const resolveLogs = await Promise.all(promiseLogs)
-    return resolveLogs
+    const filteredOne = resolveLogs.filter((res) => res.length !== 0)
+    const moreFiltered = filteredOne.map((res) => (res[0]))
+    
+    return filteredOne[0]
     
 }
