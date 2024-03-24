@@ -37,6 +37,9 @@ export const getAlLogs = async (fileId: string) => {
         const allLogs = await prisma.logs.findMany({
             where: {
                 fileId: fileId
+            },
+            orderBy: {
+                createdAt:"desc"
             }
         })
         return allLogs;

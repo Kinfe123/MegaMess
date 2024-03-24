@@ -26,8 +26,8 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                     {log.status === 'GRANTED' ? (
                         <div className="flex flex-col justify-center items-start">
                             <div className="flex">
-                            <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-green-400 rounded-full translate-y-1" />
-                            <p>Viewed</p>
+                                <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-green-400 rounded-full translate-y-1" />
+                                <p>Viewed</p>
 
                             </div>
                             <div>
@@ -37,8 +37,8 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                     ) : (
                         <div className="flex flex-col justify-center items-start">
                             <div className="flex">
-                            <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-red-400 rounded-full translate-y-1" />
-                            <p>Denied</p>
+                                <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-red-400 rounded-full translate-y-1" />
+                                <p>Denied</p>
 
                             </div>
                             <div>
@@ -75,9 +75,7 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                    <DropdownMenuItem>View Deployment</DropdownMenuItem>
-                    <DropdownMenuItem>Redeploy</DropdownMenuItem>
-                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Delete</DropdownMenuItem>
                     <DropdownMenuItem disabled>Rollback</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
