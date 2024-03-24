@@ -9,7 +9,7 @@ const LogsDisplay = ({ log }: { log: Logs }) => {
     return (
         <div className="flex flex-col lg:flex-row bg-white text-sm p-2 relative dark:bg-transparent">
             <div className="p-2 grid gap-1 flex-1">
-                <div className="font-medium">{log.id.slice(0, 6)}</div>
+                <div className="font-medium">{log.id.slice(0, 10)}</div>
                 <div className="text-gray-500 dark:text-gray-400">
                     Production
                     <Badge className="bg-white dark:bg-transparent" variant="outline">
@@ -21,20 +21,30 @@ const LogsDisplay = ({ log }: { log: Logs }) => {
             <div className="p-2 grid gap-1 flex-1">
                 <div className="flex items-start gap-2">
                     {log.status === 'GRANTED' ? (
-                        <div>
-                            <span className="inline-flex w-3 h-3 bg-green-400 rounded-full translate-y-1" />
-                            Viewed
+                        <div className="flex flex-col justify-center items-start">
+                            <div className="flex">
+                            <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-green-400 rounded-full translate-y-1" />
+                            <p>Viewed</p>
+
+                            </div>
                             <div>
-                                <div className="text-gray-500 dark:text-gray-400">{log.responseTime}/1000 s</div>
+                                <div className="text-gray-500 dark:text-gray-400">{log.responseTime}     s</div>
                             </div>
                         </div>
-                    ) : <div>
-                        <span className="inline-flex w-3 h-3 bg-red-400 rounded-full translate-y-1" />
-                        Denied
-                        <div>
-                            <div className="text-gray-500 dark:text-gray-400">{log.responseTime}/1000 s</div>
+                    ) : (
+                        <div className="flex flex-col justify-center items-start">
+                            <div className="flex">
+                            <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-red-400 rounded-full translate-y-1" />
+                            <p>Denied</p>
+
+                            </div>
+                            <div>
+                                <div className="text-gray-500 dark:text-gray-400">{log.responseTime}     s</div>
+                            </div>
                         </div>
-                    </div>}
+
+                    )
+                    }
 
 
                 </div>
