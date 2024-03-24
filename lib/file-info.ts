@@ -74,6 +74,10 @@ export const fileLogbyUser = async () => {
         const log =  prisma.logs.findMany({
             where: {
                 fileId: file.id,
+
+            },
+            orderBy: {
+                createdAt: "desc",
             }
         })
         promiseLogs.push(log)
@@ -86,9 +90,7 @@ export const fileLogbyUser = async () => {
         // @ts-ignore
         fileFinished.push(...log)
     })
-    
-
-
-    return fileFinished
+    const reverseedOne = fileFinished.reverse()
+    return reverseedOne
     
 }

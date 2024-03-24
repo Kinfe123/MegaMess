@@ -41,17 +41,12 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     })
     if(!status) {
         return (
-            <FallBackDetails email={user?.email} fileId={files?.id ?? ""} />
+            <FallBackDetails filename={files?.name} email={user?.email} fileId={files?.id ?? ""} />
 
         )
     }
-
-    console.log('The respons is: ' , response)
-
-
     return (
         <>
-
             <EmptyPlaceholder className="bg-gradient-to-tr from-purple-400/10 rounded-lg  via-transparent to-transparent/5 w-full flex justify-start ">
                 <EmptyPlaceholder.Icon name="post" />
 

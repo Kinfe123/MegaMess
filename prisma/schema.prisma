@@ -126,6 +126,7 @@ enum teamType {
 enum Status {
   DENIED
   GRANTED
+  REQUESTED
 }
 
 model Email {
