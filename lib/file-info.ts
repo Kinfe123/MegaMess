@@ -1,5 +1,7 @@
 import { env } from "process"
 import { prisma } from "./db"
+import { getCurrentUser } from "./session"
+import { PrismaPromise, type Logs } from "@prisma/client"
 
 export const fileInfo = (id: string) => {
     const baseUrl = env.BASE_EDGESTORE_URL
@@ -58,4 +60,26 @@ export const fileById = async (fileId: string) => {
     })
     return file
 
+}
+export const fileLogbyUser = async () => {
+    const user = await getCurrentUser()
+    const fileUsers = await prisma.file.findMany({
+        where: {
+            userId: user?.id,
+        },
+        
+    })
+    let promiseLogs: Promise<Logs[]>[] = []
+    fileUsers.map((file) => {
+        const log =  prisma.logs.findMany({
+            where: {
+                fileId: file.id,
+            }
+        })
+        promiseLogs = [...promiseLogs , log]
+
+    })
+    const resolveLogs = await Promise.all(promiseLogs)
+    return resolveLogs
+    
 }
