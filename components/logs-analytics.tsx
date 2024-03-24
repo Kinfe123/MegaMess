@@ -11,6 +11,9 @@ import { type Logs } from "@prisma/client"
 import LogsDisplay from "./log-display"
 
 export function LogsAnalytics({ logs }: { logs: Logs[] }) {
+  if(!logs) {
+    return <div className="mt-10 font-urban text-2xl">Nothing yet</div>
+  }
   return (
     <div className="flex flex-col w-full min-h-screen">
 

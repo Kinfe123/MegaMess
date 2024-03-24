@@ -9,7 +9,7 @@ import { toast } from "@/components/ui/use-toast"
 import { Loader } from "lucide-react"
 
 // TODO: type email fix
-const FallBackDetails = ({email , fileId}: {email:string | null | undefined , fileId: string}) => {
+const FallBackDetails = ({email , fileId ,filename }: {email:string | null | undefined , fileId: string , filename: string | undefined}) => {
     const [email_ , setEmail] = useState(email ?? "")
     const [pending ,startTransition] = useTransition()
     const handleClick = async () => {
@@ -25,6 +25,15 @@ const FallBackDetails = ({email , fileId}: {email:string | null | undefined , fi
                     content: `${email_} is atempting to view the file. can you please check in the request on link below`,
                     linkHelper:'Click to the request',
                   
+                })
+            })
+            const response =  await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/logs` , {
+                method:'POST',
+                body: JSON.stringify({
+                    fileId: fileId,
+                    status: 'REQUESTED',
+                    email: email,
+                    filename: filename,
                 })
             })
             addWaitlist(email_ , fileId).then((data) => {

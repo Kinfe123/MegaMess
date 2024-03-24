@@ -16,7 +16,7 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                 <div className="text-gray-500 dark:text-gray-400">
                     Production
                     <Badge className="bg-white dark:bg-transparent" variant="outline">
-                        Current
+                        {file?.name}
                     </Badge>
                 </div>
             </div>
@@ -34,19 +34,29 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                                 <div className="text-gray-500 dark:text-gray-400">{log.responseTime}     s</div>
                             </div>
                         </div>
-                    ) : (
-                        <div className="flex flex-col justify-center items-start">
-                            <div className="flex">
-                                <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-red-400 rounded-full translate-y-1" />
-                                <p>Denied</p>
+                    ) :
+                        log.status === 'REQUESTED' ? (
+                            <div className="flex flex-col justify-center items-start">
+                                <div className="flex">
+                                    <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-orange-400 rounded-full translate-y-1" />
+                                    <p>Requested</p>
 
+                                </div>
+                                <div>
+                                    <div className="text-gray-500 dark:text-gray-400">{log.responseTime}     s</div>
+                                </div>
                             </div>
-                            <div>
-                                <div className="text-gray-500 dark:text-gray-400">{log.responseTime}     s</div>
-                            </div>
-                        </div>
+                        ) :
+                            <div className="flex flex-col justify-center items-start">
+                                <div className="flex">
+                                    <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-red-400 rounded-full translate-y-1" />
+                                    <p>Denied</p>
 
-                    )
+                                </div>
+                                <div>
+                                    <div className="text-gray-500 dark:text-gray-400">{log.responseTime}     s</div>
+                                </div>
+                            </div>
                     }
 
 
