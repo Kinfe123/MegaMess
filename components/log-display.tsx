@@ -5,7 +5,10 @@ import { Badge } from "@/components/ui/badge"
 import { GitBranchIcon, GitCommitIcon, MoreHorizontalIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { type Logs } from "@prisma/client"
-const LogsDisplay = ({ log }: { log: Logs }) => {
+import { fileById } from "@/lib/file-info"
+import { timeAgo } from "@/lib/utils"
+const LogsDisplay = async ({ log }: { log: Logs }) => {
+    const file = await fileById(log.fileId)
     return (
         <div className="flex flex-col lg:flex-row bg-white text-sm p-2 relative dark:bg-transparent">
             <div className="p-2 grid gap-1 flex-1">
@@ -53,16 +56,16 @@ const LogsDisplay = ({ log }: { log: Logs }) => {
             <div className="p-2 grid gap-1 flex-1">
                 <div className="flex items-center gap-2">
                     <GitBranchIcon className="w-4 h-4" />
-                    main
+                    {file?.name! ?? ""}
                 </div>
                 <div className="flex items-center gap-2">
                     <GitCommitIcon className="w-4 h-4" />
-                    <span className="line-clamp-1">fix: auth issues for third-party integration</span>
+                    <span className="">{log.description ?? ""}</span>
                 </div>
             </div>
             <Separator className="my-2 lg:hidden" />
-            <div className="p-2 grid gap-1 flex-1">
-                <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">17m ago by shadcn</div>
+            <div className="p-2 grid gap-2 flex-1">
+                <div className="flex justify-center ml-auto mr-20 items-center gap-2 text-gray-500 dark:text-gray-400">{timeAgo(log.createdAt)}</div>
             </div>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
