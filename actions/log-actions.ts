@@ -1,5 +1,6 @@
 'use server'
 import { prisma } from "@/lib/db"
+import { revalidatePath } from "next/cache"
 
 enum Status {
     DENIED,
@@ -17,12 +18,11 @@ export const createLogs = async(fileId: string , status:boolean , description: s
                 userAgent,
                 responseTime,
 
-            }
+            },
+            
         })
-
-        console.log('The logs is : ' , log)
-
-      return log
+        revalidatePath("/dashboard/logs")
+        return log
 
 
     }catch(err) {
