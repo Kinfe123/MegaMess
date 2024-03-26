@@ -15,6 +15,7 @@ export async function POST(req: Request) {
         const requestToDB = await createLogs(fileId , status , description, origin_ip , origin_place , user_agent , responsTime.toString())
         
         if(requestToDB) {
+            revalidatePath("/dashboard")
             revalidatePath("/dashboard/logs")
             return new Response(JSON.stringify(requestToDB))
 
