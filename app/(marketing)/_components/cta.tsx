@@ -26,7 +26,6 @@ export const CTA = ({ user }: UserProps) => {
   const usedPromise = use(user)
 
 
-  console.log('The userPromise is : ', usedPromise)
   const signInModal = useSigninModal();
 
   const color = useMotionValue(COLORS_TOP[0]);
