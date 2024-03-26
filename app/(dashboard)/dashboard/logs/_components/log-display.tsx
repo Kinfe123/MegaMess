@@ -86,7 +86,7 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                    
-                    <DropdownMenuItem className="mr-auto flex justify-center items-center">
+                    <DropdownMenuItem className="mr-auto flex justify-start items-center">
                       <Trash className="w-3 h-3 mr-1" />
                       Delete
                     </DropdownMenuItem>

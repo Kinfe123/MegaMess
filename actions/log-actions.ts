@@ -64,6 +64,8 @@ export const logDeleteById = async (id: string) => {
                 id,
             }
         })
+        revalidatePath("/dashboard")
+        revalidatePath("/dashboard/logs")
         return logDelete
     }catch(err) {
         console.log('Error while deleting logs' , err)
