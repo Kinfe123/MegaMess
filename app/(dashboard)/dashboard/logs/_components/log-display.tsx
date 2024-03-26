@@ -88,7 +88,9 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                 <DropdownMenuContent align="end">
                    
                     <DeleteLogs id={log.id}/>
+                    <Separator />
                     <DropdownMenuItem disabled>Rollback</DropdownMenuItem>
+
                 </DropdownMenuContent>
             </DropdownMenu>
         </div>
