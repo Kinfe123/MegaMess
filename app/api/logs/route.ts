@@ -5,8 +5,10 @@ export async function POST(req: Request) {
         const startTimestamp = Date.now();
         const {fileId , status , email , filename} = await req.json()
  
+
         const origin_place = req.headers.get('referer') || ''
-        const description = status === 'GRANTED' ? `${email} has made a view to the file ${filename}`  : status === 'REQUESTED' ? `${email} has made a request to view the file ` :  `Unsuccessful Attempt from an email ${email}` 
+        console.log('THe status is : ' , status)
+        const description = status === "GRANTED" ? `${email} has made a view to the file ${filename}` : (status === 'REQUESTED' ? `${email} has made a request to view the file `:   `Unsuccessful Attempt from an email ${email}` ) 
         // Get the request origin IP address
         const origin_ip = req.headers.get('x-forwarded-for') || ''
         const user_agent = req.headers.get('user-agent') || ''

@@ -69,7 +69,6 @@ export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User
                 })
 
             }).catch((err) => {
-                console.log('Error is :' , err)
                 toast({
                     title: "Something went wrong",
                     description: "There is a problem while changing the visibility of the file",
