@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { type Logs } from "@prisma/client"
 import { fileById } from "@/lib/file-info"
 import { timeAgo } from "@/lib/utils"
+import DeleteLogs from "./log-delete"
 const LogsDisplay = async ({ log }: { log: Logs }) => {
     const file = await fileById(log.fileId)
     return (
@@ -86,10 +87,7 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                    
-                    <DropdownMenuItem className="mr-auto flex justify-start items-center">
-                      <Trash className="w-3 h-3 mr-1" />
-                      Delete
-                    </DropdownMenuItem>
+                    <DeleteLogs id={log.id}/>
                     <DropdownMenuItem disabled>Rollback</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>

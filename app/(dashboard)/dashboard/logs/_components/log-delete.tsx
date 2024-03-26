@@ -24,7 +24,7 @@ const DeleteLogs = ({id}: {id: string}) => {
     }
     return (
         <DropdownMenuItem onClick={handleDelete}>
-            <Trash className="w-3 h-3"/>
+            {pending ? <Loader className="w-3 h-3 animate-spin"/> : <Trash className="w-3 h-3"/> }
             <span>Delete</span>
         </DropdownMenuItem>
     )
