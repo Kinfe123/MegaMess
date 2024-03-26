@@ -27,7 +27,7 @@ const DeleteLogs = ({id}: {id: string}) => {
     }
     return (
         <Button disabled={pending} variant={'ghost'} className="px-1 py-0 text-sm cursor-pointer hover:bg-primary/10 rounded-md mb-1 flex w-full justify-start items-center" onClick={handleDelete}>
-            {pending ? <Loader className="w-3 h-3 animate-spin mr-1"/> : <Trash className="w-3 h-3 mr-1"/> }
+            {pending ? <Loader className="w-3 h-3 animate-spin mr-1"/> : <Trash className="w-3 h-3 mr-1 pb-[2px] my-auto"/> }
             <span>Delete</span>
         </Button>
     )
