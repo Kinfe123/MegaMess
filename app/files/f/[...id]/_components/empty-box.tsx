@@ -24,6 +24,7 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     const ownerId = await getUserByFileId(files?.id ?? "")
     const favLists = await favByFileId(files?.id ?? "")
     const allowFileOwner = await allowedOwnerEmail(files?.id ?? "")
+    console.log('The file owneer is : ' , allowFileOwner)
     //    TODO: fix typescript typo
     if (((files?.visiblity === 'EMAIL' && !allowed) || files?.visiblity === 'PRIVATE') || !allowFileOwner) {
         status = "DENIED"
@@ -39,7 +40,7 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
             filename: files?.name,
         })
     })
-    if(!status) {
+    if(status === "GRANTED") {
         return (
             <FallBackDetails filename={files?.name} email={user?.email} fileId={files?.id ?? ""} />
 

@@ -7,7 +7,6 @@ export async function POST(req: Request) {
  
 
         const origin_place = req.headers.get('referer') || ''
-        console.log('THe status is : ' , status)
         const description = status === "GRANTED" ? `${email} has made a view to the file ${filename}` : (status === 'REQUESTED' ? `${email} has made a request to view the file `:   `Unsuccessful Attempt from an email ${email}` ) 
         // Get the request origin IP address
         const origin_ip = req.headers.get('x-forwarded-for') || ''
