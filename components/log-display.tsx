@@ -2,7 +2,7 @@ import { DropdownMenuTrigger, DropdownMenuCheckboxItem, DropdownMenuContent, Dro
 import { Separator } from "@/components/ui/separator"
 
 import { Badge } from "@/components/ui/badge"
-import { GitBranchIcon, GitCommitIcon, MoreHorizontalIcon } from "lucide-react"
+import { GitBranchIcon, GitCommitIcon, MoreHorizontalIcon, Trash } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { type Logs } from "@prisma/client"
 import { fileById } from "@/lib/file-info"
@@ -85,7 +85,11 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                    <DropdownMenuItem>Delete</DropdownMenuItem>
+                   
+                    <DropdownMenuItem className="mr-auto flex justify-center items-center">
+                      <Trash className="w-3 h-3 mr-1" />
+                      Delete
+                    </DropdownMenuItem>
                     <DropdownMenuItem disabled>Rollback</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>

@@ -11,7 +11,7 @@ import { type Logs } from "@prisma/client"
 import LogsDisplay from "./log-display"
 
 export function LogsAnalytics({ logs }: { logs: Logs[] }) {
-  if(!logs) {
+  if (!logs) {
     return <div className="mt-10 font-urban text-2xl">Nothing yet</div>
   }
   return (
@@ -42,9 +42,9 @@ export function LogsAnalytics({ logs }: { logs: Logs[] }) {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                   <DropdownMenuCheckboxItem >Denied</DropdownMenuCheckboxItem>
-                   <DropdownMenuCheckboxItem >Requested</DropdownMenuCheckboxItem>
-                   <DropdownMenuCheckboxItem >Granted</DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem >Denied</DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem >Requested</DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem >Granted</DropdownMenuCheckboxItem>
                   <DropdownMenuCheckboxItem checked>Ready</DropdownMenuCheckboxItem>
                 </DropdownMenuContent>
               </DropdownMenu>

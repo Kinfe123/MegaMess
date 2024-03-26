@@ -55,3 +55,19 @@ export const getAlLogs = async (fileId: string) => {
     }
 
 }
+
+
+export const logDeleteById = async (id: string) => {
+    try {
+        const logDelete = await prisma.logs.delete({
+            where: {
+                id,
+            }
+        })
+        return logDelete
+    }catch(err) {
+        console.log('Error while deleting logs' , err)
+        throw new Error("Error while deleting logs")
+
+    }
+}
