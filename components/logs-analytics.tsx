@@ -42,6 +42,9 @@ export function LogsAnalytics({ logs }: { logs: Logs[] }) {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
+                   <DropdownMenuCheckboxItem >Denied</DropdownMenuCheckboxItem>
+                   <DropdownMenuCheckboxItem >Requested</DropdownMenuCheckboxItem>
+                   <DropdownMenuCheckboxItem >Granted</DropdownMenuCheckboxItem>
                   <DropdownMenuCheckboxItem checked>Ready</DropdownMenuCheckboxItem>
                 </DropdownMenuContent>
               </DropdownMenu>
