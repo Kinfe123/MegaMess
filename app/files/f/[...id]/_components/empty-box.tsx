@@ -12,6 +12,7 @@ import { favByFileId } from "@/lib/fille";
 import { allowedEmailForFile, allowedOwnerEmail } from "@/actions/file-actions";
 import FallBackDetails from "./fallback-details";
 import { access } from "fs";
+import Feedback from "./feedback";
 type FilePromiseProps = {
     file: Promise<({ user: { image: string | null; name: string | null; }; } & File) | null>
     fileIdInfo: Promise<string | undefined>
@@ -47,13 +48,18 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     }
     return (
         <>
-            <EmptyPlaceholder className="bg-gradient-to-tr from-purple-400/10 rounded-lg  via-transparent to-transparent/5 w-full flex justify-start ">
+            <EmptyPlaceholder className="relative bg-gradient-to-tr from-purple-400/10 rounded-lg  via-transparent to-transparent/5 w-full flex justify-start ">
                 <EmptyPlaceholder.Icon name="post" />
 
                 <EmptyPlaceholder.Title className="font-heading text-3xl"> <span className='text-gradient_indigo-purple font-extrabold'>{files?.name}</span></EmptyPlaceholder.Title>
                 <EmptyPlaceholder.Description>
                     {files?.description}
                 </EmptyPlaceholder.Description>
+                <div className="absolute top-4 right-4 ">
+                    <Feedback fileId={files?.id}/>
+                    
+
+                </div>
                 <div className='flex font-urban justify-start items-start flex-col  mx-auto f'>
                     <div className="flex gap-2 justify-center items-center">
 
