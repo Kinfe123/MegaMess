@@ -13,6 +13,8 @@ export type FormData = {
 
 }
 
+
+
 export async function uploadFile(userId: string, fileUrl: string, fileSize: number, data: FormData) {
   try {
     const user = await getCurrentUser()
@@ -387,9 +389,9 @@ export const allowEmail = async (fileId: string , email:string) => {
 }
 
 
-export const feedbackAdded = async (fileId: string , name: string , description: string) => {
+export const createFeedback = async (fileId: string , data: FormData) => {
   try {
-    if(!description) {
+    if(!data.description) {
       throw new Response('Description is not provided ', {status:400})
       
       
@@ -397,8 +399,8 @@ export const feedbackAdded = async (fileId: string , name: string , description:
     const res = await prisma.feedbacks.create({
         data: {
           fileId,
-          name,
-          description,
+          name:data.name,
+          description: data.description,
         }
       })
       return res

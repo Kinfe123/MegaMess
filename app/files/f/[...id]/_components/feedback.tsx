@@ -1,4 +1,5 @@
 'use client'
+import { createFeedback } from "@/actions/file-actions"
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -11,11 +12,46 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { fileSchema } from "@/lib/validations/file"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { MessageCircleDashed } from "lucide-react"
 import { useTransition } from "react"
-
+import { useForm } from "react-hook-form"
+import { Textarea } from "@/components/ui/textarea"
+import { toast } from "@/components/ui/use-toast"
 const Feedback = ({ fileId: string }) => {
     const [isPending, startTransition] = useTransition()
+    const createFeedbackApi = createFeedback.bind(null , fileId)
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+    } = useForm<FormData>({
+        resolver: zodResolver(fileSchema),
+        defaultValues: {
+            name: "",
+            description:"",
+
+
+        },
+    })
+    const onSubmit = handleSubmit(data => {
+        startTransition(async () => {
+            const res = await createFeedbackApi(data);
+            if (!res) {
+                toast({
+                    title: "Something went wrong.",
+                    description: "There is an error while creating an apikey.",
+                    variant: "destructive",
+                })
+            } else {
+                toast({
+                    description: "You have createed an API Key",
+                })
+            }
+        });
+
+    });
     
 
     return (
