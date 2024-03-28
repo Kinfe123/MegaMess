@@ -385,3 +385,23 @@ export const allowEmail = async (fileId: string , email:string) => {
   }
 
 }
+
+
+export const feedbackAdded = async (fileId: string , name: string , description: string) => {
+  try {
+
+    const res = await prisma.feedbacks.create({
+        data: {
+          fileId,
+          name,
+          description,
+        }
+      })
+      return res
+  } catch(err) {
+    console.log('#[ERROR] ' , err)
+    throw new Error('Error has occured ', err)
+
+
+  }
+}
