@@ -2,11 +2,12 @@ import { DropdownMenuTrigger, DropdownMenuCheckboxItem, DropdownMenuContent, Dro
 import { Separator } from "@/components/ui/separator"
 
 import { Badge } from "@/components/ui/badge"
-import { GitBranchIcon, GitCommitIcon, MoreHorizontalIcon } from "lucide-react"
+import { GitBranchIcon, GitCommitIcon, MoreHorizontalIcon, Trash } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { type Logs } from "@prisma/client"
 import { fileById } from "@/lib/file-info"
 import { timeAgo } from "@/lib/utils"
+import DeleteLogs from "./log-delete"
 const LogsDisplay = async ({ log }: { log: Logs }) => {
     const file = await fileById(log.fileId)
     return (
@@ -85,8 +86,11 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                    <DropdownMenuItem>Delete</DropdownMenuItem>
+                   
+                    <DeleteLogs id={log.id}/>
+                    <Separator />
                     <DropdownMenuItem disabled>Rollback</DropdownMenuItem>
+
                 </DropdownMenuContent>
             </DropdownMenu>
         </div>

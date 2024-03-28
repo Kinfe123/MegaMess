@@ -58,7 +58,6 @@ const FileForm = ({ userId }: UserProps) => {
     const onSubmit = handleSubmit(data => {
         startTransition(async () => {
             const { status } = await uploadFileById(data);
-            console.log('the result is: ', status)
             if (status !== "success") {
                 toast({
                     title: "Something went wrong.",

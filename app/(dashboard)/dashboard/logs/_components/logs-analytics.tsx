@@ -9,9 +9,10 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { type Logs } from "@prisma/client"
 import LogsDisplay from "./log-display"
+import LogMenu from "./log-menu"
 
 export function LogsAnalytics({ logs }: { logs: Logs[] }) {
-  if(!logs) {
+  if (!logs) {
     return <div className="mt-10 font-urban text-2xl">Nothing yet</div>
   }
   return (
@@ -34,17 +35,9 @@ export function LogsAnalytics({ logs }: { logs: Logs[] }) {
                   <Calendar mode="range" numberOfMonths={2} />
                 </PopoverContent>
               </Popover>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button className="bg-white dark:bg-transparent" variant="outline">
-                    Status
-                    <ChevronDownIcon className="ml-2 h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuCheckboxItem checked>Ready</DropdownMenuCheckboxItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+            
+                  <LogMenu />
+
             </div>
           </div>
           <div className="border rounded-lg bg-purple-900/5 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,176,225,0.12),rgba(255,255,255,0))]  text-card-foreground overflow-hidden grid gap-4 lg:gap-px ">

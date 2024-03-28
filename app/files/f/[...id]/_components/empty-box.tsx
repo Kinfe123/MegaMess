@@ -39,7 +39,7 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
             filename: files?.name,
         })
     })
-    if(!status) {
+    if(status === "DENIED") {
         return (
             <FallBackDetails filename={files?.name} email={user?.email} fileId={files?.id ?? ""} />
 
