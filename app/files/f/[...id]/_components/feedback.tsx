@@ -1,4 +1,5 @@
 'use client'
+
 import { createFeedback, type FormData } from "@/actions/file-actions"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
@@ -65,10 +66,10 @@ const Feedback = ({ fileId }: { fileId: string }) => {
                 <DialogHeader>
                     <DialogTitle>Provide a feedback</DialogTitle>
                     <DialogDescription>
-                        Make changes to your profile here. Click save when you're done.
+                       Make sure to be polite and constructive on your words..
                     </DialogDescription>
                 </DialogHeader>
-                <form onSubmit={onSubmit}>
+                <form >
 
                     <div className="grid gap-4 py-4">
                         <div className="grid grid-cols-4 items-center gap-4">
@@ -86,7 +87,9 @@ const Feedback = ({ fileId }: { fileId: string }) => {
                         </div>
                     </div>
                     <DialogFooter>
-                        <Button className={cn(buttonVariants())}
+                        <Button
+                            onClick={onSubmit}
+                            className={cn(buttonVariants())}
                             disabled={isPending}
                             type="submit">
 
