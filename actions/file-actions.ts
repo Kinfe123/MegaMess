@@ -389,18 +389,14 @@ export const allowEmail = async (fileId: string , email:string) => {
 }
 
 
-export const createFeedback = async (fileId: string , data: FormData) => {
+export const createFeedback = async (fileId: string , d: FormData) => {
   try {
-    if(!data.description) {
-      throw new Response('Description is not provided ', {status:400})
-      
-      
-    }
+    
     const res = await prisma.feedbacks.create({
         data: {
           fileId,
-          name:data.name,
-          description: data.description,
+          name:d.name,
+          description: d?.description ?? "",
         }
       })
       return res
