@@ -56,7 +56,7 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
                     {files?.description}
                 </EmptyPlaceholder.Description>
                 <div className="absolute top-4 right-4 ">
-                    <Feedback fileId={files?.id}/>
+                    {files?.id && <Feedback fileId={files?.id}/>}
                     
 
                 </div>
