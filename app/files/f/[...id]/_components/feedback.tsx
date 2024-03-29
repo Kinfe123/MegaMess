@@ -1,5 +1,5 @@
 'use client'
-import { createFeedback } from "@/actions/file-actions"
+import { createFeedback, type FormData } from "@/actions/file-actions"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
     Dialog,
@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { fileSchema } from "@/lib/validations/file"
+import {  fileSchema } from "@/lib/validations/file"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Loader2, MessageCircleDashed } from "lucide-react"
 import { useTransition } from "react"
@@ -31,8 +31,7 @@ const Feedback = ({ fileId }: { fileId: string }) => {
         resolver: zodResolver(fileSchema),
         defaultValues: {
             name: "",
-            description: "",
-
+            description: ""
 
         },
     })
@@ -80,7 +79,7 @@ const Feedback = ({ fileId }: { fileId: string }) => {
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="username" className="text-right">
-                                Username
+                                Description
                             </Label>
                             <Textarea id="desciption" className="col-span-3" {...register("description")} placeholder="Type your message here." />
 
