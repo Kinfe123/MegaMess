@@ -27,7 +27,6 @@ export const createApiKey =  async (userId: string , data:FormData  ) => {
     const keys = generateApiKey()
     try {
         const exists = await checkWebsiteExists(data.website)
-        console.log("eXISTS " , exists)
         if(!exists) {
             
             const apikey = await prisma.aPIKey.create({

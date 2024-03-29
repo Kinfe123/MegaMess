@@ -13,6 +13,8 @@ export type FormData = {
 
 }
 
+
+
 export async function uploadFile(userId: string, fileUrl: string, fileSize: number, data: FormData) {
   try {
     const user = await getCurrentUser()
@@ -384,4 +386,24 @@ export const allowEmail = async (fileId: string , email:string) => {
 
   }
 
+}
+
+
+export const createFeedback = async (fileId: string , d: FormData) => {
+  try {
+    
+    const res = await prisma.feedbacks.create({
+        data: {
+          fileId,
+          name:d.name,
+          description: d?.description ?? "",
+        }
+      })
+      return res
+  } catch(err) {
+    console.log('#[ERROR] ' , err)
+    throw new Error('Error has occured ', err)
+
+
+  }
 }
