@@ -5,6 +5,7 @@ import { timeAgo } from "@/lib/utils"
 import DeleteBtnApiKey from "./del-api-key"
 import CopyBtn from "../../_components/copy-btn"
 import { Clock } from "lucide-react"
+import Link from "next/link"
 const APIKeyCard = ({ apiKey }: { apiKey: APIKey }) => {
     return (
         <Card>
@@ -12,10 +13,14 @@ const APIKeyCard = ({ apiKey }: { apiKey: APIKey }) => {
                 <KeyIcon className="w-8 h-8" />
                 <div className="grid gap-1">
                     <CardTitle>{apiKey.name ?? ""}</CardTitle>
-                    <CardDescription>A{apiKey.description ?? ""}</CardDescription>
+                    <CardDescription className="cursor-pointer underline underline-offset-1"><Link href={apiKey.website} target="_blank" >
+                        {apiKey.website}
+                    </Link></CardDescription>
+                    <CardDescription>{apiKey.description ?? ""}</CardDescription>
+
                 </div>
                 <div className="flex flex-row items-center gap-2 ml-auto">
-                    <CopyBtn link={apiKey.key}/>
+                    <CopyBtn link={apiKey.key} />
                     <DeleteBtnApiKey id={apiKey.id} />
                 </div>
             </CardHeader>

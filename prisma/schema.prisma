@@ -96,6 +96,7 @@ model File {
   user        User            @relation("files", fields: [userId], references: [id], onDelete: Cascade)
   teamMember  TeamMember?     @relation("TeamFileMember")
   TeamFiles   TeamFiles[]
+  downloads   Int              @default(1)
   
 }
 

@@ -10,7 +10,7 @@ const LogMenu = () => {
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button className="bg-white dark:bg-transparent" variant="outline">
-                        StatusDropDownMenu
+                        Status
                         <ChevronDownIcon className="ml-2 h-4 w-4" />
                     </Button>
                 </DropdownMenuTrigger>

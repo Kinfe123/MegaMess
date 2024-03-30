@@ -36,6 +36,8 @@ export async function uploadFile(userId: string, fileUrl: string, fileSize: numb
       }
     })
     revalidatePath('/dashboard');
+    revalidatePath('/dashboard/analytics');
+
     if (addFile.id) {
       return { status: 'success', id: addFile.id }
     } else {
@@ -407,3 +409,44 @@ export const createFeedback = async (fileId: string , d: FormData) => {
 
   }
 }
+
+export const fileLogsById = async  (id: string) => {
+    try {
+        const fileLogs = await prisma.file.findMany({
+          where: {
+            id: id,
+          },
+          select: {
+            logs:true,
+          }
+        })
+
+        return fileLogs
+
+    }catch(err) {
+      return  new Response("Error has occured" , {status:400})
+    }
+}
+
+export const fileDownload = async (fileId: string) => {
+  try {
+    const fileDownload = await prisma.file.update({
+      where: {
+        id: fileId,
+      
+      },
+      data: {
+        downloads: {
+          increment: 1,
+        }
+      }
+
+    })
+    return fileDownload
+  }catch(err) {
+    return  new Response("Error has occured" , {status:400})
+
+  }
+}
+
+ 

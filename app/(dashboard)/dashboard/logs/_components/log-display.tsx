@@ -27,7 +27,7 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                     {log.status === 'GRANTED' ? (
                         <div className="flex flex-col justify-center items-start">
                             <div className="flex">
-                                <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-green-400 rounded-full translate-y-1" />
+                                <span className=" w-2 h-2 mr-2 flex justify-center tiems-center bg-green-400 rounded-full translate-y-1.5" />
                                 <p>Viewed</p>
 
                             </div>
@@ -39,7 +39,7 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                         log.status === 'REQUESTED' ? (
                             <div className="flex flex-col justify-center items-start">
                                 <div className="flex">
-                                    <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-orange-400 rounded-full translate-y-1" />
+                                    <span className=" w-2 h-2 mr-2 flex justify-center tiems-center bg-orange-400 rounded-full translate-y-1.5" />
                                     <p>Requested</p>
 
                                 </div>
@@ -50,7 +50,7 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                         ) :
                             <div className="flex flex-col justify-center items-start">
                                 <div className="flex">
-                                    <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-red-400 rounded-full translate-y-1" />
+                                    <span className=" w-2 h-2 mr-2 flex justify-center tiems-center bg-red-400 rounded-full translate-y-1.5" />
                                     <p>Denied</p>
 
                                 </div>
