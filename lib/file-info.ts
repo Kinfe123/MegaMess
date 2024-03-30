@@ -116,3 +116,12 @@ export const totalDownload = async () => {
     return sums    
 
 }
+export const topFiles = async (fileId:string) => {
+    const user = await getCurrentUser()
+    const files = await fileByUserId(user!.id)
+
+    // calculation can be done based on logs , downloads , emial shared , api keys as communative
+
+    
+}
+
