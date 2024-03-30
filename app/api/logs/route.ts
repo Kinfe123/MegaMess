@@ -13,7 +13,7 @@ export async function POST(req: Request) {
         const user_agent = req.headers.get('user-agent') || ''
         const endTimeStamp = Date.now();
         const responsTime = endTimeStamp - startTimestamp
-        const requestToDB = await createLogs(fileId , status , description, origin_ip , origin_place , user_agent , responsTime.toString())
+        const requestToDB = await createLogs(fileId ,email , status , description, origin_ip , origin_place , user_agent , responsTime.toString())
         
         if(requestToDB) {
             revalidatePath("/dashboard")

@@ -8,11 +8,12 @@ enum Status {
     REQUESTED
 }
 type StatusProps = keyof typeof Status
-export const createLogs = async(fileId: string , status: StatusProps , description: string ,  originIp: string , originLocation: string  , userAgent: string , responseTime: string) => {
+export const createLogs = async(fileId: string ,email: string, status: StatusProps , description: string ,  originIp: string , originLocation: string  , userAgent: string , responseTime: string) => {
     try {
         const log = await prisma.logs.create({
             data: {
                 fileId:fileId,
+                email,
                 status,
                  description,
                 originLocation,

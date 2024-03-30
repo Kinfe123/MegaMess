@@ -414,7 +414,7 @@ export const fileLogsById = async  (id: string) => {
           where: {
             id: id,
           },
-          include: {
+          select: {
             logs:true,
           }
         })

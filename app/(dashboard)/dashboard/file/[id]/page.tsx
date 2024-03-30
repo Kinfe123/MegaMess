@@ -25,7 +25,7 @@ export const metadata = {
 const FileDetail = async ({ params }: PropsParams) => {
     const fileId = params.id
     const [users , fileFromId, fileLogs] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId)])
-   
+    console.log("Fieelogs : " , fileLogs[0])
 
     const TABS = ['Waitlists', 'Analytics', 'Settings']
 
