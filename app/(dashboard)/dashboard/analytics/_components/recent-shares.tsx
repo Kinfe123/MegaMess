@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { topFiles } from "@/lib/file-info";
 import { Suspense } from "react";
 import TopLists from "./top-list";
-
+import { Separator } from "@/components/ui/separator";
 
 export async function RecentPerformers() {
   const tops = await topFiles()
@@ -13,6 +13,7 @@ export async function RecentPerformers() {
         return (
           <Suspense fallback={<PerformerSkeleton />}>
             <TopLists fileId = {top[0]}/>
+
           </Suspense>
 
         )
