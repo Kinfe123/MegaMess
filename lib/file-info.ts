@@ -141,6 +141,11 @@ export const topFiles = async () => {
         filesObjectLists.push([filesObject])
         filesObject= {}
     })
+    filesObjectLists.sort((a , b) => {
+        const valueA = Object.values(a[0])[0]; 
+        const valueB = Object.values(b[0])[0];       
+        return valueB - valueA
+    })
     return filesObjectLists
 
     
