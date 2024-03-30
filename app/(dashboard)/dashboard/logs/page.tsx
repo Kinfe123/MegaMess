@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 export const metadata = {
     title: "Logs ",
     description: "Logs and some telementary datas.",
-  }
+}
 
 const Logs = async () => {
     const logs = await fileLogbyUser()

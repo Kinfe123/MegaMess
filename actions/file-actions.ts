@@ -36,6 +36,8 @@ export async function uploadFile(userId: string, fileUrl: string, fileSize: numb
       }
     })
     revalidatePath('/dashboard');
+    revalidatePath('/dashboard/analytics');
+
     if (addFile.id) {
       return { status: 'success', id: addFile.id }
     } else {

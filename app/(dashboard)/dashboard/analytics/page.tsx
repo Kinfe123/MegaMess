@@ -1,6 +1,6 @@
 import { CalendarDateRangePicker } from "./_components/date-picker";
 import { Overview } from "./_components/overview";
-import { RecentSales } from "./_components/recent-shares";
+import { RecentPerformers } from "./_components/recent-shares";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,7 +16,7 @@ import { fileByUserId, fileLogbyUser, totalDownload } from "@/lib/file-info";
 import { getCurrentUser } from "@/lib/session";
 import { Suspense } from "react";
 import CardDisplay from "./_components/card-display";
-import { Download, FileIcon, Key, PipetteIcon } from "lucide-react";
+import { BarChart2, Download, FileIcon, Key, PipetteIcon } from "lucide-react";
 import { getAllApiKey } from "@/actions/api-key-actions";
 
 export default async function page() {
@@ -160,13 +160,13 @@ export default async function page() {
               </Card>
               <Card className="col-span-4 md:col-span-3">
                 <CardHeader>
-                  <CardTitle>Recent Sales</CardTitle>
+                  <CardTitle className="flex gap-2 justify-start items-center"><BarChart2 className="w-4 h-4"/>Top File</CardTitle>
                   <CardDescription>
-                    You made 265 sales this month.
+                   File performing well on sharing activities
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <RecentSales />
+                  <RecentPerformers />
                 </CardContent>
               </Card>
             </div>
