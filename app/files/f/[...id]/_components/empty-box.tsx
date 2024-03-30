@@ -31,6 +31,7 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
         status = "DENIED"
         
     }
+    console.log('FIle visibility is ' , files?.visiblity,status)
 
     const response =  await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/logs` , {
         method:'POST',
@@ -41,7 +42,7 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
             filename: files?.name,
         })
     })
-    if(status === "DENIED") {
+    if(status === "DENIED" && files?.visiblity !== "PUBLIC") {
         return (
             <FallBackDetails filename={files?.name} email={user?.email} fileId={files?.id ?? ""} />
 
