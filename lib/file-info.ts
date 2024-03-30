@@ -95,13 +95,24 @@ export const fileLogbyUser = async () => {
 }
 
 export const fileByUserId = async(id: string) => {
-    await Promise.resolve(setTimeout(() => {
-            console.log('Hello owrld')
-    } , 3000))
+  
     const files = await prisma.file.findMany({
         where: {
             userId: id,
         }
     })
     return files
+}
+
+export const totalDownload = async () => {
+    const user = await getCurrentUser()
+    const files = await prisma.file.findMany({
+        where: {
+            userId: user?.id
+        }
+    })
+    let downloadFilter = files.map(f => f.downloads)
+    let sums = downloadFilter.reduce((prev , curr) => prev + curr)
+    return sums    
+
 }

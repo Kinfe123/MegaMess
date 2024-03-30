@@ -12,16 +12,17 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { fileByUserId, fileLogbyUser } from "@/lib/file-info";
+import { fileByUserId, fileLogbyUser, totalDownload } from "@/lib/file-info";
 import { getCurrentUser } from "@/lib/session";
 import { Suspense } from "react";
 import CardDisplay from "./_components/card-display";
-import { FileIcon, PipetteIcon } from "lucide-react";
+import { Download, FileIcon, PipetteIcon } from "lucide-react";
 
 export default async function page() {
   const user = await getCurrentUser()
   const files = fileByUserId(user?.id! ?? "")
   const fileLogs = fileLogbyUser()
+  const fileDownloads = fileByUserId(user?.id ?? "")
   return (
     <ScrollArea className="h-full">
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
@@ -45,16 +46,23 @@ export default async function page() {
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               <Suspense fallback={<CardSkeleton />}>
 
-                <CardDisplay file={files} title="Total File Created" icon={
+                <CardDisplay file={files} title="Total Files" icon={
                   <FileIcon className="text-white/50 group-hover:opacity-100  opacity-50 transform transition-opacity duration-300 absolute bottom-[-35px] w-32 h-32 font-thin  right-[-30px] " />
                 } description={''} />
               </Suspense>
               <Suspense fallback={<CardSkeleton />}>
 
-                    <CardDisplay file={fileLogs} title="Total Logs by far" icon={
-                      <PipetteIcon className="text-white/50 group-hover:opacity-100  opacity-50 transform transition-opacity duration-300 absolute bottom-[-35px] w-32 h-32 font-thin  right-[-30px] " />
-                    } description={''} />
-                    </Suspense>
+                <CardDisplay file={fileLogs} title="Total Logs" icon={
+                  <PipetteIcon className="text-white/50 group-hover:opacity-100  opacity-50 transform transition-opacity duration-300 absolute bottom-[-35px] w-32 h-32 font-thin  right-[-30px] " />
+                } description={''} />
+              </Suspense>
+
+              <Suspense fallback={<CardSkeleton />}>
+
+                <CardDisplay file={fileDownloads} title="Total Downloads" icon={
+                  <Download className="text-white/50 group-hover:opacity-100  opacity-50 transform transition-opacity duration-300 absolute bottom-[-25px] w-32 h-32 font-thin  right-[-30px] " />
+                } description={''} />
+              </Suspense>
 
               {/* <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -166,12 +174,12 @@ const CardSkeleton = () => {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">
-          <Skeleton className="w-48 h-10" />
+          <Skeleton className="w-48 h-10 my-1" />
         </CardTitle>
-        <Skeleton className="w-10 h-7" />
+        <Skeleton className="w-10 h-7 my-1" />
       </CardHeader>
       <CardContent>
-        <Skeleton className="w-20 h-5" />
+        <Skeleton className="w-20 h-5 my-2" />
         <Skeleton className="w-32 h-5" />
 
       </CardContent>
