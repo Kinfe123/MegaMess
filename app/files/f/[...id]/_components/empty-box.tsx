@@ -28,21 +28,20 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
     const allowFileOwner = await allowedOwnerEmail(files?.id ?? "")
     //    TODO: fix typescript typo
     if (((files?.visiblity === 'EMAIL' && !allowed) || files?.visiblity === 'PRIVATE') || !allowFileOwner) {
-        status = "DENIED"
-        
-    }
-    console.log('FIle visibility is ' , files?.visiblity,status)
+        if(files?.visiblity !== 'PUBLIC') status = "DENIED"
 
-    const response =  await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/logs` , {
-        method:'POST',
+    }
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/logs`, {
+        method: 'POST',
         body: JSON.stringify({
             fileId: files?.id,
             status: status,
-            email: user?.email,
+            email: user?.email ?? "A User",
             filename: files?.name,
         })
     })
-    if(status === "DENIED" && files?.visiblity !== "PUBLIC") {
+    if (status === "DENIED" && files?.visiblity !== "PUBLIC") {
         return (
             <FallBackDetails filename={files?.name} email={user?.email} fileId={files?.id ?? ""} />
 
@@ -58,8 +57,8 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
                     {files?.description}
                 </EmptyPlaceholder.Description>
                 <div className="absolute top-4 right-4 ">
-                    {files?.id && <Feedback fileId={files?.id}/>}
-                    
+                    {files?.id && <Feedback fileId={files?.id} />}
+
 
                 </div>
                 <div className='flex font-urban justify-start items-start flex-col  mx-auto f'>
@@ -76,7 +75,7 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
 
                 </div>
                 <div className="mt-4 flex gap-2 justify-center items-center">
-                   <DownloadBtn fileId={files!.id} fileUrl={files!.fileUrl}/>
+                    <DownloadBtn fileId={files!.id} fileUrl={files!.fileUrl} />
                     {(!!ownerId?.length && !!files?.id.length) && (
 
                         <FavIt userId={user?.id} ownerId={ownerId} fileId={files.id} favLists={favLists} />
