@@ -9,7 +9,7 @@ import { ResponsiveLine } from "@nivo/line"
 import { ResponsiveBar } from "@nivo/bar"
 import { TableCell, TableRow, TableHead, TableBody, Table } from "@/components/ui/table"
 
-export function AnalyticsFile() {
+export function AnalyticsFile({fileId}: {fileId: string}) {
   return (
     <div className="grid min-h-screen w-full">
       <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-transparent">

@@ -407,3 +407,21 @@ export const createFeedback = async (fileId: string , d: FormData) => {
 
   }
 }
+
+export const fileLogsById = async  (id: string) => {
+    try {
+        const fileLogs = await prisma.file.findMany({
+          where: {
+            id: id,
+          },
+          include: {
+            logs:true,
+          }
+        })
+
+        return fileLogs
+
+    }catch(err) {
+      throw new Response("Error has occured" , {status:400})
+    }
+}

@@ -9,6 +9,7 @@ import { fileById, waitlistEmailUsers } from "@/lib/file-info"
 import { Building } from "lucide-react"
 import SettingFile from "./_components/setting-file"
 import { AnalyticsFile } from "@/components/analytics-file"
+import { fileLogsById } from "@/actions/file-actions"
 
 type PropsParams = {
     params: {
@@ -23,12 +24,13 @@ export const metadata = {
 
 const FileDetail = async ({ params }: PropsParams) => {
     const fileId = params.id
-    const users = await waitlistEmailUsers(fileId)
-    const fileFromId = await fileById(fileId)
+    const [users , fileFromId, fileLogs] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId)])
+   
+
     const TABS = ['Waitlists', 'Analytics', 'Settings']
 
     return (
-        <DashboardShell>
+        <DashboardShell>    
             <DashboardHeader heading="Analytics & Privillages" text="Explore in depth analytics and exploration about your files" />
             <TabModified defaultValue={TABS[0].toLowerCase()}>
                 {TABS.map((tab) => {
@@ -47,7 +49,7 @@ const FileDetail = async ({ params }: PropsParams) => {
                 <TabsContent value="analytics" className="flex flex-col max-w-[76rem] ">
                     <Suspense fallback={<WaitlistSkeleton />}>
                         <div className="h-full flex justify-center items-center">
-                            <AnalyticsFile />
+                            <AnalyticsFile fileId={fileId} />
                         </div>
                     </Suspense>
                 </TabsContent>
