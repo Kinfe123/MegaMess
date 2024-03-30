@@ -12,19 +12,23 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { fileByUserId, fileLogbyUser, totalDownload } from "@/lib/file-info";
+import { fileByUserId, fileLogbyUser, topFiles, totalDownload } from "@/lib/file-info";
 import { getCurrentUser } from "@/lib/session";
 import { Suspense } from "react";
 import CardDisplay from "./_components/card-display";
 import { BarChart2, Download, FileIcon, Key, PipetteIcon } from "lucide-react";
 import { getAllApiKey } from "@/actions/api-key-actions";
-
+export const metadata = {
+  title: "Analytics & Summary",
+  description: "Everything at a highlevel overview"
+}
 export default async function page() {
   const user = await getCurrentUser()
   const files = fileByUserId(user?.id! ?? "")
   const fileLogs = fileLogbyUser()
   const fileDownloads = fileByUserId(user?.id ?? "")
   const apikeys = getAllApiKey()
+  const tops = topFiles()
   return (
     <ScrollArea className="h-full">
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">

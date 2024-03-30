@@ -116,12 +116,34 @@ export const totalDownload = async () => {
     return sums    
 
 }
-export const topFiles = async (fileId:string) => {
+export const topFiles = async () => {
     const user = await getCurrentUser()
-    const files = await fileByUserId(user!.id)
+    const files = await prisma.file.findMany({
+        where: {
+            userId:user?.id
 
+        },
+        include: {
+            logs: true,
+            viewers: true,
+            feedbacks:true,  
+            waitlists: true,          
+        }
+        
+    })
+
+    let sumTotal = 0
     // calculation can be done based on logs , downloads , emial shared , api keys as communative
+    let filesObject: Record<string , number> = {}
+
+    files.map((file) => {
+        filesObject[file.id] = file.downloads + file.logs.length + file.viewers.length + file.feedbacks.length + file.waitlists.length
+      
+    })
+    return filesObject
 
     
+    
+
 }
 

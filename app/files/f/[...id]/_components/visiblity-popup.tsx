@@ -37,7 +37,6 @@ export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User
     
     const typeOfVisiblity: fileVisiblity[] = ['PUBLIC', 'EMAIL', 'PRIVATE']
     const defaultVal = typeOfVisiblity.indexOf(file.visiblity)
-    console.log("the file is : " , file)
     const [dropType, setDropType] = useState(0)
     const [eachEmail, setEachEmail] = useState('')
     const [emails, setEmails] = useState<string[]>([])
