@@ -90,7 +90,18 @@ export const fileLogbyUser = async () => {
         // @ts-ignore
         fileFinished.push(...log)
     })
-    const reverseedOne = fileFinished.reverse()
     return fileFinished
     
+}
+
+export const fileByUserId = async(id: string) => {
+    await Promise.resolve(setTimeout(() => {
+            console.log('Hello owrld')
+    } , 3000))
+    const files = await prisma.file.findMany({
+        where: {
+            userId: id,
+        }
+    })
+    return files
 }
