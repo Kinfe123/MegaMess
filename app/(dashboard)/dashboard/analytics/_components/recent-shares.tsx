@@ -6,7 +6,8 @@ import TopLists from "./top-list";
 import { Separator } from "@/components/ui/separator";
 
 export async function RecentPerformers() {
-  const tops = await topFiles()
+   let tops = await topFiles()
+   tops = tops.slice(0 , 5)
   return (
     <div className="space-y-8">
       {tops.map((top) => {
@@ -28,9 +29,9 @@ export async function RecentPerformers() {
 
 const PerformerSkeleton = () => {
   return (
-    <div className="flex flex-col gap-1 justify-center items-start">
-      <Skeleton className="w-32 h-7" />
-      <Skeleton className="w-72 h-10" />
+    <div className="flex flex-col gap-0 justify-center items-start">
+      <Skeleton className="w-32 h-3" />
+      <Skeleton className="w-72 h-5" />
 
 
     </div>
