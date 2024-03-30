@@ -135,12 +135,13 @@ export const topFiles = async () => {
     let sumTotal = 0
     // calculation can be done based on logs , downloads , emial shared , api keys as communative
     let filesObject: Record<string , number> = {}
-
+    let filesObjectLists: typeof filesObject[][] = []
     files.map((file) => {
         filesObject[file.id] = file.downloads + file.logs.length + file.viewers.length + file.feedbacks.length + file.waitlists.length
-      
+        filesObjectLists.push([filesObject])
+        filesObject= {}
     })
-    return filesObject
+    return filesObjectLists
 
     
     
