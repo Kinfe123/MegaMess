@@ -422,6 +422,27 @@ export const fileLogsById = async  (id: string) => {
         return fileLogs
 
     }catch(err) {
-      throw new Response("Error has occured" , {status:400})
+      return  new Response("Error has occured" , {status:400})
     }
+}
+
+export const fileDownload = async (fileId: string) => {
+  try {
+    const fileDownload = await prisma.file.update({
+      where: {
+        id: fileId,
+      
+      },
+      data: {
+        downloads: {
+          increment: 1,
+        }
+      }
+
+    })
+    return fileDownload
+  }catch(err) {
+    return  new Response("Error has occured" , {status:400})
+
+  }
 }

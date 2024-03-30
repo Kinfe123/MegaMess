@@ -13,6 +13,7 @@ import { allowedEmailForFile, allowedOwnerEmail } from "@/actions/file-actions";
 import FallBackDetails from "./fallback-details";
 import { access } from "fs";
 import Feedback from "./feedback";
+import DownloadBtn from "./download-btn";
 type FilePromiseProps = {
     file: Promise<({ user: { image: string | null; name: string | null; }; } & File) | null>
     fileIdInfo: Promise<string | undefined>
@@ -74,13 +75,7 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
 
                 </div>
                 <div className="mt-4 flex gap-2 justify-center items-center">
-                    <Link href={files?.fileUrl!}>
-
-                        <Button variant='default'>
-                            <Download className="w-4 h-4 mr-2" />
-                            View & Download
-                        </Button>
-                    </Link>
+                   <DownloadBtn fileId={files!.id} fileUrl={files!.fileUrl}/>
                     {(!!ownerId?.length && !!files?.id.length) && (
 
                         <FavIt userId={user?.id} ownerId={ownerId} fileId={files.id} favLists={favLists} />
