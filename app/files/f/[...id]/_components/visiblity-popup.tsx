@@ -37,6 +37,7 @@ export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User
     
     const typeOfVisiblity: fileVisiblity[] = ['PUBLIC', 'EMAIL', 'PRIVATE']
     const defaultVal = typeOfVisiblity.indexOf(file.visiblity)
+    console.log("the file is : " , file)
     const [dropType, setDropType] = useState(0)
     const [eachEmail, setEachEmail] = useState('')
     const [emails, setEmails] = useState<string[]>([])
@@ -115,7 +116,7 @@ export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User
                         </SelectGroup>
                     </SelectContent>
                 </Select>
-                {dropType === 1 && (
+                {(dropType === 1 || defaultVal === 1) && (
                     <div className='flex flex-col gap-2'>
                         {emails.map(email => {
                             return (
@@ -128,7 +129,7 @@ export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User
                         })}
                         <div className='flex justify-center items-center gap-2'>
                             <Input type='email' value={eachEmail} onChange={(e) => setEachEmail(e.target.value)} />
-                            <Button onClick={() => {
+                            <Button disabled={!eachEmail} onClick={() => {
                                 setEmails([...emails, eachEmail])
                                 setEachEmail('')
                             }}> Add </Button>
