@@ -16,13 +16,15 @@ import { fileByUserId, fileLogbyUser, totalDownload } from "@/lib/file-info";
 import { getCurrentUser } from "@/lib/session";
 import { Suspense } from "react";
 import CardDisplay from "./_components/card-display";
-import { Download, FileIcon, PipetteIcon } from "lucide-react";
+import { Download, FileIcon, Key, PipetteIcon } from "lucide-react";
+import { getAllApiKey } from "@/actions/api-key-actions";
 
 export default async function page() {
   const user = await getCurrentUser()
   const files = fileByUserId(user?.id! ?? "")
   const fileLogs = fileLogbyUser()
   const fileDownloads = fileByUserId(user?.id ?? "")
+  const apikeys = getAllApiKey()
   return (
     <ScrollArea className="h-full">
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
@@ -64,6 +66,12 @@ export default async function page() {
                 } description={''} />
               </Suspense>
 
+              <Suspense fallback={<CardSkeleton />}>
+                {/* @ts-ignore */}
+                <CardDisplay file={apikeys} title="Total APIKeys  " icon={
+                  <Key className="text-white/50 group-hover:opacity-100  opacity-50 transform transition-opacity duration-300 absolute bottom-[-25px] w-32 h-32 font-thin  right-[-30px] " />
+                } description={''} />
+              </Suspense>
               {/* <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">
@@ -91,7 +99,7 @@ export default async function page() {
                   </p>
                 </CardContent>
               </Card> */}
-              <Card>
+              {/* <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Sales</CardTitle>
                   <svg
@@ -139,7 +147,7 @@ export default async function page() {
                     +201 since last hour
                   </p>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
             <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-7">
               <Card className="col-span-4">
@@ -174,13 +182,13 @@ const CardSkeleton = () => {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">
-          <Skeleton className="w-48 h-10 my-1" />
+          <Skeleton className="w-48 h-6" />
         </CardTitle>
-        <Skeleton className="w-10 h-7 my-1" />
+        {/* <Skeleton className="w-10 h-7 my-1" /> */}
       </CardHeader>
       <CardContent>
-        <Skeleton className="w-20 h-5 my-2" />
-        <Skeleton className="w-32 h-5" />
+        <Skeleton className="w-20 h-5 my-1" />
+        <Skeleton className="w-32 h-4" />
 
       </CardContent>
     </Card>

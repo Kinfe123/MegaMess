@@ -1,6 +1,7 @@
 'use server'
 
 import { prisma } from "@/lib/db"
+import { getCurrentUser } from "@/lib/session"
 import { generateApiKey } from "@/lib/utils"
 import { revalidatePath } from "next/cache"
 
@@ -104,3 +105,19 @@ export const getUserByApiKey= async (apiKey: string | null , fullWebHost: string
 
 }
 
+export const getAllApiKey = async () => {
+    try {
+        const user = await getCurrentUser()
+        const apikeys = await prisma.aPIKey.findMany({
+            where: {
+                userId: user?.id,
+            }
+        })
+        return apikeys
+
+        
+    }catch(err) {
+        return new Response("Error : " + err , {status:400})
+    }
+
+}
