@@ -9,7 +9,7 @@ const TopLists = async ({ fileId }: { fileId: Record<string, number> }) => {
     return (
         <div className="flex items-center w-full">
             <FilesIcon />
-            <div className="ml-4 space-y-1 w-1/2">
+            <div className="ml-4 space-y-1 w-3/4">
                 <p className="text-sm font-medium leading-none">{file?.name}</p>
                 <p className="text-sm text-muted-foreground">
                     {file?.description}
