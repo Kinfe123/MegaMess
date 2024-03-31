@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { APIKey, File, Logs } from "@prisma/client"
 import { use } from "react"
 
-const CardDisplay = ({file , title , icon, description}: {file: Promise<File[] | Logs[] | APIKey[]> , title:string , icon: JSX.Element , description: string}) => {
+const CardDisplay = ({file , title , icon, description , tag}: {file: Promise<File[] | Logs[] | APIKey[]> , title:string , icon: JSX.Element , description: string , tag: string}) => {
     const filePromise = use(file)
     let sum = 0
     if(title === "Total Downloads") {
