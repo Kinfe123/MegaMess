@@ -52,28 +52,28 @@ export default async function page() {
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               <Suspense fallback={<CardSkeleton />}>
 
-                <CardDisplay file={files} title="Total Files" icon={
-                  <FileIcon className="text-white/50 group-hover:opacity-100  opacity-50 transform transition-opacity duration-300 absolute bottom-[-35px] w-32 h-32 font-thin  right-[-30px] " />
+                <CardDisplay tag="files" file={files} title="Total Files" icon={
+                  <FileIcon className="text-white/50 group-hover:opacity-100 group-hover:rotate-12 duration-300 transition-transform  opacity-50 transform   absolute bottom-[-35px] w-32 h-32 font-thin  right-[-30px] " />
                 } description={''} />
               </Suspense>
               <Suspense fallback={<CardSkeleton />}>
 
-                <CardDisplay file={fileLogs} title="Total Logs" icon={
-                  <PipetteIcon className="text-white/50 group-hover:opacity-100  opacity-50 transform transition-opacity duration-300 absolute bottom-[-35px] w-32 h-32 font-thin  right-[-30px] " />
+                <CardDisplay tag="logs" file={fileLogs} title="Total Logs" icon={
+                  <PipetteIcon className="text-white/50 group-hover:opacity-100  group-hover:rotate-12 duration-300 transition-transform  opacity-50 transform  absolute bottom-[-35px] w-32 h-32 font-thin  right-[-30px] " />
                 } description={''} />
               </Suspense>
 
               <Suspense fallback={<CardSkeleton />}>
 
-                <CardDisplay file={fileDownloads} title="Total Downloads" icon={
-                  <Download className="text-white/50 group-hover:opacity-100  opacity-50 transform transition-opacity duration-300 absolute bottom-[-25px] w-32 h-32 font-thin  right-[-30px] " />
+                <CardDisplay tag="downloads" file={fileDownloads} title="Total Downloads" icon={
+                  <Download className="text-white/50 group-hover:opacity-100  group-hover:rotate-12 duration-300 transition-transform  opacity-50 transform  absolute bottom-[-25px] w-32 h-32 font-thin  right-[-30px] " />
                 } description={''} />
               </Suspense>
 
               <Suspense fallback={<CardSkeleton />}>
                 {/* @ts-ignore */}
-                <CardDisplay file={apikeys} title="Total APIKeys  " icon={
-                  <Key className="text-white/50 group-hover:opacity-100  opacity-50 transform transition-opacity duration-300 absolute bottom-[-25px] w-32 h-32 font-thin  right-[-30px] " />
+                <CardDisplay tag="apikeys" file={apikeys} title="Total APIKeys  " icon={
+                  <Key className="text-white/50 group-hover:opacity-100  group-hover:rotate-12 duration-300 transition-transform  opacity-50 transform absolute bottom-[-25px] w-32 h-32 font-thin  right-[-30px] " />
                 } description={''} />
               </Suspense>
               {/* <Card>
