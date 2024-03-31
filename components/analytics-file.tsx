@@ -436,7 +436,7 @@ function LineChart(props) {
           },
           grid: {
             line: {
-              stroke: "#f3f4f6",
+              stroke: "#ffffff",
             },
           },
         }}
@@ -475,6 +475,9 @@ function BarChart(props) {
         }}
         gridYValues={4}
         theme={{
+          text: {
+            color:"#ffffff",
+          },
           tooltip: {
             chip: {
               borderRadius: "9999px",
@@ -494,7 +497,7 @@ function BarChart(props) {
         tooltipLabel={({ id }) => `${id}`}
         enableLabel={false}
         role="application"
-        ariaLabel="A bar chart showing data"
+        ariaLabel="A bar c6f406dhart showing data"
       />
     </div>
   )
