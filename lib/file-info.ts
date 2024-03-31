@@ -149,7 +149,16 @@ export const topFiles = async () => {
     return filesObjectLists
 
     
-    
+}
 
+
+export const logByFileId = async (id: string) => {
+    const logs = await prisma.logs.findMany({
+        where: {
+            fileId: id,
+        },
+     
+    })
+    return logs 
 }
 
