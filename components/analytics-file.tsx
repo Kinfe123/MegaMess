@@ -8,8 +8,9 @@ import { CardDescription, CardTitle, CardHeader, CardContent, Card } from "@/com
 import { ResponsiveLine } from "@nivo/line"
 import { ResponsiveBar } from "@nivo/bar"
 import { TableCell, TableRow, TableHead, TableBody, Table } from "@/components/ui/table"
+import { Logs } from "@prisma/client"
 
-export function AnalyticsFile({fileId}: {fileId: string}) {
+export function AnalyticsFile({fileId , logs}: {fileId: string , logs:Logs[]}) {
   return (
     <div className="grid min-h-screen w-full">
       <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-transparent">
@@ -93,9 +94,9 @@ export function AnalyticsFile({fileId}: {fileId: string}) {
           </div>
           <Card>
             <CardHeader className="pb-0">
-              <CardTitle>Top Performing Copy Variations</CardTitle>
+              <CardTitle>Top insight from your files.</CardTitle>
               <CardDescription>
-                Showing the top-performing copy variations along with their corresponding metrics.
+                Showing the top-performing copy stats of your files.
               </CardDescription>
             </CardHeader>
             <CardContent className="p-0">
