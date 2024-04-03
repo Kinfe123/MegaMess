@@ -174,3 +174,12 @@ export const downloadsByFileId = async (id: string) => {
     })
     return downloads
 }
+
+export const lovedByOther = async (id: string) => {
+    const loved = await prisma.favorite.findMany({
+        where: {
+            favoritingId: id,
+        }
+    })
+    return loved
+}

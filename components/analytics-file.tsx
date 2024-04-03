@@ -8,10 +8,9 @@ import { CardDescription, CardTitle, CardHeader, CardContent, Card } from "@/com
 import { ResponsiveLine } from "@nivo/line"
 import { ResponsiveBar } from "@nivo/bar"
 import { TableCell, TableRow, TableHead, TableBody, Table } from "@/components/ui/table"
-import { Logs } from "@prisma/client"
+import { Favorite, Logs } from "@prisma/client"
 
-export function AnalyticsFile({fileId , logs}: {fileId: string , logs:Logs[]}) {
-  console.log("the logs are: " , logs)
+export function AnalyticsFile({fileId , logs , downloads , loved}: {fileId: string , logs:Logs[] , downloads: number , loved:Favorite[]}) {
   return (
     <div className="grid min-h-screen w-full">
       <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-transparent">
@@ -118,7 +117,7 @@ export function AnalyticsFile({fileId , logs}: {fileId: string , logs:Logs[]}) {
                         <span className="font-medium">File Logs</span>
                       </div>
                     </TableCell>
-                    <TableCell>{logs.length} {' '} logs</TableCell>
+                    <TableCell>{logs.length} {' '} Log(s)</TableCell>
                     {/* <TableCell>28%</TableCell>
                     <TableCell>42%</TableCell> */}
                   </TableRow>
@@ -129,20 +128,20 @@ export function AnalyticsFile({fileId , logs}: {fileId: string , logs:Logs[]}) {
                         <span className="font-medium">Downloads</span>
                       </div>
                     </TableCell>
-                    <TableCell>72%</TableCell>
-                    <TableCell>35%</TableCell>
-                    <TableCell>48%</TableCell>
+                    <TableCell>{downloads ? downloads : "0"} Download(s)</TableCell>
+                    {/* <TableCell>35%</TableCell>
+                    <TableCell>48%</TableCell> */}
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <FileTextIcon className="h-4 w-4" />
-                        <span className="font-medium">Holiday Cheer</span>
+                        <span className="font-medium">Loved by</span>
                       </div>
                     </TableCell>
-                    <TableCell>60%</TableCell>
-                    <TableCell>32%</TableCell>
-                    <TableCell>50%</TableCell>
+                    <TableCell>{loved.length} person(s)</TableCell>
+                    {/* <TableCell>32%</TableCell>
+                    <TableCell>50%</TableCell> */}
                   </TableRow>
                   <TableRow>
                     <TableCell>
