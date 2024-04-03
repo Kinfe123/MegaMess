@@ -163,7 +163,7 @@ export const logByFileId = async (id: string) => {
 }
 
 
-export const downloadsByFile = async (id: string) => {
+export const downloadsByFileId = async (id: string) => {
     const downloads = await prisma.file.findMany({
         where: {
             id,
