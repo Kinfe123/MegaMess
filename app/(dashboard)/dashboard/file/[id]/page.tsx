@@ -5,7 +5,7 @@ import { CardSkeleton } from "@/components/shared/card-skeleton"
 import { TabModified, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tab-modified"
 import Waitlists from "./_components/waitlists"
 import { Suspense } from "react"
-import { fileById, waitlistEmailUsers } from "@/lib/file-info"
+import { fileById, logByFileId, waitlistEmailUsers } from "@/lib/file-info"
 import { Building } from "lucide-react"
 import SettingFile from "./_components/setting-file"
 import { AnalyticsFile } from "@/components/analytics-file"
@@ -24,7 +24,7 @@ export const metadata = {
 
 const FileDetail = async ({ params }: PropsParams) => {
     const fileId = params.id
-    const [users , fileFromId, fileLogs ,  ] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId) ])
+    const [users , fileFromId, fileLogs ,  ] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId) , logByFileId(fileId) ])
 
     const TABS = ['Waitlists', 'Analytics', 'Settings']
 
