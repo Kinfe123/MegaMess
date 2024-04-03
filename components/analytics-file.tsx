@@ -11,6 +11,7 @@ import { TableCell, TableRow, TableHead, TableBody, Table } from "@/components/u
 import { Logs } from "@prisma/client"
 
 export function AnalyticsFile({fileId , logs}: {fileId: string , logs:Logs[]}) {
+  console.log("the logs are: " , logs)
   return (
     <div className="grid min-h-screen w-full">
       <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-transparent">
@@ -75,7 +76,7 @@ export function AnalyticsFile({fileId , logs}: {fileId: string , logs:Logs[]}) {
             </Card>
             <Card className="flex flex-col">
               <CardHeader>
-                <CardDescription>FIle Viewed</CardDescription>
+                <CardDescription>File Viewed</CardDescription>
                 <CardTitle>Viewed by Others.</CardTitle>
               </CardHeader>
               <CardContent>
@@ -114,18 +115,18 @@ export function AnalyticsFile({fileId , logs}: {fileId: string , logs:Logs[]}) {
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <FileTextIcon className="h-4 w-4" />
-                        <span className="font-medium">Summer Collection</span>
+                        <span className="font-medium">File Logs</span>
                       </div>
                     </TableCell>
-                    <TableCell>65%</TableCell>
-                    <TableCell>28%</TableCell>
-                    <TableCell>42%</TableCell>
+                    <TableCell>{logs.length} {' '} logs</TableCell>
+                    {/* <TableCell>28%</TableCell>
+                    <TableCell>42%</TableCell> */}
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <FileTextIcon className="h-4 w-4" />
-                        <span className="font-medium">Fall Fashion</span>
+                        <span className="font-medium">Downloads</span>
                       </div>
                     </TableCell>
                     <TableCell>72%</TableCell>

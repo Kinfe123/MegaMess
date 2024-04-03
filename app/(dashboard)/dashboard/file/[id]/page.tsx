@@ -24,7 +24,7 @@ export const metadata = {
 
 const FileDetail = async ({ params }: PropsParams) => {
     const fileId = params.id
-    const [users , fileFromId, fileLogs , Logs  ] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId) , logByFileId(fileId) ])
+    const [users , fileFromId, fileLogs , logs   ] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId) , logByFileId(fileId) ])
 
     const TABS = ['Waitlists', 'Analytics', 'Settings']
 
@@ -48,7 +48,7 @@ const FileDetail = async ({ params }: PropsParams) => {
                 <TabsContent value="analytics" className="flex flex-col max-w-[76rem] ">
                     <Suspense fallback={<WaitlistSkeleton />}>
                         <div className="h-full flex justify-center items-center">
-                            <AnalyticsFile fileId={fileId} logs={Logs}/>
+                            <AnalyticsFile fileId={fileId} logs={logs}/>
                         </div>
                     </Suspense>
                 </TabsContent>
