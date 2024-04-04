@@ -17,6 +17,7 @@ type PropsParams = {
     }
 }
 
+
 export const metadata = {
     title: "File Detail ",
     description: "Explore in details about your file"
@@ -27,6 +28,7 @@ const FileDetail = async ({ params }: PropsParams) => {
     const [users , fileFromId, fileLogs , logs  , downloads, loved ] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId) , logByFileId(fileId) , downloadsByFileId(fileId) , lovedByOther(fileId) ])
 
     const TABS = ['Waitlists', 'Analytics', 'Settings']
+    const summeed = fileFromId?.downloads
 
     return (
         <DashboardShell>    
@@ -48,7 +50,7 @@ const FileDetail = async ({ params }: PropsParams) => {
                 <TabsContent value="analytics" className="flex flex-col max-w-[76rem] ">
                     <Suspense fallback={<WaitlistSkeleton />}>
                         <div className="h-full flex justify-center items-center">
-                            <AnalyticsFile fileId={fileId} logs={logs} downloads={downloads} loved={loved}/>
+                            <AnalyticsFile fileId={fileId} logs={logs} downloads={summeed} loved={loved}/>
                         </div>
                     </Suspense>
                 </TabsContent>
