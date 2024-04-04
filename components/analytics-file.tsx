@@ -10,7 +10,8 @@ import { ResponsiveBar } from "@nivo/bar"
 import { TableCell, TableRow, TableHead, TableBody, Table } from "@/components/ui/table"
 import { Favorite, Logs } from "@prisma/client"
 
-export function AnalyticsFile({fileId , logs , downloads , loved}: {fileId: string , logs:Logs[] , downloads: number , loved:Favorite[]}) {
+export function AnalyticsFile({fileId , logs , downloads , loved}: {fileId: string , logs:Logs[] , downloads: number[] , loved:Favorite[]}) {
+ const sumDownload = downloads.reduce((prev , curr) => curr + prev)
   return (
     <div className="grid min-h-screen w-full">
       <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-transparent">
@@ -128,7 +129,7 @@ export function AnalyticsFile({fileId , logs , downloads , loved}: {fileId: stri
                         <span className="font-medium">Downloads</span>
                       </div>
                     </TableCell>
-                    <TableCell>{downloads ? downloads : "0"} Download(s)</TableCell>
+                    <TableCell>{sumDownload ? sumDownload : "0"} Download(s)</TableCell>
                     {/* <TableCell>35%</TableCell>
                     <TableCell>48%</TableCell> */}
                   </TableRow>
