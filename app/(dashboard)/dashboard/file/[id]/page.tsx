@@ -5,7 +5,7 @@ import { CardSkeleton } from "@/components/shared/card-skeleton"
 import { TabModified, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tab-modified"
 import Waitlists from "./_components/waitlists"
 import { Suspense } from "react"
-import { fileById, waitlistEmailUsers } from "@/lib/file-info"
+import { downloadsByFileId, fileById, logByFileId, lovedByOther, waitlistEmailUsers } from "@/lib/file-info"
 import { Building } from "lucide-react"
 import SettingFile from "./_components/setting-file"
 import { AnalyticsFile } from "@/components/analytics-file"
@@ -17,6 +17,7 @@ type PropsParams = {
     }
 }
 
+
 export const metadata = {
     title: "File Detail ",
     description: "Explore in details about your file"
@@ -24,9 +25,10 @@ export const metadata = {
 
 const FileDetail = async ({ params }: PropsParams) => {
     const fileId = params.id
-    const [users , fileFromId, fileLogs ,  ] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId) ])
+    const [users , fileFromId, fileLogs , logs  , downloads, loved ] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId) , logByFileId(fileId) , downloadsByFileId(fileId) , lovedByOther(fileId) ])
 
     const TABS = ['Waitlists', 'Analytics', 'Settings']
+    const summedDownload = fileFromId?.downloads!
 
     return (
         <DashboardShell>    
@@ -48,7 +50,7 @@ const FileDetail = async ({ params }: PropsParams) => {
                 <TabsContent value="analytics" className="flex flex-col max-w-[76rem] ">
                     <Suspense fallback={<WaitlistSkeleton />}>
                         <div className="h-full flex justify-center items-center">
-                            <AnalyticsFile fileId={fileId} />
+                            <AnalyticsFile fileId={fileId} logs={logs} downloads={summedDownload} loved={loved}/>
                         </div>
                     </Suspense>
                 </TabsContent>
