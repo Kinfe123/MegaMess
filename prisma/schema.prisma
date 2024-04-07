@@ -227,6 +227,7 @@ model APIKey {
   website     String
   userId      String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
   createdAt   DateTime @default(now()) @map(name: "created_at")
   updatedAt   DateTime @default(now()) @map(name: "updated_at")
 }
