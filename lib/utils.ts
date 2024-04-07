@@ -114,7 +114,7 @@ export function formatFileSize(bytes?: number) {
 
 
 export const generateApiKey = () => {
-  return  crypto.randomBytes(16).toString('hex');
+  return  crypto.randomBytes(32).toString('hex');
   
 };
 
