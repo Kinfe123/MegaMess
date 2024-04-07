@@ -84,7 +84,7 @@ export const CTA = ({ user }: UserProps) => {
                   }}
                   className="group relative flex py-5 px-4 w-fit items-center gap-1.5 rounded-full bg-gray-950/10  text-gray-50 transition-colors hover:bg-gray-950/50"
                 >
-                  Explore Our Products
+                  Explore Our Product.
                   <FiArrowRight className="transition-transform group-hover:-rotate-45 group-active:-rotate-12" />
                 </motion.button>
               </Link>
