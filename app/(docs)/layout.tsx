@@ -42,7 +42,7 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
       <NavBar user={user} items={docsConfig.mainNav} rightElements={rightHeader()}>
         <DocsSidebarNav items={docsConfig.sidebarNav} />
       </NavBar>
-      <div className="container flex-1">{children}</div>
+      <div className="container lg:max-w-[100rem] mx-auto flex-1">{children}</div>
     </div>
   )
 }

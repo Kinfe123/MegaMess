@@ -1,54 +1,54 @@
 ---
 title: Documentation
-description: Welcome to the Taxonomy documentation.
+description: Build your file space around us
 ---
 
-This is the documentation for the Taxonomy site.
 
-This is an example of a doc site built using [ContentLayer](/docs/documentation/contentlayer) and MDX.
 
-<Callout>
+## Tech Stack
 
-This site is a work in progress. If you see dummy text on a page, it means I'm still working on it. You can follow updates on Twitter [@shadcn](https://twitter.com/shadcn).
-
-</Callout>
+- **Framework:** [Next.js](https://nextjs.org)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com)
+- **User Management:** [Clerk](https://clerk.com)
+- **ORM:** [Prisma ORM](https://prisma.io)
+- **UI Components:** [shadcn/ui](https://ui.shadcn.com)
+- **Email:** [React Email](https://react.email)
+- **Content Management:** [Contentlayer](https://www.contentlayer.dev)
+- **File Uploads:** [EdgeStore](https://uploadthing.com)
 
 ## Features
 
-Select a feature below to learn more about it.
+- [x] File Upload using our custom uploaders
+- [x] File Visibility . i.e public , private, as well email based 
+- [x] Invitation email for any user to collab on the file 
+- [x] Restrict access for email not in email lists
+- [x] Sending Request to view any file to file owners and sending email  once it gets approved 
+- [x] Email based notifications about core actions like visibility change , api revoke , team member addition 
+- [x] Adding any public file as well email based access file to your favorite list 
+- [x] Edit and Delete your file at anypoints in time - [x] since it will be cascaded 
+- [x] Unique shareable links for each file for public to view it or your emails based access users 
+- [x] Each file analytics reports with ingested email
+- [x] API keys
+- Teams [still in dev]  
 
-<div className="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
+<div className="grid gap-4 lg:grid-cols-2 mt-6">
 
-<Card href="/docs/documentation">
+<Card href="/docs/api-keys">
 
-### Documentation
+### API Keys
 
-This documentation site built using Contentlayer.
-
-</Card>
-
-<Card href="/docs/marketing" disabled>
-
-### Marketing
-
-The marketing site with landing pages.
-
-</Card>
-
-<Card href="/docs/app" disabled>
-
-### App
-
-The dashboard with auth and subscriptions.
+Learn how to use our API Keys on your app.
 
 </Card>
 
-<Card href="/docs/blog" disabled>
+<Card href="/docs/teams" disabled>
 
-### Blog
+### Teams
 
-The blog built using Contentlayer and MDX.
+Accelerate and firm your journey by using teams
 
 </Card>
+
 
 </div>
+
