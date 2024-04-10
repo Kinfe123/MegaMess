@@ -88,7 +88,7 @@ const FileForm = ({ userId }: UserProps) => {
                     Upload File
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px] relative overflow-hidden mt-[-500px] bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70">
+            <DialogContent className="sm:max-w-[500px] !overflow-y-scroll !max-h-screen !py-2 !overflow-x-hidden bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70">
                 <DialogHeader>
                     <DialogTitle>Upload a file</DialogTitle>
                     <DialogDescription>

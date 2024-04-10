@@ -98,6 +98,10 @@
   background-clip: text;
 }
 
+::-webkit-scrollbar{
+  @apply w-[2px]
+}
+
 * {
   scroll-behavior: smooth
 }
