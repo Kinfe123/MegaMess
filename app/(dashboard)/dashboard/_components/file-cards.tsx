@@ -1,7 +1,7 @@
 
 'use client'
 import React, { Suspense, use } from 'react'
-import { User, type Favorite, type File } from '@prisma/client'
+import { Pin, User, type Favorite, type File } from '@prisma/client'
 import { MoreHorizontal } from 'lucide-react'
 import {
     Card,
@@ -41,7 +41,7 @@ type fileProps = {
     file: Promise<File[]>;
 }
 
-const FileCards = ({ file, favved , fileOwner }: { file: File, favved: Promise<Favorite[]> , fileOwner: Promise<({user: User} | null)| null> }) => {
+const FileCards = ({ file, favved , fileOwner , pinned}: { file: File, pinned: Promise<Pin | null> | null ,  favved: Promise<Favorite[]> , fileOwner: Promise<({user: User} | null)| null> }) => {
     const promise = use(favved)
     const fileOwnerPromise = use(fileOwner)
     const isFav = promise.filter((f) => f.fileId === file.id)

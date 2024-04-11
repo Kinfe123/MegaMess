@@ -405,7 +405,12 @@ export const makePins = async (fileId: string ) => {
 
 }
 
-export const finePin = async (fileId: string) => {
-  //  const pin = await p
+export const findPin = async (fileId: string) => {
+   const pin = await prisma.pin.findFirst({
+      where: {
+        fileId,
+      }
+   })
+   return pin
 }
 
