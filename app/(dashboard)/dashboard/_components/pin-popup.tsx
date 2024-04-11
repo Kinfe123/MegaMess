@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { fileDelete, fileFav, fileUnFav, getFileOwner, makePins } from "@/actions/file-actions"
+import { fileDelete, fileFav, fileUnFav, getFileOwner, makePins, pinFile } from "@/actions/file-actions"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,7 +22,7 @@ export function PinBtn({fileId , pinned}: {fileId: string , pinned: File | null}
     const [pending , startTransition] = useTransition()
     const handleClick = () => {
         startTransition(() => {
-            makePins(fileId).then((res) => {
+            pinFile(fileId , pinned?.pinned!).then((res) => {
                 toast({
                     title: "Pin File",
                     description: "You have pinned file" 
