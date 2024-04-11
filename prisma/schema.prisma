@@ -95,6 +95,7 @@ model File {
   user        User            @relation("files", fields: [userId], references: [id], onDelete: Cascade)
   teamMember  TeamMember?     @relation("TeamFileMember")
   TeamFiles   TeamFiles[]
+  pin         Pin?           @relation("FilePin")
   
 }
 
@@ -243,4 +244,14 @@ model Logs {
   files     File     @relation("FileLog", fields: [fileId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now()) @map(name: "created_at")
    
+}
+
+model Pin {
+  id          String   @id @default(cuid())
+  files       File     @relation("FilePin", fields: [fileId], references: [id])
+  fileId      String   @unique
+  
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+  
+  
 }

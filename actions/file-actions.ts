@@ -385,3 +385,18 @@ export const allowEmail = async (fileId: string , email:string) => {
   }
 
 }
+
+export const makePins = async (fileId: string , email:string) => {
+  try {
+    const pins = await prisma
+    revalidatePath("/dashboard")
+    revalidatePath("/dashboard/file")
+    revalidatePath('/files/f/[id]' , 'page')
+    return allowEmail
+  }catch(err) {
+   ow new Error('Error has occured ', err)
+
+  }
+
+}
+
