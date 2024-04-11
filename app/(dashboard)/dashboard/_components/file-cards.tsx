@@ -36,6 +36,7 @@ import { VisiblityBtn } from '@/app/files/f/[...id]/_components/visiblity-popup'
 import { Icons } from '@/components/shared/icons'
 import { Hint } from '@/components/hint'
 import Link from 'next/link'
+import { PinBtn } from './pin-popup'
 type fileProps = {
     file: Promise<File[]>;
 }
@@ -88,6 +89,8 @@ const FileCards = ({ file, favved , fileOwner }: { file: File, favved: Promise<F
                             <FileShareBtn file={file} />
                             <Separator className='w-full my-1' />
                             <FavBtn fav={!!isFav.length} fileId={file.id} fileOwner={file.userId} />
+                            <Separator className='w-full my-1' />
+                            <PinBtn pinned={false} fileId={file.id}  />
                             <Separator className='w-full my-1' />
                             <VisiblityBtn file={file} fileOwner={fileOwnerPromise?.user}/>
                             <DropdownMenuSeparator />
