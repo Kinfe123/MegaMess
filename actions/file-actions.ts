@@ -425,5 +425,6 @@ export const pinFile = async (fileId: string , pinned: boolean) => {
     },
   })
   revalidatePath("/dashboard")
+  revalidatePath('/files/f/*')
   return pin
 }
