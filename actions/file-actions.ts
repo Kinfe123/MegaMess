@@ -421,12 +421,9 @@ export const pinFile = async (fileId: string , pinned: boolean) => {
       id: fileId,
     },
     data : {
-      pinned: !pinned
+      pinned,
     },
   })
-  console.log("FILE : " , pin)
   revalidatePath("/dashboard")
-  revalidatePath("/dashboard/file")
-  revalidatePath('/files/f/[id]' , 'page')
   return pin
 }

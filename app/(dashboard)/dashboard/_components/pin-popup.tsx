@@ -26,7 +26,7 @@ export function PinBtn({fileId , pinned}: {fileId: string , pinned: File | null}
         startTransition(() => {
             if(!filePinned) {
 
-                pinFile(fileId , filePinned!).then((res) => {
+                pinFile(fileId , true!).then((res) => {
                     toast({
                         title: "Pin File",
                         description: "You have pinned file" 
@@ -39,7 +39,7 @@ export function PinBtn({fileId , pinned}: {fileId: string , pinned: File | null}
                     })
                 })
             }else {
-                pinFile(fileId , filePinned).then((res) => {
+                pinFile(fileId , false).then((res) => {
                     toast({
                         title: "Unpinned File",
                         description: "You have unpinned file" 
