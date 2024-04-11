@@ -24,7 +24,7 @@ import { fileEdit, uploadFile, type FormData } from "@/actions/file-actions"
 import FilePage from "./file-display"
 import FuzzyOverlay from "@/components/fuzzy"
 import { toast } from "@/components/ui/use-toast"
-import { Loader2 } from "lucide-react"
+import { EditIcon, Loader2 } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 
@@ -74,7 +74,7 @@ const EditFileForm = ({ file }: { file: File }) => {
             <DialogTrigger asChild>
 
                 <Button className="w-full py-[-20px] flex justify-start items-center" variant={'ghost'} size={'sm'}>
-                    Edit
+                 <EditIcon className="w-4 h-4 mr-2"/>   Edit
 
                 </Button>
                 {/* <p className="cursor-pointer ml-2">Edit</p> */}

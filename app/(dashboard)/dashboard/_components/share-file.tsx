@@ -1,4 +1,4 @@
-import { Copy } from "lucide-react"
+import { Copy, ShareIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -25,7 +25,7 @@ export function FileShareBtn({ file }: { file: File }) {
     <Dialog>
       <DialogTrigger asChild>
         <Button className="w-full py-[-20px] flex justify-start items-center" variant={'ghost'} size={'sm'}>
-          Share
+         <ShareIcon className="w-4 h-4 mr-2"/> Share
 
         </Button>
       </DialogTrigger>

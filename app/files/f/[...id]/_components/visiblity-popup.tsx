@@ -12,7 +12,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { EyeOff, Eye, Mail } from 'lucide-react'
+import { EyeOff, Eye, Mail, EyeIcon } from 'lucide-react'
 import {
     AlertDialog,
     AlertDialogAction,
@@ -42,6 +42,13 @@ export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User
     const [emails, setEmails] = useState<string[]>([])
     const [pending, startTransition] = useTransition()
     const [emailClick , setEmailClick ] = useState(false)
+    const IconObject = {
+        PUBLIC: <Eye className='w-4 h-4 mr-2'/>,
+        PRIVATE: <EyeOff className='w-4 h-4 mr-2'/>,
+        EMAIL: <Mail className='w-4 h-4 mr-2'/>
+
+    }
+    
 
     //   const isFav = fileId === 
     const handleClick = async () => {
@@ -90,7 +97,7 @@ export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User
         <AlertDialog>
             <AlertDialogTrigger asChild>
                 <Button className="w-full py-[-20px] flex justify-start items-center" variant={'ghost'} size={'sm'}>
-                    Visibility
+                  {IconObject[typeOfVisiblity[dropType]]}  Visibility
                 </Button>
             </AlertDialogTrigger>
             <AlertDialogContent className='bg-gradient-to-br from-purple-400/10 rounded-md  via-transparent to-transparent/5'>
