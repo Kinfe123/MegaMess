@@ -40,7 +40,7 @@ export function PinBtn({fileId , pinned}: {fileId: string , pinned: File | null}
         <AlertDialog>
         <AlertDialogTrigger asChild>
           <Button disabled={pending} onClick={handleClick} className="w-full py-[-20px] flex justify-start items-center" variant={'ghost'} size={'sm'}>
-           {pinned ? "Un": ""}Pin {pending ? <Loader2 className="ml-auto w-3 h-3 animate-spin" /> : ""}
+           {pinned?.pinned ? "Un": ""}Pin {pending ? <Loader2 className="ml-auto w-3 h-3 animate-spin" /> : ""}
   
           </Button>
   
