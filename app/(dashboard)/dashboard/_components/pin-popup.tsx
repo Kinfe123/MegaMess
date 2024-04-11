@@ -16,9 +16,9 @@ import { Button } from "@/components/ui/button"
 import { use, useTransition } from "react"
 import { toast } from "@/components/ui/use-toast"
 import { Loader2, PieChartIcon } from "lucide-react"
-import { Pin } from '@prisma/client'
+import { Pin  , File} from '@prisma/client'
 
-export function PinBtn({fileId , pinned}: {fileId: string , pinned: Pin}) {
+export function PinBtn({fileId , pinned}: {fileId: string , pinned: File | null}) {
     const [pending , startTransition] = useTransition()
     const handleClick = () => {
         startTransition(() => {

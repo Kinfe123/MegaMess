@@ -96,6 +96,7 @@ model File {
   teamMember  TeamMember?     @relation("TeamFileMember")
   TeamFiles   TeamFiles[]
   pin         Pin?           @relation("FilePin")
+  pinned     Boolean?        @default(false)
   
 }
 

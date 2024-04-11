@@ -414,3 +414,15 @@ export const findPin = async (fileId: string) => {
    return pin
 }
 
+
+export const pinFile = async (fileId: string , pinned: boolean) => {
+  const pin = await prisma.file.update({
+    where: {
+      id: fileId,
+    },
+    data : {
+      pinned: !pinned
+    },
+  })
+  return pin
+}
