@@ -50,7 +50,7 @@ export default async function DashboardPage() {
           <Suspense fallback={<CardSkeleton />}>
             {(await result).map((file) => {
               return (
-                <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id , file.pinned ?? false)} />
+                <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id , file.pinned!)} />
 
               )
             })}
