@@ -386,15 +386,20 @@ export const allowEmail = async (fileId: string , email:string) => {
 
 }
 
-export const makePins = async (fileId: string , email:string) => {
+export const makePins = async (fileId: string ) => {
   try {
-    const pins = await prisma
+    const pins = await prisma.pin.create({
+      data: {
+        fileId,
+        
+      }
+    })
     revalidatePath("/dashboard")
     revalidatePath("/dashboard/file")
     revalidatePath('/files/f/[id]' , 'page')
-    return allowEmail
+    return pins
   }catch(err) {
-   ow new Error('Error has occured ', err)
+   throw new Error('Error has occured ', err)
 
   }
 
