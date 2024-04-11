@@ -16,8 +16,9 @@ import { Button } from "@/components/ui/button"
 import { use, useTransition } from "react"
 import { toast } from "@/components/ui/use-toast"
 import { Loader2, PieChartIcon } from "lucide-react"
+import { Pin } from '@prisma/client'
 
-export function PinBtn({fileId}: {fileId: string}) {
+export function PinBtn({fileId , pinned}: {fileId: string , pinned: Pin}) {
     const [pending , startTransition] = useTransition()
     const handleClick = () => {
         startTransition(() => {
@@ -39,7 +40,7 @@ export function PinBtn({fileId}: {fileId: string}) {
         <AlertDialog>
         <AlertDialogTrigger asChild>
           <Button disabled={pending} onClick={handleClick} className="w-full py-[-20px] flex justify-start items-center" variant={'ghost'} size={'sm'}>
-           {fav ? "Un": ""}Favorite {pending ? <Loader2 className="ml-auto w-3 h-3 animate-spin" /> : ""}
+           {pinned ? "Un": ""}Favorite {pending ? <Loader2 className="ml-auto w-3 h-3 animate-spin" /> : ""}
   
           </Button>
   

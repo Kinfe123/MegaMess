@@ -43,6 +43,7 @@ type fileProps = {
 
 const FileCards = ({ file, favved , fileOwner , pinned}: { file: File, pinned: Promise<Pin | null> | null ,  favved: Promise<Favorite[]> , fileOwner: Promise<({user: User} | null)| null> }) => {
     const promise = use(favved)
+    const pinnedfile = use(pinned)
     const fileOwnerPromise = use(fileOwner)
     const isFav = promise.filter((f) => f.fileId === file.id)
     const IconVisibility = Icons[file.visiblity.toLowerCase()]
@@ -90,7 +91,7 @@ const FileCards = ({ file, favved , fileOwner , pinned}: { file: File, pinned: P
                             <Separator className='w-full my-1' />
                             <FavBtn fav={!!isFav.length} fileId={file.id} fileOwner={file.userId} />
                             <Separator className='w-full my-1' />
-                            <PinBtn pinned={false} fileId={file.id}  />
+                            <PinBtn pinned={pinnedfile} fileId={file.id}  />
                             <Separator className='w-full my-1' />
                             <VisiblityBtn file={file} fileOwner={fileOwnerPromise?.user}/>
                             <DropdownMenuSeparator />
