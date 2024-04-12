@@ -8,8 +8,12 @@ import { CardDescription, CardTitle, CardHeader, CardContent, Card } from "@/com
 import { ResponsiveLine } from "@nivo/line"
 import { ResponsiveBar } from "@nivo/bar"
 import { TableCell, TableRow, TableHead, TableBody, Table } from "@/components/ui/table"
+import { Favorite, Logs } from "@prisma/client"
 
-export function AnalyticsFile() {
+type DownloadProps = {
+  downloads:number
+}
+export function AnalyticsFile({fileId , logs , downloads , loved}: {fileId: string , logs:Logs[] , downloads: number , loved:Favorite[]}) {
   return (
     <div className="grid min-h-screen w-full">
       <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-transparent">
@@ -74,7 +78,7 @@ export function AnalyticsFile() {
             </Card>
             <Card className="flex flex-col">
               <CardHeader>
-                <CardDescription>FIle Viewed</CardDescription>
+                <CardDescription>File Viewed</CardDescription>
                 <CardTitle>Viewed by Others.</CardTitle>
               </CardHeader>
               <CardContent>
@@ -93,9 +97,9 @@ export function AnalyticsFile() {
           </div>
           <Card>
             <CardHeader className="pb-0">
-              <CardTitle>Top Performing Copy Variations</CardTitle>
+              <CardTitle>Top insight from your files.</CardTitle>
               <CardDescription>
-                Showing the top-performing copy variations along with their corresponding metrics.
+                Showing the top-performing copy stats of your files.
               </CardDescription>
             </CardHeader>
             <CardContent className="p-0">
@@ -113,34 +117,34 @@ export function AnalyticsFile() {
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <FileTextIcon className="h-4 w-4" />
-                        <span className="font-medium">Summer Collection</span>
+                        <span className="font-medium">File Logs</span>
                       </div>
                     </TableCell>
-                    <TableCell>65%</TableCell>
-                    <TableCell>28%</TableCell>
-                    <TableCell>42%</TableCell>
+                    <TableCell>{logs.length} {' '} Log(s)</TableCell>
+                    {/* <TableCell>28%</TableCell>
+                    <TableCell>42%</TableCell> */}
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <FileTextIcon className="h-4 w-4" />
-                        <span className="font-medium">Fall Fashion</span>
+                        <span className="font-medium">Downloads</span>
                       </div>
                     </TableCell>
-                    <TableCell>72%</TableCell>
-                    <TableCell>35%</TableCell>
-                    <TableCell>48%</TableCell>
+                    <TableCell>{downloads ? downloads : "0"} Download(s)</TableCell>
+                    {/* <TableCell>35%</TableCell>
+                    <TableCell>48%</TableCell> */}
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <FileTextIcon className="h-4 w-4" />
-                        <span className="font-medium">Holiday Cheer</span>
+                        <span className="font-medium">Loved by</span>
                       </div>
                     </TableCell>
-                    <TableCell>60%</TableCell>
-                    <TableCell>32%</TableCell>
-                    <TableCell>50%</TableCell>
+                    <TableCell>{loved.length} person(s)</TableCell>
+                    {/* <TableCell>32%</TableCell>
+                    <TableCell>50%</TableCell> */}
                   </TableRow>
                   <TableRow>
                     <TableCell>
@@ -436,7 +440,7 @@ function LineChart(props) {
           },
           grid: {
             line: {
-              stroke: "#f3f4f6",
+              stroke: "#ffffff",
             },
           },
         }}
@@ -475,6 +479,9 @@ function BarChart(props) {
         }}
         gridYValues={4}
         theme={{
+          text: {
+            color:"#ffffff",
+          },
           tooltip: {
             chip: {
               borderRadius: "9999px",
@@ -494,7 +501,7 @@ function BarChart(props) {
         tooltipLabel={({ id }) => `${id}`}
         enableLabel={false}
         role="application"
-        ariaLabel="A bar chart showing data"
+        ariaLabel="A bar c6f406dhart showing data"
       />
     </div>
   )

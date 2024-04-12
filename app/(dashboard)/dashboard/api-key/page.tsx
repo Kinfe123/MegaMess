@@ -11,6 +11,11 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import APIKeyCard, { KeyIcon } from "./_components/api-key-card"
 import { ExternalLink } from "lucide-react"
 import Link from 'next/link'
+export const metadata = {
+    title: "API Keys ",
+    description: "Build Apps using our services",
+}
+
 const APIKey = async () => {
     const user = await getCurrentUser()
     if (!user) {

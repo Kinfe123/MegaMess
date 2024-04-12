@@ -2,11 +2,12 @@ import { DropdownMenuTrigger, DropdownMenuCheckboxItem, DropdownMenuContent, Dro
 import { Separator } from "@/components/ui/separator"
 
 import { Badge } from "@/components/ui/badge"
-import { GitBranchIcon, GitCommitIcon, MoreHorizontalIcon } from "lucide-react"
+import { GitBranchIcon, GitCommitIcon, MoreHorizontalIcon, Trash } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { type Logs } from "@prisma/client"
 import { fileById } from "@/lib/file-info"
 import { timeAgo } from "@/lib/utils"
+import DeleteLogs from "./log-delete"
 const LogsDisplay = async ({ log }: { log: Logs }) => {
     const file = await fileById(log.fileId)
     return (
@@ -26,7 +27,7 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                     {log.status === 'GRANTED' ? (
                         <div className="flex flex-col justify-center items-start">
                             <div className="flex">
-                                <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-green-400 rounded-full translate-y-1" />
+                                <span className=" w-2 h-2 mr-2 flex justify-center tiems-center bg-green-400 rounded-full translate-y-1.5" />
                                 <p>Viewed</p>
 
                             </div>
@@ -38,7 +39,7 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                         log.status === 'REQUESTED' ? (
                             <div className="flex flex-col justify-center items-start">
                                 <div className="flex">
-                                    <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-orange-400 rounded-full translate-y-1" />
+                                    <span className=" w-2 h-2 mr-2 flex justify-center tiems-center bg-orange-400 rounded-full translate-y-1.5" />
                                     <p>Requested</p>
 
                                 </div>
@@ -49,7 +50,7 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                         ) :
                             <div className="flex flex-col justify-center items-start">
                                 <div className="flex">
-                                    <span className=" w-2 h-2 mr-1 flex justify-center tiems-center bg-red-400 rounded-full translate-y-1" />
+                                    <span className=" w-2 h-2 mr-2 flex justify-center tiems-center bg-red-400 rounded-full translate-y-1.5" />
                                     <p>Denied</p>
 
                                 </div>
@@ -85,8 +86,11 @@ const LogsDisplay = async ({ log }: { log: Logs }) => {
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                    <DropdownMenuItem>Delete</DropdownMenuItem>
+                   
+                    <DeleteLogs id={log.id}/>
+                    <Separator />
                     <DropdownMenuItem disabled>Rollback</DropdownMenuItem>
+
                 </DropdownMenuContent>
             </DropdownMenu>
         </div>

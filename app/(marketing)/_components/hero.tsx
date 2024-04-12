@@ -1,3 +1,5 @@
+import Image from "next/image"
+import DashboardImg from "../../../public/images/dashboard.png"
 import Link from "next/link"
 import Section from "./section"
 import { siteConfig } from "@/config/site"
@@ -52,7 +54,7 @@ const Hero = async () => {
                     </div>
                 </div>
             </section>
-
+        
 
             <section
                 className="animate-fade-up py-16 text-zinc-500 opacity-0 dark:text-zinc-400"

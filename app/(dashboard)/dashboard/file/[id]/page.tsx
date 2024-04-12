@@ -5,16 +5,18 @@ import { CardSkeleton } from "@/components/shared/card-skeleton"
 import { TabModified, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tab-modified"
 import Waitlists from "./_components/waitlists"
 import { Suspense } from "react"
-import { fileById, waitlistEmailUsers } from "@/lib/file-info"
+import { downloadsByFileId, fileById, logByFileId, lovedByOther, waitlistEmailUsers } from "@/lib/file-info"
 import { Building } from "lucide-react"
 import SettingFile from "./_components/setting-file"
 import { AnalyticsFile } from "@/components/analytics-file"
+import { fileLogsById } from "@/actions/file-actions"
 
 type PropsParams = {
     params: {
         id: string
     }
 }
+
 
 export const metadata = {
     title: "File Detail ",
@@ -23,12 +25,13 @@ export const metadata = {
 
 const FileDetail = async ({ params }: PropsParams) => {
     const fileId = params.id
-    const users = await waitlistEmailUsers(fileId)
-    const fileFromId = await fileById(fileId)
+    const [users , fileFromId, fileLogs , logs  , downloads, loved ] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId) , logByFileId(fileId) , downloadsByFileId(fileId) , lovedByOther(fileId) ])
+
     const TABS = ['Waitlists', 'Analytics', 'Settings']
+    const summedDownload = fileFromId?.downloads!
 
     return (
-        <DashboardShell>
+        <DashboardShell>    
             <DashboardHeader heading="Analytics & Privillages" text="Explore in depth analytics and exploration about your files" />
             <TabModified defaultValue={TABS[0].toLowerCase()}>
                 {TABS.map((tab) => {
@@ -47,7 +50,7 @@ const FileDetail = async ({ params }: PropsParams) => {
                 <TabsContent value="analytics" className="flex flex-col max-w-[76rem] ">
                     <Suspense fallback={<WaitlistSkeleton />}>
                         <div className="h-full flex justify-center items-center">
-                            <AnalyticsFile />
+                            <AnalyticsFile fileId={fileId} logs={logs} downloads={summedDownload} loved={loved}/>
                         </div>
                     </Suspense>
                 </TabsContent>

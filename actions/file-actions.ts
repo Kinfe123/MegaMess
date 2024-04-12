@@ -13,6 +13,8 @@ export type FormData = {
 
 }
 
+
+
 export async function uploadFile(userId: string, fileUrl: string, fileSize: number, data: FormData) {
   try {
     const user = await getCurrentUser()
@@ -34,6 +36,8 @@ export async function uploadFile(userId: string, fileUrl: string, fileSize: numb
       }
     })
     revalidatePath('/dashboard');
+    revalidatePath('/dashboard/analytics');
+
     if (addFile.id) {
       return { status: 'success', id: addFile.id }
     } else {
@@ -428,3 +432,65 @@ export const pinFile = async (fileId: string , pinned: boolean) => {
   revalidatePath('/files/f/*')
   return pin
 }
+
+
+export const createFeedback = async (fileId: string , d: FormData) => {
+  try {
+    
+    const res = await prisma.feedbacks.create({
+        data: {
+          fileId,
+          name:d.name,
+          description: d?.description ?? "",
+        }
+      })
+      return res
+  } catch(err) {
+    console.log('#[ERROR] ' , err)
+    throw new Error('Error has occured ', err)
+
+
+  }
+}
+
+export const fileLogsById = async  (id: string) => {
+    try {
+        const fileLogs = await prisma.file.findMany({
+          where: {
+            id: id,
+          },
+          select: {
+            logs:true,
+          }
+        })
+
+        return fileLogs
+
+    }catch(err) {
+      return  new Response("Error has occured" , {status:400})
+    }
+}
+
+export const fileDownload = async (fileId: string) => {
+  try {
+    const fileDownload = await prisma.file.update({
+      where: {
+        id: fileId,
+      
+      },
+      data: {
+        downloads: {
+          increment: 1,
+        }
+      }
+
+    })
+    return fileDownload
+  }catch(err) {
+    return  new Response("Error has occured" , {status:400})
+
+  }
+}
+
+ 
+

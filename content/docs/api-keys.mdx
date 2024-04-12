@@ -5,14 +5,7 @@ description: This is the guide for api key setup
 
 
 
-# API Keys
- How to create and get started using our API keys
-
-<Callout>
-API Keys make it easier.
-</Callout>
-
-## Getting Started
+### Getting Started
 
 Go to the [dashboard/api-keys](https://mega-mess.vercel.app/dashboard/api-keys) and create an API key there.
 
@@ -27,6 +20,23 @@ After copying the API keys, you can use them in your app.
 The API endpoint for making a request is: `https://mega-mess.vercel.app/api/files`
 
 For Next.js/React, you can use the following code:
+
+##  Step on claiming the apikey
+
+- First go to the [MegaMess website dashboard](https://mega-mess.vercel.app/dashboard)
+- Choose a menu called API-Keys
+- Click on `Creating API Keys`
+- Add your website you want to use megamess service
+- Then copy the api key by clicking the copy button on the api key carrd 
+- Upsert an `.env` file with `MEGAMESS_API_KEY='megamess_************'`
+- THen you can use the `.env` file depending on the runtime you are using. like if it were node , you can use `process.env.MEGAMESS_API_KEY` or you can refer the usage of the `env` from their docs on how to use the   `.env` variables.
+
+
+Now we can demonistrate the usage of the api key on Nextjs API handlers as follows
+
+
+
+
 
 ```js
 
@@ -44,7 +54,7 @@ export async function GET(req: Request) {
         method:"POST",
         headers: {
             'Content-Type': 'application/json',
-            'megamess-api-key': '1f083687c0e91906262c38c6bd77e722',
+            'megamess-api-key': procss.env.MEGAMESS_API_KEY,
         },
         body: JSON.stringify({
             name: name,

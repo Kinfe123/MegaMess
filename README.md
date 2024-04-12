@@ -26,6 +26,7 @@ Easy and user friendly file sharing platform along with analytics
 - [x] Unique shareable links for each file for public to view it or your emails based access users 
 - [x] Each file analytics reports with ingested email
 - [x] API key 
+- [x] Logs analytics
 - Teams [still in dev]  
 - Stripe Implementation based on the pricing model[still in dev]  
 

@@ -90,7 +90,96 @@ export const fileLogbyUser = async () => {
         // @ts-ignore
         fileFinished.push(...log)
     })
-    const reverseedOne = fileFinished.reverse()
     return fileFinished
     
+}
+
+export const fileByUserId = async(id: string) => {
+  
+    const files = await prisma.file.findMany({
+        where: {
+            userId: id,
+        }
+    })
+    return files
+}
+
+export const totalDownload = async () => {
+    const user = await getCurrentUser()
+    const files = await prisma.file.findMany({
+        where: {
+            userId: user?.id
+        }
+    })
+    let downloadFilter = files.map(f => f.downloads)
+    let sums = downloadFilter.reduce((prev , curr) => prev + curr)
+    return sums    
+
+}
+export const topFiles = async () => {
+    const user = await getCurrentUser()
+    const files = await prisma.file.findMany({
+        where: {
+            userId:user?.id
+
+        },
+        include: {
+            logs: true,
+            viewers: true,
+            feedbacks:true,  
+            waitlists: true,          
+        }
+        
+    })
+
+    let sumTotal = 0
+    // calculation can be done based on logs , downloads , emial shared , api keys as communative
+    let filesObject: Record<string , number> = {}
+    let filesObjectLists: typeof filesObject[][] = []
+    files.map((file) => {
+        filesObject[file.id] = file.downloads + file.logs.length + file.viewers.length + file.feedbacks.length + file.waitlists.length
+        filesObjectLists.push([filesObject])
+        filesObject= {}
+    })
+    filesObjectLists.sort((a , b) => {
+        const valueA = Object.values(a[0])[0]; 
+        const valueB = Object.values(b[0])[0];       
+        return valueB - valueA
+    })
+    return filesObjectLists
+
+    
+}
+
+
+export const logByFileId = async (id: string) => {
+    const logs = await prisma.logs.findMany({
+        where: {
+            fileId: id,
+        },
+     
+    })
+    return logs 
+}
+
+
+export const downloadsByFileId = async (id: string) => {
+    const downloads = await prisma.file.findMany({
+        where: {
+            id,
+        },
+        select: {
+            downloads: true,
+        }
+    })
+    return downloads
+}
+
+export const lovedByOther = async (id: string) => {
+    const loved = await prisma.favorite.findMany({
+        where: {
+            favoritingId: id,
+        }
+    })
+    return loved
 }

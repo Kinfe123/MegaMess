@@ -4,14 +4,17 @@ import { revalidatePath } from "next/cache"
 
 enum Status {
     DENIED,
-    GRANTED
+    GRANTED,
+    REQUESTED
 }
-export const createLogs = async(fileId: string , status:boolean , description: string ,  originIp: string , originLocation: string  , userAgent: string , responseTime: string) => {
+type StatusProps = keyof typeof Status
+export const createLogs = async(fileId: string ,email: string, status: StatusProps , description: string ,  originIp: string , originLocation: string  , userAgent: string , responseTime: string) => {
     try {
         const log = await prisma.logs.create({
             data: {
                 fileId:fileId,
-                status: status ? "GRANTED" : "DENIED" ,
+                email,
+                status,
                  description,
                 originLocation,
                 originIp,
@@ -39,7 +42,8 @@ export const getAlLogs = async (fileId: string) => {
                 fileId: fileId
             },
             orderBy: {
-                createdAt:"desc"
+                createdAt:"desc",
+                
             }
         })
         return allLogs;
@@ -52,4 +56,22 @@ export const getAlLogs = async (fileId: string) => {
         throw new Error("Error while creating logs")
     }
 
+}
+
+
+export const logDeleteById = async (id: string) => {
+    try {
+        const logDelete = await prisma.logs.delete({
+            where: {
+                id,
+            }
+        })
+        revalidatePath("/dashboard")
+        revalidatePath("/dashboard/logs")
+        return logDelete
+    }catch(err) {
+        console.log('Error while deleting logs' , err)
+        throw new Error("Error while deleting logs")
+
+    }
 }
