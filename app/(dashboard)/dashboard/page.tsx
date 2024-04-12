@@ -14,6 +14,7 @@ import EmptyBox from "./_components/empty-box"
 import { FileSkeleton } from "./loading"
 import { getFUllUserById } from "@/lib/user"
 import { CardSkeleton } from "@/components/shared/card-skeleton"
+import { findPin, pinFile } from "@/actions/file-actions"
 
 export const metadata = {
   title: "File Dashboard",
@@ -30,7 +31,7 @@ export default async function DashboardPage() {
   }
   const result = files(user.id)
 
-
+  
 
   return (
     <DashboardShell>
@@ -49,7 +50,7 @@ export default async function DashboardPage() {
           <Suspense fallback={<CardSkeleton />}>
             {(await result).map((file) => {
               return (
-                <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} />
+                <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id , file.pinned!)} />
 
               )
             })}

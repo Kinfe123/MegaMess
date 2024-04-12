@@ -1,7 +1,7 @@
 
 'use client'
 import React, { Suspense, use } from 'react'
-import { User, type Favorite, type File } from '@prisma/client'
+import { Pin, User, type Favorite, type File } from '@prisma/client'
 import { MoreHorizontal } from 'lucide-react'
 import {
     Card,
@@ -36,12 +36,15 @@ import { VisiblityBtn } from '@/app/files/f/[...id]/_components/visiblity-popup'
 import { Icons } from '@/components/shared/icons'
 import { Hint } from '@/components/hint'
 import Link from 'next/link'
+import { PinBtn } from './pin-popup'
 type fileProps = {
     file: Promise<File[]>;
 }
 
-const FileCards = ({ file, favved , fileOwner }: { file: File, favved: Promise<Favorite[]> , fileOwner: Promise<({user: User} | null)| null> }) => {
+const FileCards = ({ file, favved , fileOwner , pinned}: { file: File, pinned: Promise<File | null> ,  favved: Promise<Favorite[]> , fileOwner: Promise<({user: User} | null)| null> }) => {
     const promise = use(favved)
+    const pinnedfile = use(pinned)
+    
     const fileOwnerPromise = use(fileOwner)
     const isFav = promise.filter((f) => f.fileId === file.id)
     const IconVisibility = Icons[file.visiblity.toLowerCase()]
@@ -88,6 +91,8 @@ const FileCards = ({ file, favved , fileOwner }: { file: File, favved: Promise<F
                             <FileShareBtn file={file} />
                             <Separator className='w-full my-1' />
                             <FavBtn fav={!!isFav.length} fileId={file.id} fileOwner={file.userId} />
+                            <Separator className='w-full my-1' />
+                            <PinBtn pinned={pinnedfile} fileId={file.id}  />
                             <Separator className='w-full my-1' />
                             <VisiblityBtn file={file} fileOwner={fileOwnerPromise?.user}/>
                             <DropdownMenuSeparator />

@@ -390,6 +390,49 @@ export const allowEmail = async (fileId: string , email:string) => {
 
 }
 
+export const makePins = async (fileId: string ) => {
+  try {
+    const pins = await prisma.pin.create({
+      data: {
+        fileId,
+        
+      }
+    })
+    revalidatePath("/dashboard")
+    revalidatePath("/dashboard/file")
+    revalidatePath('/files/f/[id]' , 'page')
+    return pins
+  }catch(err) {
+   throw new Error('Error has occured ', err)
+
+  }
+
+}
+
+export const findPin = async (fileId: string) => {
+   const pin = await prisma.pin.findFirst({
+      where: {
+        fileId,
+      }
+   })
+   return pin
+}
+
+
+export const pinFile = async (fileId: string , pinned: boolean) => {
+  const pin = await prisma.file.update({
+    where: {
+      id: fileId,
+    },
+    data : {
+      pinned,
+    },
+  })
+  revalidatePath("/dashboard")
+  revalidatePath('/files/f/*')
+  return pin
+}
+
 
 export const createFeedback = async (fileId: string , d: FormData) => {
   try {
@@ -450,3 +493,4 @@ export const fileDownload = async (fileId: string) => {
 }
 
  
+
