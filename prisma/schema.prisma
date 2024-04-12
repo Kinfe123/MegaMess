@@ -259,7 +259,7 @@ model Pin {
   fileId      String   @unique
   
   createdAt   DateTime @default(now()) @map(name: "created_at")
-  
+}
 
 model Feedbacks {
   id          String   @id @default(cuid())
