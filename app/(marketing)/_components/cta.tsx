@@ -61,9 +61,9 @@ export const CTA = ({ user }: UserProps) => {
           <span className="mb-1.5 inline-block rounded-full bg-gray-600/50 px-3 py-1.5 text-sm">
             Beta Now Live!
           </span>
-          <h1 className="max-w-3xl font-heading bg-gradient-to-br from-white to-gray-400 bg-clip-text text-center text-3xl font-medium leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight">
+          <h1 className="max-w-5xl uppercase font-heading bg-gradient-to-br from-white to-gray-400 bg-clip-text text-center text-3xl font-medium leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight">
             Share at Speed. <br />
-            Left every details for us.
+            Leave every details for us.
           </h1>
           <p className="my-6 max-w-xl text-center text-base leading-relaxed md:text-lg md:leading-relaxed">
             Trust us to swiftly and effectively share the entirety of your content and file safety with help of our tools
@@ -84,7 +84,7 @@ export const CTA = ({ user }: UserProps) => {
                   }}
                   className="group relative flex py-5 px-4 w-fit items-center gap-1.5 rounded-full bg-gray-950/10  text-gray-50 transition-colors hover:bg-gray-950/50"
                 >
-                  Explore Our Products
+                  Explore Our Product.
                   <FiArrowRight className="transition-transform group-hover:-rotate-45 group-active:-rotate-12" />
                 </motion.button>
               </Link>
