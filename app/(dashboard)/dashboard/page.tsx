@@ -15,7 +15,7 @@ import { FileSkeleton } from "./loading"
 import { getFUllUserById } from "@/lib/user"
 import { CardSkeleton } from "@/components/shared/card-skeleton"
 import { findPin, pinFile } from "@/actions/file-actions"
-
+import { Separator } from "@/components/ui/separator"
 export const metadata = {
   title: "File Dashboard",
   description: "Let us push the file to mess world"
@@ -31,7 +31,7 @@ export default async function DashboardPage() {
   }
   const result = files(user.id)
 
-  
+
 
   return (
     <DashboardShell>
@@ -45,19 +45,53 @@ export default async function DashboardPage() {
         </Suspense>
       )}
       <div>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
 
-          <Suspense fallback={<CardSkeleton />}>
+
+        <Suspense fallback={<CardSkeleton />}>
+          <h1 className='text-2xl md:text-3xl '>Pinned File</h1>
+          <Separator className='my-2' />
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {(await result).map((file) => {
-              return (
-                <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id , file.pinned!)} />
+              if (file.pinned) {
+                return (
+                  <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id, file.pinned!)} />
+                )
+              }
+            })}
+          </div>
+        </Suspense>
 
-              )
+
+        <Suspense fallback={<CardSkeleton />}>
+          <Separator className='my-4' />
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {(await result).map((file) => {
+              if (!file.pinned) {
+                return (
+                  <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id, file.pinned!)} />
+                )
+              }
             })}
 
-          </Suspense>
-        </div>
+
+
+          </div>
+        </Suspense>
       </div>
     </DashboardShell>
+  )
+}
+
+
+const pinnedFileDisplay = () => {
+  return (
+    <div className="flex flex-col justify-center items-start">
+      <h1 className=''>Pinned File</h1>
+      <div>
+
+      </div>
+
+    </div>
   )
 }

@@ -50,7 +50,7 @@ const FileCards = ({ file, favved , fileOwner , pinned}: { file: File, pinned: P
     const IconVisibility = Icons[file.visiblity.toLowerCase()]
     const hintTexts = {
         'PRIVATE': 'File is not shared with anyone',
-        'PUBLIC': 'File is shared for anyone',
+        'PUBLIC': 'File is shared for everyone',
         'EMAIL': 'File is shared based on email'
     }
     const hintText = hintTexts[file.visiblity]
