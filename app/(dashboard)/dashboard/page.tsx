@@ -15,7 +15,7 @@ import { FileSkeleton } from "./loading"
 import { getFUllUserById } from "@/lib/user"
 import { CardSkeleton } from "@/components/shared/card-skeleton"
 import { findPin, pinFile } from "@/actions/file-actions"
-
+import { Separator } from "@/components/ui/separator"
 export const metadata = {
   title: "File Dashboard",
   description: "Let us push the file to mess world"
@@ -31,7 +31,7 @@ export default async function DashboardPage() {
   }
   const result = files(user.id)
 
-  
+
 
   return (
     <DashboardShell>
@@ -45,12 +45,28 @@ export default async function DashboardPage() {
         </Suspense>
       )}
       <div>
+
+          <h1>Pinned File</h1>
+          <Separator />
+          
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+
+          </div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <Suspense fallback={<CardSkeleton />}>
+            {(await result).map((file) => {
+              return (
+                <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id, file.pinned!)} />
+
+              )
+            })}
+
+          </Suspense>
 
           <Suspense fallback={<CardSkeleton />}>
             {(await result).map((file) => {
               return (
-                <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id , file.pinned!)} />
+                <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id, file.pinned!)} />
 
               )
             })}

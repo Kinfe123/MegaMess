@@ -438,12 +438,12 @@ export const createFeedback = async (fileId: string , d: FormData) => {
   try {
     
     const res = await prisma.feedbacks.create({
-        data: {
-          fileId,
-          name:d.name,
-          description: d?.description ?? "",
-        }
-      })
+      data: {
+        fileId,
+        name:d.name,
+        description: d?.description ?? "",
+      }
+    })
       return res
   } catch(err) {
     console.log('#[ERROR] ' , err)
@@ -467,7 +467,7 @@ export const fileLogsById = async  (id: string) => {
         return fileLogs
 
     }catch(err) {
-      return  new Response("Error has occured" , {status:400})
+      return new Response("Error has occured" , {status:400})
     }
 }
 
@@ -494,3 +494,36 @@ export const fileDownload = async (fileId: string) => {
 
  
 
+export const feedbacksById = async (fileId: string) => {
+  try {
+      const feedback = await prisma.feedbacks.findMany({
+        where: {
+          fileId,
+        }
+      })
+      return feedback
+  }catch(err) {
+    console.log("Error has occured " , err)
+    return new Response("Error has occured: " + err , {status:400} )
+
+
+  }
+
+}
+export const feedbackDelete = async (fileId: string , id: string) => {
+  try {
+      const feedback = await prisma.feedbacks.delete({
+        where: {
+          id,
+          fileId,
+        }
+      })
+      return feedback
+  }catch(err) {
+    
+    console.log("Error has occured " , err)
+    return new Response("Error has occured: " + err , {status:400} )
+
+  }
+
+}
