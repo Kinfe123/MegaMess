@@ -28,7 +28,7 @@ const FileDetail = async ({ params }: PropsParams) => {
     const fileId = params.id
     const [users , fileFromId, fileLogs , logs  , downloads, loved , feedbacks] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId) , logByFileId(fileId) , downloadsByFileId(fileId) , lovedByOther(fileId) , feedbacksById(fileId)])
 
-    const TABS = ['Waitlists', 'Analytics', 'Settings']
+    const TABS = ['Waitlists', 'Analytics', 'Settings' , 'Feedbacks']
     const summedDownload = fileFromId?.downloads!
 
     return (
