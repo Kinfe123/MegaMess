@@ -10,6 +10,9 @@ import { Separator } from "@/components/ui/separator"
 import { type Logs } from "@prisma/client"
 import LogsDisplay from "./log-display"
 import LogMenu from "./log-menu"
+import { EmptyPlaceholder } from "@/components/shared/empty-placeholder"
+import { files } from "@/lib/fille"
+import { PipetteIcon } from "lucide-react"
 
 export function LogsAnalytics({ logs }: { logs: Logs[] }) {
   if (!logs) {
@@ -41,11 +44,20 @@ export function LogsAnalytics({ logs }: { logs: Logs[] }) {
             </div>
           </div>
           <div className="border rounded-lg bg-purple-900/5 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,176,225,0.12),rgba(255,255,255,0))]  text-card-foreground overflow-hidden grid gap-4 lg:gap-px ">
-            {logs.map((log) => {
+            
+            {
+            logs.length>0?(
+            logs.map((log) => {
               return (
+                
                 <LogsDisplay log={log} />
               )
-            })}
+            })
+            ):
+            (
+              <EmptyLog/>
+            )
+          }
 
 
           </div>
@@ -188,4 +200,26 @@ function MoreHorizontalIcon(props) {
       <circle cx="5" cy="12" r="1" />
     </svg>
   )
+}
+
+
+
+
+function EmptyLog(){
+  
+return (
+  <EmptyPlaceholder className="relative bg-gradient-to-tr from-purple-400/10 rounded-lg  via-transparent to-transparent/5 w-full flex justify-start ">
+  <PipetteIcon size={45}/>
+
+  <EmptyPlaceholder.Title className="font-heading text-3xl"> 
+    No logs found
+  </EmptyPlaceholder.Title>
+  <EmptyPlaceholder.Description>
+    <span className="">Your logs will be recorded once you or someone attempts to read you file</span>
+  </EmptyPlaceholder.Description>
+
+
+</EmptyPlaceholder>
+
+)
 }
