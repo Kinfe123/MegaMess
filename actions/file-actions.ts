@@ -504,7 +504,7 @@ export const feedbacksById = async (fileId: string) => {
       return feedback
   }catch(err) {
     console.log("Error has occured " , err)
-    return new Response("Error has occured: " + err , {status:400} )
+    throw new Response("Error has occured: " + err , {status:400} )
 
 
   }

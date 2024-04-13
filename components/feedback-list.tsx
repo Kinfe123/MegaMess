@@ -1,3 +1,5 @@
+'use client'
+
 import { useTransition } from "react"
 import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
@@ -47,3 +49,4 @@ const FeedBackList = ({feedbackId , feedbackAuthor ,feedbackDescription}:{feedba
     )
 
 }
+export default FeedbackList
