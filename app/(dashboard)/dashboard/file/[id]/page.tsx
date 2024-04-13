@@ -9,7 +9,8 @@ import { downloadsByFileId, fileById, logByFileId, lovedByOther, waitlistEmailUs
 import { Building } from "lucide-react"
 import SettingFile from "./_components/setting-file"
 import { AnalyticsFile } from "@/components/analytics-file"
-import { fileLogsById } from "@/actions/file-actions"
+import { feedbacksById, fileLogsById } from "@/actions/file-actions"
+import FeedbackLists from "@/components/feedbacks"
 
 type PropsParams = {
     params: {
@@ -25,7 +26,7 @@ export const metadata = {
 
 const FileDetail = async ({ params }: PropsParams) => {
     const fileId = params.id
-    const [users , fileFromId, fileLogs , logs  , downloads, loved ] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId) , logByFileId(fileId) , downloadsByFileId(fileId) , lovedByOther(fileId) ])
+    const [users , fileFromId, fileLogs , logs  , downloads, loved , feedbacks] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId) , logByFileId(fileId) , downloadsByFileId(fileId) , lovedByOther(fileId) , feedbacksById(fileId)  ])
 
     const TABS = ['Waitlists', 'Analytics', 'Settings']
     const summedDownload = fileFromId?.downloads!
@@ -61,6 +62,13 @@ const FileDetail = async ({ params }: PropsParams) => {
 
                         </div>
 
+                    </Suspense>
+                </TabsContent>
+                <TabsContent value="feedbacks" className="flex flex-col max-w-[76rem] ">
+                    <Suspense fallback={<WaitlistSkeleton />}>
+                        <div className="h-full flex justify-center items-center">
+                            <FeedbackLists fileId={fileId} feedbacks={feedbacks}  />
+                        </div>
                     </Suspense>
                 </TabsContent>
             </TabModified>

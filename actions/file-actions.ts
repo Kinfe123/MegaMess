@@ -510,7 +510,7 @@ export const feedbacksById = async (fileId: string) => {
   }
 
 }
-export const feedbackDelete = async (fileId: string , id: string) => {
+export const feedbackDelete = async ( id: string) => {
   try {
       const feedback = await prisma.feedbacks.delete({
         where: {
