@@ -515,7 +515,6 @@ export const feedbackDelete = async ( id: string) => {
       const feedback = await prisma.feedbacks.delete({
         where: {
           id,
-          fileId,
         }
       })
       return feedback
