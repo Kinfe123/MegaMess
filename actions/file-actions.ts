@@ -517,6 +517,9 @@ export const feedbackDelete = async ( id: string) => {
           id,
         }
       })
+      revalidatePath("/dashboard")
+    revalidatePath("/dashboard/file")
+    revalidatePath('/files/f/[id]' , 'page')
       return feedback
   }catch(err) {
     
