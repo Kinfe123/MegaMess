@@ -46,34 +46,53 @@ export default async function DashboardPage() {
       )}
       <div>
 
-          <h1>Pinned File</h1>
-          <Separator />
-          
+
+        <Suspense fallback={<CardSkeleton />}>
+          <h1 className='text-2xl md:text-3xl '>Pinned File</h1>
+          <Separator className='my-2' />
+
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {(await result).map((file) => {
+              if (file.pinned) {
+                return (
+                  <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id, file.pinned!)} />
+                )
+              }
+            })}
 
           </div>
+        </Suspense>
+
+
+          <Suspense fallback={<CardSkeleton />}>
+          <Separator className='my-4' />
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          <Suspense fallback={<CardSkeleton />}>
             {(await result).map((file) => {
-              return (
-                <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id, file.pinned!)} />
-
-              )
+              if (file.pinned) {
+                return (
+                  <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id, file.pinned!)} />
+                )
+              }
             })}
 
-          </Suspense>
 
-          <Suspense fallback={<CardSkeleton />}>
-            {(await result).map((file) => {
-              return (
-                <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id, file.pinned!)} />
 
-              )
-            })}
-
-          </Suspense>
         </div>
+          </Suspense>
       </div>
     </DashboardShell>
+  )
+}
+
+
+const pinnedFileDisplay = () => {
+  return (
+    <div className="flex flex-col justify-center items-start">
+      <h1 className=''>Pinned File</h1>
+      <div>
+
+      </div>
+
+    </div>
   )
 }
