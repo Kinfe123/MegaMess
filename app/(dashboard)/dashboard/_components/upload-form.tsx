@@ -88,7 +88,7 @@ const FileForm = ({ userId }: UserProps) => {
                     Upload File
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px] !overflow-y-scroll !max-h-screen !py-2 !overflow-x-hidden bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70">
+            <DialogContent className="sm:max-w-[500px] py-4 overflow-hidden bg-gradient-to-tr from-purple-400/15 via-transparent to-transparent/70">
                 <DialogHeader>
                     <DialogTitle>Upload a file</DialogTitle>
                     <DialogDescription>
@@ -98,7 +98,9 @@ const FileForm = ({ userId }: UserProps) => {
 
 
                 </DialogHeader>
-                <FuzzyOverlay />
+                
+                    <FuzzyOverlay />
+                
                 <form onSubmit={onSubmit}>
                     <div className="grid gap-4 py-4">
                         <div className="grid grid-cols-4 items-center gap-4">
@@ -135,8 +137,10 @@ const FileForm = ({ userId }: UserProps) => {
                                 Upload A File
                             </span>
                         </div>
-                        <div className="flex justify-center items-center">
-                            <FilePage updateData={handleParentUpdate} />
+                        <div   className="flex justify-center items-center">
+                            {
+                               <FilePage updateData={handleParentUpdate} />
+                                }
                         </div>
                     </div>
                     <DialogFooter>
