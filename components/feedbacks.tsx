@@ -1,5 +1,5 @@
 import { Feedbacks } from "@prisma/client"
-import FeedbackList from "./feedback-list"
+import Feedback from "./feedback-list"
 
 const FeedbackLists = async ({fileId , feedbacks}: {fileId: string , feedbacks: Feedbacks[]}) => {
     if(feedbacks.length === 0) {
@@ -16,7 +16,7 @@ const FeedbackLists = async ({fileId , feedbacks}: {fileId: string , feedbacks: 
 
         {feedbacks.map((feedback) => {
             return (
-                <FeedbackList feedbackId={feedback.id} feedbackAuthor={feedback.name} feedbackDescription={feedback.description ?? ""} />
+                <Feedback feedbackId={feedback.id} feedbackAuthor={feedback.name ?? ""} feedbackDescription={feedback.description ?? ""} />
                 
             )
         })}

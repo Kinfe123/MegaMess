@@ -6,7 +6,7 @@ import { Loader2 } from "lucide-react"
 import { feedbackDelete } from "@/actions/file-actions"
 import { toast } from "./ui/use-toast"
 
-const FeedBackList = ({feedbackId , feedbackAuthor ,feedbackDescription}:{feedbackId: string , feedbackAuthor:string , feedbackDescription:string}) => {
+const Feedback = ({feedbackId , feedbackAuthor ,feedbackDescription}:{feedbackId: string , feedbackAuthor:string , feedbackDescription:string}) => {
     const [pending , startTransition] = useTransition()
     const handleClick = () => {
         startTransition(() => {
@@ -49,4 +49,4 @@ const FeedBackList = ({feedbackId , feedbackAuthor ,feedbackDescription}:{feedba
     )
 
 }
-export default FeedbackList
+export default Feedback
