@@ -4,7 +4,7 @@ import { Loader2 } from "lucide-react"
 import { feedbackDelete } from "@/actions/file-actions"
 import { toast } from "./ui/use-toast"
 
-const FeedBackList = (feedbackId: string) => {
+const FeedBackList = ({feedbackId , feedbackAuthor ,feedbackDescription}:{feedbackId: string , feedbackAuthor:string , feedbackDescription:string}) => {
     const [pending , startTransition] = useTransition()
     const handleClick = () => {
         startTransition(() => {
@@ -23,11 +23,11 @@ const FeedBackList = (feedbackId: string) => {
     }
     return (
         <div className="px-4 py-5 sm:p-6">
-            <h3 className="text-base font-semibold leading-6 text-white">Delete A File</h3>
+            <h3 className="text-base font-semibold leading-6 text-white">{feedbackAuthor}</h3>
             <div className="mt-2 sm:flex sm:items-start sm:justify-between">
                 <div className="max-w-xl text-sm text-gray-500">
                     <p>
-                        This action is undone , which delete a file permanently from file storage and sharing dashboard
+                        {feedbackDescription}
                     </p>
                 </div>
                 <div className="mt-5 sm:ml-6 sm:mt-0 sm:flex sm:flex-shrink-0 sm:items-center">
