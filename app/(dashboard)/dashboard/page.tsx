@@ -68,7 +68,7 @@ export default async function DashboardPage() {
           <Separator className='my-4' />
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {(await result).map((file) => {
-              if (file.pinned) {
+              if (!file.pinned) {
                 return (
                   <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id, file.pinned!)} />
                 )
