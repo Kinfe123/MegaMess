@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
 import { feedbackDelete } from "@/actions/file-actions"
 import { toast } from "./ui/use-toast"
-
-const Feedback = ({feedbackId , feedbackAuthor ,feedbackDescription}:{feedbackId: string , feedbackAuthor:string , feedbackDescription:string}) => {
-    const [pending , startTransition] = useTransition()
+import { Card } from "@/components/ui/card"
+const Feedback = ({ feedbackId, feedbackAuthor, feedbackDescription }: { feedbackId: string, feedbackAuthor: string, feedbackDescription: string }) => {
+    const [pending, startTransition] = useTransition()
     const handleClick = () => {
         startTransition(() => {
             feedbackDelete(feedbackId).then((data) => {
@@ -24,10 +24,11 @@ const Feedback = ({feedbackId , feedbackAuthor ,feedbackDescription}:{feedbackId
         })
     }
     return (
-        <div className="px-4 py-5 sm:p-6">
+        <Card className='w-full'>
+        <div className="px-4 w-full py-5 sm:p-6">
             <h3 className="text-base font-semibold leading-6 text-white">{feedbackAuthor}</h3>
             <div className="mt-2 sm:flex sm:items-start sm:justify-between">
-                <div className="max-w-xl text-sm text-gray-500">
+                <div className=" text-sm text-gray-500">
                     <p>
                         {feedbackDescription}
                     </p>
@@ -46,6 +47,7 @@ const Feedback = ({feedbackId , feedbackAuthor ,feedbackDescription}:{feedbackId
                 </div>
             </div>
         </div>
+        </Card>
     )
 
 }
