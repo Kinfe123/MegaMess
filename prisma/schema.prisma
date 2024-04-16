@@ -55,17 +55,17 @@ model User {
   image                  String?
   createdAt              DateTime     @default(now()) @map(name: "created_at")
   updatedAt              DateTime     @default(now()) @map(name: "updated_at")
-  files                  File[]       @relation("files")
-  accounts               Account[]
-  sessions               Session[]
-  favoriting             Favorite[]   @relation("Favoriting")
-  favoriter              Favorite[]   @relation("FavoritedBy")
-  stripeCustomerId       String?      @unique @map(name: "stripe_customer_id")
-  stripeSubscriptionId   String?      @unique @map(name: "stripe_subscription_id")
-  stripePriceId          String?      @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd DateTime?    @map(name: "stripe_current_period_end")
-  TeamMember             TeamMember[]
-  apiKeys                APIKey[]
+  files                  file[]       @relation("files")
+  accounts               account[]
+  sessions               session[]
+  favoriting             favorite[]   @relation("favoriting")
+  favoriter              favorite[]   @relation("favoritedby")
+  stripecustomerid       string?      @unique @map(name: "stripe_customer_id")
+  stripesubscriptionid   string?      @unique @map(name: "stripe_subscription_id")
+  stripepriceid          string?      @map(name: "stripe_price_id")
+  stripecurrentperiodend datetime?    @map(name: "stripe_current_period_end")
+  teammember             teammember[]
+  apikeys                apikey[]
 
   @@map(name: "users")
 }
@@ -99,6 +99,8 @@ model File {
   pin         Pin?           @relation("FilePin")
   pinned     Boolean?        @default(false)
   downloads   Int              @default(1)
+  folderId    Striing   
+  folder     Folder          @relation("folders" , fields: [folderId] , references: [id] , onDelete: Cascade)
 
   
 }
@@ -270,4 +272,16 @@ model Feedbacks {
   files     File     @relation("FileFeedback", fields: [fileId], references: [id], onDelete: Cascade)
 
   
+}
+
+model Folder {
+  id   String   @id @defaut(cuid())
+  fileId String 
+  name   String 
+  descripton String 
+  file   File[]  @relation("folders")
+
+
+
+
 }
