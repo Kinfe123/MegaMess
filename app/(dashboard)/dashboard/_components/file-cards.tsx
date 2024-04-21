@@ -95,7 +95,7 @@ const FileCards = ({ file, favved , fileOwner , pinned}: { file: File, pinned: P
                             <Separator className='w-full my-1' />
                             <PinBtn pinned={pinnedfile} fileId={file.id}  />
                             <Separator className='w-full my-1' />
-                            <VisiblityBtn file={file} fileOwner={fileOwnerPromise?.user}/>
+                            <VisiblityBtn file={file} fileOwner={fileOwnerPromise}/>
                             <DropdownMenuSeparator />
 
                             <DropdownMenuSeparator />
