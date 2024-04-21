@@ -41,12 +41,12 @@ type fileProps = {
     file: Promise<File[]>;
 }
 
-const FileCards = ({ file, favved , fileOwner , pinned}: { file: File, pinned: Promise<File | null> ,  favved: Promise<Favorite[]> , fileOwner: Promise<({user: User} | null)| null> }) => {
+const FileCards = ({ file, favved , fileOwner , pinned}: { file: File, pinned: Promise<File | null> ,  favved: Promise<Favorite[]> , fileOwner: Promise<({user: User} |  null )>}) => {
+
     const promise = use(favved)
     const pinnedfile = use(pinned)
     
     const fileOwnerPromise = use(fileOwner)
-    console.log("Th file owner is : " , fileOwnerPromise)
     const isFav = promise.filter((f) => f.fileId === file.id)
     const IconVisibility = Icons[file.visiblity.toLowerCase()]
     const hintTexts = {

@@ -102,7 +102,7 @@ const TrailFileWrapper = async () => {
         if(r.pinned) {
 
           return (
-            <Suspense fallback={<CardSkeleton />}>
+            <Suspense fallback={<FileSkeleton/>}>
               <FileCards favved={favByFileId(r.id)} file={r} pinned={pinFile(r.id, r.pinned ?? false)} fileOwner={getFUllUserById(r.id)} />
             </Suspense>
           )
@@ -138,7 +138,7 @@ const TrailFileWrapperUnPin = async () => {
         if(!r.pinned) {
 
           return (
-            <Suspense fallback={<CardSkeleton />}>
+            <Suspense fallback={<FileSkeleton />}>
               <FileCards favved={favByFileId(r.id)} file={r} pinned={pinFile(r.id, r.pinned ?? false)} fileOwner={getFUllUserById(r.id)} />
             </Suspense>
           )
