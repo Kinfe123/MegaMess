@@ -30,6 +30,8 @@ export async function uploadFile(userId: string, fileUrl: string, fileSize: numb
         fileUrl: fileUrl,
         size: fileSizeFormated,
         description: data.description,
+        pinned: false, 
+      
       },
       select: {
         id: true,
