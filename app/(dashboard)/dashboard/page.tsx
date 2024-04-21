@@ -84,7 +84,8 @@ const TrailFileWrapper = async () => {
     return null
   }
   const res = await files(user.id)
-  if (!res.length) {
+  const pinnedFilter = res.filter((r)=>r.pinned)
+  if (!pinnedFilter.length) {
     return <div className="flex justify-start items-start">
       <p className=""></p>
     
@@ -92,8 +93,11 @@ const TrailFileWrapper = async () => {
   }
   return (
     <div>
-      <h1 className='text-2xl md:text-3xl '>Pinned File</h1>
+    <h1 className='text-2xl md:text-3xl '>Pinned File</h1>
+  
+  
       <Separator className='my-2' />
+    
       {res.map((r) => {
         if(r.pinned) {
 
@@ -116,14 +120,18 @@ const TrailFileWrapperUnPin = async () => {
     return null
   }
   const res = await files(user.id)
-  if (!res.length) {
+
+  const unppinedFilter = res.filter((r) => !r.pinned)
+  if (!unppinedFilter.length) {
     return <div className="flex justify-start items-start">
       <p className=""></p>
     
     </div>
   }
+  
   return (
     <div>
+
       <h1 className='text-2xl md:text-3xl '>Unpinned File</h1>
       <Separator className='my-2' />
       {res.map((r) => {

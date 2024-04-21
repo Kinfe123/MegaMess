@@ -46,6 +46,7 @@ const FileCards = ({ file, favved , fileOwner , pinned}: { file: File, pinned: P
     const pinnedfile = use(pinned)
     
     const fileOwnerPromise = use(fileOwner)
+    console.log("Th file owner is : " , fileOwnerPromise)
     const isFav = promise.filter((f) => f.fileId === file.id)
     const IconVisibility = Icons[file.visiblity.toLowerCase()]
     const hintTexts = {

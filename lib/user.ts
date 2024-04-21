@@ -1,5 +1,6 @@
 'use server'
 import { prisma } from "@/lib/db";
+import type {User} from '@prisma/client'
 
 export const getUserByEmail = async (email: string) => {
   try {
@@ -29,24 +30,24 @@ export const getUserByFileId = async (fileId: string) => {
     where: {
       id: fileId
     },
-    include : {
-       user: true,
+    select: {
+      user: true
     }
   })
-  return userIdByFile?.id 
-
+  
+  return userIdByFile?.user.id
 }
 
 export const getFUllUserById = async (fileId: string) => {
-  const userIdByFile = await prisma.file.findUnique({
+  const userIdByFile = await prisma.file.findFirst({
     where: {
       id: fileId
     },
-    include : {
-       user: true,
-    }
+   
+    
   })
-  return userIdByFile 
+   
+  return userIdByFile
 
 }
 
@@ -57,4 +58,6 @@ export const addWaitlistEmails = async (email: string) => {
    }
   })
   return req
+
 }
+
