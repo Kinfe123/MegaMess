@@ -99,7 +99,7 @@ model File {
   pin         Pin?            @relation("FilePin")
   pinned      Boolean?        @default(false)
   downloads   Int             @default(1)
-  folderId    String
+  folderId    String?
   folder      Folder?         @relation("folders", fields: [folderId], references: [id], onDelete: Cascade)
 }
 
