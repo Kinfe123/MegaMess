@@ -35,15 +35,8 @@ export default async function FavouritePage() {
         )}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
 
-          <Suspense fallback={<FileSkeleton/>}>
-            {(await result).map((file) => {
-              return (
-                <FavCard file={file} userId={user?.id} />
+         <FavWrappr id={user.id}/>   
 
-              )
-            })}
-
-          </Suspense>
         </div>
       </div>
     </DashboardShell>
