@@ -33,7 +33,7 @@ import { Input } from '@/components/ui/input'
 import { getFUllUserById, getUserByFileId } from '@/lib/user'
 
 type fileVisiblity = keyof typeof Visibility
-export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User | null | undefined }) {
+export function VisiblityBtn({ file , fileOwner}: { file: File , fileOwner: User | null   }) {
     
     const typeOfVisiblity: fileVisiblity[] = ['PUBLIC', 'EMAIL', 'PRIVATE']
     const defaultVal = typeOfVisiblity.indexOf(file.visiblity)

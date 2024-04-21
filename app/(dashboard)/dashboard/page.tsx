@@ -47,37 +47,18 @@ export default async function DashboardPage() {
       <div>
 
 
-        <Suspense fallback={<CardSkeleton />}>
-          <h1 className='text-2xl md:text-3xl '>Pinned File</h1>
-          <Separator className='my-2' />
+
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {(await result).map((file) => {
-              if (file.pinned) {
-                return (
-                  <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id, file.pinned!)} />
-                )
-              }
-            })}
+            <TrailFileWrapper />
+
           </div>
-        </Suspense>
 
-
-        <Suspense fallback={<CardSkeleton />}>
-          <Separator className='my-4' />
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {(await result).map((file) => {
-              if (!file.pinned) {
-                return (
-                  <FileCards file={file} favved={favByFileId(file.id)} fileOwner={getFUllUserById(file.id)} pinned={pinFile(file.id, file.pinned!)} />
-                )
-              }
-            })}
 
-
+             <TrailFileWrapperUnPin />
 
           </div>
-        </Suspense>
       </div>
     </DashboardShell>
   )
@@ -91,6 +72,78 @@ const pinnedFileDisplay = () => {
       <div>
 
       </div>
+
+    </div>
+  )
+}
+
+
+const TrailFileWrapper = async () => {
+  const user = await getCurrentUser()
+  if (!user) {
+    return null
+  }
+  const res = await files(user.id)
+  const pinnedFilter = res.filter((r)=>r.pinned)
+  if (!pinnedFilter.length) {
+    return <div className="flex justify-start items-start">
+      <p className=""></p>
+    
+    </div>
+  }
+  return (
+    <div>
+    <h1 className='text-2xl md:text-3xl '>Pinned File</h1>
+  
+  
+      <Separator className='my-2' />
+    
+      {res.map((r) => {
+        if(r.pinned) {
+
+          return (
+            <Suspense fallback={<FileSkeleton/>}>
+              <FileCards favved={favByFileId(r.id)} file={r} pinned={pinFile(r.id, r.pinned ?? false)} fileOwner={getFUllUserById(r.id)} />
+            </Suspense>
+          )
+        }
+      })}
+
+    </div>
+  )
+}
+
+
+const TrailFileWrapperUnPin = async () => {
+  const user = await getCurrentUser()
+  if (!user) {
+    return null
+  }
+  const res = await files(user.id)
+
+  const unppinedFilter = res.filter((r) => !r.pinned)
+  if (!unppinedFilter.length) {
+    return <div className="flex justify-start items-start">
+      <p className=""></p>
+    
+    </div>
+  }
+  
+  return (
+    <div>
+
+      <h1 className='text-2xl md:text-3xl '>Unpinned File</h1>
+      <Separator className='my-2' />
+      {res.map((r) => {
+        if(!r.pinned) {
+
+          return (
+            <Suspense fallback={<FileSkeleton />}>
+              <FileCards favved={favByFileId(r.id)} file={r} pinned={pinFile(r.id, r.pinned ?? false)} fileOwner={getFUllUserById(r.id)} />
+            </Suspense>
+          )
+        }
+      })}
 
     </div>
   )

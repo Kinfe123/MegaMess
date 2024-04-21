@@ -1,5 +1,6 @@
 'use server'
 import { prisma } from "@/lib/db";
+import type {User} from '@prisma/client'
 
 export const getUserByEmail = async (email: string) => {
   try {
@@ -29,25 +30,28 @@ export const getUserByFileId = async (fileId: string) => {
     where: {
       id: fileId
     },
-    include : {
-       user: true,
+    select: {
+      user: true
     }
   })
-  return userIdByFile?.id 
-
+  
+  return userIdByFile?.user.id
 }
-
+// Error - - Inconsistent query result: Field user is required to return data, got `null` insteadP
+// the error is a reason for n+1 query
 export const getFUllUserById = async (fileId: string) => {
-  const userIdByFile = await prisma.file.findUnique({
+  const userIdByFile = await prisma.file.findFirst({
     where: {
       id: fileId
     },
-    include : {
-       user: true,
+  })
+  const fileOwner = await prisma.user.findFirst({
+    where: {
+      id:userIdByFile?.userId    
     }
   })
-  return userIdByFile 
-
+   
+  return fileOwner
 }
 
 export const addWaitlistEmails = async (email: string) => {
@@ -57,4 +61,6 @@ export const addWaitlistEmails = async (email: string) => {
    }
   })
   return req
+
 }
+

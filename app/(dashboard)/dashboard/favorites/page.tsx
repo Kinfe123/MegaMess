@@ -7,6 +7,7 @@ import { Suspense } from "react"
 import FavCard from "../_components/fav-card"
 import EmptyBox from "../_components/empty-box"
 import { FileSkeleton } from "../loading"
+import FileCards from "../_components/file-cards"
 export const metadata = {
   title: "Favourite",
   description: "Manage your favorite.",
@@ -34,18 +35,36 @@ export default async function FavouritePage() {
         )}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
 
-          <Suspense fallback={<FileSkeleton/>}>
-            {(await result).map((file) => {
-              return (
-                <FavCard file={file} userId={user?.id} />
+         <FavWrappr id={user.id}/>   
 
-              )
-            })}
-
-          </Suspense>
         </div>
       </div>
     </DashboardShell>
   )
 
+
+}
+
+const FavWrappr = async ({id}: {id: string}) => {
+  const result = await favFiles(id)
+  if(!result.length) {
+    return (
+      <div className="flex mt-10 justify-start items-startt">
+      </div>
+    )
+  }  
+  return (
+    <div className="mt-10">
+      {result.map((res) => {
+        return (
+          
+           <Suspense fallback={<FileSkeleton />}>
+
+             <FavCard file={res} userId={id} />
+
+           </Suspense> 
+        )
+      })}
+    </div>
+  )
 }

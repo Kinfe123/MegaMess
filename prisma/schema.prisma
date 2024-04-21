@@ -96,11 +96,11 @@ model File {
   user        User            @relation("files", fields: [userId], references: [id], onDelete: Cascade)
   teamMember  TeamMember?     @relation("TeamFileMember")
   TeamFiles   TeamFiles[]
-  pin         Pin?           @relation("FilePin")
-  pinned     Boolean?        @default(false)
-  downloads   Int              @default(1)
-
-  
+  pin         Pin?            @relation("FilePin")
+  pinned      Boolean?        @default(false)
+  downloads   Int             @default(1)
+  folderId    String?
+  folder      Folder?         @relation("folders", fields: [folderId], references: [id], onDelete: Cascade)
 }
 
 model Favorite {
@@ -223,42 +223,39 @@ model TeamFiles {
 // API KEY 
 
 model APIKey {
-  id          String   @id @default(cuid())
-  key         String   @unique
+  id          String  @id @default(cuid())
+  key         String  @unique
   name        String?
   description String?
   website     String
   userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  createdAt   DateTime @default(now()) @map(name: "created_at")
-  updatedAt   DateTime @default(now()) @map(name: "updated_at")
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
 }
 
-
 model Logs {
-  id          String   @id @default(cuid())
-  fileId      String
-  description String?
-  email        String?
-  status      Status?  @default(GRANTED)
-  originLocation String? 
+  id             String   @id @default(cuid())
+  fileId         String
+  description    String?
+  email          String?
+  status         Status?  @default(GRANTED)
+  originLocation String?
   originIp       String?
   userAgent      String?
   responseTime   String?
-  files     File     @relation("FileLog", fields: [fileId], references: [id], onDelete: Cascade)
-  createdAt   DateTime @default(now()) @map(name: "created_at")
-  updatedAt   DateTime @default(now()) @map(name: "updated_at")
-   
+  files          File     @relation("FileLog", fields: [fileId], references: [id], onDelete: Cascade)
+  createdAt      DateTime @default(now()) @map(name: "created_at")
+  updatedAt      DateTime @default(now()) @map(name: "updated_at")
 }
 
-
 model Pin {
-  id          String   @id @default(cuid())
-  files       File     @relation("FilePin", fields: [fileId], references: [id])
-  fileId      String   @unique
-  
-  createdAt   DateTime @default(now()) @map(name: "created_at")
+  id     String @id @default(cuid())
+  files  File   @relation("FilePin", fields: [fileId], references: [id])
+  fileId String @unique
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
 }
 
 model Feedbacks {
@@ -267,7 +264,15 @@ model Feedbacks {
   name        String?
   description String
   createdAt   DateTime @default(now()) @map(name: "created_at")
-  files     File     @relation("FileFeedback", fields: [fileId], references: [id], onDelete: Cascade)
+  files       File     @relation("FileFeedback", fields: [fileId], references: [id], onDelete: Cascade)
+}
 
-  
+model Folder {
+  id         String   @id @default(cuid())
+  fileId     String
+  name       String
+  descripton String
+  file       File[]   @relation("folders")
+  createdAt  DateTime @default(now()) @map(name: "created_at")
+  updatedAt  DateTime @default(now()) @map(name: "updated_at")
 }

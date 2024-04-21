@@ -41,7 +41,8 @@ type fileProps = {
     file: Promise<File[]>;
 }
 
-const FileCards = ({ file, favved , fileOwner , pinned}: { file: File, pinned: Promise<File | null> ,  favved: Promise<Favorite[]> , fileOwner: Promise<({user: User} | null)| null> }) => {
+const FileCards = ({ file, favved , fileOwner , pinned}: { file: File, pinned: Promise<File | null> ,  favved: Promise<Favorite[]> , fileOwner: Promise<(User|  null )>}) => {
+
     const promise = use(favved)
     const pinnedfile = use(pinned)
     
@@ -94,7 +95,7 @@ const FileCards = ({ file, favved , fileOwner , pinned}: { file: File, pinned: P
                             <Separator className='w-full my-1' />
                             <PinBtn pinned={pinnedfile} fileId={file.id}  />
                             <Separator className='w-full my-1' />
-                            <VisiblityBtn file={file} fileOwner={fileOwnerPromise?.user}/>
+                            <VisiblityBtn file={file} fileOwner={fileOwnerPromise}/>
                             <DropdownMenuSeparator />
 
                             <DropdownMenuSeparator />

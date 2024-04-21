@@ -25,6 +25,11 @@ export const favFiles = async (id: string) => {
         }
 
     })
+   
+    if(!files.length) {
+        return []
+    } 
+   
     // TODO: getting to feetch the list of the files that the user added as fav 
     const filteredFavs = files.map((file) => file.favoriting)[0]
     let fileLists: Promise<File>[] = [] 
