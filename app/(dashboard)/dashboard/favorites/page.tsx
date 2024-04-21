@@ -49,13 +49,12 @@ const FavWrappr = async ({id}: {id: string}) => {
   const result = await favFiles(id)
   if(!result.length) {
     return (
-      <div className="flex justify-start items-startt">
-        <p>There is no favorited files</p>
+      <div className="flex mt-10 justify-start items-startt">
       </div>
     )
   }  
   return (
-    <div>
+    <div className="mt-10">
       {result.map((res) => {
         return (
           
