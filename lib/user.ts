@@ -37,18 +37,21 @@ export const getUserByFileId = async (fileId: string) => {
   
   return userIdByFile?.user.id
 }
-
+// Error - - Inconsistent query result: Field user is required to return data, got `null` insteadP
+// the error is a reason for n+1 query
 export const getFUllUserById = async (fileId: string) => {
   const userIdByFile = await prisma.file.findFirst({
     where: {
       id: fileId
     },
-   
-    
+  })
+  const fileOwner = await prisma.user.findFirst({
+    where: {
+      id:userIdByFile?.userId    
+    }
   })
    
-  return userIdByFile
-
+  return fileOwner
 }
 
 export const addWaitlistEmails = async (email: string) => {
