@@ -23,7 +23,7 @@ export function LogsAnalytics({ logs }: { logs: Logs[] }) {
 
       <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] bg-transparent flex-1 flex-col gap-4 p-4 md:gap-8 md:pr-10 dark:bg-transparent">
 
-        <div className="grid gap-6 max-w-6xl w-full mx-auto">
+        <div className="grid gap-6 max-w-6xl w-full mr-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
             <Input className="bg-white md:flex-1 dark:bg-transparent" placeholder="Search logs..." type="search" />
             <div className="flex items-center gap-4">
@@ -208,7 +208,7 @@ function MoreHorizontalIcon(props) {
 function EmptyLog(){
   
 return (
-  <EmptyPlaceholder className="relative bg-gradient-to-tr from-purple-400/10 rounded-lg  via-transparent to-transparent/5 w-full flex justify-start ">
+  <EmptyPlaceholder className="relative bg-gradient-to-tr from-purple-400/10 rounded-lg  via-transparent to-transparent/5 w-full flex justify-start  ">
   <PipetteIcon size={45}/>
 
   <EmptyPlaceholder.Title className="font-heading text-3xl"> 
