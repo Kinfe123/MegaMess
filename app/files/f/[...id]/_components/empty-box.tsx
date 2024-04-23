@@ -47,6 +47,9 @@ const FileDescription = async ({ file, fileIdInfo }: FilePromiseProps) => {
 
         )
     }
+    if(!file) {
+        return <div className="flex justify-center items-center">No such file </div>
+    }
     return (
         <>
             <EmptyPlaceholder className="relative bg-gradient-to-tr from-purple-400/10 rounded-lg  via-transparent to-transparent/5 w-full flex justify-start ">
