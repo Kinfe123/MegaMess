@@ -83,10 +83,10 @@ const TrailFileWrapper = async () => {
   }
   return (
     <div className="w-full">
-    <h1 className='text-2xl md:text-3xl '>Pinned File</h1>
+    <h1 className='text-lg  md:text-xl font-heading'>Pinned File</h1>
   
   
-      <Separator className='my-2' />
+      <Separator className='my-2 mb-3' />
        <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-5 lg:grid-cols-3">
       {res.map((r) => {
         if(r.pinned) {
@@ -123,8 +123,8 @@ const TrailFileWrapperUnPin = async () => {
   return (
     <div>
 
-      <h1 className='text-2xl md:text-3xl font-heading '>Unpinned File</h1>
-      <Separator className='my-2' />
+      <h1 className='text-lg md:text-xl font-heading '>Unpinned File</h1>
+      <Separator className='my-2 mb-3' />
       
       <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-5 lg:grid-cols-3">
       {res.map((r) => {
