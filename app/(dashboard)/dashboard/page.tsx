@@ -44,21 +44,11 @@ export default async function DashboardPage() {
           <EmptyBox userId={user.id} title={'Files'} />
         </Suspense>
       )}
-      <div>
+      <div className="flex flex-col gap-5">
 
-
-
-
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             <TrailFileWrapper />
-
-          </div>
-
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-
              <TrailFileWrapperUnPin />
 
-          </div>
       </div>
     </DashboardShell>
   )
@@ -92,22 +82,23 @@ const TrailFileWrapper = async () => {
     </div>
   }
   return (
-    <div>
+    <div className="w-full">
     <h1 className='text-2xl md:text-3xl '>Pinned File</h1>
   
   
       <Separator className='my-2' />
-    
+       <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-5 lg:grid-cols-3">
       {res.map((r) => {
         if(r.pinned) {
-
+          
           return (
-            <Suspense fallback={<FileSkeleton/>}>
+            <Suspense fallback={<CardSkeleton/>}>
               <FileCards favved={favByFileId(r.id)} file={r} pinned={pinFile(r.id, r.pinned ?? false)} fileOwner={getFUllUserById(r.id)} />
             </Suspense>
           )
         }
       })}
+      </div> 
 
     </div>
   )
@@ -132,19 +123,21 @@ const TrailFileWrapperUnPin = async () => {
   return (
     <div>
 
-      <h1 className='text-2xl md:text-3xl '>Unpinned File</h1>
+      <h1 className='text-2xl md:text-3xl font-heading '>Unpinned File</h1>
       <Separator className='my-2' />
+      
+      <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-5 lg:grid-cols-3">
       {res.map((r) => {
         if(!r.pinned) {
 
           return (
-            <Suspense fallback={<FileSkeleton />}>
+            <Suspense fallback={<CardSkeleton />}>
               <FileCards favved={favByFileId(r.id)} file={r} pinned={pinFile(r.id, r.pinned ?? false)} fileOwner={getFUllUserById(r.id)} />
             </Suspense>
           )
         }
       })}
-
+    </div>
     </div>
   )
 }
