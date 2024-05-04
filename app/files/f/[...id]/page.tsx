@@ -17,8 +17,8 @@ const FilePreview = async ({ params }: FilePreviewProps) => {
     const fullUrl = fileInfo(params.id[0])
     const result = findUserByFile(fullUrl)
     const fileIdInfo = fileIdByUrl(fullUrl)
-
-    if (!result) {
+    console.log("THe file staff is: " , fileInfo)
+    if (!result || !fileInfo) {
         return <FallBack />
     }
 
