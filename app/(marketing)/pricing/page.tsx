@@ -13,13 +13,10 @@ export default async function PricingPage() {
   const user = await getCurrentUser()
   let subscriptionPlan;
 
-  if (user) {
-    subscriptionPlan = await getUserSubscriptionPlan(user.id)
-  }
-
+ console.log("The subscription plan is ; " , subscriptionPlan)
   return (
     <div className="flex w-full flex-col gap-16 py-8 md:py-8">
-      <PricingCards userId={user?.id} subscriptionPlan={subscriptionPlan} />
+      <PricingCards userId={user?.id}  />
       <hr className='container' />
       <PricingFaq />
     </div>
