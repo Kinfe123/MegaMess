@@ -14,11 +14,11 @@ import FuzzyOverlay from "./fuzzy";
 import { Separator } from "./ui/separator";
 interface PricingCardsProps {
   userId?: string;
-  subscriptionPlan?: UserSubscriptionPlan;
+  subscriptionPlan?: UserSubscriptionPlan | null ;
 }
 
-export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
-  const isYearlyDefault = (!subscriptionPlan?.interval || subscriptionPlan.interval === "year") ? true : false;
+export function PricingCards({ userId,  }: PricingCardsProps) {
+  const isYearlyDefault = true
   const [isYearly, setIsYearly] = useState<boolean>(!!isYearlyDefault);
   const signInModal = useSigninModal();
 
@@ -139,7 +139,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
                 ))}
               </ul>
 
-              {userId && subscriptionPlan ? (
+              {userId ? (
                 offer.title === 'Starter' ? (
                   <Link
                     href="/dashboard"
@@ -151,7 +151,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
                     Go to dashboard
                   </Link>
                 ) : (
-                  <BillingFormButton year={isYearly} offer={offer} subscriptionPlan={subscriptionPlan} />
+                  <BillingFormButton year={isYearly} offer={offer}  />
                 )
               ) : (
                 <Button onClick={signInModal.onOpen}>Sign in</Button>

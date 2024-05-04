@@ -8,11 +8,11 @@ import { useTransition } from 'react'
 
 interface BillingFormButtonProps {
   offer: SubscriptionPlan;
-  subscriptionPlan: UserSubscriptionPlan;
+  subscriptionPlan?: UserSubscriptionPlan | null;
   year: boolean;
 }
 
-export function BillingFormButton({ year, offer, subscriptionPlan }: BillingFormButtonProps) {
+export function BillingFormButton({ year, offer }: BillingFormButtonProps) {
   let [isPending, startTransition] = useTransition();
   const generateUserStripeSession = generateUserStripe.bind(
     null,
@@ -34,9 +34,11 @@ export function BillingFormButton({ year, offer, subscriptionPlan }: BillingForm
         </>
       ) : (
         <>
-          {subscriptionPlan.stripePriceId === offer.stripeIds[year ? "yearly" : "monthly"]
-            ? "Manage Subscription"
+         {true ? "Manage Subscription"
             : "Upgrade"}
+          {/* {subscriptionPlan.stripePriceId === offer.stripeIds[year ? "yearly" : "monthly"]
+            ? "Manage Subscription"
+            : "Upgrade"} */}
         </>
       )}
     </Button>
