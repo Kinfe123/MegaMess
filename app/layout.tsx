@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 
 interface RootLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export const metadata = {
@@ -29,7 +29,7 @@ export const metadata = {
     "shadcn ui",
     "Resend",
     "React Email",
-    "Stripe"
+    "Stripe",
   ],
   authors: [
     {
@@ -59,10 +59,9 @@ export const metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: `${siteConfig.url}/site.webmanifest`,
-}
+};
 
 export default function RootLayout({ children }: RootLayoutProps) {
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -71,13 +70,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
           "min-h-screen bg-background   font-sans antialiased",
           fontSans.variable,
           fontUrban.variable,
-          fontHeading.variable
+          fontHeading.variable,
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-        <EdgeStoreProvider>
-          {children}
-          </EdgeStoreProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <EdgeStoreProvider>{children}</EdgeStoreProvider>
           <Analytics />
           <Toaster />
           <ModalProvider />
@@ -85,5 +87,5 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
