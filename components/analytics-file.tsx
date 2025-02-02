@@ -1,24 +1,48 @@
-'use client'
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { PopoverTrigger, PopoverContent, Popover } from "@/components/ui/popover"
-import { Calendar } from "@/components/ui/calendar"
-import { CardDescription, CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card"
-import { ResponsiveLine } from "@nivo/line"
-import { ResponsiveBar } from "@nivo/bar"
-import { TableCell, TableRow, TableHead, TableBody, Table } from "@/components/ui/table"
-import { Favorite, Logs } from "@prisma/client"
+"use client";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  PopoverTrigger,
+  PopoverContent,
+  Popover,
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  CardDescription,
+  CardTitle,
+  CardHeader,
+  CardContent,
+  Card,
+} from "@/components/ui/card";
+import { ResponsiveLine } from "@nivo/line";
+import { ResponsiveBar } from "@nivo/bar";
+import {
+  TableCell,
+  TableRow,
+  TableHead,
+  TableBody,
+  Table,
+} from "@/components/ui/table";
+import { Favorite, Logs } from "@prisma/client";
 
 type DownloadProps = {
-  downloads:number
-}
-export function AnalyticsFile({fileId , logs , downloads , loved}: {fileId: string , logs:Logs[] , downloads: number , loved:Favorite[]}) {
+  downloads: number;
+};
+export function AnalyticsFile({
+  fileId,
+  logs,
+  downloads,
+  loved,
+}: {
+  fileId: string;
+  logs: Logs[];
+  downloads: number;
+  loved: Favorite[];
+}) {
   return (
     <div className="grid min-h-screen w-full">
-      <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-transparent">
-
-      </div>
+      <div className="hidden border-r bg-gray-100/40 dark:bg-transparent lg:block"></div>
       <div className="flex flex-col">
         <header className="flex h-14 items-center gap-4 border-b bg-transparent px-6 dark:bg-transparent">
           <Link className="lg:hidden" href="#">
@@ -30,14 +54,13 @@ export function AnalyticsFile({fileId , logs , downloads , loved}: {fileId: stri
               <div className="relative">
                 <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
                 <Input
-                  className="w-full bg-white shadow-none appearance-none pl-8 md:w-2/3 lg:w-1/3 bg-transparent"
+                  className="w-full appearance-none bg-transparent bg-white pl-8 shadow-none md:w-2/3 lg:w-1/3"
                   placeholder="Search"
                   type="search"
                 />
               </div>
             </form>
           </div>
-
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
           <div className="flex items-center gap-4">
@@ -45,7 +68,7 @@ export function AnalyticsFile({fileId , logs , downloads , loved}: {fileId: stri
               <ArrowLeftIcon className="h-4 w-4" />
               <span className="sr-only">Back</span>
             </Button>
-            <h1 className="font-semibold text-lg md:text-xl">Analytics</h1>
+            <h1 className="text-lg font-semibold md:text-xl">Analytics</h1>
             <div className="ml-auto flex items-center gap-2">
               <Button className="hidden sm:flex" variant="outline">
                 Today
@@ -55,7 +78,11 @@ export function AnalyticsFile({fileId , logs , downloads , loved}: {fileId: stri
               </Button>
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button className="w-[280px] justify-start text-left font-normal" id="date" variant="outline">
+                  <Button
+                    className="w-[280px] justify-start text-left font-normal"
+                    id="date"
+                    variant="outline"
+                  >
                     <CalendarClockIcon className="mr-2 h-4 w-4" />
                     June 01, 2023 - June 30, 2023
                   </Button>
@@ -66,7 +93,7 @@ export function AnalyticsFile({fileId , logs , downloads , loved}: {fileId: stri
               </Popover>
             </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid gap-6 md:grid-cols-3">
             <Card className="flex flex-col">
               <CardHeader>
                 <CardDescription>File Shared</CardDescription>
@@ -120,7 +147,7 @@ export function AnalyticsFile({fileId , logs , downloads , loved}: {fileId: stri
                         <span className="font-medium">File Logs</span>
                       </div>
                     </TableCell>
-                    <TableCell>{logs.length} {' '} Log(s)</TableCell>
+                    <TableCell>{logs.length} Log(s)</TableCell>
                     {/* <TableCell>28%</TableCell>
                     <TableCell>42%</TableCell> */}
                   </TableRow>
@@ -131,7 +158,9 @@ export function AnalyticsFile({fileId , logs , downloads , loved}: {fileId: stri
                         <span className="font-medium">Downloads</span>
                       </div>
                     </TableCell>
-                    <TableCell>{downloads ? downloads : "0"} Download(s)</TableCell>
+                    <TableCell>
+                      {downloads ? downloads : "0"} Download(s)
+                    </TableCell>
                     {/* <TableCell>35%</TableCell>
                     <TableCell>48%</TableCell> */}
                   </TableRow>
@@ -175,9 +204,8 @@ export function AnalyticsFile({fileId , logs , downloads , loved}: {fileId: stri
         </main>
       </div>
     </div>
-  )
+  );
 }
-
 
 function Package2Icon(props) {
   return (
@@ -197,9 +225,8 @@ function Package2Icon(props) {
       <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9" />
       <path d="M12 3v6" />
     </svg>
-  )
+  );
 }
-
 
 function BellIcon(props) {
   return (
@@ -218,9 +245,8 @@ function BellIcon(props) {
       <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
       <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
     </svg>
-  )
+  );
 }
-
 
 function HomeIcon(props) {
   return (
@@ -239,9 +265,8 @@ function HomeIcon(props) {
       <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
       <polyline points="9 22 9 12 15 12 15 22" />
     </svg>
-  )
+  );
 }
-
 
 function PackageIcon(props) {
   return (
@@ -262,9 +287,8 @@ function PackageIcon(props) {
       <path d="m3.3 7 8.7 5 8.7-5" />
       <path d="M12 22V12" />
     </svg>
-  )
+  );
 }
-
 
 function LineChartIcon(props) {
   return (
@@ -283,9 +307,8 @@ function LineChartIcon(props) {
       <path d="M3 3v18h18" />
       <path d="m19 9-5 5-4-4-3 3" />
     </svg>
-  )
+  );
 }
-
 
 function UsersIcon(props) {
   return (
@@ -306,9 +329,8 @@ function UsersIcon(props) {
       <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
       <path d="M16 3.13a4 4 0 0 1 0 7.75" />
     </svg>
-  )
+  );
 }
-
 
 function SearchIcon(props) {
   return (
@@ -327,9 +349,8 @@ function SearchIcon(props) {
       <circle cx="11" cy="11" r="8" />
       <path d="m21 21-4.3-4.3" />
     </svg>
-  )
+  );
 }
-
 
 function ArrowLeftIcon(props) {
   return (
@@ -348,9 +369,8 @@ function ArrowLeftIcon(props) {
       <path d="m12 19-7-7 7-7" />
       <path d="M19 12H5" />
     </svg>
-  )
+  );
 }
-
 
 function CalendarClockIcon(props) {
   return (
@@ -373,9 +393,8 @@ function CalendarClockIcon(props) {
       <path d="M17.5 17.5 16 16.25V14" />
       <path d="M22 16a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z" />
     </svg>
-  )
+  );
 }
-
 
 function LineChart(props) {
   return (
@@ -447,9 +466,8 @@ function LineChart(props) {
         role="application"
       />
     </div>
-  )
+  );
 }
-
 
 function BarChart(props) {
   return (
@@ -480,7 +498,7 @@ function BarChart(props) {
         gridYValues={4}
         theme={{
           text: {
-            color:"#ffffff",
+            color: "#ffffff",
           },
           tooltip: {
             chip: {
@@ -504,9 +522,8 @@ function BarChart(props) {
         ariaLabel="A bar c6f406dhart showing data"
       />
     </div>
-  )
+  );
 }
-
 
 function FileTextIcon(props) {
   return (
@@ -528,5 +545,5 @@ function FileTextIcon(props) {
       <line x1="16" x2="8" y1="17" y2="17" />
       <line x1="10" x2="8" y1="9" y2="9" />
     </svg>
-  )
+  );
 }

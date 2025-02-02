@@ -12,32 +12,36 @@ import { useSigninModal } from "@/hooks/use-signin-modal";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { ShiftingDropDown, Tabs } from "../navy";
 
-
 interface NavBarProps {
-  user: Pick<User, "name" | "image" | "email"> | undefined
-  items?: MainNavItem[]
-  children?: React.ReactNode
-  rightElements?: React.ReactNode
-  scroll?: boolean
+  user: Pick<User, "name" | "image" | "email"> | undefined;
+  items?: MainNavItem[];
+  children?: React.ReactNode;
+  rightElements?: React.ReactNode;
+  scroll?: boolean;
 }
 
-export function NavBar({ user, items, children, rightElements, scroll = false }: NavBarProps) {
+export function NavBar({
+  user,
+  items,
+  children,
+  rightElements,
+  scroll = false,
+}: NavBarProps) {
   const scrolled = useScroll(50);
-  const segment = useSelectedLayoutSegment()
+  const segment = useSelectedLayoutSegment();
   const signInModal = useSigninModal();
 
   return (
-      <header
-        className={`sticky top-0 z-40 flex w-full  items-center justify-center border-b border-n-6 lg:bg-n-8/90 lg:backdrop-blur-md  bg-background/60 backdrop-blur-xl transition-all ${scroll ? scrolled
-          ? "border-b"
-          : "bg-background/0"
-          : "border-b"}`}
-      >
-        <div className="container px-10 flex h-16 items-center justify-between py-4">
-          <MainNav items={items}>{children}</MainNav>
-          {items?.length ? (
-            <Tabs />
-        // <nav className="hidden   w-full items-center justify-center m-auto lg:flex-row  gap-6 md:flex ">
+    <header
+      className={`border-n-6 lg:bg-n-8/90 sticky top-0 z-40  flex w-full items-center justify-center border-b bg-background/60  backdrop-blur-xl transition-all lg:backdrop-blur-md ${
+        scroll ? (scrolled ? "border-b" : "bg-background/0") : "border-b"
+      }`}
+    >
+      <div className="container flex h-16 items-center justify-between px-10 py-4">
+        <MainNav items={items}>{children}</MainNav>
+        {items?.length ? (
+          <Tabs />
+        ) : // <nav className="hidden   w-full items-center justify-center m-auto lg:flex-row  gap-6 md:flex ">
         //   {items?.map((item, index) => (
         //     <Link
         //       key={index}
@@ -54,29 +58,37 @@ export function NavBar({ user, items, children, rightElements, scroll = false }:
         //     </Link>
         //   ))}
         // </nav>
-      ) : null}
-          <div className="flex items-center space-x-3">
-            {rightElements}
+        null}
+        <div className="flex items-center space-x-3">
+          {rightElements}
 
-            {!user ? (
-              ''
-              // <Link
+          {!user
+            ? ""
+            : // <Link
               //   href="/login"
               //   className={cn(
               //     buttonVariants({ variant: "outline", size: "sm" })
               //   )}
               // >
-              //   Login 
+              //   Login
               // </Link>
-            ) : null}
+              null}
 
-            {user ? (
-              <UserAccountNav user={user} />
-            ) : (
-              <Button className="px-" variant="outline" size="sm" onClick={signInModal.onOpen}>Sign In</Button>
-            )}
-          </div>
+          {user ? (
+            <UserAccountNav user={user} />
+          ) : (
+            <Button
+              className="px-"
+              variant="outline"
+              size="sm"
+              onClick={signInModal.onOpen}
+            >
+              Sign In
+            </Button>
+          )}
         </div>
-      </header>
+      </div>
+    </header>
   );
 }
+

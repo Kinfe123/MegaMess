@@ -1,7 +1,7 @@
-import NextAuth, { Session } from "next-auth";
-import { NextRequest } from "next/server";
+import { betterFetch } from "@better-fetch/fetch";
+import type { auth } from "@/lib/auth";
+import { type NextRequest } from "next/server";
 
-import authConfig from "./auth.config";
 import {
   DEFAULT_LOGIN_REDIRECT,
   apiAuthPrefix,
@@ -9,51 +9,58 @@ import {
   publicRoutes,
 } from "@/routes";
 
-const { auth: middleware } = NextAuth(authConfig);
+type Session = typeof auth.$Infer.Session;
 
-export default middleware(
-  (req: NextRequest & { auth: Session | null }): Response | void => {
-    const { nextUrl } = req;
-    const isLoggedIn = !!req.auth;
+export default async function authMiddleware(request: NextRequest) {
+  const { nextUrl } = request;
+  const { data: session } = await betterFetch<Session>(
+    "/api/auth/get-session",
+    {
+      baseURL: request.nextUrl.origin,
+      headers: {
+        cookie: request.headers.get("cookie") || "",
+      },
+    },
+  );
 
-    const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-    const isPublicRoute = publicRoutes.some((route) => {
-      if (route === "/") {
-        return nextUrl.pathname === route;
-      } else {
-        return nextUrl.pathname.startsWith(route);
-      }
-    });
+  const isLoggedIn = !!session;
 
-    const isAuthRoute = authRoutes.includes(nextUrl.pathname);
-
-    if (isApiAuthRoute) return;
-
-    if (isAuthRoute) {
-      if (isLoggedIn) {
-        return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-      }
-      return;
+  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+  const isPublicRoute = publicRoutes.some((route) => {
+    if (route === "/") {
+      return nextUrl.pathname === route;
+    } else {
+      return nextUrl.pathname.startsWith(route);
     }
+  });
 
-    if (!isLoggedIn && !isPublicRoute) {
-      let callbackUrl = nextUrl.pathname;
-      if (nextUrl.search) {
-        callbackUrl += nextUrl.search;
-      }
+  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-      const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+  if (isApiAuthRoute) return;
 
-      return Response.redirect(
-        new URL(`/login?callbackUrl=${encodedCallbackUrl}`, nextUrl),
-      );
+  if (isAuthRoute) {
+    if (isLoggedIn) {
+      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
     }
-
     return;
-  },
-);
+  }
 
-// Optionally, don't invoke Middleware on some paths
+  if (!isLoggedIn && !isPublicRoute) {
+    let callbackUrl = nextUrl.pathname;
+    if (nextUrl.search) {
+      callbackUrl += nextUrl.search;
+    }
+
+    const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+
+    return Response.redirect(
+      new URL(`/login?callbackUrl=${encodedCallbackUrl}`, nextUrl),
+    );
+  }
+
+  return;
+}
+
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|images|favicon.ico).*)"],
 };
