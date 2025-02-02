@@ -32,6 +32,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
       },
     });
   };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>

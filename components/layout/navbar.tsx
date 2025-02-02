@@ -2,7 +2,6 @@
 
 import useScroll from "@/hooks/use-scroll";
 import { MainNavItem } from "@/types";
-import { User } from "next-auth";
 import { MainNav } from "./main-nav";
 import { UserAccountNav } from "./user-account-nav";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -11,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { useSigninModal } from "@/hooks/use-signin-modal";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { ShiftingDropDown, Tabs } from "../navy";
+import { User } from "better-auth/types";
 
 interface NavBarProps {
   user: Pick<User, "name" | "image" | "email"> | undefined;

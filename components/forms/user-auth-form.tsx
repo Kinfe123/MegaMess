@@ -6,7 +6,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { cn } from "@/lib/utils";
-import { userAuthData, userAuthSchema } from "@/lib/validations/auth";
+import {
+  SignInData,
+  SignUpData,
+  signInSchema,
+  signUpSchema,
+  userAuthData,
+} from "@/lib/validations/auth";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Form,
@@ -30,33 +36,30 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
   const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false);
   const [isSignup, setIsSignup] = React.useState<boolean>(type === "register");
   const router = useRouter();
-  console.log({ isSignup });
 
   const form = useForm<userAuthData>({
     defaultValues: {
       email: "",
       password: "",
+      name: "",
     },
-    resolver: zodResolver(userAuthSchema),
+    resolver: zodResolver(isSignup ? signUpSchema : signInSchema),
   });
 
   const onSubmit = async (values: userAuthData) => {
     if (isSignup) {
-      await authClient.signUp.email(
-        { ...values, name: values.name },
-        {
-          onRequest: () => setIsLoading(true),
-          onResponse: () => setIsLoading(false),
-          onError: (error) => {
-            toast({ description: error.error.message });
-          },
-          onSuccess: () => {
-            router.push("/");
-          },
+      await authClient.signUp.email(values as SignUpData, {
+        onRequest: () => setIsLoading(true),
+        onResponse: () => setIsLoading(false),
+        onError: (error) => {
+          toast({ description: error.error.message });
         },
-      );
+        onSuccess: () => {
+          router.push("/dashboard");
+        },
+      });
     } else {
-      await authClient.signIn.email(values, {
+      await authClient.signIn.email(values as SignInData, {
         onRequest: () => setIsLoading(true),
         onResponse: () => setIsLoading(false),
         onError: (error) => {
@@ -112,6 +115,7 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
             )}
           />
         )}
+
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid gap-2">
             <FormField
