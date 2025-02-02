@@ -1,4 +1,3 @@
-import authConfig from "@/auth.config";
 import { getCurrentUser } from "@/lib/session";
 
 export async function POST(req: Request) {
@@ -12,4 +11,3 @@ export async function POST(req: Request) {
     console.log("Error has occured", err);
   }
 }
-

@@ -7,11 +7,29 @@ import { Modal } from "@/components/shared/modal";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { useSigninModal } from "@/hooks/use-signin-modal";
-import { signIn } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 
 export const SignInModal = () => {
   const signInModal = useSigninModal();
   const [signInClicked, setSignInClicked] = useState(false);
+
+  const handleSignIn = async () => {
+    setSignInClicked(true);
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/dashboard",
+      fetchOptions: {
+        onSuccess: () => {
+          signInModal.onClose();
+          setSignInClicked(false);
+        },
+        onError: (error) => {
+          console.error(error);
+          setSignInClicked(false);
+        },
+      },
+    });
+  };
 
   return (
     <Modal showModal={signInModal.isOpen} setShowModal={signInModal.onClose}>
@@ -31,15 +49,7 @@ export const SignInModal = () => {
           <Button
             variant="default"
             disabled={signInClicked}
-            onClick={() => {
-              setSignInClicked(true);
-              signIn("google", { redirect: false }).then(() =>
-                // TODO: fix this without setTimeOut(), modal closes too quickly. Idea: update value before redirect
-                setTimeout(() => {
-                  signInModal.onClose();
-                }, 1000)
-              );
-            }}
+            onClick={handleSignIn}
           >
             {signInClicked ? (
               <Icons.spinner className="mr-2 size-4 animate-spin" />
@@ -53,3 +63,4 @@ export const SignInModal = () => {
     </Modal>
   );
 };
+
