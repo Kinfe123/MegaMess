@@ -1,7 +1,7 @@
-import NextAuth, { Session } from "next-auth"
-import { NextRequest } from 'next/server';
+import { betterFetch } from "@better-fetch/fetch";
+import type { auth } from "@/lib/auth";
+import { type NextRequest } from "next/server";
 
-import authConfig from "./auth.config"
 import {
   DEFAULT_LOGIN_REDIRECT,
   apiAuthPrefix,
@@ -9,14 +9,24 @@ import {
   publicRoutes,
 } from "@/routes";
 
-const { auth: middleware } = NextAuth(authConfig)
+type Session = typeof auth.$Infer.Session;
 
-export default middleware((req: NextRequest & { auth: Session | null }): Response | void  => {
-  const { nextUrl } = req;
-  const isLoggedIn = !!req.auth;
+export default async function authMiddleware(request: NextRequest) {
+  const { nextUrl } = request;
+  const { data: session } = await betterFetch<Session>(
+    "/api/auth/get-session",
+    {
+      baseURL: request.nextUrl.origin,
+      headers: {
+        cookie: request.headers.get("cookie") || "",
+      },
+    },
+  );
+
+  const isLoggedIn = !!session;
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  const isPublicRoute = publicRoutes.some(route => {
+  const isPublicRoute = publicRoutes.some((route) => {
     if (route === "/") {
       return nextUrl.pathname === route;
     } else {
@@ -30,7 +40,7 @@ export default middleware((req: NextRequest & { auth: Session | null }): Respons
 
   if (isAuthRoute) {
     if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
+      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
     }
     return;
   }
@@ -43,16 +53,14 @@ export default middleware((req: NextRequest & { auth: Session | null }): Respons
 
     const encodedCallbackUrl = encodeURIComponent(callbackUrl);
 
-    return Response.redirect(new URL(
-      `/login?callbackUrl=${encodedCallbackUrl}`,
-      nextUrl
-    ));
+    return Response.redirect(
+      new URL(`/login?callbackUrl=${encodedCallbackUrl}`, nextUrl),
+    );
   }
 
   return;
-})
-
-// Optionally, don't invoke Middleware on some paths
-export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|images|favicon.ico).*)'],
 }
+
+export const config = {
+  matcher: ["/((?!api|_next/static|_next/image|images|favicon.ico).*)"],
+};

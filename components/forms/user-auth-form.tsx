@@ -1,98 +1,177 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { useSearchParams } from "next/navigation"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { signIn } from "next-auth/react"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
+import * as React from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
-import { cn } from "@/lib/utils"
-import { userAuthSchema } from "@/lib/validations/auth"
-import { buttonVariants } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { toast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/shared/icons"
+import { cn } from "@/lib/utils";
+import {
+  SignInData,
+  SignUpData,
+  signInSchema,
+  signUpSchema,
+  userAuthData,
+} from "@/lib/validations/auth";
+import { buttonVariants } from "@/components/ui/button";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
+import { Icons } from "@/components/shared/icons";
+import { authClient } from "@/lib/auth-client";
+import { Input } from "../ui/input";
+import { toast } from "../ui/use-toast";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
-  type?: string
+  type?: string;
 }
 
-type FormData = z.infer<typeof userAuthSchema>
-
 export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(userAuthSchema),
-  })
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false)
-  const searchParams = useSearchParams()
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false);
+  const [isSignup, setIsSignup] = React.useState<boolean>(type === "register");
+  const router = useRouter();
 
-  async function onSubmit(data: FormData) {
-    setIsLoading(true)
+  const form = useForm<userAuthData>({
+    defaultValues: {
+      email: "",
+      password: "",
+      name: "",
+    },
+    resolver: zodResolver(isSignup ? signUpSchema : signInSchema),
+  });
 
-    const signInResult = await signIn("email", {
-      email: data.email.toLowerCase(),
-      redirect: false,
-      callbackUrl: searchParams?.get("from") || "/dashboard",
-    })
-
-    setIsLoading(false)
-
-    // TODO: replace shadcn toast by react-hot-toast
-    if (!signInResult?.ok) {
-      return toast({
-        title: "Something went wrong.",
-        description: "Your sign in request failed. Please try again.",
-        variant: "destructive",
-      })
+  const onSubmit = async (values: userAuthData) => {
+    if (isSignup) {
+      await authClient.signUp.email(values as SignUpData, {
+        onRequest: () => setIsLoading(true),
+        onResponse: () => setIsLoading(false),
+        onError: (error) => {
+          toast({ description: error.error.message });
+        },
+        onSuccess: () => {
+          router.push("/dashboard");
+        },
+      });
+    } else {
+      await authClient.signIn.email(values as SignInData, {
+        onRequest: () => setIsLoading(true),
+        onResponse: () => setIsLoading(false),
+        onError: (error) => {
+          toast({ description: error.error.message });
+        },
+        onSuccess: () => {
+          router.push("/dashboard");
+        },
+      });
     }
+  };
 
-    return toast({
-      title: "Check your email",
-      description: "We sent you a login link. Be sure to check your spam too.",
-    })
-  }
+  const handleSocialLogin = async () => {
+    setIsGoogleLoading(true);
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+      fetchOptions: {
+        onSuccess: () => {
+          setIsGoogleLoading(false);
+        },
+        onError: (error) => {
+          console.error(error);
+          setIsGoogleLoading(false);
+        },
+      },
+    });
+  };
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid gap-2">
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Email
-            </Label>
-            <Input
-              id="email"
-              placeholder="name@example.com"
-              type="email"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              disabled={isLoading || isGoogleLoading}
-              {...register("email")}
+      <Form {...form}>
+        {isSignup && (
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Your Name"
+                    type="text"
+                    autoCapitalize="none"
+                    autoComplete="name"
+                    autoCorrect="off"
+                    disabled={isLoading || isGoogleLoading}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
+
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="grid gap-2">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="name@example.com"
+                      type="email"
+                      autoCapitalize="none"
+                      autoComplete="email"
+                      autoCorrect="off"
+                      disabled={isLoading || isGoogleLoading}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            {errors?.email && (
-              <p className="px-1 text-xs text-red-600">
-                {errors.email.message}
-              </p>
-            )}
+
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="********"
+                      type="password"
+                      autoCapitalize="none"
+                      autoComplete="current-password"
+                      autoCorrect="off"
+                      disabled={isLoading || isGoogleLoading}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <button className={cn(buttonVariants())} disabled={isLoading}>
+              {isLoading && (
+                <Icons.spinner className="mr-2 size-4 animate-spin" />
+              )}
+              {type === "register"
+                ? "Sign Up with Email"
+                : "Sign In with Email"}
+            </button>
           </div>
-          <button className={cn(buttonVariants())} disabled={isLoading}>
-            {isLoading && (
-              <Icons.spinner className="mr-2 size-4 animate-spin" />
-            )}
-            {type === "register"
-              ? "Sign Up with Email"
-              : "Sign In with Email"}
-          </button>
-        </div>
-      </form>
+        </form>
+      </Form>
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
@@ -107,10 +186,9 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
         type="button"
         className={cn(buttonVariants({ variant: "outline" }))}
         onClick={() => {
-          setIsGoogleLoading(true)
-          signIn("google")
+          handleSocialLogin();
         }}
-        disabled={isLoading || isGoogleLoading}
+        disabled={isGoogleLoading || isLoading}
       >
         {isGoogleLoading ? (
           <Icons.spinner className="mr-2 size-4 animate-spin" />
@@ -120,5 +198,5 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
         Google
       </button>
     </div>
-  )
+  );
 }

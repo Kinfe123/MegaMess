@@ -1,5 +1,5 @@
-import { initEdgeStore } from '@edgestore/server';
-import { createEdgeStoreNextHandler } from '@edgestore/server/adapters/next/app';
+import { initEdgeStore } from "@edgestore/server";
+import { createEdgeStoreNextHandler } from "@edgestore/server/adapters/next/app";
 
 const es = initEdgeStore.create();
 
@@ -19,3 +19,4 @@ export { handler as GET, handler as POST };
  * This type is used to create the type-safe client for the frontend.
  */
 export type EdgeStoreRouter = typeof edgeStoreRouter;
+

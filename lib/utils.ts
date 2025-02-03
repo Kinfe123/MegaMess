@@ -1,26 +1,25 @@
-import { ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 import ms from "ms";
-import crypto from 'crypto'
-import { env } from "@/env.mjs"
+import crypto from "crypto";
+import { env } from "@/env.mjs";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function formatDate(input: string | number): string {
-  const date = new Date(input)
+  const date = new Date(input);
   return date.toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",
-  })
+  });
 }
 
 export function absoluteUrl(path: string) {
-  return `${env.NEXT_PUBLIC_APP_URL}${path}`
+  return `${env.NEXT_PUBLIC_APP_URL}${path}`;
 }
-
 
 // Utils from precedent.dev
 
@@ -87,36 +86,31 @@ export const truncate = (str: string, length: number) => {
 };
 
 export const toSize = async (url: string) => {
-  const req = await fetch(url , {
-    method:'HEAD'
-  })
-  const size = req.headers.get("content-length")
-  const result = size ? parseInt(size) : 0
-  return result
-
-
-}
+  const req = await fetch(url, {
+    method: "HEAD",
+  });
+  const size = req.headers.get("content-length");
+  const result = size ? parseInt(size) : 0;
+  return result;
+};
 
 export function formatFileSize(bytes?: number) {
   if (!bytes) {
-    return '0 Bytes';
+    return "0 Bytes";
   }
   bytes = Number(bytes);
   if (bytes === 0) {
-    return '0 Bytes';
+    return "0 Bytes";
   }
   const k = 1024;
   const dm = 2;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 }
 
-
 export const generateApiKey = () => {
-  const prefix = 'megamess_'
+  const prefix = "megamess_";
 
-  return prefix +  crypto.randomBytes(32).toString('hex');
-  
+  return prefix + crypto.randomBytes(32).toString("hex");
 };
-
