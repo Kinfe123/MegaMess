@@ -12,7 +12,7 @@ Easy and user friendly file sharing platform along with analytics
 - **Email:** [React Email](https://react.email)
 - **Content Management:** [Contentlayer](https://www.contentlayer.dev)
 - **File Uploads:** [EdgeStore](https://uploadthing.com)
-
+- **Cache and Rate limiting:** [Upstash](https://upstash.com)
 ## Features
 
 - [x] File Upload using our custom uploaders
