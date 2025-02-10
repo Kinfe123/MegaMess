@@ -26,13 +26,13 @@ export const metadata = {
 
 const FileDetail = async ({ params }: PropsParams) => {
     const fileId = params.id
-    const [users , fileFromId, fileLogs , logs  , downloads, loved , feedbacks] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId) , fileLogsById(fileId) , logByFileId(fileId) , downloadsByFileId(fileId) , lovedByOther(fileId) , feedbacksById(fileId)])
+    const [users, fileFromId, fileLogs, logs, downloads, loved, feedbacks] = await Promise.all([waitlistEmailUsers(fileId), fileById(fileId), fileLogsById(fileId), logByFileId(fileId), downloadsByFileId(fileId), lovedByOther(fileId), feedbacksById(fileId)])
 
-    const TABS = ['Waitlists', 'Analytics', 'Settings' , 'Feedbacks']
+    const TABS = ['Waitlists', 'Analytics', 'Settings', 'Feedbacks']
     const summedDownload = fileFromId?.downloads!
 
     return (
-        <DashboardShell>    
+        <DashboardShell>
             <DashboardHeader heading="Analytics & Privillages" text="Explore in depth analytics and exploration about your files" />
             <TabModified defaultValue={TABS[0].toLowerCase()}>
                 {TABS.map((tab) => {
@@ -51,7 +51,7 @@ const FileDetail = async ({ params }: PropsParams) => {
                 <TabsContent value="analytics" className="flex flex-col max-w-[76rem] ">
                     <Suspense fallback={<WaitlistSkeleton />}>
                         <div className="h-full flex justify-center items-center">
-                            <AnalyticsFile fileId={fileId} logs={logs} downloads={summedDownload} loved={loved}/>
+                            <AnalyticsFile fileId={fileId} logs={logs} downloads={summedDownload} loved={loved} />
                         </div>
                     </Suspense>
                 </TabsContent>
@@ -67,7 +67,7 @@ const FileDetail = async ({ params }: PropsParams) => {
                 <TabsContent value="feedbacks" className="flex flex-col max-w-[76rem] ">
                     <Suspense fallback={<WaitlistSkeleton />}>
                         <div className="h-full flex justify-center items-center">
-                            <FeedbackLists fileId={fileId} feedbacks={feedbacks}  />
+                            <FeedbackLists fileId={fileId} feedbacks={feedbacks} />
                         </div>
                     </Suspense>
                 </TabsContent>
