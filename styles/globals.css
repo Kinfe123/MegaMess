@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --ultramute: #FFFFFF;
+    --ultramute: #ffffff;
 
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -26,19 +26,19 @@
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
     --radius: 0.5rem;
-    --n1: #FFFFFF;
-    --n2: #CAC6DD;
-    --n3: #ADA8C3;
+    --n1: #ffffff;
+    --n2: #cac6dd;
+    --n3: #ada8c3;
     --n4: #757185;
-    --n5: #3F3A52;
+    --n5: #3f3a52;
     --n6: #252134;
-    --n7: #15131D;
-    --n8: #0E0C15;
+    --n7: #15131d;
+    --n8: #0e0c15;
     --n9: #474060;
-    --n10: #43435C;
-    --n11: #1B1B2E;
-    --n12: #2E2A41;
-    --n13: #6C7275;
+    --n10: #43435c;
+    --n11: #1b1b2e;
+    --n12: #2e2a41;
+    --n13: #6c7275;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -47,8 +47,8 @@
   }
 
   .dark {
-    --background: 0 0% 3.9%;;
-    --ultramute: #FFFFFF;
+    --background: 0 0% 3.9%;
+    --ultramute: #ffffff;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -67,19 +67,19 @@
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
-    --n1: #FFFFFF;
-    --n2: #CAC6DD;
-    --n3: #ADA8C3;
+    --n1: #ffffff;
+    --n2: #cac6dd;
+    --n3: #ada8c3;
     --n4: #757185;
-    --n5: #3F3A52;
+    --n5: #3f3a52;
     --n6: #252134;
-    --n7: #15131D;
-    --n8: #0E0C15;
+    --n7: #15131d;
+    --n8: #0e0c15;
     --n9: #474060;
-    --n10: #43435C;
-    --n11: #1B1B2E;
-    --n12: #2E2A41;
-    --n13: #6C7275;
+    --n10: #43435c;
+    --n11: #1b1b2e;
+    --n12: #2e2a41;
+    --n13: #6c7275;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -88,16 +88,16 @@
   }
 }
 
-
 @layer base {
   * {
     @apply border-border;
-    scroll-behavior: smooth
-
+    scroll-behavior: smooth;
   }
   body {
-    @apply  bg-background text-ultra;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-ultra;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 }
 
@@ -108,12 +108,12 @@
   background-clip: text;
 }
 
-::-webkit-scrollbar{
-  @apply w-[2px]
+::-webkit-scrollbar {
+  @apply w-[2px];
 }
 
 * {
-  scroll-behavior: smooth
+  scroll-behavior: smooth;
 }
 
 @layer base {

@@ -4,13 +4,15 @@ import useScroll from "@/hooks/use-scroll";
 import { MainNavItem } from "@/types";
 import { MainNav } from "./main-nav";
 import { UserAccountNav } from "./user-account-nav";
-import { Button, buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useSigninModal } from "@/hooks/use-signin-modal";
 import { useSelectedLayoutSegment } from "next/navigation";
-import { ShiftingDropDown, Tabs } from "../navy";
+import { Tabs, MobileTabs } from "../navy";
 import { User } from "better-auth/types";
+import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface NavBarProps {
   user: Pick<User, "name" | "image" | "email"> | undefined;
@@ -30,59 +32,79 @@ export function NavBar({
   const scrolled = useScroll(50);
   const segment = useSelectedLayoutSegment();
   const signInModal = useSigninModal();
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsMobileOpen(false);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <header
-      className={`border-n-6 lg:bg-n-8/90 sticky top-0 z-40  flex w-full items-center justify-center border-b bg-background/60  backdrop-blur-xl transition-all lg:backdrop-blur-md ${
+      className={`border-n-6 lg:bg-n-8/90 sticky top-0 z-40 flex w-full items-center justify-center border-b bg-background/60 backdrop-blur-xl transition-all lg:backdrop-blur-md ${
         scroll ? (scrolled ? "border-b" : "bg-background/0") : "border-b"
       }`}
     >
-      <div className="container flex h-16 items-center justify-between px-10 py-4">
+      <div className="container flex h-16 items-center justify-between px-4 py-4 sm:px-6">
         <MainNav items={items}>{children}</MainNav>
-        {items?.length ? (
-          <Tabs />
-        ) : // <nav className="hidden   w-full items-center justify-center m-auto lg:flex-row  gap-6 md:flex ">
-        //   {items?.map((item, index) => (
-        //     <Link
-        //       key={index}
-        //       href={item.disabled ? "#" : item.href}
-        //       className={cn(
-        //         "flex items-centertext-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
-        //         item.href.startsWith(`/${segment}`)
-        //           ? "text-foreground"
-        //           : "text-foreground/60",
-        //         item.disabled && "cursor-not-allowed opacity-80"
-        //       )}
-        //     >
-        //       {item.title}
-        //     </Link>
-        //   ))}
-        // </nav>
-        null}
-        <div className="flex items-center space-x-3">
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex md:items-center md:space-x-6">
+          {items?.length && <Tabs />}
+        </div>
+
+        {/* mobile nav */}
+        <div className="flex items-center space-x-3 md:hidden">
           {rightElements}
+          <button
+            onClick={() => setIsMobileOpen(!isMobileOpen)}
+            className="p-2 text-gray-400 hover:text-gray-500"
+            aria-label="Toggle menu"
+          >
+            {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
 
-          {!user
-            ? ""
-            : // <Link
-              //   href="/login"
-              //   className={cn(
-              //     buttonVariants({ variant: "outline", size: "sm" })
-              //   )}
-              // >
-              //   Login
-              // </Link>
-              null}
+        <AnimatePresence>
+          {isMobileOpen && isMobile && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="absolute left-0 right-0 top-full w-full bg-black/80 backdrop-blur-lg md:hidden"
+            >
+              <div className="space-y-2 p-4">
+                <MobileTabs />
+                <div className="mt-4 py-4">
+                  {user ? (
+                    <UserAccountNav user={user} />
+                  ) : (
+                    <Button
+                      className="w-full py-4"
+                      variant="outline"
+                      size="lg"
+                      onClick={signInModal.onOpen}
+                    >
+                      Sign In
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
+        <div className="hidden items-center space-x-3 md:flex">
           {user ? (
             <UserAccountNav user={user} />
           ) : (
-            <Button
-              className="px-"
-              variant="outline"
-              size="sm"
-              onClick={signInModal.onOpen}
-            >
+            <Button variant="outline" size="lg" onClick={signInModal.onOpen}>
               Sign In
             </Button>
           )}
@@ -91,4 +113,3 @@ export function NavBar({
     </header>
   );
 }
-
