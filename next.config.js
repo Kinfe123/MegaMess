@@ -23,7 +23,6 @@ const nextConfig = {
   },
   experimental: {
     serverComponentsExternalPackages: ["@prisma/client"],
-    turbo: true,
   },
 };
 
@@ -32,9 +31,3 @@ const withContentlayer = createContentlayerPlugin({
 });
 
 module.exports = withContentlayer(nextConfig);
-module.exports = nextConfig;
-module.exports = {
-  swcMinify: true, // this should be true
-};
-
-
